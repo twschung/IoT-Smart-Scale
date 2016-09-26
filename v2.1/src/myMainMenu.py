@@ -54,14 +54,8 @@ class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
 		else:
 			pass
 	def handleBtn_systemUpdate(self):
-		# msg = QMessageBox.information(self, 'System Update',"System and database being updated",QMessageBox.Ok)
-		# msgbox = QMessageBox(self)
-		# msgbox.setIcon(QMessageBox.Information)
-		# msgbox.setText("System and database being updated")
-		# msgbox.setWindowModality(Qt.NonModal)
-		# msgbox.open()
-		msgbox = myInfoPopUp.myInfoPopUp(title = "System Updating...", message = "System and database being updated",self)
-		msgbox.show()
+		msgbox = myInfoPopUp.myInfoPopUp("System Updating...", "System and database being updated",self)
+		msgbox.exec_()
 		ftp_access.updateImageSample()
 		ftp_access.updateML()
 		ftp_access.updatelocalDB()
