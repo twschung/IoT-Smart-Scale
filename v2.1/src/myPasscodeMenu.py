@@ -55,9 +55,9 @@ class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
 			if (fpScanResult[0]==True):
 				fpData.fpid = fpScanResult[1]
 			if (dataPostion is not None):
-				fpusr[dataPostion]=fpData
+				fpUsr[dataPostion]=fpData
 			else:
-				fpusr.append(fpData)
+				fpUsr.append(fpData)
 			config['fpUsr']=fpUsr
 			np.save('config.npy', config)
 
