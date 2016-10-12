@@ -24,8 +24,16 @@ def user_register(inputUser):
 	sql = "SELECT id FROM `userinfo_db` WHERE `username`=%s"
 	cursor.execute(sql,(inputUser.username))
 	sqlResult = cursor.fetchone()
-	serverConnection.close()
-	print (sqlResult)
+	if (sqlResult is None):
+		sql = "INSERT INTO `userinfo_db` (`username`, `password`, `email`, `firstname`, `lastname`, `dob`, `gender`, `height`, `weight`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+		cursor.execute(sql, (inputUser.username,inputUser.password,inputUser.email,inputUser.firstname,inputUser.lastname,inputUser.dob,inputUser.gender,inputUser.height,inputUser.weight) )
+		serverConnection.commit()
+		serverConnection.close()
+		return (True,0)
+	else:
+		serverConnection.close()
+		return (False,0)
 	
-testuser = db_structure.userDataStructure("0","test","123","123","123","123","123","123","123","123")
+	
+testuser = db_structure.userDataStructure("0","123","123","123","123","123","123","123","123","123")
 user_register(testuser)

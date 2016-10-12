@@ -32,7 +32,15 @@ class userRegisterWindow (QMainWindow, ui_userRegister.Ui_userRegister):
 		self.btnCancel.clicked.connect(lambda:self.btnCancel_pressed())
 		self.btnRegister.clicked.connect(lambda:self.btnRegister_pressed())
 	def btnRegister_pressed(self):
-		print ("Button pressed")
+		allFieldChecked = True
+		if (self.txtPassword.toPlainText() != self.txtConfirmPassword.toPlainText()):
+			allFieldChecked = False
+			self.lblStatus.setText("Please enter the following details : (ERROR : Password does not match with confrim Passwrord)")
+			self.txtPassword.clear()
+			self.txtConfirmPassword.clear()
+		if (self.rbnMale.isChecked() == False and self.rbnFemale.isChecked() == False):
+			allFieldChecked = False
+			self.lblStatus.setText("Please enter the following details : (ERROR : Gender not selected)")
 	def btnCancel_pressed(self):
 		login(self)
 	

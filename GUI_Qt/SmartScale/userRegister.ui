@@ -50,7 +50,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Please enter the following details:</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please enter the following details :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QScrollArea" name="scrollArea">
@@ -74,26 +74,6 @@
        <height>489</height>
       </rect>
      </property>
-     <widget class="QTextEdit" name="txtHeight">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>320</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="txtFirstname">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>170</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="lblConfirmPassword">
       <property name="geometry">
        <rect>
@@ -115,6 +95,9 @@
         <width>621</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::WheelFocus</enum>
       </property>
      </widget>
      <widget class="QLabel" name="lblFirstname">
@@ -143,16 +126,6 @@
        <string>Lastname :</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="txtLastname">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>210</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QRadioButton" name="rbnMale">
       <property name="geometry">
        <rect>
@@ -166,36 +139,6 @@
        <string>Male</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="txtWeight">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>360</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="txtConfirmPassword">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>90</y>
-        <width>621</width>
-        <height>30</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="txtEmail">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>130</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="lblEmail">
       <property name="geometry">
        <rect>
@@ -207,16 +150,6 @@
       </property>
       <property name="text">
        <string>Email :</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="txtUsername">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>10</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
       </property>
      </widget>
      <widget class="QLabel" name="lblDoB">
@@ -271,16 +204,6 @@
        <string>Username :</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="txtPassword">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>50</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="lblWeight">
       <property name="geometry">
        <rect>
@@ -320,28 +243,86 @@
        <string>Height (cm) :</string>
       </property>
      </widget>
-     <zorder>txtUsername</zorder>
-     <zorder>txtHeight</zorder>
-     <zorder>txtFirstname</zorder>
-     <zorder>lblConfirmPassword</zorder>
-     <zorder>datDoB</zorder>
-     <zorder>lblFirstname</zorder>
-     <zorder>lblLastname</zorder>
-     <zorder>txtLastname</zorder>
-     <zorder>rbnMale</zorder>
-     <zorder>txtWeight</zorder>
-     <zorder>txtConfirmPassword</zorder>
-     <zorder>txtEmail</zorder>
-     <zorder>lblEmail</zorder>
-     <zorder>txtUsername</zorder>
-     <zorder>lblDoB</zorder>
-     <zorder>lblPassword</zorder>
-     <zorder>lblGender</zorder>
-     <zorder>lblUsername</zorder>
-     <zorder>txtPassword</zorder>
-     <zorder>lblWeight</zorder>
-     <zorder>rbnFemale</zorder>
-     <zorder>lblHeight</zorder>
+     <widget class="QLineEdit" name="txtUsername">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>10</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtPassword">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>50</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtConfirmPassword">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>90</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtEmail">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>130</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtFirstname">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>170</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtLastname">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>210</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="textHeight">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>320</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtWeight">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>360</y>
+        <width>621</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
