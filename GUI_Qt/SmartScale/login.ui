@@ -37,7 +37,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Registor</string>
+     <string>New User Register</string>
     </property>
    </widget>
    <widget class="QLabel" name="lblUsername">
@@ -97,6 +97,15 @@
       <width>641</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
     </property>
    </widget>
   </widget>

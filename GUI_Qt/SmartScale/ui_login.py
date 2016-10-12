@@ -34,6 +34,9 @@ class Ui_login(object):
         self.txtUsername.setObjectName("txtUsername")
         self.txtPassword = QtWidgets.QLineEdit(self.centralWidget)
         self.txtPassword.setGeometry(QtCore.QRect(110, 110, 641, 31))
+        self.txtPassword.setInputMethodHints(QtCore.Qt.ImhHiddenText|QtCore.Qt.ImhNoAutoUppercase|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhSensitiveData)
+        self.txtPassword.setInputMask("")
+        self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.txtPassword.setObjectName("txtPassword")
         login.setCentralWidget(self.centralWidget)
         self.menuBar = QtWidgets.QMenuBar(login)
@@ -54,7 +57,7 @@ class Ui_login(object):
         _translate = QtCore.QCoreApplication.translate
         login.setWindowTitle(_translate("login", "smartScaleGUI"))
         self.btnLogin.setText(_translate("login", "Login"))
-        self.btnRegister.setText(_translate("login", "Registor"))
+        self.btnRegister.setText(_translate("login", "New User Register"))
         self.lblUsername.setText(_translate("login", "Username :"))
         self.lblPassword.setText(_translate("login", "Password :"))
         self.lblStatus.setText(_translate("login", "Please enter Username and Password : "))

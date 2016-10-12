@@ -35,5 +35,5 @@ def user_register(inputUser):
 		return (False,0)
 	
 	
-testuser = db_structure.userDataStructure("0","123","123","123","123","123","123","123","123","123")
-user_register(testuser)
+# testuser = db_structure.userDataStructure("0","123","123","123","123","123","123","123","123","123")
+# user_register(testuser)
