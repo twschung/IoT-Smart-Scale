@@ -16,10 +16,10 @@ class loginWindow (QMainWindow, ui_login.Ui_login):
 		self.btnRegister.clicked.connect(lambda:self.btnRegister_pressed())
 	def btnLogin_pressed(self):
 		self.loginResult = db_access.user_login(self.txtUsername.toPlainText(),self.txtPassword.toPlainText())
-		if (self.loginResult == False):
+		if (self.loginResult[0] == False):
 			self.lblStatus.setText ("Please enter Username and Password : (ERROR: Incorrect Username or Password)")
 		else:
-			self.loginResult.printUserDetails()
+			self.loginResult[1].printUserDetails()
 		self.txtUsername.clear()
 		self.txtPassword.clear()
 	def btnRegister_pressed(self):

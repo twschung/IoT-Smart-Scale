@@ -13,7 +13,19 @@ def user_login(inputUsername, inputPassword):
 	serverConnection.close()
 	if (sqlResult is None) : 
 		print ("Fail to fetch user details from DB (Incorrect Username or Password)")
-		return False
+		return (False,0)
 	else:
 		returnUser = db_structure.userDataStructure(sqlResult['id'],sqlResult['username'],sqlResult['password'],sqlResult['email'],sqlResult['firstname'],sqlResult['lastname'],sqlResult['dob'],sqlResult['gender'],sqlResult['height'],sqlResult['weight'])
-		return returnUser
+		return (True, returnUser)
+
+def user_register(inputUser):
+	serverConnection = connectToServer()
+	cursor = serverConnection.cursor()
+	sql = "SELECT id FROM `userinfo_db` WHERE `username`=%s"
+	cursor.execute(sql,(inputUser.username))
+	sqlResult = cursor.fetchone()
+	serverConnection.close()
+	print (sqlResult)
+	
+testuser = db_structure.userDataStructure("0","test","123","123","123","123","123","123","123","123")
+user_register(testuser)
