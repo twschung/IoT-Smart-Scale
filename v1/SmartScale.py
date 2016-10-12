@@ -17,8 +17,9 @@ class loginWindow (QMainWindow, ui_login.Ui_login):
 	def btnLogin_pressed(self):
 		self.loginResult = db_access.user_login(self.txtUsername.text(),self.txtPassword.text())
 		if (self.loginResult[0] == False):
-			self.lblStatus.setText ("Please enter Username and Password : (ERROR: Incorrect Username or Password)")
+			self.lblStatus.setText ("ERROR: Incorrect Username or Password")
 		else:
+			self.lblStatus.setText ("Login Sccessful")
 			self.loginResult[1].printUserDetails()
 		self.txtUsername.clear()
 		self.txtPassword.clear()
@@ -34,14 +35,20 @@ class userRegisterWindow (QMainWindow, ui_userRegister.Ui_userRegister):
 	def btnRegister_pressed(self):
 		allFieldChecked = True
 		# XH please add more error catching for input parameters here
-		if (self.txtPassword.text() != self.txtConfirmPassword.text()):
+		if (self.txtWeight.text().isdigit() == False or self.txtHeight.text().isdigit == False):
 			allFieldChecked = False
-			self.lblStatus.setText("Please enter the following details : (ERROR : Password does not match with confrim Passwrord)")
-			self.txtPassword.clear()
-			self.txtConfirmPassword.clear()
+			self.lblStatus.setText("ERROR : Please only enter numbers for Height and Weight")
 		if (self.rbnMale.isChecked() == False and self.rbnFemale.isChecked() == False):
 			allFieldChecked = False
-			self.lblStatus.setText("Please enter the following details : (ERROR : Gender not selected)")
+			self.lblStatus.setText("ERROR : Gender not selected")
+		if (self.txtUsername.text() == "" or self.txtPassword.text() == "" or self.txtEmail.text() == "" or self.txtFirstname.text() == "" or self.txtLastname.text() == "" or self.txtHeight.text() == "" or self.txtWeight.text() == ""):
+			allFieldChecked = False
+			self.lblStatus.setText("ERROR : Please fill in all fields")
+		if (self.txtPassword.text() != self.txtConfirmPassword.text()):
+			allFieldChecked = False
+			self.lblStatus.setText("ERROR : Password does not match with confrim Passwrord")
+			self.txtPassword.clear()
+			self.txtConfirmPassword.clear()
 		if (allFieldChecked == True):
 			inputDoB = self.datDoB.date().toString('ddMMyyyy')
 			inputGender = ""
@@ -52,7 +59,7 @@ class userRegisterWindow (QMainWindow, ui_userRegister.Ui_userRegister):
 			newUser = db_structure.userDataStructure("0", self.txtUsername.text(), self.txtPassword.text(), self.txtEmail.text(), self.txtFirstname.text(), self.txtLastname.text(), inputDoB, inputGender, self.txtHeight.text(), self.txtWeight.text())
 			dbResult = db_access.user_register(newUser)
 			if (dbResult[0] == False):
-				self.lblStatus.setText("Please enter the following details : (ERROR : Username is already used)")
+				self.lblStatus.setText("ERROR : Username is already used")
 				self.txtUsername.clear()
 			if (dbResult[0] == True):
 				login(self)
