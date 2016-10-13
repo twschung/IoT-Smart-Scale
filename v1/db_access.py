@@ -46,8 +46,8 @@ def user_changeUserDetails(inputUser):
 		serverConnection.commit()
 		serverConnection.close()
 		comfirmUser = user_login(verifedUser[1].username, verifedUser[1].password)
-		if (comfirmUser == inputUser) :
-			return (True,comfirmUser)
+		if (comfirmUser[1] == inputUser) :
+			return (True,comfirmUser[1])
 		else:
 			return (False,1)
 		
@@ -66,7 +66,7 @@ def user_changePassword(inputUser,oldPassword, newPassword):
 		if (comfirmUser[0] == False):
 			return (False,1)
 		else:
-			return (True, comfirmUser)
+			return (True, comfirmUser[1])
 
 	
 # testuser = db_structure.userDataStructure("2","qq","ee","321","321","321","321","321","321","321")

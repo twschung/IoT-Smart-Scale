@@ -46,7 +46,7 @@ class userRegisterWindow (QMainWindow, ui_userRegister.Ui_userRegister):
 			self.lblStatus.setText("ERROR : Please fill in all fields")
 		if (self.txtPassword.text() != self.txtConfirmPassword.text()):
 			allFieldChecked = False
-			self.lblStatus.setText("ERROR : Password does not match with confrim Passwrord")
+			self.lblStatus.setText("ERROR : Password does not match with confrim Password")
 			self.txtPassword.clear()
 			self.txtConfirmPassword.clear()
 		if (allFieldChecked == True):
@@ -87,7 +87,29 @@ class userPasswordChangeWindow (QMainWindow, ui_userPasswordChange.Ui_userPasswo
 		super	(self.__class__, self).__init__()
 		self.setupUi(self)
 		self.currentUser = currentUser
+		self.btnChangePassword.clicked.connect(lambda:self.btnChangePassword_pressed())
 		self.btnCancel.clicked.connect(lambda:self.btnCancel_pressed())
+	def btnChangePassword_pressed(self):
+		allFieldChecked = True
+		if (self.txtNewPassword.text() != self.txtConfirmPassword.text()):
+			allFieldChecked = False
+			self.lblStatus.setText("Error : Comfirm Password does not match with New Password")
+			self.txtNewPassword.clear()
+			self.txtConfirmPassword.clear()
+		if (self.txtNewPassword.text() == ""):
+			allFieldChecked = False
+			self.lblStatus.setText("Error : Can not have a blank password")
+		if (allFieldChecked ==  True):
+			dbResult = db_access.user_changePassword(self.currentUser, self.txtOldPassword.text(), self.txtNewPassword.text())
+			if (dbResult[0] == True):
+				self.currentUser = dbResult[1]
+				mainMenu(self)
+			else:
+				if (dbResult[1] == 0):
+					self.lblStatus.setText("Error : Old Password is incorrect")
+					self.txtOldPassword.clear()
+				if (dbResult[1] == 1):
+					self.lblStatus.setText("Error : DataBase Error")
 	def btnCancel_pressed(self):
 		mainMenu(self)
 		
@@ -96,6 +118,7 @@ class userDetailChangeWindow (QMainWindow, ui_userDetailChange.Ui_userDetailChan
 		super	(self.__class__, self).__init__()
 		self.setupUi(self)
 		self.currentUser = currentUser
+		
 		self.btnCancel.clicked.connect(lambda:self.btnCancel_pressed())
 	def btnCancel_pressed(self):
 		mainMenu(self)
