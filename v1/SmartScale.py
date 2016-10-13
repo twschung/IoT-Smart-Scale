@@ -5,8 +5,7 @@ from PyQt5.QtWidgets import *
 
 import db_access, db_structure
 
-import ui_login
-import ui_userRegister
+import ui_login, ui_userRegister, ui_mainMenu, ui_userPasswordChange, ui_userDetailChange
 
 class loginWindow (QMainWindow, ui_login.Ui_login):
 	def __init__(self):
@@ -15,12 +14,13 @@ class loginWindow (QMainWindow, ui_login.Ui_login):
 		self.btnLogin.clicked.connect(lambda:self.btnLogin_pressed())
 		self.btnRegister.clicked.connect(lambda:self.btnRegister_pressed())
 	def btnLogin_pressed(self):
-		self.loginResult = db_access.user_login(self.txtUsername.text(),self.txtPassword.text())
-		if (self.loginResult[0] == False):
+		loginResult = db_access.user_login(self.txtUsername.text(),self.txtPassword.text())
+		if (loginResult[0] == False):
 			self.lblStatus.setText ("ERROR: Incorrect Username or Password")
 		else:
 			self.lblStatus.setText ("Login Sccessful")
-			self.loginResult[1].printUserDetails()
+			self.currentUser = loginResult[1]
+			mainMenu(self)
 		self.txtUsername.clear()
 		self.txtPassword.clear()
 	def btnRegister_pressed(self):
@@ -63,10 +63,44 @@ class userRegisterWindow (QMainWindow, ui_userRegister.Ui_userRegister):
 				self.txtUsername.clear()
 			if (dbResult[0] == True):
 				login(self)
-			
 	def btnCancel_pressed(self):
 		login(self)
 	
+class mainMenuWindow (QMainWindow, ui_mainMenu.Ui_mainMenu):
+	def __init__(self, currentUser):
+		super	(self.__class__, self).__init__()
+		self.setupUi(self)
+		self.currentUser = currentUser
+		self.lblStatus.setText(("Hi! Welcome back! %s %s" % (self.currentUser.firstname, self.currentUser.lastname)))
+		self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
+		self.btnChangePassword.clicked.connect(lambda:self.btnChangePassword_pressed())
+		self.btnChangeUserDetail.clicked.connect(lambda:self.btnChangeUserDetail_pressed())
+	def btnChangePassword_pressed(self):
+		userPasswordChange(self)
+	def btnChangeUserDetail_pressed(self):
+		userDetailChange(self)
+	def btnLogout_pressed(self):
+		login(self)
+		
+class userPasswordChangeWindow (QMainWindow, ui_userPasswordChange.Ui_userPasswordChange):
+	def __init__(self, currentUser):
+		super	(self.__class__, self).__init__()
+		self.setupUi(self)
+		self.currentUser = currentUser
+		self.btnCancel.clicked.connect(lambda:self.btnCancel_pressed())
+	def btnCancel_pressed(self):
+		mainMenu(self)
+		
+class userDetailChangeWindow (QMainWindow, ui_userDetailChange.Ui_userDetailChange):
+	def __init__(self, currentUser):
+		super	(self.__class__, self).__init__()
+		self.setupUi(self)
+		self.currentUser = currentUser
+		self.btnCancel.clicked.connect(lambda:self.btnCancel_pressed())
+	def btnCancel_pressed(self):
+		mainMenu(self)
+		
+
 def main():
 	app = QApplication(sys.argv)
 	currentForm = loginWindow()
@@ -81,6 +115,21 @@ def login(self):
 def userRegister(self):
 	self.close()
 	currentForm = userRegisterWindow()
+	currentForm.show()
+	
+def mainMenu(self):
+	self.close()
+	currentForm = mainMenuWindow(self.currentUser)
+	currentForm.show()
+
+def userPasswordChange(self):
+	self.close()
+	currentForm = userPasswordChangeWindow(self.currentUser)
+	currentForm.show()
+	
+def userDetailChange(self):
+	self.close()
+	currentForm = userDetailChangeWindow(self.currentUser)
 	currentForm.show()
 	
 

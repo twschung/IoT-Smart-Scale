@@ -19,4 +19,7 @@ HEADERS  += smartscalegui.h
 
 FORMS    += \
     login.ui \
-    userRegister.ui
+    userRegister.ui \
+    userPasswordChange.ui \
+    userDetailChange.ui \
+    mainMenu.ui
