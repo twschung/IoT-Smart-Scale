@@ -142,6 +142,21 @@ class userDetailChangeWindow (QMainWindow, ui_userDetailChange.Ui_userDetailChan
 		if (self.txtEmail.text() == "" or self.txtFirstname.text() == "" or self.txtLastname.text() == "" or self.txtHeight.text() == "" or self.txtWeight.text() == ""):
 			allFieldChecked = False
 			self.lblStatus.setText("ERROR : Please fill in all fields")
+		if (allFieldChecked == True):
+			inputDoB = self.datDoB.date().toString('ddMMyyyy')
+			inputGender = ""
+			if (self.rbnMale.isChecked() == True): 
+				inputGender = "m"
+			if (self.rbnFemale.isChecked() == True): 
+				inputGender = "f"
+			updateUser = db_structure.userDataStructure(self.currentUser.id,self.currentUser.username,self.txtPassword.text(),self.txtEmail.text(),self.txtFirstname.text(),self.txtLastname.text(),inputDoB,inputGender,self.txtHeight.text(),self.txtWeight.text())
+			dbResult = db_access.user_changeUserDetails(updateUser)
+			if (dbResult[0] == False):
+				if (dbResult[1] == 0): self.lblStatus.setText("ERROR : Incorrect Password")
+				if (dbResult[1] == 1): self.lblStatus.setText("ERROR : DateBase error")
+			if (dbResult[0] == True):
+				self.currentUser = dbResult[1]
+				mainMenu(self)
 	def btnCancel_pressed(self):
 		mainMenu(self)
 		

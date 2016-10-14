@@ -46,10 +46,11 @@ def user_changeUserDetails(inputUser):
 		serverConnection.commit()
 		serverConnection.close()
 		comfirmUser = user_login(verifedUser[1].username, verifedUser[1].password)
-		if (comfirmUser[1] == inputUser) :
-			return (True,comfirmUser[1])
-		else:
-			return (False,1)
+		return (True,comfirmUser[1])
+		# if (comfirmUser[1] == inputUser) :
+			# return (True,comfirmUser[1])
+		# else:
+			# return (False,1)
 		
 def user_changePassword(inputUser,oldPassword, newPassword):
 	verifedUser = user_login(inputUser.username,oldPassword)
