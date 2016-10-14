@@ -34,7 +34,6 @@ class userRegisterWindow (QMainWindow, ui_userRegister.Ui_userRegister):
 		self.btnRegister.clicked.connect(lambda:self.btnRegister_pressed())
 	def btnRegister_pressed(self):
 		allFieldChecked = True
-		# XH please add more error catching for input parameters here
 		if (self.txtWeight.text().isdigit() == False or self.txtHeight.text().isdigit == False):
 			allFieldChecked = False
 			self.lblStatus.setText("ERROR : Please only enter numbers for Height and Weight")
@@ -118,8 +117,31 @@ class userDetailChangeWindow (QMainWindow, ui_userDetailChange.Ui_userDetailChan
 		super	(self.__class__, self).__init__()
 		self.setupUi(self)
 		self.currentUser = currentUser
-		
+		self.txtEmail.setText(currentUser.email)
+		self.txtFirstname.setText(currentUser.firstname)
+		self.txtLastname.setText(currentUser.lastname)
+		self.txtHeight.setText(currentUser.height)
+		self.txtWeight.setText(currentUser.weight)
+		if (currentUser.gender == "m"):
+			self.rbnMale.setChecked(True)
+			self.rbnFemale.setChecked(False)
+		else:
+			self.rbnMale.setChecked(False)
+			self.rbnFemale.setChecked(True)
+		self.datDoB.setDate(self.datDoB.date().fromString(currentUser.dob,"ddMMyyyy"))
+		self.btnSubmitChanges.clicked.connect(lambda:self.btnSubmitChanges_pressed())
 		self.btnCancel.clicked.connect(lambda:self.btnCancel_pressed())
+	def btnSubmitChanges_pressed(self):
+		allFieldChecked = True
+		if (self.txtWeight.text().isdigit() == False or self.txtHeight.text().isdigit == False):
+			allFieldChecked = False
+			self.lblStatus.setText("ERROR : Please only enter numbers for Height and Weight")
+		if (self.rbnMale.isChecked() == False and self.rbnFemale.isChecked() == False):
+			allFieldChecked = False
+			self.lblStatus.setText("ERROR : Gender not selected")
+		if (self.txtEmail.text() == "" or self.txtFirstname.text() == "" or self.txtLastname.text() == "" or self.txtHeight.text() == "" or self.txtWeight.text() == ""):
+			allFieldChecked = False
+			self.lblStatus.setText("ERROR : Please fill in all fields")
 	def btnCancel_pressed(self):
 		mainMenu(self)
 		
