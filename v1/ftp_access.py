@@ -1,4 +1,5 @@
 import ftplib
+import os
 
 def connectToServer ():
 	session = ftplib.FTP('42.2.205.124','admin','abcd1234')
@@ -16,4 +17,12 @@ def uploadImage (type, filename, filePath):
 	imageFile.close()
 	session.quit()
 	
-uploadImage("exisit", "apple.jpg", "c:/apple.jpg")
+def downloadTempImage (filename):
+	session = connectToServer()
+	session.cwd ("/imageSample")
+	session.retrbinary(('RETR %s'% filename), open('temp.jpg','wb').write)
+	session.quit()
+
+downloadTempImage("apple.jpg")
+	
+#uploadImage("exisit", "apple.jpg", "c:/apple.jpg")

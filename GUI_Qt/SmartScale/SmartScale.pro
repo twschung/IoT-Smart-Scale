@@ -23,4 +23,4 @@ FORMS    += \
     userPasswordChange.ui \
     userDetailChange.ui \
     mainMenu.ui \
-    mainMenu_copy.ui
+    itemSuggestion.ui

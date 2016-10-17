@@ -2,10 +2,12 @@ import sys
 
 import PyQt5
 from PyQt5.QtWidgets import *
-
+from PyQt5 import QtGui, QtCore
+_fromUtf8 = QtCore.QString.fromUtf8
 import db_access, db_structure
+import ftp_access
 
-import ui_login, ui_userRegister, ui_mainMenu, ui_userPasswordChange, ui_userDetailChange
+import ui_login, ui_userRegister, ui_mainMenu, ui_userPasswordChange, ui_userDetailChange, ui_itemSuggestion
 
 class loginWindow (QMainWindow, ui_login.Ui_login):
 	def __init__(self):
@@ -74,12 +76,15 @@ class mainMenuWindow (QMainWindow, ui_mainMenu.Ui_mainMenu):
 		self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
 		self.btnChangePassword.clicked.connect(lambda:self.btnChangePassword_pressed())
 		self.btnChangeUserDetail.clicked.connect(lambda:self.btnChangeUserDetail_pressed())
+		self.pushButton_5.clicked.connect(lambda:self.pushButton_5_pressed())
 	def btnChangePassword_pressed(self):
 		userPasswordChange(self)
 	def btnChangeUserDetail_pressed(self):
 		userDetailChange(self)
 	def btnLogout_pressed(self):
 		login(self)
+	def pushButton_5_pressed(self):
+		itemSuggestion(self)
 		
 class userPasswordChangeWindow (QMainWindow, ui_userPasswordChange.Ui_userPasswordChange):
 	def __init__(self, currentUser):
@@ -160,7 +165,17 @@ class userDetailChangeWindow (QMainWindow, ui_userDetailChange.Ui_userDetailChan
 	def btnCancel_pressed(self):
 		mainMenu(self)
 		
-
+class itemSuggestionWindow (QMainWindow, ui_itemSuggestion.Ui_itemSuggestion):
+	def __init__(self, currentUser):
+		super	(self.__class__, self).__init__()
+		self.setupUi(self)
+		self.currentUser = currentUser
+		self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
+	def btnLogout_pressed(self):
+		ftp_access.downloadTempImage("apple.jpg")
+		self.lblItem1.setPixmap(QtGui.QPixmap(_fromUtf8('temp.jpg')))
+		
+		
 def main():
 	app = QApplication(sys.argv)
 	currentForm = loginWindow()
@@ -190,6 +205,11 @@ def userPasswordChange(self):
 def userDetailChange(self):
 	self.close()
 	currentForm = userDetailChangeWindow(self.currentUser)
+	currentForm.show()
+	
+def itemSuggestion(self):
+	self.close()
+	currentForm = itemSuggestionWindow(self.currentUser)
 	currentForm.show()
 	
 
