@@ -1,7 +1,7 @@
 import pymysql.cursors , db_structure
 
 def connectToServer():
-	connection = pymysql.connect(host='localhost',user='admin',password='abcd1234',db='smartscale',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
+	connection = pymysql.connect(host='42.2.205.124',user='admin',password='abcd1234',db='smartscale',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
 	return connection
 	
 def user_login(inputUsername, inputPassword):

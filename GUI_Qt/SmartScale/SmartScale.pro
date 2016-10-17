@@ -22,4 +22,5 @@ FORMS    += \
     userRegister.ui \
     userPasswordChange.ui \
     userDetailChange.ui \
-    mainMenu.ui
+    mainMenu.ui \
+    mainMenu_copy.ui
