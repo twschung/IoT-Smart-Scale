@@ -1,9 +1,10 @@
-import sys
+import sys, time
 
 import PyQt5
 from PyQt5.QtWidgets import *
-from PyQt5 import QtGui, QtCore
-_fromUtf8 = QtCore.QString.fromUtf8
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+
 import db_access, db_structure
 import ftp_access
 
@@ -172,8 +173,47 @@ class itemSuggestionWindow (QMainWindow, ui_itemSuggestion.Ui_itemSuggestion):
 		self.currentUser = currentUser
 		self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
 	def btnLogout_pressed(self):
-		ftp_access.downloadTempImage("apple.jpg")
-		self.lblItem1.setPixmap(QtGui.QPixmap(_fromUtf8('temp.jpg')))
+		# tic = time.clock()
+		# ftpSession = ftp_access.connectToServer()
+		# ftp_access.downloadTempImage_1(ftpSession,"apple.jpg")
+		# self.lblItem1.setPixmap(QPixmap('temp.jpg'))
+		# ftp_access.downloadTempImage_1(ftpSession,"banana.jpg")
+		# self.lblItem2.setPixmap(QPixmap('temp.jpg'))
+		# ftp_access.downloadTempImage_1(ftpSession,"orange.jpg")
+		# self.lblItem3.setPixmap(QPixmap('temp.jpg'))
+		# ftp_access.downloadTempImage_1(ftpSession,"mango.jpg")
+		# self.lblItem4.setPixmap(QPixmap('temp.jpg'))
+		# ftp_access.downloadTempImage_1(ftpSession,"pear.jpg")
+		# self.lblItem5.setPixmap(QPixmap('temp.jpg'))
+		# ftp_access.disconnectFromServer(ftpSession)
+		# toc = time.clock()
+		# print((toc - tic))
+		# tic = time.clock()
+		# ftp_access.downloadTempImage_2("apple.jpg")
+		# self.lblItem5.setPixmap(QPixmap('temp.jpg'))
+		# ftp_access.downloadTempImage_2("banana.jpg")
+		# self.lblItem4.setPixmap(QPixmap('temp.jpg'))
+		# ftp_access.downloadTempImage_2("orange.jpg")
+		# self.lblItem3.setPixmap(QPixmap('temp.jpg'))
+		# ftp_access.downloadTempImage_2("mango.jpg")
+		# self.lblItem2.setPixmap(QPixmap('temp.jpg'))
+		# ftp_access.downloadTempImage_2("pear.jpg")
+		# self.lblItem1.setPixmap(QPixmap('temp.jpg'))
+		# toc = time.clock()
+		# print((toc - tic))
+		tic = time.clock()
+		ftp_access.downloadTempImage_3("apple.jpg")
+		self.lblItem5.setPixmap(QPixmap('temp.jpg'))
+		ftp_access.downloadTempImage_3("banana.jpg")
+		self.lblItem4.setPixmap(QPixmap('temp.jpg'))
+		ftp_access.downloadTempImage_3("orange.jpg")
+		self.lblItem3.setPixmap(QPixmap('temp.jpg'))
+		ftp_access.downloadTempImage_3("mango.jpg")
+		self.lblItem2.setPixmap(QPixmap('temp.jpg'))
+		ftp_access.downloadTempImage_3("pear.jpg")
+		self.lblItem1.setPixmap(QPixmap('temp.jpg'))
+		toc = time.clock()
+		print((toc - tic))
 		
 		
 def main():
