@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_userPasswordChange(object):
     def setupUi(self, userPasswordChange):
         userPasswordChange.setObjectName("userPasswordChange")
-        userPasswordChange.resize(1024, 600)
+        userPasswordChange.resize(1024, 565)
         self.centralWidget = QtWidgets.QWidget(userPasswordChange)
         self.centralWidget.setObjectName("centralWidget")
         self.btnChangePassword = QtWidgets.QPushButton(self.centralWidget)
@@ -40,7 +40,7 @@ class Ui_userPasswordChange(object):
         self.txtNewPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.txtNewPassword.setObjectName("txtNewPassword")
         self.lblStatus = QtWidgets.QLabel(self.centralWidget)
-        self.lblStatus.setGeometry(QtCore.QRect(190, 10, 711, 31))
+        self.lblStatus.setGeometry(QtCore.QRect(210, 10, 711, 31))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)

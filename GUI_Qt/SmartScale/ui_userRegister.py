@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_userRegister(object):
     def setupUi(self, userRegister):
         userRegister.setObjectName("userRegister")
-        userRegister.resize(1024, 600)
+        userRegister.resize(1024, 565)
         self.centralWidget = QtWidgets.QWidget(userRegister)
         self.centralWidget.setObjectName("centralWidget")
         self.btnCancel = QtWidgets.QPushButton(self.centralWidget)
@@ -24,11 +24,11 @@ class Ui_userRegister(object):
         self.lblTitle.setGeometry(QtCore.QRect(20, 10, 171, 41))
         self.lblTitle.setObjectName("lblTitle")
         self.scrollArea = QtWidgets.QScrollArea(self.centralWidget)
-        self.scrollArea.setGeometry(QtCore.QRect(10, 50, 771, 491))
+        self.scrollArea.setGeometry(QtCore.QRect(10, 50, 771, 451))
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 769, 489))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 769, 449))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.lblConfirmPassword = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         self.lblConfirmPassword.setGeometry(QtCore.QRect(20, 90, 101, 21))

@@ -19,10 +19,19 @@ def readTrainingSet ():
 	sampleSet = traningSet[:,1:(traningSet.shape[1])]
 	return labelSet, sampleSet
 	
+def trainSVM():
+	model = cv2.SVM()
+	labelSet , sampleSet = readTrainingSet()
+	params = dict( kernel_type = cv2.SVM_LINEAR , svm_type = cv2.SVM_C_SVC , C = 1 )
+	model.train(sampleSet, labelSet, params = params)
+	model.save("trainedSVM")
+	
+	
 	
 newSet = [1,2,3,4]
 addNewDataSet(newSet)
 labelSet , sampleSet = readTrainingSet()
 print (labelSet)
 print (sampleSet)
+trainSVM()
 

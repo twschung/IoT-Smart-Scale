@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1024</width>
-    <height>600</height>
+    <height>565</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QLabel" name="lblStatus">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>30</y>
+      <x>20</x>
+      <y>10</y>
       <width>961</width>
       <height>31</height>
      </rect>
@@ -37,8 +37,8 @@
    <widget class="QPushButton" name="btnLogout">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>320</y>
+      <x>680</x>
+      <y>300</y>
       <width>311</width>
       <height>211</height>
      </rect>
@@ -49,14 +49,14 @@
      </font>
     </property>
     <property name="text">
-     <string>Logout</string>
+     <string>Fetch</string>
     </property>
    </widget>
    <widget class="QLabel" name="lblItem1">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>90</y>
+      <x>20</x>
+      <y>70</y>
       <width>311</width>
       <height>211</height>
      </rect>
@@ -71,8 +71,8 @@
    <widget class="QLabel" name="lblItem2">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>90</y>
+      <x>350</x>
+      <y>70</y>
       <width>311</width>
       <height>211</height>
      </rect>
@@ -87,8 +87,8 @@
    <widget class="QLabel" name="lblItem3">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>90</y>
+      <x>680</x>
+      <y>70</y>
       <width>311</width>
       <height>211</height>
      </rect>
@@ -103,8 +103,8 @@
    <widget class="QLabel" name="lblItem4">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>320</y>
+      <x>20</x>
+      <y>300</y>
       <width>311</width>
       <height>211</height>
      </rect>
@@ -119,8 +119,8 @@
    <widget class="QLabel" name="lblItem5">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>320</y>
+      <x>350</x>
+      <y>300</y>
       <width>311</width>
       <height>211</height>
      </rect>

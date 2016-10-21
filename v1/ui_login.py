@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_login(object):
     def setupUi(self, login):
         login.setObjectName("login")
-        login.resize(1024, 600)
+        login.resize(1024, 565)
         self.centralWidget = QtWidgets.QWidget(login)
         self.centralWidget.setObjectName("centralWidget")
         self.btnLogin = QtWidgets.QPushButton(self.centralWidget)
@@ -27,7 +27,7 @@ class Ui_login(object):
         self.lblPassword.setGeometry(QtCore.QRect(20, 112, 81, 21))
         self.lblPassword.setObjectName("lblPassword")
         self.lblTitle = QtWidgets.QLabel(self.centralWidget)
-        self.lblTitle.setGeometry(QtCore.QRect(20, 10, 201, 41))
+        self.lblTitle.setGeometry(QtCore.QRect(20, 10, 271, 41))
         self.lblTitle.setObjectName("lblTitle")
         self.txtUsername = QtWidgets.QLineEdit(self.centralWidget)
         self.txtUsername.setGeometry(QtCore.QRect(110, 60, 641, 31))
@@ -39,7 +39,7 @@ class Ui_login(object):
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.txtPassword.setObjectName("txtPassword")
         self.lblStatus = QtWidgets.QLabel(self.centralWidget)
-        self.lblStatus.setGeometry(QtCore.QRect(270, 10, 711, 31))
+        self.lblStatus.setGeometry(QtCore.QRect(290, 20, 711, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
