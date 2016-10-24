@@ -53,215 +53,6 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please enter the following details :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QScrollArea" name="scrollArea">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>120</y>
-      <width>771</width>
-      <height>391</height>
-     </rect>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>769</width>
-       <height>389</height>
-      </rect>
-     </property>
-     <widget class="QDateEdit" name="datDoB">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>140</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::WheelFocus</enum>
-      </property>
-      <property name="displayFormat">
-       <string>dd-MMM-yyyy</string>
-      </property>
-      <property name="calendarPopup">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lblFirstname">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>60</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Firstname :</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lblLastname">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>100</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Lastname :</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="rbnMale">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>180</y>
-        <width>82</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Male</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lblEmail">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Email :</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lblDoB">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>140</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Date of Birth :</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lblGender">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>180</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Gender :</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lblWeight">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>250</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Weight (kg) :</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="rbnFemale">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>180</y>
-        <width>82</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Female</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lblHeight">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>210</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Height (cm) :</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="txtEmail">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>20</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="txtFirstname">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>60</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="txtLastname">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>100</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="txtHeight">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>210</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="txtWeight">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>250</y>
-        <width>621</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-   </widget>
    <widget class="QLabel" name="lblStatus">
     <property name="geometry">
      <rect>
@@ -282,31 +73,136 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="txtPassword">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>60</y>
-      <width>621</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="echoMode">
-     <enum>QLineEdit::Password</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblPassword">
+   <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>60</y>
-      <width>111</width>
-      <height>21</height>
+      <y>50</y>
+      <width>741</width>
+      <height>401</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Current Password :</string>
-    </property>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="1" column="0">
+      <widget class="QLabel" name="lblEmail">
+       <property name="text">
+        <string>Email :</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="txtEmail"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="lblFirstname">
+       <property name="text">
+        <string>Firstname :</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="txtFirstname"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="lblLastname">
+       <property name="text">
+        <string>Lastname :</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="txtLastname"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="lblDoB">
+       <property name="text">
+        <string>Date of Birth :</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QDateEdit" name="datDoB">
+       <property name="focusPolicy">
+        <enum>Qt::WheelFocus</enum>
+       </property>
+       <property name="displayFormat">
+        <string>dd-MMM-yyyy</string>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="lblGender">
+       <property name="text">
+        <string>Gender :</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QRadioButton" name="rbnMale">
+       <property name="text">
+        <string>Male</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QRadioButton" name="rbnFemale">
+       <property name="text">
+        <string>Female</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="lblHeight">
+       <property name="text">
+        <string>Height (cm) :</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QLineEdit" name="txtHeight"/>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="lblWeight">
+       <property name="text">
+        <string>Weight (kg) :</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLineEdit" name="txtWeight"/>
+     </item>
+     <item row="9" column="1">
+      <widget class="QCheckBox" name="chkExpressLogin">
+       <property name="text">
+        <string>Activated</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="0">
+      <widget class="QLabel" name="lblExpressLogin">
+       <property name="text">
+        <string>Expressed Login: :</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="txtPassword">
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="lblPassword">
+       <property name="text">
+        <string>Current Password :</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

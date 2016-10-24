@@ -1,3 +1,10 @@
+class simpleUserDataStructure:
+	def __init__(self, username='~', password='~', firstname='~', lastname='~'):
+		self.username = username
+		self.password = password
+		self.firstname = firstname
+		self.lastname = lastname
+
 class userDataStructure:
 	def __init__(self, id, username, password, email, firstname, lastname, dob, gender, height, weight):
 		self.id = id
