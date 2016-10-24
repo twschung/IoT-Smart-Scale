@@ -50,8 +50,8 @@ class loginWindow (QMainWindow, ui_login.Ui_login):
 		self.expressLogin('expUsr_5',self.config['expUsr_5'].username,self.config['expUsr_5'].password)
 	def btnExpressUser_6_pressed(self):
 		self.expressLogin('expUsr_6',self.config['expUsr_6'].username,self.config['expUsr_6'].password)
-	def expressLogin(self,username,password):
-		loginResult = db_access.user_login(expUsrNo,username,password)
+	def expressLogin(self,expUsrNo,username,password):
+		loginResult = db_access.user_login(username,password)
 		if (loginResult[0] == False):
 			self.lblStatus.setText ("ERROR: Username & Password Dismatch")
 			self.config[expUsrNo]=db_structure.simpleUserDataStructure()
