@@ -39,21 +39,24 @@ class loginWindow (QMainWindow, ui_login.Ui_login):
 	def btnRegister_pressed(self):
 		userRegister(self)
 	def btnExpressUser_1_pressed(self):
-		self.expressLogin(self.config['expUsr_1'].username,self.config['expUsr_1'].password)
+		self.expressLogin('expUsr_1',self.config['expUsr_1'].username,self.config['expUsr_1'].password)
 	def btnExpressUser_2_pressed(self):
-		self.expressLogin(self.config['expUsr_2'].username,self.config['expUsr_2'].password)
+		self.expressLogin('expUsr_2',self.config['expUsr_2'].username,self.config['expUsr_2'].password)
 	def btnExpressUser_3_pressed(self):
-		self.expressLogin(self.config['expUsr_3'].username,self.config['expUsr_3'].password)
+		self.expressLogin('expUsr_3',self.config['expUsr_3'].username,self.config['expUsr_3'].password)
 	def btnExpressUser_4_pressed(self):
-		self.expressLogin(self.config['expUsr_4'].username,self.config['expUsr_4'].password)
+		self.expressLogin('expUsr_4',self.config['expUsr_4'].username,self.config['expUsr_4'].password)
 	def btnExpressUser_5_pressed(self):
-		self.expressLogin(self.config['expUsr_5'].username,self.config['expUsr_5'].password)
+		self.expressLogin('expUsr_5',self.config['expUsr_5'].username,self.config['expUsr_5'].password)
 	def btnExpressUser_6_pressed(self):
-		self.expressLogin(self.config['expUsr_6'].username,self.config['expUsr_6'].password)
+		self.expressLogin('expUsr_6',self.config['expUsr_6'].username,self.config['expUsr_6'].password)
 	def expressLogin(self,username,password):
-		loginResult = db_access.user_login(username,password)
+		loginResult = db_access.user_login(expUsrNo,username,password)
 		if (loginResult[0] == False):
-			self.lblStatus.setText ("ERROR: Unknown Error")
+			self.lblStatus.setText ("ERROR: Username & Password Dismatch")
+			self.config[expUsrNo]=db_structure.simpleUserDataStructure()
+			np.save('config.npy', self.config)
+			self.processConfig()
 		else:
 			self.lblStatus.setText ("Login Sccessful")
 			self.currentUser = loginResult[1]
@@ -69,21 +72,33 @@ class loginWindow (QMainWindow, ui_login.Ui_login):
 			if (self.config['expUsr_1'].username != '~'):
 				self.btnExpressUser_1.setEnabled(True)
 				self.btnExpressUser_1.setText(("%s %s" % (self.config['expUsr_1'].firstname,self.config['expUsr_1'].lastname)))
+			else:
+				self.btnExpressUser_1.setEnabled(False)
 			if (self.config['expUsr_2'].username != '~'):
 				self.btnExpressUser_2.setEnabled(True)
 				self.btnExpressUser_2.setText(("%s %s" % (self.config['expUsr_2'].firstname,self.config['expUsr_2'].lastname)))
+			else:
+				self.btnExpressUser_2.setEnabled(False)
 			if (self.config['expUsr_3'].username != '~'):
 				self.btnExpressUser_3.setEnabled(True)
 				self.btnExpressUser_3.setText(("%s %s" % (self.config['expUsr_3'].firstname,self.config['expUsr_3'].lastname)))
+			else:
+				self.btnExpressUser_3.setEnabled(False)
 			if (self.config['expUsr_4'].username != '~'):
 				self.btnExpressUser_4.setEnabled(True)
 				self.btnExpressUser_4.setText(("%s %s" % (self.config['expUsr_4'].firstname,self.config['expUsr_4'].lastname)))
+			else:
+				self.btnExpressUser_4.setEnabled(False)
 			if (self.config['expUsr_5'].username != '~'):
 				self.btnExpressUser_5.setEnabled(True)
 				self.btnExpressUser_5.setText(("%s %s" % (self.config['expUsr_5'].firstname,self.config['expUsr_5'].lastname)))
+			else:
+				self.btnExpressUser_5.setEnabled(False)
 			if (self.config['expUsr_6'].username != '~'):
 				self.btnExpressUser_6.setEnabled(True)
 				self.btnExpressUser_6.setText(("%s %s" % (self.config['expUsr_6'].firstname,self.config['expUsr_6'].lastname)))
+			else:
+				self.btnExpressUser_6.setEnabled(False)
 	def updateConfig(self):
 		if (self.currentUser.username != self.config['expUsr_1'].username and self.currentUser.username != self.config['expUsr_2'].username and self.currentUser.username != self.config['expUsr_3'].username and self.currentUser.username != self.config['expUsr_4'].username and self.currentUser.username != self.config['expUsr_5'].username and self.currentUser.username != self.config['expUsr_6'].username ):
 			if (self.config['expUsr_1'].username == '~'):
