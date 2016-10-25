@@ -25,4 +25,4 @@ FORMS    += \
     mainMenu.ui \
     itemSuggestion.ui \
     userDetails.ui \
-    userGetWeight.ui
+    getWeight.ui

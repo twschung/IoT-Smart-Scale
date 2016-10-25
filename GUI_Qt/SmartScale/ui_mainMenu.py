@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainMenu.ui'
 #
-# Created by: PyQt5 UI code generator 5.6
+# Created by: PyQt5 UI code generator 5.7
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -30,17 +30,17 @@ class Ui_mainMenu(object):
         self.gridLayout.setContentsMargins(11, 11, 11, 11)
         self.gridLayout.setSpacing(6)
         self.gridLayout.setObjectName("gridLayout")
-        self.pushButton_3 = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.btnUserDetails = QtWidgets.QPushButton(self.gridLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
-        self.pushButton_3.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.btnUserDetails.sizePolicy().hasHeightForWidth())
+        self.btnUserDetails.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.pushButton_3.setFont(font)
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.gridLayout.addWidget(self.pushButton_3, 0, 0, 1, 1)
+        self.btnUserDetails.setFont(font)
+        self.btnUserDetails.setObjectName("btnUserDetails")
+        self.gridLayout.addWidget(self.btnUserDetails, 0, 0, 1, 1)
         self.btnChangePassword = QtWidgets.QPushButton(self.gridLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -52,17 +52,17 @@ class Ui_mainMenu(object):
         self.btnChangePassword.setFont(font)
         self.btnChangePassword.setObjectName("btnChangePassword")
         self.gridLayout.addWidget(self.btnChangePassword, 1, 0, 1, 1)
-        self.pushButton_4 = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.btnGetWeight = QtWidgets.QPushButton(self.gridLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
-        self.pushButton_4.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.btnGetWeight.sizePolicy().hasHeightForWidth())
+        self.btnGetWeight.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.pushButton_4.setFont(font)
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.gridLayout.addWidget(self.pushButton_4, 0, 1, 1, 1)
+        self.btnGetWeight.setFont(font)
+        self.btnGetWeight.setObjectName("btnGetWeight")
+        self.gridLayout.addWidget(self.btnGetWeight, 0, 1, 1, 1)
         self.pushButton_5 = QtWidgets.QPushButton(self.gridLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -98,7 +98,7 @@ class Ui_mainMenu(object):
         self.gridLayout.addWidget(self.btnChangeUserDetail, 1, 1, 1, 1)
         mainMenu.setCentralWidget(self.centralWidget)
         self.menuBar = QtWidgets.QMenuBar(mainMenu)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 1024, 21))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 1024, 22))
         self.menuBar.setObjectName("menuBar")
         mainMenu.setMenuBar(self.menuBar)
         self.mainToolBar = QtWidgets.QToolBar(mainMenu)
@@ -114,20 +114,20 @@ class Ui_mainMenu(object):
     def retranslateUi(self, mainMenu):
         _translate = QtCore.QCoreApplication.translate
         mainMenu.setWindowTitle(_translate("mainMenu", "smartScaleGUI"))
-        self.pushButton_3.setText(_translate("mainMenu", "/"))
+        self.btnUserDetails.setText(_translate("mainMenu", "User Details"))
         self.btnChangePassword.setText(_translate("mainMenu", "Change Password"))
-        self.pushButton_4.setText(_translate("mainMenu", "/"))
+        self.btnGetWeight.setText(_translate("mainMenu", "Get Weight"))
         self.pushButton_5.setText(_translate("mainMenu", "/"))
         self.btnLogout.setText(_translate("mainMenu", "Logout"))
         self.btnChangeUserDetail.setText(_translate("mainMenu", "Change User Detail"))
-
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    mainMenu = QtWidgets.QMainWindow()
+    login = QtWidgets.QMainWindow()
     ui = Ui_mainMenu()
-    ui.setupUi(mainMenu)
-    mainMenu.show()
+    ui.setupUi(login)
+    login.show()
     sys.exit(app.exec_())
+
+
 
