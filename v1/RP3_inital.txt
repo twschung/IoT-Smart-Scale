@@ -4,6 +4,7 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install python3-pyqt5
 sudo pip3 install pymysql
+sudo apt-get install python3-scipy
 sudo apt-get install matchbox-keyboard
 
 sudo apt-get install build-essential cmake pkg-config
@@ -53,3 +54,8 @@ sudo ldconfig
 cd /usr/local/lib/python3.4/dist-packages
 sudo mv cv2.cpython-34m.so cv2.so
 ln -s /usr/local/lib/python3.4/dist-packages/cv2.so cv2.so
+
+////
+sudo easy_install scipy
+sudo apt-get install python-matplotlib
+////
