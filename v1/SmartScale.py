@@ -360,19 +360,25 @@ class userDetailsWindow(QMainWindow, ui_userDetails.Ui_userDetails):
 	def __init__(self, currentUser):
 		super	(self.__class__, self).__init__()
 		self.setupUi(self)
+		self.currentIntake = 1850
 		self.currentUser = currentUser
 		self.btnBack.clicked.connect(lambda:self.btnBack_pressed())
 		self.lblUserName.setText("%s %s" % (currentUser.firstname, currentUser.lastname))
-		self.userAge = int((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365)
+		self.userAge = int((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365.25)
 		self.lblUserAge.setText("%i" % self.userAge)
-		# self.lblUserAge.setText("%d" % ((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365))
 		self.lblUserHeight.setText("%i cm" % int(currentUser.height))
 		self.lblUserWeight.setText("%i kg" % int(currentUser.weight))
 		self.lblUserBMI.setText("%.2f" % (float(currentUser.weight)/((float(currentUser.height)/100)**2)))
 		if (currentUser.gender == "m"):
 			self.lblUserBMR.setText("%.1f" % ((float(currentUser.weight)*10)+(float(currentUser.height)*6.25)-(self.userAge*5)+5))
+			self.pgrsDailyIntake.setRange(0,2500)
+			self.lblDailyCals.setText("%i/%s kcal" %(self.currentIntake , "2500"))
 		if (currentUser.gender == "f"):
 			self.lblUserBMR.setText("%.1f" % ((float(currentUser.weight)*10)+(float(currentUser.height)*6.25)-(self.userAge*5)-161))
+			self.pgrsDailyIntake.setRange(0,2000)
+			self.lblDailyCals.setText("%s/%s kcal" %(self.currentIntake , "2000"))
+		self.pgrsDailyIntake.setValue(self.currentIntake)
+
 
 	def btnBack_pressed(self):
 		mainMenu(self)
