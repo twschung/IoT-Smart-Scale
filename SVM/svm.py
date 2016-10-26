@@ -2,10 +2,6 @@ import cv2
 import numpy as np
 import time, os
 
-#~ def initalTrainingSet():
-	#~ newSampleSet = np.array([[0.9,0.8,0.1,0.3],[1.1,1,0.05,0.2],[0.4,0.2,0.3,0.4],[0.4,0.2,0.3,0.4]], dtype=np.float32)
-	#~ newResponseSet = np.array([3,3,1,1], dtype=np.int)
-	#~ saveTrainingSet(newSampleSet, newResponseSet)
 	
 def loadTrainingSet ():
 	sampleSet = np.load('sampleSet.npy')
