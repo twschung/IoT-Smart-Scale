@@ -200,7 +200,7 @@
      <rect>
       <x>130</x>
       <y>139</y>
-      <width>72</width>
+      <width>371</width>
       <height>16</height>
      </rect>
     </property>
@@ -213,7 +213,7 @@
      <rect>
       <x>130</x>
       <y>163</y>
-      <width>74</width>
+      <width>371</width>
       <height>16</height>
      </rect>
     </property>
@@ -247,12 +247,12 @@
      <string>BMR:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="lbluserBMR">
+   <widget class="QLabel" name="lblUserBMR">
     <property name="geometry">
      <rect>
       <x>130</x>
       <y>211</y>
-      <width>58</width>
+      <width>371</width>
       <height>16</height>
      </rect>
     </property>
@@ -278,7 +278,7 @@
      <rect>
       <x>130</x>
       <y>187</y>
-      <width>56</width>
+      <width>371</width>
       <height>16</height>
      </rect>
     </property>
@@ -291,7 +291,7 @@
      <rect>
       <x>130</x>
       <y>91</y>
-      <width>67</width>
+      <width>371</width>
       <height>16</height>
      </rect>
     </property>
@@ -304,7 +304,7 @@
      <rect>
       <x>130</x>
       <y>115</y>
-      <width>56</width>
+      <width>371</width>
       <height>16</height>
      </rect>
     </property>

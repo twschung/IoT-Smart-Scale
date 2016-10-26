@@ -4,12 +4,13 @@ import PyQt5
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from datetime import datetime
 
 import db_access, db_structure
 import ftp_access
 import numpy as np
 
-import ui_login, ui_userRegister, ui_mainMenu, ui_userPasswordChange, ui_userDetailChange, ui_itemSuggestion
+import ui_login, ui_userRegister, ui_mainMenu, ui_userPasswordChange, ui_userDetailChange, ui_itemSuggestion, ui_userDetails, ui_getWeight
 
 class loginWindow (QMainWindow, ui_login.Ui_login):
 	def __init__(self):
@@ -171,6 +172,8 @@ class mainMenuWindow (QMainWindow, ui_mainMenu.Ui_mainMenu):
 		self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
 		self.btnChangePassword.clicked.connect(lambda:self.btnChangePassword_pressed())
 		self.btnChangeUserDetail.clicked.connect(lambda:self.btnChangeUserDetail_pressed())
+		self.btnUserDetails.clicked.connect(lambda:self.btnUserDetails_pressed())
+		self.btnGetWeight.clicked.connect(lambda:self.btnGetWeight_pressed())
 		self.pushButton_5.clicked.connect(lambda:self.pushButton_5_pressed())
 	def btnChangePassword_pressed(self):
 		userPasswordChange(self)
@@ -180,7 +183,11 @@ class mainMenuWindow (QMainWindow, ui_mainMenu.Ui_mainMenu):
 		login(self)
 	def pushButton_5_pressed(self):
 		itemSuggestion(self)
-		
+	def btnUserDetails_pressed(self):
+		userDetails(self)
+	def btnGetWeight_pressed(self):
+		userGetWeight(self)
+
 class userPasswordChangeWindow (QMainWindow, ui_userPasswordChange.Ui_userPasswordChange):
 	def __init__(self, currentUser):
 		super	(self.__class__, self).__init__()
@@ -348,8 +355,34 @@ class itemSuggestionWindow (QMainWindow, ui_itemSuggestion.Ui_itemSuggestion):
 		self.lblItem1.setPixmap(QPixmap('temp.jpg'))
 		toc = time.clock()
 		print((toc - tic))
-		
-		
+
+class userDetailsWindow(QMainWindow, ui_userDetails.Ui_userDetails):
+	def __init__(self, currentUser):
+		super	(self.__class__, self).__init__()
+		self.setupUi(self)
+		self.currentUser = currentUser
+		self.btnBack.clicked.connect(lambda:self.btnBack_pressed())
+		self.lblUserName.setText("%s %s" % (currentUser.firstname, currentUser.lastname))
+		# age formula = ((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365)
+		self.lblUserAge.setText("%d" % ((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365))
+		self.lblUserHeight.setText("%i cm" % int(currentUser.height))
+		self.lblUserWeight.setText("%i kg" % int(currentUser.weight))
+		self.lblUserBMI.setText("%.2f" % (float(currentUser.weight)/((float(currentUser.height)/100)**2)))
+		self.lblUserBMR.setText("%.1f" % ((float(currentUser.weight)*10)+(float(currentUser.height)*6.25)-(((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365)*5)+5))
+
+	def btnBack_pressed(self):
+		mainMenu(self)
+
+class GetWeightWindow(QMainWindow, ui_getWeight.Ui_getWeight):
+	def __init__(self, currentUser):
+		super (self.__class__, self).__init__()
+		self.setupUi(self)
+		self.currentUser = currentUser
+		self.btnBack.clicked.connect(lambda:self.btnBack_pressed())
+
+	def btnBack_pressed(self):
+		mainMenu(self)
+
 def main():
 	app = QApplication(sys.argv)
 	currentForm = loginWindow()
@@ -385,8 +418,16 @@ def itemSuggestion(self):
 	self.close()
 	currentForm = itemSuggestionWindow(self.currentUser)
 	currentForm.show()
-	
-	
+
+def userDetails(self):
+	self.close()
+	currentForm = userDetailsWindow(self.currentUser)
+	currentForm.show()
+
+def userGetWeight(self):
+	self.close()
+	currentForm = GetWeightWindow(self.currentUser)
+	currentForm.show()
 
 if __name__ == "__main__":
 	main()
