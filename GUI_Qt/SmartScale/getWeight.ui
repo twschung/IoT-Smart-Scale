@@ -144,7 +144,7 @@
      <string>Place food item on the scale</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnBack_2">
+   <widget class="QPushButton" name="btnAdd">
     <property name="geometry">
      <rect>
       <x>615</x>

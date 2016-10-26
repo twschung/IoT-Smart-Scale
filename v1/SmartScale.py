@@ -363,12 +363,16 @@ class userDetailsWindow(QMainWindow, ui_userDetails.Ui_userDetails):
 		self.currentUser = currentUser
 		self.btnBack.clicked.connect(lambda:self.btnBack_pressed())
 		self.lblUserName.setText("%s %s" % (currentUser.firstname, currentUser.lastname))
-		# age formula = ((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365)
-		self.lblUserAge.setText("%d" % ((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365))
+		self.userAge = int((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365)
+		self.lblUserAge.setText("%i" % self.userAge)
+		# self.lblUserAge.setText("%d" % ((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365))
 		self.lblUserHeight.setText("%i cm" % int(currentUser.height))
 		self.lblUserWeight.setText("%i kg" % int(currentUser.weight))
 		self.lblUserBMI.setText("%.2f" % (float(currentUser.weight)/((float(currentUser.height)/100)**2)))
-		self.lblUserBMR.setText("%.1f" % ((float(currentUser.weight)*10)+(float(currentUser.height)*6.25)-(((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365)*5)+5))
+		if (currentUser.gender == "m"):
+			self.lblUserBMR.setText("%.1f" % ((float(currentUser.weight)*10)+(float(currentUser.height)*6.25)-(self.userAge*5)+5))
+		if (currentUser.gender == "f"):
+			self.lblUserBMR.setText("%.1f" % ((float(currentUser.weight)*10)+(float(currentUser.height)*6.25)-(self.userAge*5)-161))
 
 	def btnBack_pressed(self):
 		mainMenu(self)
@@ -378,6 +382,8 @@ class GetWeightWindow(QMainWindow, ui_getWeight.Ui_getWeight):
 		super (self.__class__, self).__init__()
 		self.setupUi(self)
 		self.currentUser = currentUser
+		self.weight = 205
+		self.lcdWeight.display(self.weight)
 		self.btnBack.clicked.connect(lambda:self.btnBack_pressed())
 
 	def btnBack_pressed(self):
