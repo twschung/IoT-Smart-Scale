@@ -69,6 +69,19 @@ def user_changePassword(inputUser,oldPassword, newPassword):
 		else:
 			return (True, comfirmUser[1])
 
+def food_getInfo(itemID):
+	serverConnection = connectToServer()
+	cursor = serverConnection.cursor()
+	sql = "SELECT * FROM `foodinfo_db` WHERE `id`=%s"
+	cursor.execute(sql,(itemID))
+	sqlResult = cursor.fetchone()
+	serverConnection.close()
+	if (sqlResult is None) : 
+		return (False,0)
+	else:
+		returnFood = db_structure.foodDataStructure(sqlResult['id'],sqlResult['category'],sqlResult['description'],sqlResult['fat'],sqlResult['saturates'],sqlResult['carbohydrate'],sqlResult['sugars'],sqlResult['fibre'],sqlResult['protein'],sqlResult['salt'])
+		return (True, returnFood)
+	
 	
 # testuser = db_structure.userDataStructure("2","qq","ee","321","321","321","321","321","321","321")
 # user_changeUserDetails (testuser)

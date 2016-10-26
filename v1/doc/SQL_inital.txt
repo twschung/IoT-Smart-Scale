@@ -1,0 +1,35 @@
+CREATE DATABASE smartscale
+
+CREATE TABLE smartscale.userInfo_db
+(id INT NOT NULL AUTO_INCREMENT,
+username VARCHAR(25),
+password VARCHAR(25),
+email VARCHAR(50),
+firstname VARCHAR(50),
+lastname VARCHAR(50),
+dob VARCHAR(25),
+gender VARCHAR(5),
+height VARCHAR(5),
+weight VARCHAR(5),
+PRIMARY KEY (id))
+
+CREATE TABLE smartscale.foodinfo_db
+(id INT NOT NULL AUTO_INCREMENT,
+category VARCHAR(25),
+description VARCHAR(50),
+image VARCHAR(25),
+energy VARCHAR(25),
+fat VARCHAR(25),
+saturates VARCHAR(25),
+carbohydrate VARCHAR(25),
+sugars VARCHAR(25),
+fibre VARCHAR(25),
+protein VARCHAR(25),
+salt VARCHAR(25),
+PRIMARY KEY (id))
+
+INSERT INTO smartscale.foodinfo_db (category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES ('', 'apple', '52', '0', '0', '14', '10', '2', '0', '0');
+INSERT INTO smartscale.foodinfo_db (category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES ('', 'orange', '47', '0', '0', '12', '9', '2', '1', '0');
+INSERT INTO smartscale.foodinfo_db (category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES ('', 'banana', '89', '0', '0', '23', '12', '3', '1', '0.001');
+INSERT INTO smartscale.foodinfo_db (category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES ('', 'pear', '42', '0', '0', '11', '7', '4', '0', '0');
+INSERT INTO smartscale.foodinfo_db (category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES ('', 'mango', '65', '0', '0', '17', '15', '2', '1', '0.002');

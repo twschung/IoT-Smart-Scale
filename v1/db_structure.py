@@ -43,7 +43,7 @@ class foodDataStructure:
 		self.protein = protein
 		self.salt = salt
 	
-	def printUserDetails(self):
+	def printFoodDetails(self):
 		print ("id : ", self.id)
 		print ("category : ", self.category)
 		print ("description : ", self.description)
