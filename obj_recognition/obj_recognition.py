@@ -7,6 +7,29 @@ import cv2.xfeatures2d
 import mahotas
 import mahotas.features
 
+def main(imgPath,bgPath):
+	img = cv2.imread(imgPath)
+	if(os.path.exists(imgPath) == False):
+		print("Foreground image path doesn't exists. Try again.")
+	background = cv2.imread(bgPath)
+	if(os.path.exists(bgPath) == False):
+		print("Background image path doesn't exists. Try again.")
+	img = resizeImg(img)
+	background = resizeImg(background)
+	img = denoise(img)
+	background = denoise(background)
+	subtracted = backgroundSubtraction(img,background)
+	obj, mask, cnt = findObjectCanny(subtracted)
+	colour_set = colourHist(obj, mask)
+	H, area, perimeter, approx, hull, convexity, ellipse = shapes(cnt)
+	texture = haralick(obj)
+	ORBdes = orbDetect(obj.copy())
+	SURFdes, FREAKdes = freakDetect(obj.copy())
+	obj_array = appendAll(colour_set,H,area,perimeter,approx,hull,convexity,ellipse,texture,ORBdes,SURFdes,FREAKdes)
+	#print(obj_array.shape)
+	cv2.destroyAllWindows
+	return obj_array
+
 def denoise(img):
 	# This method uses non-local mean to denoise the image
 	denoised = cv2.fastNlMeansDenoisingColored(img,None,8,10,7,21)
@@ -81,13 +104,13 @@ def colourHist(img, mask):
 		hist = cv2.calcHist([img],[channel],mask,[32],[0,32])
 		norm = cv2.normalize(hist, hist, 0, 1, cv2.NORM_MINMAX,-1)
 		norm_set.append(norm);
-		plt.plot(norm,color = col)
-		plt.xlim([0,32])
-	plt.title('Normalized histogram for color scale picture')
-	plt.show()
+		#plt.plot(norm,color = col)
+		#plt.xlim([0,32])
+	#plt.title('Normalized histogram for color scale picture')
+	#plt.show()
 	norm_set = np.array(norm_set)
 	np.reshape(norm_set, -1, 3)
-	print("Colour Histogram", norm_set)
+	#print("Colour Histogram", norm_set)
 	return norm_set
 
 def shapes(cnt):
@@ -124,8 +147,8 @@ def orbDetect(img):
 	# compute the descriptors with ORB
 	kp, des = orb.compute(img, kp)
 	# draw only keypoints location,not size and orientation
-	cv2.drawKeypoints(img,kp,img,color=(0,255,0), flags=0)
-	plt.imshow(img.copy()),plt.show()
+	#cv2.drawKeypoints(img,kp,img,color=(0,255,0), flags=0)
+	#plt.imshow(img.copy()),plt.show()
 	#print("Orb Descriptors: ", des)
 	return des
 
@@ -133,15 +156,15 @@ def freakDetect(img,hessianThreshold=400):
 	surfDetector = cv2.xfeatures2d.SURF_create(hessianThreshold) # manual threshold
 	kp,des = surfDetector.detectAndCompute(img,None)
 	#print("SURF Descriptors: ",des)
-	img2 = cv2.drawKeypoints(img,kp,None,(255,0,0),4)
-	plt.imshow(img2),plt.show() 
-	cv2.waitKey()
+	#img2 = cv2.drawKeypoints(img,kp,None,(255,0,0),4)
+	#plt.imshow(img2),plt.show() 
+	#cv2.waitKey()
 	freakExtractor = cv2.xfeatures2d.FREAK_create()
 	kp2,des2= freakExtractor.compute(img,kp)
 	#print("FREAK Descriptors: ",des2)
-	img3 = cv2.drawKeypoints(img,kp2,None,(255,0,0),4)
-	plt.imshow(img3),plt.show() 
-	cv2.waitKey()
+	#img3 = cv2.drawKeypoints(img,kp2,None,(255,0,0),4)
+	#plt.imshow(img3),plt.show() 
+	#cv2.waitKey()
 	return des, des2
 	
 def appendAll(colour_set,H,area,perimeter,approx,hull,convexity,ellipse,texture,ORBdes,SURFdes,FREAKdes):
@@ -158,36 +181,3 @@ def appendAll(colour_set,H,area,perimeter,approx,hull,convexity,ellipse,texture,
 	obj_array = np.append(obj_array,SURFdes)
 	obj_array = np.append(obj_array,FREAKdes)
 	return obj_array
-
-while(True):
-	bgPath = input("Enter background image path: ")
-	print("Path entered: ",bgPath)
-	if(os.path.exists(bgPath)):
-		break
-	else:
-		print("File doesn't exists. Try again.")
-			
-while(True):
-	imgPath = input("Enter object image path: ")
-	print("Path entered: ",imgPath)
-	if(os.path.exists(imgPath)):
-		break
-	else:
-		print("File doesn't exists. Try again.")
-
-img = cv2.imread(imgPath)
-background = cv2.imread(bgPath)
-img = resizeImg(img)
-background = resizeImg(background)
-img = denoise(img)
-background = denoise(background)
-subtracted = backgroundSubtraction(img,background)
-obj, mask, cnt = findObjectCanny(subtracted)
-colour_set = colourHist(obj, mask)
-H, area, perimeter, approx, hull, convexity, ellipse = shapes(cnt)
-texture = haralick(obj)
-ORBdes = orbDetect(obj.copy())
-SURFdes, FREAKdes = freakDetect(obj.copy())
-obj_array = appendAll(colour_set,H,area,perimeter,approx,hull,convexity,ellipse,texture,ORBdes,SURFdes,FREAKdes)
-print(obj_array.shape)
-cv2.destroyAllWindows
