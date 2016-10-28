@@ -1,0 +1,80 @@
+Foodcam Classifier
+==================
+A Bag Of Visual Words classifier for MIT Media Lab's Foodcam.
+Built using OpenCV 2.3
+
+Implementing BOVW method: Visual Categorization with Bags of Keypoints by Gabriella Csurka, Christopher R. Dance, Lixin Fan, Jutta Willamowski, Cedric Bray, 2004.
+Using Opponent-Color SURF features (192 floats): Van de Sande et al., CGIV 2008 Color Descriptors for Object Category Recognition. (they used SIFT)
+Radial Basis Function SVMs for classification.
+
+This is basically a primer to BOVW methods using OpenCV, which are dead simple.
+I tweaked the basic method by:
+	- using background subtraction (since these are pictures from a still camera).
+	- using a sliding window. This enables better multi-class decisions, and actually paves the path to image segmentation. 
+
+
+Compiling
+---------
+Basically, just run:
+cmake -D CMAKE_CXX_FLAGS=-fopenmp . ; make -j4
+
+CMake should take you all the way, but I also have an .xcodeproj/ included.
+
+Working it
+----------
+Get the dataset:
+http://www.media.mit.edu/~roys/shared/foodcamimages.zip
+Assume the dataset is now in the same directory, under foodcamimages/.
+
+
+Manually classify training and test:
+./manual-classifier foodcamimages/TRAIN/ train.txt
+./manual-classifier foodcamimages/TEST/ test.txt
+(or you can use my manual classification included... lazy)
+
+
+Create a background image:
+./make-test-background
+
+
+Build the vocabulary: (this will take a very very long time, KMeans on 1.3Million 192-long vectors to find 1000 cluster-centers...)
+./build-vocabulary
+
+(you may also like to use ./kmeans-trainer, if you break the operation before KMeans finished, which may take more than 10 hours)
+
+
+Train the classifiers:
+./train-bovw vocabulary_color_1000.yml with_color
+
+(you may also make use of './train-SVM-alone', if you just wanna tweak the SVM parameters)
+
+
+Test your work:
+./test-classifiers 
+(it will output a whole lotta things, and then the confusion matrix in neighbors list form)
+
+
+Put it to work!:
+./foodcam-predict some_640x480_image_of_food.png
+Will output either one or two found classes of food, based on how close the prediction is.
+
+
+Notes
+-----
+Some of the computation is sped up on multi-core machines by using OpenMP, so it's recommended to use it.
+
+
+Results
+-------
+This is the confusion matrix:
+classified ->	cookies	indian	italian	pizza	veggie+fruit	sandwiches
+cookies		56.3%	0.0%	4.3%	0.0%	13.5%		15.4%
+indian		0.0%	71.4%	6.4%	3.8%	3.4%		7.7%
+italian		0.0%	0.0%	63.8%	0.0%	14.6%		0.0%
+pizza		6.3%	0.0%	12.8%	92.3%	5.6%		15.4%
+veggie+fruit	0.0%	0.0%	2.1%	3.8%	49.4%		0.0%
+sandwiches	25.0%	14.3%	6.4%	0.0%	7.9%		61.5%
+
+Quick scan shows that it can classify Pizzas pretty good!
+The downfall are the veggie+fruit class, with less than 50% accuracy.
+Rest are lukewarm, but this can probably be attribued to the very small training set.
