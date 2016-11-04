@@ -2,9 +2,9 @@ import os , time, shutil, glob
 import svm
 import numpy as np
 import imgFeatureExtractSim
-import cv2
+# import cv2
 import db_access
-import obj_recognition
+# import obj_recognition
 
 
 SVMPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/SVM'
@@ -55,7 +55,7 @@ def opt_2():
 		currentPath = filename
 		currentBackgroundPath = os.path.join(exisitingItemPath, "backgroundImage" , os.path.basename(filename))
 		#~ imgFeature = imgFeatureExtractSim.sim(currentPath) ###
-		imgFeature = obj_recognition.main(currentPath,currentBackgroundPath)
+		# imgFeature = obj_recognition.main(currentPath,currentBackgroundPath)
 		print (imgFeature.shape)
 		print (imgFeature.dtype)
 		time, imgID = os.path.basename(filename).split("_")
@@ -103,7 +103,7 @@ def opt_3():
 	print("Done!")
 	print("-----------------------------------------------------------")
 	main()
-	
+
 def opt_4():
 	print("-----------------------------------------------------------")
 	print("Fetching new item images!")
@@ -114,7 +114,7 @@ def opt_4():
 		previewImage(filePath)
 		newImageProcessMenu(filePath)
 	main()
-	
+
 def newImageProcessMenu(filePath):
 	stayInLoop = True
 	while (stayInLoop == True):
@@ -139,12 +139,12 @@ def newImageProcessMenu(filePath):
 				backgroundImgPath = os.path.join(newItemPath,'backgroundImage', (os.path.basename(filePath)))
 				newBackgroundImgPath = os.path.join(exisitingItemPath,'backgroundImage',newFilename)
 				os.rename(backgroundImgPath, newBackgroundImgPath)
-				
+
 				currentPath = newFilePath
 				newFilename = str(dbResult[1].id) + ".jpg"
 				newPath = os.path.join(sampleItemPath, newFilename)
 				shutil.copyfile(currentPath,newPath)
-				
+
 				np.save('imageSample_version.npy',dbResult[1].id)
 				currentPath = os.path.join(os.getcwd(),'imageSample_version.npy')
 				newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
@@ -174,7 +174,7 @@ def newImageProcessMenu(filePath):
 						stayInLoop_2 = True
 					else:
 						print("Invalid Input")
-						stayInLoop_2 = True	
+						stayInLoop_2 = True
 		elif (usrInput == "3"):
 			stayInLoop_3 = True
 			while (stayInLoop_3 == True):
@@ -205,7 +205,7 @@ def newImageProcessMenu(filePath):
 					stayInLoop_3 = False
 				else:
 					print("Invalid Input")
-					stayInLoop_3 = True	
+					stayInLoop_3 = True
 		elif (usrInput == "4"):
 			previewImage(filePath)
 		elif (usrInput == "5"):
@@ -215,13 +215,13 @@ def newImageProcessMenu(filePath):
 			print("-----------------------------------------------------------")
 			print("ERROR: Invaild Input !!!!!!!")
 			print("-----------------------------------------------------------")
-		
+
 def previewImage(filePath):
 	imgPreview = cv2.imread(filePath)
 	cv2.imshow('New Image Preview',imgPreview)
 	cv2.waitKey(0)
 	cv2.destroyAllWindows()
-	
+
 def inputNutritionData():
 	stayInLoop = True
 	while (stayInLoop == True):
