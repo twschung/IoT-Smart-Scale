@@ -40,8 +40,14 @@ def main(imgPath,bgPath):
 	orb.join()
 	kaze.join()
 	H, area, perimeter, diameter = shapes(img,cnt)
-	ORBdes = np.pad(ORBdes,(0,1000-ORBdes.size),'constant',constant_values=0)
-	KAZEdes = np.pad(KAZEdes,(0,10000-KAZEdes.size),'constant',constant_values=0)
+	if(ORBdes[0] == None):
+		ORBdes = np.zeros((1000,),dtype=np.int)
+	else:
+		ORBdes = np.pad(ORBdes,(0,1000-ORBdes.size),'constant',constant_values=0)
+	if(KAZEdes[0] == None):
+		KAZEdes = np.zeros((1000,),dtype=np.int)
+	else:
+		KAZEdes = np.pad(KAZEdes,(0,10000-KAZEdes.size),'constant',constant_values=0)
 	obj_array = appendAll(colour_set,H,area,perimeter,diameter,texture,ORBdes,KAZEdes)
 	obj_array = np.float64(obj_array)
 	return obj_array
