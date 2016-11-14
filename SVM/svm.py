@@ -1,4 +1,6 @@
 # import cv2
+from sklearn import svm
+from sklearn.externals import joblib
 import numpy as np
 import time, os
 
@@ -29,18 +31,17 @@ def addNewDataSet (newSampleSet, newResponseSet):
 		#~ self.model.save(fn)
 
 class SVM():
-	def __init__(self, C = 1, gamma = 0.5):
-		self.model = cv2.ml.SVM_create()
-		self.model.setGamma(gamma)
-		self.model.setC(C)
-		self.model.setKernel(cv2.ml.SVM_RBF)
-		self.model.setType(cv2.ml.SVM_C_SVC)
+	def __init__(self):
+		self.model = svm.SVC(C=1.0, kernel='rbf', degree=3, gamma='auto', \
+		coef0=0.0, shrinking=True, probability=False, tol=0.001, cache_size=200, \
+		class_weight=None, verbose=False, max_iter=-1, decision_function_shape=None, \
+		random_state=None)
 	def load(self):
-		self.model = cv2.ml.SVM_load('SVM.dat')
+		self.model = joblib.load('SVM.dat')
 	def train(self):
 		sampleSet , responseSet = loadTrainingSet()
-		self.model.train(sampleSet, cv2.ml.ROW_SAMPLE, responseSet)
-		self.model.save('SVM.dat')
+		self.model.fit(sampleSet, responseSet)
+		joblib.dump(self.model, 'SVM.dat')
 	def predict(self, sample):
 		return self.model.predict(sample)
 
