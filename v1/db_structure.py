@@ -17,7 +17,7 @@ class userDataStructure:
 		self.gender = gender
 		self.height = height
 		self.weight = weight
-	
+
 	def printUserDetails(self):
 		print ("id : ", self.id)
 		print ("username : ", self.username)
@@ -29,12 +29,13 @@ class userDataStructure:
 		print ("gender : ", self.gender)
 		print ("height : ", self.height)
 		print ("weight : ", self.weight)
-		
+
 class foodDataStructure:
-	def __init__(self, id, category, description, fat, saturates, carbohydrate, sugars, fibre, protein, salt):
+	def __init__(self, id=0, category="", description="", energy="0" , fat="0", saturates="0", carbohydrate="0", sugars="0", fibre="0", protein="0", salt="0"):
 		self.id = id
 		self.category = category
 		self.description = description
+		self.energy = energy
 		self.fat = fat
 		self.saturates = saturates
 		self.carbohydrate = carbohydrate
@@ -42,11 +43,12 @@ class foodDataStructure:
 		self.fibre = fibre
 		self.protein = protein
 		self.salt = salt
-	
-	def printUserDetails(self):
+
+	def printFoodDetails(self):
 		print ("id : ", self.id)
 		print ("category : ", self.category)
 		print ("description : ", self.description)
+		print ("energy : ", self.energy)
 		print ("fat : ", self.fat)
 		print ("saturates : ", self.saturates)
 		print ("carbohydrate : ", self.carbohydrate)
@@ -54,3 +56,39 @@ class foodDataStructure:
 		print ("fibre : ", self.fibre)
 		print ("protein : ", self.protein)
 		print ("salt : ", self.salt)
+
+class userFoodIntakeStructure:
+	def __init__(self, id=0, userid = "0", datetime = "", foodid = "0", weight = "", foodcategory="", fooddescription="", energy="0" , fat="0", saturates="0", carbohydrate="0", sugars="0", fibre="0", protein="0", salt="0"):
+		self.id = id
+		self.userid = userid
+		self.datetime = datetime
+		self.foodid = foodid
+		self.weight = weight
+		self.foodcategory = foodcategory
+		self.fooddescription = fooddescription
+		self.energy = energy
+		self.fat = fat
+		self.saturates = saturates
+		self.carbohydrate = carbohydrate
+		self.sugars = sugars
+		self.fibre = fibre
+		self.protein = protein
+		self.salt = salt
+	def __str__(self):
+		return str(self.id)
+
+class userDailyIntakeStructure:
+	def __init__(self, id=0, userid = "0", date = "", energy="0" , fat="0", saturates="0", carbohydrate="0", sugars="0", fibre="0", protein="0", salt="0"):
+		self.id = id
+		self.userid = userid
+		self.date = date
+		self.energy = energy
+		self.fat = fat
+		self.saturates = saturates
+		self.carbohydrate = carbohydrate
+		self.sugars = sugars
+		self.fibre = fibre
+		self.protein = protein
+		self.salt = salt
+	def __str__(self):
+		return str(self.id)
