@@ -43,7 +43,7 @@ def main(imgPath,bgPath):
 	ORBdes = np.pad(ORBdes,(0,1000-ORBdes.size),'constant',constant_values=0)
 	KAZEdes = np.pad(KAZEdes,(0,10000-KAZEdes.size),'constant',constant_values=0)
 	obj_array = appendAll(colour_set,H,area,perimeter,diameter,texture,ORBdes,KAZEdes)
-	print(obj_array.shape)
+	obj_array = np.float64(obj_array)
 	return obj_array
 
 def denoise(img):
@@ -84,7 +84,7 @@ def findCnt(img, mask):
 	contours = sorted(contours, key = cv2.contourArea, reverse = True)
 	cnt = contours[0]
 	img, mask = cropImg(img, mask, cnt)
-	displayImg('cropped',img)
+	#displayImg('cropped',img)
 	return img, mask, cnt
 
 def colourHist(img, mask,queue):
