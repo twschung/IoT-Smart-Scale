@@ -45,7 +45,7 @@ def main(imgPath,bgPath):
 	else:
 		ORBdes = np.pad(ORBdes,(0,1000-ORBdes.size),'constant',constant_values=0)
 	if(KAZEdes[0] == None):
-		KAZEdes = np.zeros((1000,),dtype=np.int)
+		KAZEdes = np.zeros((10000,),dtype=np.int)
 	else:
 		KAZEdes = np.pad(KAZEdes,(0,10000-KAZEdes.size),'constant',constant_values=0)
 	obj_array = appendAll(colour_set,H,area,perimeter,diameter,texture,ORBdes,KAZEdes)
