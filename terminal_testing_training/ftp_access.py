@@ -98,6 +98,22 @@ def updateSVM():
 		return False
 	return True
 
-#uploadImageHistory ()
+session = connectToServer()
+session.cwd ("/home/public/FTP/imageUploaded/newItem")
+currentFilePath = os.path.join(os.getcwd(),"imageHistory/newItem")
+session = uploadEverythingInFolder(currentFilePath , session)
+session.cwd ("/home/public/FTP/imageUploaded/newItem/backgroundImage")
+currentFilePath = os.path.join(os.getcwd(),"imageHistory/newItem/backgroundImage")
+session = uploadEverythingInFolder(currentFilePath , session)
+session.cwd ("/home/public/FTP/imageUploaded/existingItem")
+currentFilePath = os.path.join(os.getcwd(),"imageHistory/existingItem")
+session = uploadEverythingInFolder(currentFilePath , session)
+session.cwd ("/home/public/FTP/imageUploaded/existingItem/backgroundImage")
+currentFilePath = os.path.join(os.getcwd(),"imageHistory/existingItem/backgroundImage")
+session = uploadEverythingInFolder(currentFilePath , session)
+session.quit()
+
+# updateSVM()
+# uploadImageHistory ()
 #~ updateImageSample()
 #~ updateSVM()

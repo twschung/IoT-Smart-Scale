@@ -1,7 +1,7 @@
 import pymysql.cursors
 
 def connectToServer():
-	connection = pymysql.connect(host='42.2.205.124',user='admin',password='abcd1234',db='smartscale',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
+	connection = pymysql.connect(host='127.0.0.1',user='terminal_user',password='abcd1234',db='smartscale',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
 	return connection
 
 def food_register(inputFood):
@@ -25,7 +25,7 @@ def food_getInfo(itemID):
 	cursor.execute(sql,(itemID))
 	sqlResult = cursor.fetchone()
 	serverConnection.close()
-	if (sqlResult is None) : 
+	if (sqlResult is None) :
 		return (False,0)
 	else:
 		returnFood = foodDataStructure(sqlResult['id'],sqlResult['category'],sqlResult['description'],sqlResult['energy'],sqlResult['fat'],sqlResult['saturates'],sqlResult['carbohydrate'],sqlResult['sugars'],sqlResult['fibre'],sqlResult['protein'],sqlResult['salt'])
@@ -48,7 +48,7 @@ def food_searchByCategory(category):
 	sqlResult = cursor.fetchall()
 	serverConnection.close()
 	return sqlResult
-		
+
 class foodDataStructure:
 	def __init__(self, id=0, category="", description="", energy="0", fat="0", saturates="0", carbohydrate="0", sugars="0", fibre="0", protein="0", salt="0"):
 		self.id = id
@@ -62,7 +62,7 @@ class foodDataStructure:
 		self.fibre = fibre
 		self.protein = protein
 		self.salt = salt
-	
+
 	def printFoodDetails(self):
 		print ("id : ", self.id)
 		print ("category : ", self.category)
@@ -75,7 +75,7 @@ class foodDataStructure:
 		print ("fibre : ", self.fibre)
 		print ("protein : ", self.protein)
 		print ("salt : ", self.salt)
-		
+
 	def printFoodDetailsInRow(self):
 		print ("id : ", self.id , "  category : ", self.category , "  description : ", self.description)
 
@@ -87,4 +87,3 @@ class foodDataStructure:
 #~ food[1].printFoodDetails()
 #~ inputFood = foodDataStructure()
 #~ food_register(inputFood)
-	

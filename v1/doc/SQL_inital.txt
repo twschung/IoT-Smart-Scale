@@ -1,6 +1,6 @@
 CREATE DATABASE smartscale
 
-CREATE TABLE smartscale.userInfo_db
+CREATE TABLE smartscale.userinfo_db
 (id INT NOT NULL AUTO_INCREMENT,
 username VARCHAR(25),
 password VARCHAR(25),
@@ -17,7 +17,6 @@ CREATE TABLE smartscale.foodinfo_db
 (id INT NOT NULL AUTO_INCREMENT,
 category VARCHAR(25),
 description VARCHAR(50),
-image VARCHAR(25),
 energy VARCHAR(25),
 fat VARCHAR(25),
 saturates VARCHAR(25),
@@ -36,8 +35,8 @@ INSERT INTO smartscale.foodinfo_db (category, description, energy, fat, saturate
 
 CREATE TABLE smartscale.userfoodintake_db
 (id INT NOT NULL AUTO_INCREMENT,
-datetime DATETIMEs,
 userid VARCHAR(25),
+datetime DATETIME,
 foodid VARCHAR(25),
 weight VARCHAR(25),
 foodcategory VARCHAR(25),
