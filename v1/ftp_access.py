@@ -3,14 +3,15 @@ import urllib.request
 import os, time, glob
 import numpy as np
 
+HTTP_ServerAddress = 'http://42.2.205.124'
 FTP_ServerAddress = '42.2.205.124'
-FTP_Username = 'admin'
+FTP_Username = 'terminal_user'
 FTP_Password = 'abcd1234'
 
 def connectToServer ():
-	session = ftplib.FTP('42.2.205.124','admin','abcd1234')
+	session = ftplib.FTP(FTP_ServerAddress,FTP_Username,FTP_Password)
 	return session
-	
+
 def generateNewItemFilePath ():
 	filename = str(time.time()) + ".jpg"
 	filePath = os.path.join(os.getcwd(),"imageHistory/newItem",filename)
@@ -22,8 +23,8 @@ def generateExisitingItemFilePath (imgID):
 	filePath = os.path.join(os.getcwd(),"imageHistory/exisitingItem",filename)
 	backgroundFilePath = os.path.join(os.getcwd(),"imageHistory/exisitingItem/backgroundImage",filename)
 	return filePath , backgroundFilePath
-	
-def uploadEverythingInFolder(currentFilePath , session)
+
+def uploadEverythingInFolder(currentFilePath , session):
 	searchPath = os.path.join(currentFilePath,'*.jpg')
 	for filename in glob.glob(searchPath):
 		currentImgPath = os.path.join(currentFilePath,filename)
@@ -32,27 +33,27 @@ def uploadEverythingInFolder(currentFilePath , session)
 		imageFile.close()
 		os.remove(currentImgPath)
 	return session
-	
+
 def uploadImageHistory ():
 	try:
 		session = connectToServer()
-		session.cwd ("/imageUploaded/newItem")
+		session.cwd ("/home/public/FTP/imageUploaded/newItem")
 		currentFilePath = os.path.join(os.getcwd(),"imageHistory/newItem")
 		session = uploadEverythingInFolder(currentFilePath , session)
-		session.cwd ("/imageUploaded/newItem/backgroundImage")
+		session.cwd ("/home/public/FTP/imageUploaded/newItem/backgroundImage")
 		currentFilePath = os.path.join(os.getcwd(),"imageHistory/newItem/backgroundImage")
 		session = uploadEverythingInFolder(currentFilePath , session)
-		session.cwd ("/imageUploaded/existingItem")
+		session.cwd ("/home/public/FTP/imageUploaded/existingItem")
 		currentFilePath = os.path.join(os.getcwd(),"imageHistory/existingItem")
 		session = uploadEverythingInFolder(currentFilePath , session)
-		session.cwd ("/imageUploaded/existingItem/backgroundImage")
+		session.cwd ("/home/public/FTP/imageUploaded/existingItem/backgroundImage")
 		currentFilePath = os.path.join(os.getcwd(),"imageHistory/existingItem/backgroundImage")
 		session = uploadEverythingInFolder(currentFilePath , session)
 		session.quit()
 	except:
 		return False
 	return True
-	
+
 def updateImageSample ():
 	try:
 		try:
@@ -60,7 +61,7 @@ def updateImageSample ():
 			currentImageSampleVersion = int(config['currentImageSampleVersion'])
 		except:
 			currentImageSampleVersion = 0
-		urllib.request.urlretrieve (('http://42.2.205.124/imageSample/imageSample_version.npy'),'imageSample_version.npy')
+		urllib.request.urlretrieve ((HTTP_ServerAddress + '/imageSample/imageSample_version.npy'),'imageSample_version.npy')
 		serverImageSampleVersion = np.load('imageSample_version.npy')
 		os.remove('imageSample_version.npy')
 		if (serverImageSampleVersion > currentImageSampleVersion):
@@ -68,7 +69,7 @@ def updateImageSample ():
 				nextFilename = str(nextSampleImage) + ".jpg"
 				newPath = os.path.join(os.getcwd(),'imageSample',nextFilename)
 				try:
-					urllib.request.urlretrieve (('http://42.2.205.124/imageSample/%s' % nextFilename),newPath)
+					urllib.request.urlretrieve ((HTTP_ServerAddress + '/imageSample/%s' % nextFilename),newPath)
 				except:
 					config['currentImageSampleVersion'] = nextSampleImage
 				else:
@@ -77,7 +78,7 @@ def updateImageSample ():
 	except:
 		return (False,0)
 	return (True,0)
-			
+
 def updateSVM():
 	try:
 		try:
@@ -85,24 +86,18 @@ def updateSVM():
 			currentSVMVersion = float(config['currentSVMVersion'])
 		except:
 			currentSVMVersion = 0
-		urllib.request.urlretrieve (('http://42.2.205.124/SVM/SVM_version.npy'),'SVM_version.npy')
+		urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/SVM_version.npy'),'SVM_version.npy')
 		serverSVMVersion = np.load('SVM_version.npy')
 		os.remove('SVM_version.npy')
 		if (serverSVMVersion > currentSVMVersion):
-			urllib.request.urlretrieve (('http://42.2.205.124/SVM/SVM.dat'),'SVM.dat')
+			urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/SVM.dat'),'SVM.dat')
 			currentSVMVersion = serverSVMVersion
 		config['currentSVMVersion'] = currentSVMVersion
 		np.save('config.npy', config)
 	except:
 		return False
 	return True
-		
-	
-def downloadTempImage_3 (filename):
-	urllib.request.urlretrieve (('http://42.2.205.124/imageSample/%s' % filename),'temp.jpg')
-	
 
-
-#~ uploadImageHistory ()
+#uploadImageHistory ()
 #~ updateImageSample()
 #~ updateSVM()
