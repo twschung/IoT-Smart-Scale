@@ -6,12 +6,12 @@ import db_access_server
 import obj_recognition
 
 
-SVMPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/SVM'
-SVMArchivePath = '/home/pi/IoT-Smart-Scale/SVM/FTP/SVM/archive'
-processedItemPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/imageUploaded/processedItem'
-newItemPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/imageUploaded/newItem'
-exisitingItemPath =  '/home/pi/IoT-Smart-Scale/SVM/FTP/imageUploaded/existingItem'
-sampleItemPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/imageSample'
+SVMPath = '/home/public/HTTP/SVM'
+SVMArchivePath = '/home/public/HTTP/SVM/archive'
+processedItemPath = '/home/public/FTP/imageUploaded/processedItem'
+newItemPath = '/home/public/FTP/imageUploaded/newItem'
+exisitingItemPath =  '/home/public/FTP/imageUploaded/existingItem'
+sampleItemPath = '/home/public/HTTP/imageSample'
 
 def main():
 	print("IoT Smart Scale SVM Training Program")
