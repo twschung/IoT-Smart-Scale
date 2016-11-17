@@ -395,48 +395,48 @@ class get_weight_thread (QObject):
 def main():
 	app = QApplication(sys.argv)
 	currentForm = loginWindow()
-	currentForm.show()
+	currentForm.showMaximized()
 	sys.exit(app.exec_())
 	
 def login(self):
 	self.close()
 	currentForm = loginWindow()
-	currentForm.show()
+	currentForm.showMaximized()
 	
 def userRegister(self):
 	self.close()
 	currentForm = userRegisterWindow()
-	currentForm.show()
+	currentForm.showMaximized()
 	
 def mainMenu(self):
 	self.close()
 	currentForm = mainMenuWindow(self.currentUser)
-	currentForm.show()
+	currentForm.showMaximized()
 
 def userPasswordChange(self):
 	self.close()
 	currentForm = userPasswordChangeWindow(self.currentUser)
-	currentForm.show()
+	currentForm.showMaximized()
 	
 def userDetailChange(self):
 	self.close()
 	currentForm = userDetailChangeWindow(self.currentUser)
-	currentForm.show()
+	currentForm.showMaximized()
 	
 def itemSuggestion(self):
 	self.close()
 	currentForm = itemSuggestionWindow(self.currentUser)
-	currentForm.show()
+	currentForm.showMaximized()
 
 def userDetails(self):
 	self.close()
 	currentForm = userDetailsWindow(self.currentUser)
-	currentForm.show()
+	currentForm.showMaximized()
 
 def userGetWeight(self):
 	self.close()
 	currentForm = GetWeightWindow(self.currentUser)
-	currentForm.show()
+	currentForm.showMaximized()
 
 if __name__ == "__main__":
 	scale = HX711(23,24)
