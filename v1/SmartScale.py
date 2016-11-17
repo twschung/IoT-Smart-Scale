@@ -311,13 +311,13 @@ class userDetailChangeWindow (QMainWindow, ui_userDetailChange.Ui_userDetailChan
 		return expUsr
 		
 class itemSuggestionWindow (QMainWindow, ui_itemSuggestion.Ui_itemSuggestion):
-    def __init__(self, currentUser):
-        super	(self.__class__, self).__init__()
-        self.setupUi(self)
-        self.currentUser = currentUser
-        self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
-    def btnLogout_pressed(self):
-        userGetWeight(self)
+	def __init__(self, currentUser):
+		super	(self.__class__, self).__init__()
+		self.setupUi(self)
+		self.currentUser = currentUser
+		self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
+	def btnLogout_pressed(self):
+		userGetWeight(self)
 
 class userDetailsWindow(QMainWindow, ui_userDetails.Ui_userDetails):
 	def __init__(self, currentUser):
@@ -348,49 +348,49 @@ class userDetailsWindow(QMainWindow, ui_userDetails.Ui_userDetails):
 		mainMenu(self)
 
 class GetWeightWindow(QMainWindow, ui_getWeight.Ui_getWeight):
-    def __init__(self, currentUser):
-        super (self.__class__, self).__init__()
-        self.setupUi(self)
-        self.currentUser = currentUser
+	def __init__(self, currentUser):
+		super (self.__class__, self).__init__()
+		self.setupUi(self)
+		self.currentUser = currentUser
 
-        self.btnScan.clicked.connect(lambda:self.btnScan_pressed())
-        self.btnTare.clicked.connect(lambda:self.btnTare_pressed())
-        self.btnBack.clicked.connect(lambda:self.btnBack_pressed())
+		self.btnScan.clicked.connect(lambda:self.btnScan_pressed())
+		self.btnTare.clicked.connect(lambda:self.btnTare_pressed())
+		self.btnBack.clicked.connect(lambda:self.btnBack_pressed())
 
-        self.thread = QThread()
-        self.gw = get_weight_thread()
-        self.gw.finished[int].connect(self.onFinished)
-        self.gw.moveToThread(self.thread)
-        self.thread.started.connect(self.gw.work)
-        self.thread.start()
+		self.thread = QThread()
+		self.gw = get_weight_thread()
+		self.gw.finished[int].connect(self.onFinished)
+		self.gw.moveToThread(self.thread)
+		self.thread.started.connect(self.gw.work)
+		self.thread.start()
 
-        @pyqtSlot(int)
-        def onFinished(self, i):
-                self.lcdWeight.display(int(i))
+	@pyqtSlot(int)
+	def onFinished(self, i):
+		self.lcdWeight.display(int(i))
 
-        def btnBack_pressed(self):
-                mainMenu(self)
-        def btnTare_pressed(self):
-                scale.tare()
-                self.weight = scale.get_weight(5)
-                self.lcdWeight.display(int(self.weight))
-        def btnScan_pressed(self):
-                self.weight = scale.get_weight(5)
-                self.lcdWeight.display(int(self.weight))
+	def btnBack_pressed(self):
+		mainMenu(self)
+	def btnTare_pressed(self):
+		scale.tare()
+		self.weight = scale.get_weight(5)
+		self.lcdWeight.display(int(self.weight))
+	def btnScan_pressed(self):
+		self.weight = scale.get_weight(5)
+		self.lcdWeight.display(int(self.weight))
 
 class get_weight_thread (QObject):
-    finished = pyqtSignal(int)
-    
-    def __init__(self):
-        print ("get_weight_thread init")
-        super (self.__class__, self).__init__()
-        #super().__init__()
-    
-    def work(self):
-        print ("get_weight_thread work")
-        while True:
-            self.i = int(scale.get_weight(5))
-            self.finished.emit(self.i)
+	finished = pyqtSignal(int)
+
+	def __init__(self):
+		print ("get_weight_thread init")
+		#super (self.__class__, self).__init__()
+		super().__init__()
+
+	def work(self):
+		print ("get_weight_thread work")
+		while True:
+			self.i = 10 #int(scale.get_weight(5))
+			self.finished.emit(self.i)
 
 def main():
 	app = QApplication(sys.argv)
