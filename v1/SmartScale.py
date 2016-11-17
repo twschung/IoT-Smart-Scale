@@ -12,7 +12,7 @@ import numpy as np
 
 import ui_login, ui_userRegister, ui_mainMenu, ui_userPasswordChange, ui_userDetailChange, ui_itemSuggestion, ui_userDetails, ui_getWeight
 
-from hx711 import HX711
+#from hx711 import HX711
 
 class loginWindow (QMainWindow, ui_login.Ui_login):
 	def __init__(self):
@@ -166,30 +166,30 @@ class userRegisterWindow (QMainWindow, ui_userRegister.Ui_userRegister):
 		login(self)
 	
 class mainMenuWindow (QMainWindow, ui_mainMenu.Ui_mainMenu):
-    def __init__(self, currentUser):
-        super	(self.__class__, self).__init__()
-        self.setupUi(self)
-        self.currentUser = currentUser
-        self.lblStatus.setText(("Hi! Welcome back! %s %s" % (self.currentUser.firstname, self.currentUser.lastname)))
-        self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
-        self.btnChangePassword.clicked.connect(lambda:self.btnChangePassword_pressed())
-        self.btnChangeUserDetail.clicked.connect(lambda:self.btnChangeUserDetail_pressed())
-        self.btnUserDetails.clicked.connect(lambda:self.btnUserDetails_pressed())
-        self.btnGetWeight.clicked.connect(lambda:self.btnGetWeight_pressed())
-        self.pushButton_5.clicked.connect(lambda:self.pushButton_5_pressed())
-    def btnChangePassword_pressed(self):
-        userPasswordChange(self)
-    def btnChangeUserDetail_pressed(self):
-        userDetailChange(self)
-    def btnLogout_pressed(self):
-        login(self)
-    def pushButton_5_pressed(self):
-        #itemSuggestion(self)
-        print("No action")
-    def btnUserDetails_pressed(self):
-        userDetails(self)
-    def btnGetWeight_pressed(self):
-        userGetWeight(self)
+	def __init__(self, currentUser):
+		super	(self.__class__, self).__init__()
+		self.setupUi(self)
+		self.currentUser = currentUser
+		self.lblStatus.setText(("Hi! Welcome back! %s %s" % (self.currentUser.firstname, self.currentUser.lastname)))
+		self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
+		self.btnChangePassword.clicked.connect(lambda:self.btnChangePassword_pressed())
+		self.btnChangeUserDetail.clicked.connect(lambda:self.btnChangeUserDetail_pressed())
+		self.btnUserDetails.clicked.connect(lambda:self.btnUserDetails_pressed())
+		self.btnGetWeight.clicked.connect(lambda:self.btnGetWeight_pressed())
+		self.pushButton_5.clicked.connect(lambda:self.pushButton_5_pressed())
+	def btnChangePassword_pressed(self):
+		userPasswordChange(self)
+	def btnChangeUserDetail_pressed(self):
+		userDetailChange(self)
+	def btnLogout_pressed(self):
+		login(self)
+	def pushButton_5_pressed(self):
+		#itemSuggestion(self)
+		print("No action")
+	def btnUserDetails_pressed(self):
+		userDetails(self)
+	def btnGetWeight_pressed(self):
+		userGetWeight(self)
 
 class userPasswordChangeWindow (QMainWindow, ui_userPasswordChange.Ui_userPasswordChange):
 	def __init__(self, currentUser):
@@ -311,41 +311,23 @@ class userDetailChangeWindow (QMainWindow, ui_userDetailChange.Ui_userDetailChan
 		return expUsr
 		
 class itemSuggestionWindow (QMainWindow, ui_itemSuggestion.Ui_itemSuggestion):
-	def __init__(self, currentUser):
-		super	(self.__class__, self).__init__()
-		self.setupUi(self)
-		self.currentUser = currentUser
-		self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
-	def btnLogout_pressed(self):
-<<<<<<< HEAD
-                """
-=======
->>>>>>> master
-		tic = time.clock()
-		ftp_access.downloadTempImage_3("1.jpg")
-		self.lblItem5.setPixmap(QPixmap('temp.jpg'))
-		ftp_access.downloadTempImage_3("2.jpg")
-		self.lblItem4.setPixmap(QPixmap('temp.jpg'))
-		ftp_access.downloadTempImage_3("3.jpg")
-		self.lblItem3.setPixmap(QPixmap('temp.jpg'))
-		ftp_access.downloadTempImage_3("4.jpg")
-		self.lblItem2.setPixmap(QPixmap('temp.jpg'))
-		ftp_access.downloadTempImage_3("5.jpg")
-		self.lblItem1.setPixmap(QPixmap('temp.jpg'))
-		toc = time.clock()
-		print((toc - tic))
-                """
-                userGetWeight(self)
+    def __init__(self, currentUser):
+        super	(self.__class__, self).__init__()
+        self.setupUi(self)
+        self.currentUser = currentUser
+        self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
+    def btnLogout_pressed(self):
+        userGetWeight(self)
 
 class userDetailsWindow(QMainWindow, ui_userDetails.Ui_userDetails):
 	def __init__(self, currentUser):
-		super	(self.__class__, self).__init__()
+		super(self.__class__, self).__init__()
 		self.setupUi(self)
 		self.currentIntake = 1850
 		self.currentUser = currentUser
 		self.btnBack.clicked.connect(lambda:self.btnBack_pressed())
 		self.lblUserName.setText("%s %s" % (currentUser.firstname, currentUser.lastname))
-        self.lblEmail.setText("%s %s" % (currentUser.firstname, currentUser.lastname))
+		self.lblEmail.setText("%s %s" % (currentUser.firstname, currentUser.lastname))
 		self.userAge = int((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365.25)
 		self.lblUserAge.setText("%i" % self.userAge)
 		self.lblUserHeight.setText("%i cm" % int(currentUser.height))
@@ -457,12 +439,8 @@ def userGetWeight(self):
 	currentForm.show()
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-    scale = HX711(23,24)
-    scale.set_reference_unit(770)
-    scale.reset()
-    scale.tare()
-    main()
-=======
+	#scale = HX711(23,24)
+	#scale.set_reference_unit(770)
+	#scale.reset()
+	#scale.tare()
 	main()
->>>>>>> master
