@@ -12,7 +12,7 @@ import numpy as np
 
 import ui_login, ui_userRegister, ui_mainMenu, ui_userPasswordChange, ui_userDetailChange, ui_itemSuggestion, ui_userDetails, ui_getWeight
 
-#from hx711 import HX711
+from hx711 import HX711
 
 class loginWindow (QMainWindow, ui_login.Ui_login):
 	def __init__(self):
@@ -389,7 +389,7 @@ class get_weight_thread (QObject):
 	def work(self):
 		print ("get_weight_thread work")
 		while True:
-			self.i = 10 #int(scale.get_weight(5))
+			self.i = int(scale.get_weight(5))
 			self.finished.emit(self.i)
 
 def main():
@@ -439,8 +439,8 @@ def userGetWeight(self):
 	currentForm.show()
 
 if __name__ == "__main__":
-	#scale = HX711(23,24)
-	#scale.set_reference_unit(770)
-	#scale.reset()
-	#scale.tare()
+	scale = HX711(23,24)
+	scale.set_reference_unit(770)
+	scale.reset()
+	scale.tare()
 	main()
