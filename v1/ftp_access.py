@@ -20,33 +20,34 @@ def generateNewItemFilePath ():
 
 def generateExisitingItemFilePath (imgID):
 	filename = str(time.time()) + "_" + str(imgID) + ".jpg"
-	filePath = os.path.join(os.getcwd(),"imageHistory/exisitingItem",filename)
-	backgroundFilePath = os.path.join(os.getcwd(),"imageHistory/exisitingItem/backgroundImage",filename)
+	filePath = os.path.join(os.getcwd(),"imageHistory/existingItem",filename)
+	backgroundFilePath = os.path.join(os.getcwd(),"imageHistory/existingItem/backgroundImage",filename)
 	return filePath , backgroundFilePath
 
 def uploadEverythingInFolder(currentFilePath , session):
 	searchPath = os.path.join(currentFilePath,'*.jpg')
-	for filename in glob.glob(searchPath):
-		currentImgPath = os.path.join(currentFilePath,filename)
-		imageFile = open(currentImgPath,'rb')
+	for filePath in glob.glob(searchPath):
+		filename = os.path.basename(filePath)
+		# currentImgPath = os.path.join(currentFilePath,filename)
+		imageFile = open(filePath,'rb')
 		session.storbinary(('STOR %s'% filename), imageFile)
 		imageFile.close()
-		os.remove(currentImgPath)
+		os.remove(filePath)
 	return session
 
 def uploadImageHistory ():
 	try:
 		session = connectToServer()
-		session.cwd ("/home/public/FTP/imageUploaded/newItem")
+		session.cwd ("/home/public/FTP/imageUploaded/newItem/")
 		currentFilePath = os.path.join(os.getcwd(),"imageHistory/newItem")
 		session = uploadEverythingInFolder(currentFilePath , session)
-		session.cwd ("/home/public/FTP/imageUploaded/newItem/backgroundImage")
+		session.cwd ("/home/public/FTP/imageUploaded/newItem/backgroundImage/")
 		currentFilePath = os.path.join(os.getcwd(),"imageHistory/newItem/backgroundImage")
 		session = uploadEverythingInFolder(currentFilePath , session)
-		session.cwd ("/home/public/FTP/imageUploaded/existingItem")
+		session.cwd ("/home/public/FTP/imageUploaded/existingItem/")
 		currentFilePath = os.path.join(os.getcwd(),"imageHistory/existingItem")
 		session = uploadEverythingInFolder(currentFilePath , session)
-		session.cwd ("/home/public/FTP/imageUploaded/existingItem/backgroundImage")
+		session.cwd ("/home/public/FTP/imageUploaded/existingItem/backgroundImage/")
 		currentFilePath = os.path.join(os.getcwd(),"imageHistory/existingItem/backgroundImage")
 		session = uploadEverythingInFolder(currentFilePath , session)
 		session.quit()
@@ -98,6 +99,7 @@ def updateSVM():
 		return False
 	return True
 
-#uploadImageHistory ()
+# updateSVM()
+#~ uploadImageHistory ()
 #~ updateImageSample()
 #~ updateSVM()

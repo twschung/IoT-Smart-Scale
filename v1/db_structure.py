@@ -57,6 +57,9 @@ class foodDataStructure:
 		print ("protein : ", self.protein)
 		print ("salt : ", self.salt)
 
+	def printFoodDetailsInRow(self):
+		print ("id : ", self.id , "  category : ", self.category , "  description : ", self.description)
+
 class userFoodIntakeStructure:
 	def __init__(self, id=0, userid = "0", datetime = "", foodid = "0", weight = "", foodcategory="", fooddescription="", energy="0" , fat="0", saturates="0", carbohydrate="0", sugars="0", fibre="0", protein="0", salt="0"):
 		self.id = id
