@@ -16,9 +16,8 @@ class HX711:
         self.REFERENCE_UNIT = 1  # The value returned by the hx711 that corresponds to your reference unit AFTER dividing by the SCALE.
         
         self.OFFSET = 1
-        self.lastVal = int(0)
+        self.lastVal = long(0)
 
-        # [start, stop, step]
         self.LSByte = [2, -1, -1]
         self.MSByte = [0, 3, 1]
         
@@ -32,8 +31,6 @@ class HX711:
 
         time.sleep(1)
 
-    # From the data sheet, if DOUT is high, no data transmitted.
-    # For data to be transmitted, DOUT needs to be low
     def is_ready(self):
         return GPIO.input(self.DOUT) == 0
 
@@ -81,9 +78,7 @@ class HX711:
         dataBytes[2] ^= 0x80
 
         return dataBytes
-    """
-    # I think we should be alright deleting this function
-    # From here:
+
     def get_binary_string(self):
         binary_format = "{0:b}"
         np_arr8 = self.read_np_arr8()
@@ -105,8 +100,7 @@ class HX711:
         np_arr8_string += "]";
         
         return np_arr8_string
-    # To Here
-    """
+
     def read_np_arr8(self):
         dataBytes = self.read()
         np_arr8 = numpy.uint8(dataBytes)
@@ -118,7 +112,7 @@ class HX711:
         np_arr32 = np_arr8.view('uint32')
         self.lastVal = np_arr32
 
-        return int(self.lastVal)
+        return long(self.lastVal)
 
     def read_average(self, times=3):
         values = 0
@@ -164,7 +158,7 @@ class HX711:
         self.REFERENCE_UNIT = reference_unit
 
     # HX711 datasheet states that setting the PDA_CLOCK pin on high for a more than 60 microseconds would power off the chip.
-    # I used 100 microseconds, just min case.
+    # I used 100 microseconds, just in case.
     # I've found it is good practice to reset the hx711 if it wasn't used for more than a few seconds.
     def power_down(self):
         GPIO.output(self.PD_SCK, False)
@@ -178,32 +172,3 @@ class HX711:
     def reset(self):
         self.power_down()
         self.power_up()
-
-    def cleanAndExit():
-        GPIO.cleanup()
-        sys.exit()
-
-
-    # Try this: main prog calls this, stores current value, gets new value
-    # returns new value if the current value is the same as previous value
-    def call_this(self):
-        current_val = 0
-        pre_val = 0
-        if current_val != pre_val or current_val<=0:
-            # saves the previous value from scale
-            pre_val = current_val
-            # gets the new value from scale
-            current_val = self.get_weight(5) 
-            print("current reading: "+str(current_val)+"g")
-            time.sleep(0.5)
-            if current_val<0:
-                self.tare()
-                
-        elif current_val == pre_val and current_val > 0:
-            current_value = current_val
-            return current_value
-            self.power_down()
-            self.power_up()
-
-
-        
