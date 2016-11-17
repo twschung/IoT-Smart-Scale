@@ -126,8 +126,8 @@ class loginWindow (QMainWindow, ui_login.Ui_login):
 		expUsr.firstname = self.currentUser.firstname
 		expUsr.lastname = self.currentUser.lastname
 		return expUsr
-
-
+			
+		
 class userRegisterWindow (QMainWindow, ui_userRegister.Ui_userRegister):
 	def __init__(self):
 		super	(self.__class__, self).__init__()
@@ -153,9 +153,9 @@ class userRegisterWindow (QMainWindow, ui_userRegister.Ui_userRegister):
 		if (allFieldChecked == True):
 			inputDoB = self.datDoB.date().toString('ddMMyyyy')
 			inputGender = ""
-			if (self.rbnMale.isChecked() == True):
+			if (self.rbnMale.isChecked() == True): 
 				inputGender = "m"
-			if (self.rbnFemale.isChecked() == True):
+			if (self.rbnFemale.isChecked() == True): 
 				inputGender = "f"
 			newUser = db_structure.userDataStructure("0", self.txtUsername.text(), self.txtPassword.text(), self.txtEmail.text(), self.txtFirstname.text(), self.txtLastname.text(), inputDoB, inputGender, self.txtHeight.text(), self.txtWeight.text())
 			dbResult = db_access.user_register(newUser)
@@ -166,7 +166,7 @@ class userRegisterWindow (QMainWindow, ui_userRegister.Ui_userRegister):
 				login(self)
 	def btnCancel_pressed(self):
 		login(self)
-
+	
 class mainMenuWindow (QMainWindow, ui_mainMenu.Ui_mainMenu):
 	def __init__(self, currentUser):
 		super	(self.__class__, self).__init__()
@@ -223,7 +223,7 @@ class userPasswordChangeWindow (QMainWindow, ui_userPasswordChange.Ui_userPasswo
 					self.lblStatus.setText("Error : DataBase Error")
 	def btnCancel_pressed(self):
 		mainMenu(self)
-
+		
 class userDetailChangeWindow (QMainWindow, ui_userDetailChange.Ui_userDetailChange):
 	def __init__(self, currentUser):
 		super	(self.__class__, self).__init__()
@@ -260,9 +260,9 @@ class userDetailChangeWindow (QMainWindow, ui_userDetailChange.Ui_userDetailChan
 		if (allFieldChecked == True):
 			inputDoB = self.datDoB.date().toString('ddMMyyyy')
 			inputGender = ""
-			if (self.rbnMale.isChecked() == True):
+			if (self.rbnMale.isChecked() == True): 
 				inputGender = "m"
-			if (self.rbnFemale.isChecked() == True):
+			if (self.rbnFemale.isChecked() == True): 
 				inputGender = "f"
 			updateUser = db_structure.userDataStructure(self.currentUser.id,self.currentUser.username,self.txtPassword.text(),self.txtEmail.text(),self.txtFirstname.text(),self.txtLastname.text(),inputDoB,inputGender,self.txtHeight.text(),self.txtWeight.text())
 			dbResult = db_access.user_changeUserDetails(updateUser)
@@ -311,7 +311,7 @@ class userDetailChangeWindow (QMainWindow, ui_userDetailChange.Ui_userDetailChan
 		expUsr.firstname = self.currentUser.firstname
 		expUsr.lastname = self.currentUser.lastname
 		return expUsr
-
+		
 class itemSuggestionWindow (QMainWindow, ui_itemSuggestion.Ui_itemSuggestion):
 	def __init__(self, currentUser):
 		super	(self.__class__, self).__init__()
@@ -329,7 +329,11 @@ class userDetailsWindow(QMainWindow, ui_userDetails.Ui_userDetails):
 		self.currentUser = currentUser
 		self.btnBack.clicked.connect(lambda:self.btnBack_pressed())
 		self.lblUserName.setText("%s %s" % (currentUser.firstname, currentUser.lastname))
+<<<<<<< HEAD
+		self.lblEmail.setText("%s %s" % (currentUser.firstname, currentUser.lastname))
+=======
 		self.lblUserEmail.setText("%s" % (currentUser.email))
+>>>>>>> master
 		self.userAge = int((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365.25)
 		self.lblUserAge.setText("%i" % self.userAge)
 		self.lblUserHeight.setText("%i cm" % int(currentUser.height))
@@ -399,17 +403,17 @@ def main():
 	currentForm = loginWindow()
 	currentForm.showMaximized()
 	sys.exit(app.exec_())
-
+	
 def login(self):
 	self.close()
 	currentForm = loginWindow()
 	currentForm.showMaximized()
-
+	
 def userRegister(self):
 	self.close()
 	currentForm = userRegisterWindow()
 	currentForm.showMaximized()
-
+	
 def mainMenu(self):
 	self.close()
 	currentForm = mainMenuWindow(self.currentUser)
@@ -419,12 +423,12 @@ def userPasswordChange(self):
 	self.close()
 	currentForm = userPasswordChangeWindow(self.currentUser)
 	currentForm.showMaximized()
-
+	
 def userDetailChange(self):
 	self.close()
 	currentForm = userDetailChangeWindow(self.currentUser)
 	currentForm.showMaximized()
-
+	
 def itemSuggestion(self):
 	self.close()
 	currentForm = itemSuggestionWindow(self.currentUser)
@@ -439,10 +443,18 @@ def userGetWeight(self):
 	self.close()
 	currentForm = GetWeightWindow(self.currentUser)
 	currentForm.showMaximized()
-
+	
 if __name__ == "__main__":
+<<<<<<< HEAD
+    scale = HX711(23,24)
+    scale.set_reference_unit(770)
+    scale.reset()
+    scale.tare()
+    main()
+=======
 	scale = HX711(23,24)
 	scale.set_reference_unit(770)
 	scale.reset()
 	scale.tare()
 	main()
+>>>>>>> master
