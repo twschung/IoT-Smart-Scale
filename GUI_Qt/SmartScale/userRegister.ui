@@ -23,6 +23,12 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Cancel</string>
     </property>
@@ -36,6 +42,12 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Register</string>
     </property>
@@ -48,6 +60,12 @@
       <width>231</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please enter the following details :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -64,7 +82,8 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <family>Arial</family>
+      <pointsize>13</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -82,19 +101,44 @@
       <height>341</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
       <widget class="QLabel" name="lblUsername">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Username :</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="txtUsername"/>
+      <widget class="QLineEdit" name="txtUsername">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="lblPassword">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Password :</string>
        </property>
@@ -102,6 +146,12 @@
      </item>
      <item row="1" column="1">
       <widget class="QLineEdit" name="txtPassword">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="echoMode">
         <enum>QLineEdit::Password</enum>
        </property>
@@ -109,6 +159,12 @@
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="lblConfirmPassword">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Confirm Password :</string>
        </property>
@@ -116,6 +172,12 @@
      </item>
      <item row="2" column="1">
       <widget class="QLineEdit" name="txtConfirmPassword">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="echoMode">
         <enum>QLineEdit::Password</enum>
        </property>
@@ -123,36 +185,81 @@
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="lblEmail">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Email :</string>
        </property>
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="txtEmail"/>
+      <widget class="QLineEdit" name="txtEmail">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="lblFirstname">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Firstname :</string>
        </property>
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="txtFirstname"/>
+      <widget class="QLineEdit" name="txtFirstname">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
      <item row="5" column="0">
       <widget class="QLabel" name="lblLastname">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Lastname :</string>
        </property>
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QLineEdit" name="txtLastname"/>
+      <widget class="QLineEdit" name="txtLastname">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
      <item row="6" column="0">
       <widget class="QLabel" name="lblDoB">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Date of Birth :</string>
        </property>
@@ -160,6 +267,12 @@
      </item>
      <item row="6" column="1">
       <widget class="QDateEdit" name="datDoB">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="focusPolicy">
         <enum>Qt::WheelFocus</enum>
        </property>
@@ -173,6 +286,12 @@
      </item>
      <item row="7" column="0">
       <widget class="QLabel" name="lblGender">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Gender :</string>
        </property>
@@ -180,6 +299,12 @@
      </item>
      <item row="7" column="1">
       <widget class="QRadioButton" name="rbnMale">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Male</string>
        </property>
@@ -187,26 +312,58 @@
      </item>
      <item row="9" column="0">
       <widget class="QLabel" name="lblHeight">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Height (cm) :</string>
        </property>
       </widget>
      </item>
      <item row="9" column="1">
-      <widget class="QLineEdit" name="txtHeight"/>
+      <widget class="QLineEdit" name="txtHeight">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
      <item row="10" column="0">
       <widget class="QLabel" name="lblWeight">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Weight (kg) :</string>
        </property>
       </widget>
      </item>
      <item row="10" column="1">
-      <widget class="QLineEdit" name="txtWeight"/>
+      <widget class="QLineEdit" name="txtWeight">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
      <item row="8" column="1">
       <widget class="QRadioButton" name="rbnFemale">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Female</string>
        </property>
