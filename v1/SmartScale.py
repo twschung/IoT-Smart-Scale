@@ -4,12 +4,15 @@ import PyQt5
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from datetime import datetime
 
 import db_access, db_structure
 import ftp_access
 import numpy as np
 
-import ui_login, ui_userRegister, ui_mainMenu, ui_userPasswordChange, ui_userDetailChange, ui_itemSuggestion
+import ui_login, ui_userRegister, ui_mainMenu, ui_userPasswordChange, ui_userDetailChange, ui_itemSuggestion, ui_userDetails, ui_getWeight
+
+from hx711 import HX711
 
 class loginWindow (QMainWindow, ui_login.Ui_login):
 	def __init__(self):
@@ -163,24 +166,31 @@ class userRegisterWindow (QMainWindow, ui_userRegister.Ui_userRegister):
 		login(self)
 	
 class mainMenuWindow (QMainWindow, ui_mainMenu.Ui_mainMenu):
-	def __init__(self, currentUser):
-		super	(self.__class__, self).__init__()
-		self.setupUi(self)
-		self.currentUser = currentUser
-		self.lblStatus.setText(("Hi! Welcome back! %s %s" % (self.currentUser.firstname, self.currentUser.lastname)))
-		self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
-		self.btnChangePassword.clicked.connect(lambda:self.btnChangePassword_pressed())
-		self.btnChangeUserDetail.clicked.connect(lambda:self.btnChangeUserDetail_pressed())
-		self.pushButton_5.clicked.connect(lambda:self.pushButton_5_pressed())
-	def btnChangePassword_pressed(self):
-		userPasswordChange(self)
-	def btnChangeUserDetail_pressed(self):
-		userDetailChange(self)
-	def btnLogout_pressed(self):
-		login(self)
-	def pushButton_5_pressed(self):
-		itemSuggestion(self)
-		
+    def __init__(self, currentUser):
+        super	(self.__class__, self).__init__()
+        self.setupUi(self)
+        self.currentUser = currentUser
+        self.lblStatus.setText(("Hi! Welcome back! %s %s" % (self.currentUser.firstname, self.currentUser.lastname)))
+        self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
+        self.btnChangePassword.clicked.connect(lambda:self.btnChangePassword_pressed())
+        self.btnChangeUserDetail.clicked.connect(lambda:self.btnChangeUserDetail_pressed())
+        self.btnUserDetails.clicked.connect(lambda:self.btnUserDetails_pressed())
+        self.btnGetWeight.clicked.connect(lambda:self.btnGetWeight_pressed())
+        self.pushButton_5.clicked.connect(lambda:self.pushButton_5_pressed())
+    def btnChangePassword_pressed(self):
+        userPasswordChange(self)
+    def btnChangeUserDetail_pressed(self):
+        userDetailChange(self)
+    def btnLogout_pressed(self):
+        login(self)
+    def pushButton_5_pressed(self):
+        #itemSuggestion(self)
+        print("No action")
+    def btnUserDetails_pressed(self):
+        userDetails(self)
+    def btnGetWeight_pressed(self):
+        userGetWeight(self)
+
 class userPasswordChangeWindow (QMainWindow, ui_userPasswordChange.Ui_userPasswordChange):
 	def __init__(self, currentUser):
 		super	(self.__class__, self).__init__()
@@ -307,6 +317,10 @@ class itemSuggestionWindow (QMainWindow, ui_itemSuggestion.Ui_itemSuggestion):
 		self.currentUser = currentUser
 		self.btnLogout.clicked.connect(lambda:self.btnLogout_pressed())
 	def btnLogout_pressed(self):
+<<<<<<< HEAD
+                """
+=======
+>>>>>>> master
 		tic = time.clock()
 		ftp_access.downloadTempImage_3("1.jpg")
 		self.lblItem5.setPixmap(QPixmap('temp.jpg'))
@@ -320,8 +334,82 @@ class itemSuggestionWindow (QMainWindow, ui_itemSuggestion.Ui_itemSuggestion):
 		self.lblItem1.setPixmap(QPixmap('temp.jpg'))
 		toc = time.clock()
 		print((toc - tic))
-		
-		
+                """
+                userGetWeight(self)
+
+class userDetailsWindow(QMainWindow, ui_userDetails.Ui_userDetails):
+	def __init__(self, currentUser):
+		super	(self.__class__, self).__init__()
+		self.setupUi(self)
+		self.currentIntake = 1850
+		self.currentUser = currentUser
+		self.btnBack.clicked.connect(lambda:self.btnBack_pressed())
+		self.lblUserName.setText("%s %s" % (currentUser.firstname, currentUser.lastname))
+        self.lblEmail.setText("%s %s" % (currentUser.firstname, currentUser.lastname))
+		self.userAge = int((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365.25)
+		self.lblUserAge.setText("%i" % self.userAge)
+		self.lblUserHeight.setText("%i cm" % int(currentUser.height))
+		self.lblUserWeight.setText("%i kg" % int(currentUser.weight))
+		self.lblUserBMI.setText("%.2f" % (float(currentUser.weight)/((float(currentUser.height)/100)**2)))
+		if (currentUser.gender == "m"):
+			self.lblUserBMR.setText("%.1f" % ((float(currentUser.weight)*10)+(float(currentUser.height)*6.25)-(self.userAge*5)+5))
+			self.pgrsDailyIntake.setRange(0,2500)
+			self.lblDailyCals.setText("%i/%s kcal" %(self.currentIntake , "2500"))
+		if (currentUser.gender == "f"):
+			self.lblUserBMR.setText("%.1f" % ((float(currentUser.weight)*10)+(float(currentUser.height)*6.25)-(self.userAge*5)-161))
+			self.pgrsDailyIntake.setRange(0,2000)
+			self.lblDailyCals.setText("%s/%s kcal" %(self.currentIntake , "2000"))
+		self.pgrsDailyIntake.setValue(self.currentIntake)
+
+
+	def btnBack_pressed(self):
+		mainMenu(self)
+
+class GetWeightWindow(QMainWindow, ui_getWeight.Ui_getWeight):
+    def __init__(self, currentUser):
+        super (self.__class__, self).__init__()
+        self.setupUi(self)
+        self.currentUser = currentUser
+
+        self.btnScan.clicked.connect(lambda:self.btnScan_pressed())
+        self.btnTare.clicked.connect(lambda:self.btnTare_pressed())
+        self.btnBack.clicked.connect(lambda:self.btnBack_pressed())
+
+        self.thread = QThread()
+        self.gw = get_weight_thread()
+        self.gw.finished[int].connect(self.onFinished)
+        self.gw.moveToThread(self.thread)
+        self.thread.started.connect(self.gw.work)
+        self.thread.start()
+
+        @pyqtSlot(int)
+        def onFinished(self, i):
+                self.lcdWeight.display(int(i))
+
+        def btnBack_pressed(self):
+                mainMenu(self)
+        def btnTare_pressed(self):
+                scale.tare()
+                self.weight = scale.get_weight(5)
+                self.lcdWeight.display(int(self.weight))
+        def btnScan_pressed(self):
+                self.weight = scale.get_weight(5)
+                self.lcdWeight.display(int(self.weight))
+
+class get_weight_thread (QObject):
+    finished = pyqtSignal(int)
+    
+    def __init__(self):
+        print ("get_weight_thread init")
+        super (self.__class__, self).__init__()
+        #super().__init__()
+    
+    def work(self):
+        print ("get_weight_thread work")
+        while True:
+            self.i = int(scale.get_weight(5))
+            self.finished.emit(self.i)
+
 def main():
 	app = QApplication(sys.argv)
 	currentForm = loginWindow()
@@ -357,8 +445,24 @@ def itemSuggestion(self):
 	self.close()
 	currentForm = itemSuggestionWindow(self.currentUser)
 	currentForm.show()
-	
-	
+
+def userDetails(self):
+	self.close()
+	currentForm = userDetailsWindow(self.currentUser)
+	currentForm.show()
+
+def userGetWeight(self):
+	self.close()
+	currentForm = GetWeightWindow(self.currentUser)
+	currentForm.show()
 
 if __name__ == "__main__":
+<<<<<<< HEAD
+    scale = HX711(23,24)
+    scale.set_reference_unit(770)
+    scale.reset()
+    scale.tare()
+    main()
+=======
 	main()
+>>>>>>> master
