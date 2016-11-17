@@ -23,4 +23,6 @@ FORMS    += \
     userPasswordChange.ui \
     userDetailChange.ui \
     mainMenu.ui \
-    itemSuggestion.ui
+    itemSuggestion.ui \
+    userDetails.ui \
+    getWeight.ui

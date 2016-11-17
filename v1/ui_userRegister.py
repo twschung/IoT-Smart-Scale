@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'userRegister.ui'
 #
-# Created by: PyQt5 UI code generator 5.6
+# Created by: PyQt5 UI code generator 5.7
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -11,17 +11,17 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_userRegister(object):
     def setupUi(self, userRegister):
         userRegister.setObjectName("userRegister")
-        userRegister.resize(1024, 565)
+        userRegister.resize(800, 480)
         self.centralWidget = QtWidgets.QWidget(userRegister)
         self.centralWidget.setObjectName("centralWidget")
         self.btnCancel = QtWidgets.QPushButton(self.centralWidget)
-        self.btnCancel.setGeometry(QtCore.QRect(800, 110, 201, 31))
+        self.btnCancel.setGeometry(QtCore.QRect(570, 100, 201, 31))
         self.btnCancel.setObjectName("btnCancel")
         self.btnRegister = QtWidgets.QPushButton(self.centralWidget)
-        self.btnRegister.setGeometry(QtCore.QRect(800, 60, 201, 31))
+        self.btnRegister.setGeometry(QtCore.QRect(570, 60, 201, 31))
         self.btnRegister.setObjectName("btnRegister")
         self.lblTitle = QtWidgets.QLabel(self.centralWidget)
-        self.lblTitle.setGeometry(QtCore.QRect(20, 10, 171, 41))
+        self.lblTitle.setGeometry(QtCore.QRect(20, 10, 231, 41))
         self.lblTitle.setObjectName("lblTitle")
         self.lblStatus = QtWidgets.QLabel(self.centralWidget)
         self.lblStatus.setGeometry(QtCore.QRect(250, 10, 641, 31))
@@ -33,7 +33,7 @@ class Ui_userRegister(object):
         self.lblStatus.setText("")
         self.lblStatus.setObjectName("lblStatus")
         self.formLayoutWidget = QtWidgets.QWidget(self.centralWidget)
-        self.formLayoutWidget.setGeometry(QtCore.QRect(20, 50, 761, 451))
+        self.formLayoutWidget.setGeometry(QtCore.QRect(20, 50, 551, 341))
         self.formLayoutWidget.setObjectName("formLayoutWidget")
         self.formLayout = QtWidgets.QFormLayout(self.formLayoutWidget)
         self.formLayout.setContentsMargins(11, 11, 11, 11)
@@ -108,7 +108,7 @@ class Ui_userRegister(object):
         self.formLayout.setWidget(8, QtWidgets.QFormLayout.FieldRole, self.rbnFemale)
         userRegister.setCentralWidget(self.centralWidget)
         self.menuBar = QtWidgets.QMenuBar(userRegister)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 1024, 21))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 800, 22))
         self.menuBar.setObjectName("menuBar")
         userRegister.setMenuBar(self.menuBar)
         self.mainToolBar = QtWidgets.QToolBar(userRegister)
@@ -140,14 +140,4 @@ class Ui_userRegister(object):
         self.lblHeight.setText(_translate("userRegister", "Height (cm) :"))
         self.lblWeight.setText(_translate("userRegister", "Weight (kg) :"))
         self.rbnFemale.setText(_translate("userRegister", "Female"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    userRegister = QtWidgets.QMainWindow()
-    ui = Ui_userRegister()
-    ui.setupUi(userRegister)
-    userRegister.show()
-    sys.exit(app.exec_())
 
