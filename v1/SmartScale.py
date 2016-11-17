@@ -1,5 +1,7 @@
 import sys, time, os
 
+import RPi.GPIO as GPIO
+
 import PyQt5
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
@@ -327,7 +329,7 @@ class userDetailsWindow(QMainWindow, ui_userDetails.Ui_userDetails):
 		self.currentUser = currentUser
 		self.btnBack.clicked.connect(lambda:self.btnBack_pressed())
 		self.lblUserName.setText("%s %s" % (currentUser.firstname, currentUser.lastname))
-		self.lblEmail.setText("%s %s" % (currentUser.firstname, currentUser.lastname))
+		self.lblUserEmail.setText("%s" % (currentUser.email))
 		self.userAge = int((datetime.today()-datetime.strptime(currentUser.dob, "%d%m%Y")).days/365.25)
 		self.lblUserAge.setText("%i" % self.userAge)
 		self.lblUserHeight.setText("%i cm" % int(currentUser.height))
@@ -437,7 +439,7 @@ def userGetWeight(self):
 	self.close()
 	currentForm = GetWeightWindow(self.currentUser)
 	currentForm.showMaximized()
-
+	
 if __name__ == "__main__":
 	scale = HX711(23,24)
 	scale.set_reference_unit(770)
