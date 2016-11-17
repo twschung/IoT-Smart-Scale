@@ -20,13 +20,13 @@ def generateNewItemFilePath ():
 
 def generateExisitingItemFilePath (imgID):
 	filename = str(time.time()) + "_" + str(imgID) + ".jpg"
-	filePath = os.path.join(os.getcwd(),"imageHistory/exisitingItem",filename)
-	backgroundFilePath = os.path.join(os.getcwd(),"imageHistory/exisitingItem/backgroundImage",filename)
+	filePath = os.path.join(os.getcwd(),"imageHistory/existingItem",filename)
+	backgroundFilePath = os.path.join(os.getcwd(),"imageHistory/existingItem/backgroundImage",filename)
 	return filePath , backgroundFilePath
 
 def uploadEverythingInFolder(currentFilePath , session):
-	searchPath = os.path.join(currentFilePath,'*.jpg')
-	for filePath in glob.glob(searchPath):
+	searchPath = os.path.join(currentFilePath,'*.jpg')	
+	for filePath in glob.glob(searchPath):	
 		filename = os.path.basename(filePath)
 		# currentImgPath = os.path.join(currentFilePath,filename)
 		imageFile = open(filePath,'rb')
@@ -100,6 +100,7 @@ def updateSVM():
 	return True
 
 # updateSVM()
-# uploadImageHistory ()
+#~ uploadImageHistory ()
 #~ updateImageSample()
 #~ updateSVM()
+		
