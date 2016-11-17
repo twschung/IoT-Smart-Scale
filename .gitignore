@@ -8,6 +8,12 @@ v1/SmartScale.py
 
 v1/config.npy
 
+<<<<<<< HEAD
 *.pyc
+
+*.pyc
+=======
+.DS_Store
+>>>>>>> master
 
 *.pyc
