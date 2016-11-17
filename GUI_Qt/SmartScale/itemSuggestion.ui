@@ -34,6 +34,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>14</pointsize>
       <weight>75</weight>
       <bold>true</bold>
@@ -52,6 +53,11 @@
       <height>323</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+     </font>
+    </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="2">
       <widget class="QLabel" name="lblItem3">
@@ -69,6 +75,11 @@
          <width>200</width>
          <height>200</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
        </property>
        <property name="frameShape">
         <enum>QFrame::Box</enum>
@@ -95,6 +106,11 @@
          <height>200</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
+       </property>
        <property name="frameShape">
         <enum>QFrame::Box</enum>
        </property>
@@ -120,6 +136,11 @@
          <height>200</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
+       </property>
        <property name="frameShape">
         <enum>QFrame::Box</enum>
        </property>
@@ -144,6 +165,11 @@
          <width>200</width>
          <height>200</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
        </property>
        <property name="frameShape">
         <enum>QFrame::Box</enum>
@@ -172,6 +198,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -197,6 +224,11 @@
          <height>200</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
+       </property>
        <property name="frameShape">
         <enum>QFrame::Box</enum>
        </property>
@@ -207,14 +239,6 @@
      </item>
     </layout>
    </widget>
-   <zorder>lblStatus</zorder>
-   <zorder>gridLayoutWidget</zorder>
-   <zorder>lblItem5</zorder>
-   <zorder>lblItem3</zorder>
-   <zorder>lblItem1</zorder>
-   <zorder>lblItem4</zorder>
-   <zorder>lblItem2</zorder>
-   <zorder>btnLogout</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
