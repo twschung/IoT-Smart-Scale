@@ -19,7 +19,7 @@
      <widget class="QLabel" name="lblTitle">
       <property name="font">
        <font>
-        <family>Helvetica</family>
+        <family>Arial</family>
         <pointsize>12</pointsize>
        </font>
       </property>
@@ -55,8 +55,8 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>12</pointsize>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -73,14 +73,14 @@
        <widget class="QLineEdit" name="txtUsername">
         <property name="minimumSize">
          <size>
-          <width>504</width>
+          <width>400</width>
           <height>0</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>12</pointsize>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
          </font>
         </property>
        </widget>
@@ -95,8 +95,8 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>12</pointsize>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
          </font>
         </property>
         <property name="text">
@@ -114,14 +114,14 @@
        <widget class="QLineEdit" name="txtPassword">
         <property name="minimumSize">
          <size>
-          <width>504</width>
+          <width>400</width>
           <height>0</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>12</pointsize>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
          </font>
         </property>
         <property name="inputMethodHints">
@@ -141,7 +141,8 @@
      <widget class="QLabel" name="lblStatus">
       <property name="font">
        <font>
-        <pointsize>14</pointsize>
+        <family>Arial</family>
+        <pointsize>13</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -155,8 +156,8 @@
      <widget class="QPushButton" name="btnRegister">
       <property name="font">
        <font>
-        <family>Helvetica</family>
-        <pointsize>12</pointsize>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="text">
@@ -168,8 +169,8 @@
      <widget class="QPushButton" name="btnLogin">
       <property name="font">
        <font>
-        <family>Helvetica</family>
-        <pointsize>12</pointsize>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="text">
@@ -195,8 +196,8 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>12</pointsize>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
          </font>
         </property>
         <property name="text">
@@ -217,8 +218,8 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>12</pointsize>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
          </font>
         </property>
         <property name="text">
@@ -239,8 +240,8 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>12</pointsize>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
          </font>
         </property>
         <property name="text">
@@ -261,8 +262,8 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>12</pointsize>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
          </font>
         </property>
         <property name="text">
@@ -283,8 +284,8 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>12</pointsize>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
          </font>
         </property>
         <property name="text">
@@ -305,8 +306,8 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica</family>
-          <pointsize>12</pointsize>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
          </font>
         </property>
         <property name="text">
@@ -320,7 +321,7 @@
      <widget class="QCheckBox" name="chkExpressLogin">
       <property name="font">
        <font>
-        <family>Helvetica</family>
+        <family>Arial</family>
         <pointsize>11</pointsize>
        </font>
       </property>
