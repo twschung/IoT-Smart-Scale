@@ -1,90 +1,138 @@
-# import cv2
-from sklearn import svm
-from sklearn.externals import joblib
+import os , time, shutil, glob
+import svm
 import numpy as np
-import time, os
+import db_access, ftp_access
+import obj_recognition
+
+from picamera import PiCamera
+from time import sleep
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(11, GPIO.OUT)
+camera = PiCamera()
+
+def main():
+	print("IoT Smart Scale Terminal-End Testing & Training Program")
+	print("-----------------------------------------------------------")
+	print(" [1] - Start Camera Preview ")
+	print(" [2] - Take Pictures for Sample Set")
+	print(" [3] - Upload Sample Set Images to FTP Server ")
+	print(" [4] - Fetch New Trained Model from Server ")
+	print(" [5] - Test out Trained Model ")
+	print(" [6] - Exit Program ")
+	print("-----------------------------------------------------------")
+	usrInput=input("Please input the one of the option ->  ")
+	if (usrInput == "1"):
+		opt_1()
+	elif (usrInput == "2"):
+		opt_2()
+	elif (usrInput == "3"):
+		opt_3()
+	elif (usrInput == "4"):
+		opt_4()
+	elif (usrInput == "5"):
+		opt_5()
+	elif (usrInput == "6"):
+		print("Program exiting !!!!")
+	else:
+		print("-----------------------------------------------------------")
+		print("ERROR: Invaild Input !!!!!!!")
+		print("-----------------------------------------------------------")
+		main()
+
+def opt_1():
+	print("-----------------------------------------------------------")
+	print("Starting Camera Preview...")
+	camera.start_preview()
+	GPIO.output(11,True)
+	input("Press any button to exit")
+	camera.stop_preview()
+	GPIO.output(11,False)
+	print("-----------------------------------------------------------")
+	main()
+
+def opt_2():
+	print("-----------------------------------------------------------")
+	foodID = input("Please Enter Food ID Number")
+	numOfSample = int(input("Please Enter the Number of samples you wish to take"))
+	while (numOfSample > 0):
+		forgroundFilePath, backgroundFilePath = ftp_access.generateExisitingItemFilePath(foodID)
+		print("Sample : " + str(numOfSample))
+		input("Tell me when Background is Ready")
+		GPIO.output(11,True)
+		camera.start_preview()
+		sleep(2)
+		camera.capture(os.path.basename(backgroundFilePath))
+		os.rename(os.path.join(os.getcwd(),os.path.basename(backgroundFilePath)),backgroundFilePath)
+		camera.stop_preview()
+		GPIO.output(11,False)
+		input("Tell me when Forground is Ready")
+		GPIO.output(11,True)
+		camera.start_preview()
+		sleep(2)
+		camera.capture(os.path.basename(forgroundFilePath))
+		os.rename(os.path.join(os.getcwd(),os.path.basename(forgroundFilePath)),forgroundFilePath)
+		camera.stop_preview()
+		GPIO.output(11,False)
+		numOfSample -= 1
+	print("-----------------------------------------------------------")
+	main()
+
+def opt_3():
+	print("-----------------------------------------------------------")
+	print("Uploading Image to Server!")
+	ftp_access.uploadImageHistory()
+	print("Done!")
+	print("-----------------------------------------------------------")
+	main()
+
+def opt_4():
+	print("-----------------------------------------------------------")
+	print("Fetching Trained Model from Server!")
+	ftp_access.updateSVM()
+	print("Done!")
+	displaySVMInfo()
+	print("-----------------------------------------------------------")
+	main()
+
+def opt_5():
+	print("-----------------------------------------------------------")
+	input("Tell me when Background is Ready")
+	GPIO.output(11,True)
+	camera.start_preview()
+	sleep(2)
+	camera.capture("background.jpg")
+	camera.stop_preview()
+	GPIO.output(11,False)
+	input("Tell me when Forground is Ready")
+	GPIO.output(11,True)
+	camera.start_preview()
+	sleep(2)
+	camera.capture("forground.jpg")
+	camera.stop_preview()
+	GPIO.output(11,False)
+	imageFeature = obj_recognition.main("forground.jpg", "background.jpg")
+	print("-----------------------------------------------------------")
+	clf = svm.SVM()
+	clf.load()
+	clfResult = clf.predict(imageFeature)
+	print(clfResult[0])
+	print(clf.predict_prob(imageFeature))
+	foodInfo = db_access.food_getInfo(str(clfResult[0])	)
+	foodInfo[1].printFoodDetailsInRow()
+	print("-----------------------------------------------------------")
+	main()
 
 
-def loadTrainingSet ():
-	sampleSet = np.load('sampleSet.npy')
-	responseSet = np.load('responseSet.npy')
-	return sampleSet, responseSet
-
-def saveTrainingSet (sampleSet, responseSet):
-	np.save('sampleSet.npy',sampleSet)
-	np.save('responseSet.npy',responseSet)
-
-def addNewDataSet (newSampleSet, newResponseSet):
+def displaySVMInfo():
+	print("Loading SVM Info......")
 	try:
-		sampleSet, responseSet = loadTrainingSet()
-		sampleSet = np.vstack([sampleSet, newSampleSet])
-		responseSet = np.hstack([responseSet,newResponseSet])
+		print ("Last modified :")
+		fileLastModified = os.stat("SVM.dat").st_mtime
+		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
 	except:
-		sampleSet = newSampleSet
-		responseSet = newResponseSet
-	saveTrainingSet(sampleSet,responseSet)
-
-#~ class StatModel(object):
-	#~ def load(self, fn):
-		#~ self.model.load(fn)
-	#~ def save(self, fn):
-		#~ self.model.save(fn)
-
-class SVM():
-	def __init__(self):
-		self.model = svm.SVC(C=1.0, kernel='rbf', degree=3, gamma='auto', \
-		coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
-		class_weight=None, verbose=False, max_iter=-1, decision_function_shape=None, \
-		random_state=None)
-	def load(self):
-		self.model = joblib.load('SVM.dat')
-	def train(self):
-		sampleSet , responseSet = loadTrainingSet()
-		self.model.fit(sampleSet, responseSet)
-		joblib.dump(self.model, 'SVM.dat')
-	def predict(self, sample):
-		return self.model.predict(sample)
-	def predict_prob(self, sample):
-		return self.model.predict_proba(sample)
+		print ("No SVM is found")
 
 
-# samples = np.array(np.random.random((4,2)), dtype = np.float32)
-# y_train = np.array([1.,0.,0.,1.], dtype = np.float32)
-# print (samples.shape)
-# print (samples)
-# print (y_train.shape)
-# print (y_train)
-
-# initalTrainingSet()
-
-# newSampleSet = np.array([0.2,0.8,0.6,0.1], dtype=np.float32)
-# newResponseSet = np.array([2], dtype=np.int)
-# newSampleSet = np.array([0.8,0.2,0.1,0.9], dtype=np.float32)
-# newResponseSet = np.array([3], dtype=np.int)
-# addNewDataSet(newSampleSet,newResponseSet)
-
-# sampleSet , responseSet = loadTrainingSet()
-
-# print (sampleSet.dtype)
-# print (sampleSet.shape)
-# print (sampleSet)
-# print (responseSet.dtype)
-# print (responseSet.shape)
-# print (responseSet)
-
-# print (newSampleSet.shape)
-# print (newSampleSet)
-# print (newResponseSet.shape)
-# print (newResponseSet)
-
-#~ clf = SVM()
-#~ clf.train()
-#~
-#~ clf = SVM()
-#~ clf.load()
-#~ sample = np.array([[0.9,0.1,0.2,0.8]], dtype=np.float32)
-#~ print (sample.shape)
-#~ result = clf.predict(sample)
-#~ print(result)
-
-# sample = [2,3,3]
+if __name__ == "__main__":
+	main()
