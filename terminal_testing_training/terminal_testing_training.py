@@ -53,8 +53,8 @@ def opt_1():
 
 def opt_2():
 	print("-----------------------------------------------------------")
-	foodID = input("Please Enter Food ID Number")
-	numOfSample = int(input("Please Enter the Number of samples you wish to take"))
+	foodID = input("Please Enter Food ID Number -> ")
+	numOfSample = int(input("Please Enter the Number of samples you wish to take -> "))
 	while (numOfSample > 0):
 		forgroundFilePath, backgroundFilePath = ftp_access.generateExisitingItemFilePath(foodID)
 		print("Sample : " + str(numOfSample))

@@ -92,6 +92,7 @@ def updateSVM():
 		os.remove('SVM_version.npy')
 		if (serverSVMVersion > currentSVMVersion):
 			urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/SVM.dat'),'SVM.dat')
+			urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/PCA.dat'),'PCA.dat')
 			currentSVMVersion = serverSVMVersion
 		config['currentSVMVersion'] = currentSVMVersion
 		np.save('config.npy', config)
