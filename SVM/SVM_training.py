@@ -6,12 +6,12 @@ import db_access_server
 import obj_recognition
 
 
-SVMPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/SVM'
-SVMArchivePath = '/home/pi/IoT-Smart-Scale/SVM/FTP/SVM/archive'
-processedItemPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/imageUploaded/processedItem'
-newItemPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/imageUploaded/newItem'
-exisitingItemPath =  '/home/pi/IoT-Smart-Scale/SVM/FTP/imageUploaded/existingItem'
-sampleItemPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/imageSample'
+SVMPath = '/home/public/HTTP/SVM'
+SVMArchivePath = '/home/public/HTTP/SVM/archive'
+processedItemPath = '/home/public/FTP/imageUploaded/processedItem'
+newItemPath = '/home/public/FTP/imageUploaded/newItem'
+exisitingItemPath =  '/home/public/FTP/imageUploaded/existingItem'
+sampleItemPath = '/home/public/HTTP/imageSample'
 
 def main():
 	print("IoT Smart Scale SVM Training Program")
@@ -71,10 +71,14 @@ def opt_2():
 		displayTrainingDataInfo()
 		print("Moving current SVM model to archive")
 		try:
-			currentPath = os.path.join(os.getcwd(),'SVM.dat')
-			newFilename = "SVM_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
-			newPath = os.path.join(SVMArchivePath, newFilename)
-			os.rename(currentPath,newPath)
+			svm_currentPath = os.path.join(os.getcwd(),'SVM.dat')
+			svm_newFilename = "SVM_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
+			svm_newPath = os.path.join(SVMArchivePath, svm_newFilename)
+			pca_currentPath = os.path.join(os.getcwd(),'PCA.dat')
+			pca_newFilename = "PCA_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
+			pca_newPath = os.path.join(SVMArchivePath, pca_newFilename)
+			os.rename(svm_currentPath,svm_newPath)
+			os.rename(pca_currentPath,pca_newPath)
 		except:
 			print ("new SVM model will be created")
 		finally:
@@ -93,6 +97,9 @@ def opt_3():
 	print ("Publishing current SVM model to SVM path")
 	currentPath = os.path.join(os.getcwd(),'SVM.dat')
 	newPath = os.path.join(SVMPath, 'SVM.dat')
+	shutil.copyfile(currentPath,newPath)
+	currentPath = os.path.join(os.getcwd(),'PCA.dat')
+	newPath = os.path.join(SVMPath, 'PCA.dat')
 	shutil.copyfile(currentPath,newPath)
 	version = np.array(os.stat("SVM.dat").st_mtime)
 	np.save('SVM_version.npy',version)
