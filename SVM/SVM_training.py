@@ -2,9 +2,8 @@ import os , time, shutil, glob
 import svm
 import numpy as np
 import imgFeatureExtractSim
-# import cv2
-import db_access
-# import obj_recognition
+import db_access_server
+import obj_recognition
 
 
 SVMPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/SVM'
@@ -55,12 +54,12 @@ def opt_2():
 		currentPath = filename
 		currentBackgroundPath = os.path.join(exisitingItemPath, "backgroundImage" , os.path.basename(filename))
 		#~ imgFeature = imgFeatureExtractSim.sim(currentPath) ###
-		# imgFeature = obj_recognition.main(currentPath,currentBackgroundPath)
-		print (imgFeature.shape)
-		print (imgFeature.dtype)
+		imgFeature = obj_recognition.main(currentPath,currentBackgroundPath)
+		imgFeature = np.nan_to_num(imgFeature)
+		#~ print (imgFeature.shape)
+		#~ print (imgFeature.dtype)
 		time, imgID = os.path.basename(filename).split("_")
 		imgID, fileExtendion = imgID.split(".")
-		print (int(imgID))
 		svm.addNewDataSet(imgFeature,int(imgID))
 		newPath = os.path.join(processedItemPath,os.path.basename(filename))
 		newBackgroundPath = os.path.join(processedItemPath, 'backgroundImage', os.path.basename(filename))
@@ -68,7 +67,7 @@ def opt_2():
 		os.rename(currentBackgroundPath,newBackgroundPath)
 		totalItemProcessed = totalItemProcessed + 1
 	print("Finished modifiing training set. Total of %i is added"% (totalItemProcessed))
-	if (totalItemProcessed > 0):
+	if (totalItemProcessed > -1):
 		displayTrainingDataInfo()
 		print("Moving current SVM model to archive")
 		try:
@@ -129,7 +128,7 @@ def newImageProcessMenu(filePath):
 		if (usrInput == "1"):
 			inputFood = inputNutritionData()
 			print("Adding Food item to Database...")
-			dbResult = db_access.food_register(inputFood)
+			dbResult = db_access_server.food_register(inputFood)
 			if (dbResult[0] == True):
 				newFilename = os.path.basename(filePath)
 				extendion = ("_" + str(dbResult[1].id) + ".jpg")
@@ -155,7 +154,7 @@ def newImageProcessMenu(filePath):
 			while (stayInLoop_2 == True):
 				print("-----------------------------------------------------------")
 				foodID = input("Please Enter Food Item ID : ")
-				foodInfo = db_access.food_getInfo(foodID)
+				foodInfo = db_access_server.food_getInfo(foodID)
 				if (foodInfo[0] == True):
 					foodInfo[1].printFoodDetailsInRow()
 					confirmInput = input("Confirm ? y/n   ->  ")
@@ -185,21 +184,21 @@ def newImageProcessMenu(filePath):
 				usrInput=input("Please input the one of the option ->  ")
 				if (usrInput == "1"):
 					keywordInput=input("Please enter keyword : ")
-					dbresult = db_access.food_searchByCategory(keywordInput)
+					dbresult = db_access_server.food_searchByCategory(keywordInput)
 					print("-----------------------------------------------------------")
 					if (len(dbresult) > 0):
 						for i in range(0,(len(dbresult))):
-							foodInfo = db_access.foodDataStructure(dbresult[i]['id'],dbresult[i]['category'],dbresult[i]['description'])
+							foodInfo = db_access_server.foodDataStructure(dbresult[i]['id'],dbresult[i]['category'],dbresult[i]['description'])
 							foodInfo.printFoodDetailsInRow()
 					print("-----------------------------------------------------------")
 					stayInLoop_3 = False
 				elif (usrInput == "2"):
 					keywordInput=input("Please enter keyword : ")
-					dbresult = db_access.food_searchByDescription(keywordInput)
+					dbresult = db_access_server.food_searchByDescription(keywordInput)
 					print("-----------------------------------------------------------")
 					if (len(dbresult) > 0):
 						for i in range(0,len(dbresult)):
-							foodInfo = db_access.foodDataStructure(dbresult[i]['id'],dbresult[i]['category'],dbresult[i]['description'])
+							foodInfo = db_access_server.foodDataStructure(dbresult[i]['id'],dbresult[i]['category'],dbresult[i]['description'])
 							foodInfo.printFoodDetailsInRow()
 					print("-----------------------------------------------------------")
 					stayInLoop_3 = False
@@ -225,7 +224,7 @@ def previewImage(filePath):
 def inputNutritionData():
 	stayInLoop = True
 	while (stayInLoop == True):
-		newFoodInfo = db_access.foodDataStructure()
+		newFoodInfo = db_access_server.foodDataStructure()
 		print("-----------------------------------------------------------")
 		newFoodInfo.category = input("Please enter category : ")
 		newFoodInfo.description = input("Please enter description : ")

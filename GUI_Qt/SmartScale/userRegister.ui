@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
-    <height>565</height>
+    <width>800</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="btnCancel">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>110</y>
+      <x>570</x>
+      <y>100</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -30,7 +30,7 @@
    <widget class="QPushButton" name="btnRegister">
     <property name="geometry">
      <rect>
-      <x>800</x>
+      <x>570</x>
       <y>60</y>
       <width>201</width>
       <height>31</height>
@@ -45,7 +45,7 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>171</width>
+      <width>231</width>
       <height>41</height>
      </rect>
     </property>
@@ -78,8 +78,8 @@
      <rect>
       <x>20</x>
       <y>50</y>
-      <width>761</width>
-      <height>451</height>
+      <width>551</width>
+      <height>341</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -220,8 +220,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1024</width>
-     <height>21</height>
+     <width>800</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
