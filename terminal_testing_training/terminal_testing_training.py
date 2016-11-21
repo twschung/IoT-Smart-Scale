@@ -64,7 +64,8 @@ def opt_2():
 	while (numOfSample > 0):
 		forgroundFilePath, backgroundFilePath = ftp_access.generateExisitingItemFilePath(foodID)
 		print("Sample : " + str(numOfSample))
-		shutil.copyfile(os.path.join(os.getcwd(),"background.jpg"),backgroundFilePath)
+		shutil.copyfile(os.path.join(os.getcwd(),"background.jpg"),os.path.join(os.getcwd(),"imageHistory/existingItem/backgroundImage/background.jpg"))
+		os.rename(os.path.join(os.getcwd(),"imageHistory/existingItem/backgroundImage/background.jpg"),backgroundFilePath)
 		input("Tell me when Forground is Ready")
 		camera.capture(os.path.basename(forgroundFilePath))
 		os.rename(os.path.join(os.getcwd(),os.path.basename(forgroundFilePath)),forgroundFilePath)
