@@ -90,15 +90,15 @@ def findCnt(img, mask):
 	contours = sorted(contours, key = cv2.contourArea, reverse = True)
 	cnt = contours[0]
 	img, mask = cropImg(img, mask, cnt)
-	#displayImg('cropped',img)
+	displayImg('cropped',img)
 	return img, mask, cnt
 
 def colourHist(img, mask,queue):
 	color = ('r','g','b')
 	norm_set = []
 	for channel,col in enumerate(color):
-		hist = cv2.calcHist([img],[channel],mask,[32],[0,32])
-		norm = cv2.normalize(hist, hist, 0, 1, cv2.NORM_MINMAX,-1)
+		hist = cv2.calcHist([img],[channel],mask,[8],[0,8])
+		norm = cv2.normalize(hist, hist, 1, 0, cv2.NORM_L1, -1)
 		norm_set.append(norm)
 	queue.put(norm_set)
 
