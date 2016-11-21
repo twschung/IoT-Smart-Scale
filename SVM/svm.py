@@ -39,12 +39,12 @@ class SVM():
 		sampleSet , responseSet = loadTrainingSet()
 		self.PCA.fit(sampleSet)
 		reduced_dimen_sampleSet = self.PCA.transform(sampleSet)
-		self.model.fit(reduced_dimen_sampleSet, responseSet)
+		self.model.fit(sampleSet, responseSet)
 		joblib.dump(self.model, 'SVM.dat')
 		joblib.dump(self.PCA, 'PCA.dat')
 	def predict(self, sample):
 		reduced_dimen_sample = self.PCA.transform(sample)
-		return self.model.predict(reduced_dimen_sample)
+		return self.model.predict(sampleSet)
 	def predict_prob(self, sample):
 		reduced_dimen_sample = self.PCA.transform(sample)
-		return self.model.predict_proba(reduced_dimen_sample)
+		return self.model.predict_proba(sampleSet)

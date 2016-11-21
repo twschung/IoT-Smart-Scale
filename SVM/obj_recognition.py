@@ -142,6 +142,6 @@ def appendAll(colour_set,H,area,perimeter,diameter,texture,ORBdes, KAZEdes):
 	obj_array = np.append(obj_array,perimeter)
 	obj_array = np.append(obj_array, diameter)
 	obj_array = np.append(obj_array,texture)
-	obj_array = np.append(obj_array,ORBdes)
-	obj_array = np.append(obj_array,KAZEdes)
+	#~ obj_array = np.append(obj_array,ORBdes)
+	#~ obj_array = np.append(obj_array,KAZEdes)
 	return obj_array

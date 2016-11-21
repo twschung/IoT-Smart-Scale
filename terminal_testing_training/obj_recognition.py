@@ -90,7 +90,7 @@ def findCnt(img, mask):
 	contours = sorted(contours, key = cv2.contourArea, reverse = True)
 	cnt = contours[0]
 	img, mask = cropImg(img, mask, cnt)
-	displayImg('cropped',img)
+	#~ displayImg('cropped',img)
 	return img, mask, cnt
 
 def colourHist(img, mask,queue):
@@ -142,6 +142,6 @@ def appendAll(colour_set,H,area,perimeter,diameter,texture,ORBdes, KAZEdes):
 	obj_array = np.append(obj_array,perimeter)
 	obj_array = np.append(obj_array, diameter)
 	obj_array = np.append(obj_array,texture)
-	obj_array = np.append(obj_array,ORBdes)
-	obj_array = np.append(obj_array,KAZEdes)
+	#~ obj_array = np.append(obj_array,ORBdes)
+	#~ obj_array = np.append(obj_array,KAZEdes)
 	return obj_array
