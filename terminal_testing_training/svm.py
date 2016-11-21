@@ -31,7 +31,7 @@ class SVM():
 		coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
 		class_weight=None, verbose=False, max_iter=-1, decision_function_shape=None, \
 		random_state=None)
-		self.PCA = PCA(n_components = 500)
+		self.PCA = PCA(n_components = 50)
 	def load(self):
 		self.model = joblib.load('SVM.dat')
 		self.PCA = joblib.load('PCA.dat')
