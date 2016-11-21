@@ -69,7 +69,7 @@ def displayImg(title,img):
 	
 def cropImg(img, mask, cnt):
 	# This method crops out the black areas of the image
-	# This method with called within 'findObjectCanny'
+	# This method with called within 'findCnt'
 	x,y,w,h = cv2.boundingRect(cnt)
 	cropped = img[y:y+h,x:x+w]
 	mask = mask[y:y+h,x:x+w]
@@ -90,7 +90,7 @@ def findCnt(img, mask):
 	contours = sorted(contours, key = cv2.contourArea, reverse = True)
 	cnt = contours[0]
 	img, mask = cropImg(img, mask, cnt)
-	#displayImg('cropped',img)
+	displayImg('cropped',img)
 	return img, mask, cnt
 
 def colourHist(img, mask,queue):
