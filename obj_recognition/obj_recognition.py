@@ -1,3 +1,4 @@
+#import matplotlib.pyplot as plt
 from multiprocessing import Process, Queue
 import os
 import sys
@@ -41,9 +42,9 @@ def main(imgPath,bgPath):
 	kaze.join()
 	H, area, perimeter, diameter = shapes(img,cnt)
 	if(ORBdes[0] == None):
-		ORBdes = np.zeros((1000,),dtype=np.int)
+		ORBdes = np.zeros((6000,),dtype=np.int)
 	else:
-		ORBdes = np.pad(ORBdes,(0,1000-ORBdes.size),'constant',constant_values=0)
+		ORBdes = np.pad(ORBdes,(0,6000-ORBdes.size),'constant',constant_values=0)
 	if(KAZEdes[0] == None):
 		KAZEdes = np.zeros((10000,),dtype=np.int)
 	else:
@@ -94,12 +95,17 @@ def findCnt(img, mask):
 	return img, mask, cnt
 
 def colourHist(img, mask,queue):
-	color = ('r','g','b')
+	color = ('b','g','r')
 	norm_set = []
 	for channel,col in enumerate(color):
-		hist = cv2.calcHist([img],[channel],mask,[8],[0,8])
+		hist = cv2.calcHist([img],[channel],mask,[8],[0,256])
 		norm = cv2.normalize(hist, hist, 1, 0, cv2.NORM_L1, -1)
 		norm_set.append(norm)
+		#plt.plot(norm,color = col)
+		#plt.xlim([0,8])
+	#plt.title('Normalized histogram for color scale picture')
+	#plt.show()
+	#print("Colour Histogram", norm_set)
 	queue.put(norm_set)
 
 def shapes(img,cnt):
