@@ -1,5 +1,6 @@
 # import cv2
 from sklearn import svm
+from sklearn import tree
 from sklearn.externals import joblib
 from sklearn.decomposition import PCA
 import numpy as np
@@ -31,6 +32,27 @@ class SVM():
 		coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
 		class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovo', \
 		random_state=None)
+		self.PCA = PCA(n_components = 15)
+	def load(self):
+		self.model = joblib.load('SVM.dat')
+		self.PCA = joblib.load('PCA.dat')
+	def train(self):
+		sampleSet , responseSet = loadTrainingSet()
+		self.PCA.fit(sampleSet)
+		reduced_dimen_sampleSet = self.PCA.transform(sampleSet)
+		self.model.fit(reduced_dimen_sampleSet, responseSet)
+		joblib.dump(self.model, 'SVM.dat')
+		joblib.dump(self.PCA, 'PCA.dat')
+	def predict(self, sample):
+		reduced_dimen_sample = self.PCA.transform(sample)
+		return self.model.predict(reduced_dimen_sample)
+	def predict_prob(self, sample):
+		reduced_dimen_sample = self.PCA.transform(sample)
+		return self.model.predict_proba(reduced_dimen_sample)
+
+class Tree():
+	def __init__(self):
+		self.model = tree.DecisionTreeClassifier()
 		self.PCA = PCA(n_components = 15)
 	def load(self):
 		self.model = joblib.load('SVM.dat')

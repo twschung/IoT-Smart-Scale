@@ -9,7 +9,7 @@ print (imgFeature)
 print (imgFeature.shape)
 print (imgFeature.dtype)
 
-clf = svm.SVM()
+clf = svm.Tree()
 clf.load()
 print (clf.predict(imgFeature))
 print (clf.predict_prob(imgFeature))
