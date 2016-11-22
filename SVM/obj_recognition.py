@@ -1,3 +1,4 @@
+#import matplotlib.pyplot as plt
 from multiprocessing import Process, Queue
 import os
 import sys
@@ -41,9 +42,9 @@ def main(imgPath,bgPath):
 	kaze.join()
 	H, area, perimeter, diameter = shapes(img,cnt)
 	if(ORBdes[0] == None):
-		ORBdes = np.zeros((1000,),dtype=np.int)
+		ORBdes = np.zeros((6000,),dtype=np.int)
 	else:
-		ORBdes = np.pad(ORBdes,(0,1000-ORBdes.size),'constant',constant_values=0)
+		ORBdes = np.pad(ORBdes,(0,6000-ORBdes.size),'constant',constant_values=0)
 	if(KAZEdes[0] == None):
 		KAZEdes = np.zeros((10000,),dtype=np.int)
 	else:
@@ -61,12 +62,12 @@ def resizeImg(img,queue):
 	# This method simply resizes the image
 	img = cv2.resize(img, (0,0), fx=0.3, fy=0.3)
 	queue.put(img)
-	
+
 def displayImg(title,img):
 	# This method simply displays the image to the user
 	cv2.imshow(title,img)
 	cv2.waitKey(0)
-	
+
 def cropImg(img, mask, cnt):
 	# This method crops out the black areas of the image
 	# This method with called within 'findObjectCanny'
@@ -94,12 +95,17 @@ def findCnt(img, mask):
 	return img, mask, cnt
 
 def colourHist(img, mask,queue):
-	color = ('r','g','b')
+	color = ('b','g','r')
 	norm_set = []
 	for channel,col in enumerate(color):
-		hist = cv2.calcHist([img],[channel],mask,[32],[0,32])
-		norm = cv2.normalize(hist, hist, 0, 1, cv2.NORM_MINMAX,-1)
+		hist = cv2.calcHist([img],[channel],mask,[8],[0,256])
+		norm = cv2.normalize(hist, hist, 1, 0, cv2.NORM_L1, -1)
 		norm_set.append(norm)
+		#plt.plot(norm,color = col)
+		#plt.xlim([0,8])
+	#plt.title('Normalized histogram for color scale picture')
+	#plt.show()
+	#print("Colour Histogram", norm_set)
 	queue.put(norm_set)
 
 def shapes(img,cnt):
@@ -116,7 +122,7 @@ def haralick(img,queue):
 	texture = mahotas.features.haralick(img).mean(0)
 	queue.put(texture)
 
-def orbDetect(img,queue):	
+def orbDetect(img,queue):
 	# Initiate STAR detector
 	orb = cv2.ORB_create()
 	# find the keypoints with ORB
@@ -142,6 +148,6 @@ def appendAll(colour_set,H,area,perimeter,diameter,texture,ORBdes, KAZEdes):
 	obj_array = np.append(obj_array,perimeter)
 	obj_array = np.append(obj_array, diameter)
 	obj_array = np.append(obj_array,texture)
-	#~ obj_array = np.append(obj_array,ORBdes)
-	#~ obj_array = np.append(obj_array,KAZEdes)
+	#obj_array = np.append(obj_array,ORBdes)
+	#obj_array = np.append(obj_array,KAZEdes)
 	return obj_array

@@ -31,7 +31,7 @@ class SVM():
 		coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
 		class_weight=None, verbose=False, max_iter=-1, decision_function_shape=None, \
 		random_state=None)
-		self.PCA = PCA(n_components = 50)
+		self.PCA = PCA(n_components = 20)
 	def load(self):
 		self.model = joblib.load('SVM.dat')
 		self.PCA = joblib.load('PCA.dat')
@@ -39,12 +39,12 @@ class SVM():
 		sampleSet , responseSet = loadTrainingSet()
 		self.PCA.fit(sampleSet)
 		reduced_dimen_sampleSet = self.PCA.transform(sampleSet)
-		self.model.fit(sampleSet, responseSet)
+		self.model.fit(reduced_dimen_sampleSet, responseSet)
 		joblib.dump(self.model, 'SVM.dat')
 		joblib.dump(self.PCA, 'PCA.dat')
 	def predict(self, sample):
 		reduced_dimen_sample = self.PCA.transform(sample)
-		return self.model.predict(sampleSet)
+		return self.model.predict(reduced_dimen_sample)
 	def predict_prob(self, sample):
 		reduced_dimen_sample = self.PCA.transform(sample)
-		return self.model.predict_proba(sampleSet)
+		return self.model.predict_proba(reduced_dimen_sample)
