@@ -83,7 +83,7 @@ def opt_2():
 			print ("new SVM model will be created")
 		finally:
 			print("Training SVM from Training Set...")
-			SVMmodel = svm.Tree()
+			SVMmodel = svm.classifier()
 			SVMmodel.train()
 			print("Finished training SVM")
 			displaySVMInfo()
