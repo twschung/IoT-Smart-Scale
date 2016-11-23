@@ -33,7 +33,8 @@ class classifier():
 		coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
 		class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovo', \
 		random_state=None)
-		self.TreeModel = tree.DecisionTreeClassifier()
+		# self.TreeModel = tree.DecisionTreeClassifier()
+		self.TreeModel = RandomForestClassifier(n_estimators=10,max_features=4)
 		self.PCA = PCA(n_components = 15)
 	def load(self):
 		self.SVCModel = joblib.load('SVC.dat')
@@ -53,4 +54,5 @@ class classifier():
 		return self.TreeModel.predict(reduced_dimen_sample)
 	def predict_prob(self, sample):
 		reduced_dimen_sample = self.PCA.transform(sample)
+		return self.TreeModel.predict_proba(reduced_dimen_sample)
 		return self.SVCModel.predict_proba(reduced_dimen_sample)
