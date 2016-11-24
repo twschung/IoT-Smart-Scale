@@ -45,14 +45,14 @@ class classifier():
 		self.PCA.fit(sampleSet)
 		reduced_dimen_sampleSet = self.PCA.transform(sampleSet)
 		self.SVCModel.fit(reduced_dimen_sampleSet, responseSet)
-		self.TreeModel.fit(reduced_dimen_sampleSet, responseSet)
+		self.TreeModel.fit(sampleSet, responseSet)
 		joblib.dump(self.SVCModel, 'SVC.dat')
 		joblib.dump(self.TreeModel, 'Tree.dat')
 		joblib.dump(self.PCA, 'PCA.dat')
 	def predict(self, sample):
 		reduced_dimen_sample = self.PCA.transform(sample)
-		return self.TreeModel.predict(reduced_dimen_sample)
+		return self.TreeModel.predict(sampleSet)
 	def predict_prob(self, sample):
 		reduced_dimen_sample = self.PCA.transform(sample)
-		return self.TreeModel.predict_proba(reduced_dimen_sample)
+		return self.TreeModel.predict_proba(sampleSet)
 		# return self.SVCModel.predict_proba(reduced_dimen_sample)
