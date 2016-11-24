@@ -51,8 +51,8 @@ class classifier():
 		joblib.dump(self.PCA, 'PCA.dat')
 	def predict(self, sample):
 		reduced_dimen_sample = self.PCA.transform(sample)
-		return self.TreeModel.predict(sampleSet)
+		return self.TreeModel.predict(sample)
 	def predict_prob(self, sample):
 		reduced_dimen_sample = self.PCA.transform(sample)
-		return self.TreeModel.predict_proba(sampleSet)
+		return self.TreeModel.predict_proba(sample)
 		# return self.SVCModel.predict_proba(reduced_dimen_sample)
