@@ -109,7 +109,7 @@ def opt_3():
 	np.save('SVM_version.npy',version)
 	currentPath = os.path.join(os.getcwd(),'SVM_version.npy')
 	newPath = os.path.join(SVMPath, 'SVM_version.npy')
-	shutil.copyfile(currentPath,newPath)ß
+	shutil.copyfile(currentPath,newPath)
 	print("Done!")
 	print("-----------------------------------------------------------")
 	main()
