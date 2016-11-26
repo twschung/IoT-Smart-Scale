@@ -142,10 +142,10 @@ def opt_6():
 
 
 def displaySVMInfo():
-	print("Loading SVM Info......")
+	print("Loading classifier Info......")
 	try:
 		print ("Last modified :")
-		fileLastModified = os.stat("SVM.dat").st_mtime
+		fileLastModified = os.stat("Tree.dat").st_mtime
 		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
 	except:
 		print ("No SVM is found")
