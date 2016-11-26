@@ -56,8 +56,6 @@ def opt_2():
 		#~ imgFeature = imgFeatureExtractSim.sim(currentPath) ###
 		imgFeature = obj_recognition.main(currentPath,currentBackgroundPath)
 		imgFeature = np.nan_to_num(imgFeature)
-		#~ print (imgFeature.shape)
-		#~ print (imgFeature.dtype)
 		time, imgID = os.path.basename(filename).split("_")
 		imgID, fileExtendion = imgID.split(".")
 		svm.addNewDataSet(imgFeature,int(imgID))
@@ -71,19 +69,22 @@ def opt_2():
 		displayTrainingDataInfo()
 		print("Moving current SVM model to archive")
 		try:
-			svm_currentPath = os.path.join(os.getcwd(),'SVM.dat')
-			svm_newFilename = "SVM_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
-			svm_newPath = os.path.join(SVMArchivePath, svm_newFilename)
-			pca_currentPath = os.path.join(os.getcwd(),'PCA.dat')
-			pca_newFilename = "PCA_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
-			pca_newPath = os.path.join(SVMArchivePath, pca_newFilename)
+			# svm_currentPath = os.path.join(os.getcwd(),'SVM.dat')
+			# svm_newFilename = "SVM_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
+			# svm_newPath = os.path.join(SVMArchivePath, svm_newFilename)
+			# pca_currentPath = os.path.join(os.getcwd(),'PCA.dat')
+			# pca_newFilename = "PCA_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
+			# pca_newPath = os.path.join(SVMArchivePath, pca_newFilename)
+			tree_currentPath = os.path.join(os.getcwd(),'Tree.dat')
+			tree_newFilename = "Tree_" + str(os.stat("Tree.dat").st_mtime) + ".dat"
+			tree_newPath = os.path.join(SVMArchivePath, pca_newFilename)
 			os.rename(svm_currentPath,svm_newPath)
 			os.rename(pca_currentPath,pca_newPath)
 		except:
 			print ("new SVM model will be created")
 		finally:
 			print("Training SVM from Training Set...")
-			SVMmodel = svm.SVM()
+			SVMmodel = svm.classifier()
 			SVMmodel.train()
 			print("Finished training SVM")
 			displaySVMInfo()
@@ -94,14 +95,17 @@ def opt_2():
 
 def opt_3():
 	displaySVMInfo()
-	print ("Publishing current SVM model to SVM path")
-	currentPath = os.path.join(os.getcwd(),'SVM.dat')
-	newPath = os.path.join(SVMPath, 'SVM.dat')
+	print ("Publishing current classifier model to classifier's path")
+	# currentPath = os.path.join(os.getcwd(),'SVM.dat')
+	# newPath = os.path.join(SVMPath, 'SVM.dat')
+	# shutil.copyfile(currentPath,newPath)
+	# currentPath = os.path.join(os.getcwd(),'PCA.dat')
+	# newPath = os.path.join(SVMPath, 'PCA.dat')
+	# shutil.copyfile(currentPath,newPath)
+	currentPath = os.path.join(os.getcwd(),'Tree.dat')
+	newPath = os.path.join(SVMPath, 'Tree.dat')
 	shutil.copyfile(currentPath,newPath)
-	currentPath = os.path.join(os.getcwd(),'PCA.dat')
-	newPath = os.path.join(SVMPath, 'PCA.dat')
-	shutil.copyfile(currentPath,newPath)
-	version = np.array(os.stat("SVM.dat").st_mtime)
+	version = np.array(os.stat("Tree.dat").st_mtime)
 	np.save('SVM_version.npy',version)
 	currentPath = os.path.join(os.getcwd(),'SVM_version.npy')
 	newPath = os.path.join(SVMPath, 'SVM_version.npy')
@@ -272,7 +276,7 @@ def displaySVMInfo():
 	print("Loading SVM Info......")
 	try:
 		print ("Last modified :")
-		fileLastModified = os.stat("SVM.dat").st_mtime
+		fileLastModified = os.stat("Tree.dat").st_mtime
 		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
 	except:
 		print ("No SVM is found")
