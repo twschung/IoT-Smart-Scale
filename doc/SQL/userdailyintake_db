@@ -1,0 +1,13 @@
+CREATE TABLE smartscale.userdailyintake_db (
+	id int(10) NOT NULL auto_increment,
+	userid varchar(25),
+	date date,
+	energy varchar(25),
+	fat varchar(25),
+	saturates varchar(25),
+	carbohydrate varchar(25),
+	sugars varchar(25),
+	fibre varchar(25),
+	protein varchar(25),
+	salt varchar(25)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -5,6 +5,7 @@ sudo apt-get upgrade
 sudo apt-get install python3-pyqt5
 sudo pip3 install pymysql
 sudo pip3 install scikit-learn
+sudo pip3 install mahotas
 sudo apt-get install python3-scipy
 sudo apt-get install matchbox-keyboard
 
