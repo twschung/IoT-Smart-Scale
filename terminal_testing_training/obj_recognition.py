@@ -91,21 +91,23 @@ def findCnt(img, mask):
 	contours = sorted(contours, key = cv2.contourArea, reverse = True)
 	cnt = contours[0]
 	img, mask = cropImg(img, mask, cnt)
-	#displayImg('cropped',img)
+	# displayImg('cropped',img)
 	return img, mask, cnt
 
 def colourHist(img, mask,queue):
 	color = ('b','g','r')
 	norm_set = []
 	for channel,col in enumerate(color):
-		hist = cv2.calcHist([img],[channel],mask,[8],[0,256])
+		hist = cv2.calcHist([img],[channel],mask,[16],[0,256])
+		'''
 		norm = cv2.normalize(hist, hist, 1, 0, cv2.NORM_L1, -1)
 		norm_set.append(norm)
-		#plt.plot(norm,color = col)
-		#plt.xlim([0,8])
-	#plt.title('Normalized histogram for color scale picture')
-	#plt.show()
-	#print("Colour Histogram", norm_set)
+		plt.plot(norm,color = col)
+		plt.xlim([0,16])
+	plt.title('Normalized histogram for color scale picture')
+	plt.show()
+	print("Colour Histogram", norm_set)
+	'''
 	queue.put(norm_set)
 
 def shapes(img,cnt):
@@ -148,6 +150,6 @@ def appendAll(colour_set,H,area,perimeter,diameter,texture,ORBdes, KAZEdes):
 	obj_array = np.append(obj_array,perimeter)
 	obj_array = np.append(obj_array, diameter)
 	obj_array = np.append(obj_array,texture)
-	#obj_array = np.append(obj_array,ORBdes)
-	#obj_array = np.append(obj_array,KAZEdes)
+	# obj_array = np.append(obj_array,ORBdes)
+	# obj_array = np.append(obj_array,KAZEdes)
 	return obj_array
