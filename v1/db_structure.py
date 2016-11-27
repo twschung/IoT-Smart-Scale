@@ -31,10 +31,11 @@ class userDataStructure:
 		print ("weight : ", self.weight)
 		
 class foodDataStructure:
-	def __init__(self, id, category, description, fat, saturates, carbohydrate, sugars, fibre, protein, salt):
+	def __init__(self, id=0, category="", description="", energy="0" , fat="0", saturates="0", carbohydrate="0", sugars="0", fibre="0", protein="0", salt="0"):
 		self.id = id
 		self.category = category
 		self.description = description
+		self.energy = energy
 		self.fat = fat
 		self.saturates = saturates
 		self.carbohydrate = carbohydrate
@@ -47,6 +48,7 @@ class foodDataStructure:
 		print ("id : ", self.id)
 		print ("category : ", self.category)
 		print ("description : ", self.description)
+		print ("energy : ", self.energy)
 		print ("fat : ", self.fat)
 		print ("saturates : ", self.saturates)
 		print ("carbohydrate : ", self.carbohydrate)

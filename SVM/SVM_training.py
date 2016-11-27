@@ -2,12 +2,16 @@ import os , time, shutil
 import svm
 import numpy as np
 import imgFeatureExtractSim
+import cv2
+import db_access
 
-SVMPath = '/home/pi/Desktop/IoT-Smart-Scale/v1/SVM/FTP/SVM'
-SVMArchivePath = '/home/pi/Desktop/IoT-Smart-Scale/v1/SVM/FTP/SVM/archive'
-processedItemPath = '/home/pi/Desktop/IoT-Smart-Scale/v1/SVM/FTP/imageUploaded/processedItem'
-newItemPath = '/home/pi/Desktop/IoT-Smart-Scale/v1/SVM/FTP/imageUploaded/newItem'
-exisitingItemPath =  '/home/pi/Desktop/IoT-Smart-Scale/v1/SVM/FTP/imageUploaded/exisitingItem/'
+
+SVMPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/SVM'
+SVMArchivePath = '/home/pi/IoT-Smart-Scale/SVM/FTP/SVM/archive'
+processedItemPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/imageUploaded/processedItem'
+newItemPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/imageUploaded/newItem'
+exisitingItemPath =  '/home/pi/IoT-Smart-Scale/SVM/FTP/imageUploaded/existingItem'
+sampleItemPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/imageSample'
 
 def main():
 	print("IoT Smart Scale SVM Training Program")
@@ -26,8 +30,7 @@ def main():
 	elif (usrInput == "3"):
 		opt_3()
 	elif (usrInput == "4"):
-		path = "/home/pi/Desktop/IoT-Smart-Scale/v1/SVM/FTP/imageUploaded/exisitingItem/1474676686.9362292_1.jpg"
-		print(imgFeatureExtractSim.sim(path))
+		opt_4()
 	elif (usrInput == "5"):
 		print("Program exiting !!!!")
 	else:
@@ -88,6 +91,141 @@ def opt_3():
 	print("-----------------------------------------------------------")
 	main()
 	
+def opt_4():
+	print("-----------------------------------------------------------")
+	print("Fetching new item images!")
+	for filename in os.listdir(newItemPath):
+		filePath = os.path.join(newItemPath,filename)
+		print(filePath)
+		previewImage(filePath)
+		newImageProcessMenu(filePath)
+	main()
+	
+def newImageProcessMenu(filePath):
+	stayInLoop = True
+	while (stayInLoop == True):
+		print("-----------------------------------------------------------")
+		print(" [1] - Assign the current item as new item")
+		print(" [2] - Assign the current item as existing item")
+		print(" [3] - Look up items from Food_DB ")
+		print(" [4] - Preview Image")
+		print(" [5] - Skip item")
+		print("-----------------------------------------------------------")
+		usrInput=input("Please input the one of the option ->  ")
+		if (usrInput == "1"):
+			inputFood = inputNutritionData()
+			print("Adding Food item to Database...")
+			dbResult = db_access.food_register(inputFood)
+			if (dbResult[0] == True):
+				newFilename = os.path.basename(filePath)
+				extendion = ("_" + str(dbResult[1].id) + ".jpg")
+				newFilename = newFilename.replace(".jpg", extendion)
+				newFilePath = os.path.join(exisitingItemPath,newFilename)
+				os.rename(filePath,newFilePath)
+				currentPath = newFilePath
+				newFilename = str(dbResult[1].id) + ".jpg"
+				newPath = os.path.join(sampleItemPath, newFilename)
+				shutil.copyfile(currentPath,newPath)
+				np.save('imageSample_version.npy',dbResult[1].id)
+				currentPath = os.path.join(os.getcwd(),'imageSample_version.npy')
+				newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
+				shutil.copyfile(currentPath,newPath)
+				stayInLoop = False
+		elif (usrInput == "2"):
+			stayInLoop_2 = True
+			while (stayInLoop_2 == True):
+				print("-----------------------------------------------------------")
+				foodID = input("Please Enter Food Item ID : ")
+				foodInfo = db_access.food_getInfo(foodID)
+				if (foodInfo[0] == True):
+					foodInfo[1].printFoodDetailsInRow()
+					confirmInput = input("Confirm ? y/n   ->  ")
+					if (confirmInput == "y"):
+						stayInLoop_2 = False
+						stayInLoop = False
+						newFilename = os.path.basename(filePath)
+						extendion = ("_" + str(foodID) + ".jpg")
+						newFilename = newFilename.replace(".jpg", extendion)
+						newFilePath = os.path.join(exisitingItemPath,newFilename)
+						os.rename(filePath,newFilePath)
+					elif (confirmInput == "n"):
+						stayInLoop_2 = True
+					else:
+						print("Invalid Input")
+						stayInLoop_2 = True	
+		elif (usrInput == "3"):
+			stayInLoop_3 = True
+			while (stayInLoop_3 == True):
+				print("-----------------------------------------------------------")
+				print(" [1] - Search Item by Category")
+				print(" [2] - Search Item by Descrption")
+				print("-----------------------------------------------------------")
+				usrInput=input("Please input the one of the option ->  ")
+				if (usrInput == "1"):
+					keywordInput=input("Please enter keyword : ")
+					dbresult = db_access.food_searchByCategory(keywordInput)
+					print("-----------------------------------------------------------")
+					if (len(dbresult) > 0):
+						for i in range(0,(len(dbresult))):
+							foodInfo = db_access.foodDataStructure(dbresult[i]['id'],dbresult[i]['category'],dbresult[i]['description'])
+							foodInfo.printFoodDetailsInRow()
+					print("-----------------------------------------------------------")
+					stayInLoop_3 = False
+				elif (usrInput == "2"):
+					keywordInput=input("Please enter keyword : ")
+					dbresult = db_access.food_searchByDescription(keywordInput)
+					print("-----------------------------------------------------------")
+					if (len(dbresult) > 0):
+						for i in range(0,len(dbresult)):
+							foodInfo = db_access.foodDataStructure(dbresult[i]['id'],dbresult[i]['category'],dbresult[i]['description'])
+							foodInfo.printFoodDetailsInRow()
+					print("-----------------------------------------------------------")
+					stayInLoop_3 = False
+				else:
+					print("Invalid Input")
+					stayInLoop_3 = True	
+		elif (usrInput == "4"):
+			previewImage(filePath)
+		elif (usrInput == "5"):
+			print("Skipping Item")
+			stayInLoop = False
+		else:
+			print("-----------------------------------------------------------")
+			print("ERROR: Invaild Input !!!!!!!")
+			print("-----------------------------------------------------------")
+		
+def previewImage(filePath):
+	imgPreview = cv2.imread(filePath)
+	cv2.imshow('New Image Preview',imgPreview)
+	cv2.waitKey(0)
+	cv2.destroyAllWindows()
+	
+def inputNutritionData():
+	stayInLoop = True
+	while (stayInLoop == True):
+		newFoodInfo = db_access.foodDataStructure()
+		print("-----------------------------------------------------------")
+		newFoodInfo.category = input("Please enter category : ")
+		newFoodInfo.description = input("Please enter description : ")
+		newFoodInfo.fat = input("Please enter fat (g/100g) : ")
+		newFoodInfo.saturates = input("Please enter saturates (g/100g) : ")
+		newFoodInfo.carbohydrate = input("Please enter carbohydrate (g/100g) : ")
+		newFoodInfo.sugars = input("Please enter sugars (g/100g) : ")
+		newFoodInfo.fibre = input("Please enter fibre (g/100g) : ")
+		newFoodInfo.protein = input("Please enter protein (g/100g) : ")
+		newFoodInfo.salt = input("Please enter salt (g/100g) : ")
+		print("-----------------------------------------------------------")
+		newFoodInfo.printFoodDetails()
+		confirmInput = input("Confirm ? y/n   ->  ")
+		if (confirmInput == "y"):
+			stayInLoop = False
+		elif (confirmInput == "n"):
+			stayInLoop = True
+		else:
+			print("Invalid Input")
+			stayInLoop = True
+	return newFoodInfo
+
 def displayTrainingDataInfo():
 	print("-----------------------------------------------------------")
 	print("Loading Training Set......")
@@ -110,16 +248,7 @@ def displaySVMInfo():
 		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
 	except:
 		print ("No SVM is found")
-	#~ try:
-		#~ lastestSVMInfo = np.load('config.npy').item()
-		#~ print ("SVM model created date :")
-		#~ print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(lastestSVMInfo[dateCreated])))
-		#~ print ("Training set size :")
-		#~ print (lastestSVMInfo[sampleSetSize])
-		#~ print ("Training set last modified :")
-		#~ print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(lastestSVMInfo[sampleSetLastModified])))
-	#~ except:
-		#~ print ("No SVM model found")
+
 
 if __name__ == "__main__":
 	main()

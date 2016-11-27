@@ -11,45 +11,64 @@ def connectToServer ():
 	session = ftplib.FTP('42.2.205.124','admin','abcd1234')
 	return session
 	
-def uploadImage (type, filename, filePath):
+def generateNewItemFilePath ():
+	filename = str(time.time()) + ".jpg"
+	filePath = os.path.join(os.getcwd(),filename)
+	return filePath
+
+def generateExisitngItemFilePath (imgID):
+	filename = str(time.time()) + "_" + str(imgID) + ".jpg"
+	filePath = os.path.join(os.getcwd(),filename)
+	return filePath
+	
+def uploadImageHistory ():
 	try:
 		session = connectToServer()
-		session.cwd ("/imageUploaded")
-		if (type == "new"):
-			session.cwd ("/imageUploaded/newItem")
-		elif (type == "exisit"):
-			session.cwd ("/imageUploaded/existingItem")
-		imageFile = open(filePath,'rb')
-		session.storbinary(('STOR %s'% filename), imageFile)
-		imageFile.close()
+		session.cwd ("/imageUploaded/newItem")
+		currentFilePath = os.path.join(os.getcwd(),"imageHistory/newItem")
+		for filename in os.listdir(currentFilePath):
+			currentImgPath = os.path.join(currentFilePath,filename)
+			imageFile = open(currentImgPath,'rb')
+			session.storbinary(('STOR %s'% filename), imageFile)
+			imageFile.close()
+			os.remove(currentImgPath)
+		session.cwd ("/imageUploaded/existingItem")
+		currentFilePath = os.path.join(os.getcwd(),"imageHistory/existingItem")
+		for filename in os.listdir(currentFilePath):
+			currentImgPath = os.path.join(currentFilePath,filename)
+			imageFile = open(currentImgPath,'rb')
+			session.storbinary(('STOR %s'% filename), imageFile)
+			imageFile.close()
+			os.remove(currentImgPath)
 		session.quit()
 	except:
 		return False
 	return True
 	
-def updateSampleImage ():
+def updateImageSample ():
 	try:
 		try:
 			config = np.load('config.npy').item()
-			lastSampleImageUpdate = int(config['lastSampleImageUpdate'])
+			currentImageSampleVersion = int(config['currentImageSampleVersion'])
 		except:
-			lastSampleImageUpdate = 0
-		stayInLoop = True
-		while (stayInLoop == True):
-			nextSampleImage = lastSampleImageUpdate + 1
-			nextFilename = str(nextSampleImage) + ".jpg"
-			try:
+			currentImageSampleVersion = 0
+		urllib.request.urlretrieve (('http://42.2.205.124/imageSample/imageSample_version.npy'),'imageSample_version.npy')
+		serverImageSampleVersion = np.load('imageSample_version.npy')
+		os.remove('imageSample_version.npy')
+		if (serverImageSampleVersion > currentImageSampleVersion):
+			for nextSampleImage in range((currentImageSampleVersion + 1),(serverImageSampleVersion + 1)):
+				nextFilename = str(nextSampleImage) + ".jpg"
 				newPath = os.path.join(os.getcwd(),'imageSample',nextFilename)
-				urllib.request.urlretrieve (('http://42.2.205.124/imageSample/%s' % nextFilename),newPath)
-				lastSampleImageUpdate = nextSampleImage
-			except:
-				stayInLoop = False
-			finally:
-				config['lastSampleImageUpdate'] = lastSampleImageUpdate
-				np.save('config.npy', config)
+				try:
+					urllib.request.urlretrieve (('http://42.2.205.124/imageSample/%s' % nextFilename),newPath)
+				except:
+					config['currentImageSampleVersion'] = nextSampleImage
+				else:
+					config['currentImageSampleVersion'] = nextSampleImage
+					np.save('config.npy', config)
 	except:
-		return False
-	return True
+		return (False,0)
+	return (True,0)
 			
 def updateSVM():
 	try:
@@ -74,5 +93,8 @@ def updateSVM():
 def downloadTempImage_3 (filename):
 	urllib.request.urlretrieve (('http://42.2.205.124/imageSample/%s' % filename),'temp.jpg')
 	
-#~ updateSampleImage()
+
+
+#~ uploadImageHistory ()
+#~ updateImageSample()
 #~ updateSVM()
