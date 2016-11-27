@@ -6,12 +6,12 @@ import db_access_server
 import obj_recognition
 
 
-SVMPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/SVM'
-SVMArchivePath = '/home/pi/IoT-Smart-Scale/SVM/FTP/SVM/archive'
-processedItemPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/imageUploaded/processedItem'
-newItemPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/imageUploaded/newItem'
-exisitingItemPath =  '/home/pi/IoT-Smart-Scale/SVM/FTP/imageUploaded/existingItem'
-sampleItemPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/imageSample'
+SVMPath = '/home/public/HTTP/SVM'
+SVMArchivePath = '/home/public/HTTP/SVM/archive'
+processedItemPath = '/home/public/FTP/imageUploaded/processedItem'
+newItemPath = '/home/public/FTP/imageUploaded/newItem'
+exisitingItemPath =  '/home/public/FTP/imageUploaded/existingItem'
+sampleItemPath = '/home/public/HTTP/imageSample'
 
 def main():
 	print("IoT Smart Scale SVM Training Program")
@@ -21,6 +21,7 @@ def main():
 	print(" [3] - Publish the trained SVM ")
 	print(" [4] - Add new item into database & add into the data training queue ")
 	print(" [5] - Exit Program ")
+	print(" [6] - Erase SampleSet & RasposeSet and reset everything")
 	print("-----------------------------------------------------------")
 	usrInput=input("Please input the one of the option ->  ")
 	if (usrInput == "1"):
@@ -33,6 +34,8 @@ def main():
 		opt_4()
 	elif (usrInput == "5"):
 		print("Program exiting !!!!")
+	elif (usrInput == "6"):
+		opt_6()
 	else:
 		print("-----------------------------------------------------------")
 		print("ERROR: Invaild Input !!!!!!!")
@@ -56,8 +59,6 @@ def opt_2():
 		#~ imgFeature = imgFeatureExtractSim.sim(currentPath) ###
 		imgFeature = obj_recognition.main(currentPath,currentBackgroundPath)
 		imgFeature = np.nan_to_num(imgFeature)
-		#~ print (imgFeature.shape)
-		#~ print (imgFeature.dtype)
 		time, imgID = os.path.basename(filename).split("_")
 		imgID, fileExtendion = imgID.split(".")
 		svm.addNewDataSet(imgFeature,int(imgID))
@@ -71,15 +72,22 @@ def opt_2():
 		displayTrainingDataInfo()
 		print("Moving current SVM model to archive")
 		try:
-			currentPath = os.path.join(os.getcwd(),'SVM.dat')
-			newFilename = "SVM_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
-			newPath = os.path.join(SVMArchivePath, newFilename)
-			os.rename(currentPath,newPath)
+			# svm_currentPath = os.path.join(os.getcwd(),'SVM.dat')
+			# svm_newFilename = "SVM_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
+			# svm_newPath = os.path.join(SVMArchivePath, svm_newFilename)
+			# pca_currentPath = os.path.join(os.getcwd(),'PCA.dat')
+			# pca_newFilename = "PCA_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
+			# pca_newPath = os.path.join(SVMArchivePath, pca_newFilename)
+			tree_currentPath = os.path.join(os.getcwd(),'Tree.dat')
+			tree_newFilename = "Tree_" + str(os.stat("Tree.dat").st_mtime) + ".dat"
+			tree_newPath = os.path.join(SVMArchivePath, pca_newFilename)
+			os.rename(svm_currentPath,svm_newPath)
+			os.rename(pca_currentPath,pca_newPath)
 		except:
 			print ("new SVM model will be created")
 		finally:
 			print("Training SVM from Training Set...")
-			SVMmodel = svm.SVM()
+			SVMmodel = svm.classifier()
 			SVMmodel.train()
 			print("Finished training SVM")
 			displaySVMInfo()
@@ -90,11 +98,17 @@ def opt_2():
 
 def opt_3():
 	displaySVMInfo()
-	print ("Publishing current SVM model to SVM path")
-	currentPath = os.path.join(os.getcwd(),'SVM.dat')
-	newPath = os.path.join(SVMPath, 'SVM.dat')
+	print ("Publishing current classifier model to classifier's path")
+	# currentPath = os.path.join(os.getcwd(),'SVM.dat')
+	# newPath = os.path.join(SVMPath, 'SVM.dat')
+	# shutil.copyfile(currentPath,newPath)
+	# currentPath = os.path.join(os.getcwd(),'PCA.dat')
+	# newPath = os.path.join(SVMPath, 'PCA.dat')
+	# shutil.copyfile(currentPath,newPath)
+	currentPath = os.path.join(os.getcwd(),'Tree.dat')
+	newPath = os.path.join(SVMPath, 'Tree.dat')
 	shutil.copyfile(currentPath,newPath)
-	version = np.array(os.stat("SVM.dat").st_mtime)
+	version = np.array(os.stat("Tree.dat").st_mtime)
 	np.save('SVM_version.npy',version)
 	currentPath = os.path.join(os.getcwd(),'SVM_version.npy')
 	newPath = os.path.join(SVMPath, 'SVM_version.npy')
@@ -265,7 +279,7 @@ def displaySVMInfo():
 	print("Loading SVM Info......")
 	try:
 		print ("Last modified :")
-		fileLastModified = os.stat("SVM.dat").st_mtime
+		fileLastModified = os.stat("Tree.dat").st_mtime
 		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
 	except:
 		print ("No SVM is found")

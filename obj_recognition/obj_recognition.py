@@ -1,3 +1,4 @@
+#import matplotlib.pyplot as plt
 from multiprocessing import Process, Queue
 import os
 import sys
@@ -41,9 +42,9 @@ def main(imgPath,bgPath):
 	kaze.join()
 	H, area, perimeter, diameter = shapes(img,cnt)
 	if(ORBdes[0] == None):
-		ORBdes = np.zeros((1000,),dtype=np.int)
+		ORBdes = np.zeros((6000,),dtype=np.int)
 	else:
-		ORBdes = np.pad(ORBdes,(0,1000-ORBdes.size),'constant',constant_values=0)
+		ORBdes = np.pad(ORBdes,(0,6000-ORBdes.size),'constant',constant_values=0)
 	if(KAZEdes[0] == None):
 		KAZEdes = np.zeros((10000,),dtype=np.int)
 	else:
@@ -90,16 +91,23 @@ def findCnt(img, mask):
 	contours = sorted(contours, key = cv2.contourArea, reverse = True)
 	cnt = contours[0]
 	img, mask = cropImg(img, mask, cnt)
-	#displayImg('cropped',img)
+	displayImg('cropped',img)
 	return img, mask, cnt
 
 def colourHist(img, mask,queue):
-	color = ('r','g','b')
+	color = ('b','g','r')
 	norm_set = []
 	for channel,col in enumerate(color):
-		hist = cv2.calcHist([img],[channel],mask,[32],[0,32])
-		norm = cv2.normalize(hist, hist, 0, 1, cv2.NORM_MINMAX,-1)
+		hist = cv2.calcHist([img],[channel],mask,[16],[0,256])
+		'''
+		norm = cv2.normalize(hist, hist, 1, 0, cv2.NORM_L1, -1)
 		norm_set.append(norm)
+		plt.plot(norm,color = col)
+		plt.xlim([0,16])
+	plt.title('Normalized histogram for color scale picture')
+	plt.show()
+	print("Colour Histogram", norm_set)
+	'''
 	queue.put(norm_set)
 
 def shapes(img,cnt):

@@ -4,6 +4,6 @@
 GUI_Qt/.DS_Store
 *.pyc
 
-v1/SmartScale.py
-
 v1/config.npy
+
+.DS_Store

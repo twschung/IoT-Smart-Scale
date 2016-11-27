@@ -1,6 +1,9 @@
 # import cv2
 from sklearn import svm
+from sklearn import tree
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.externals import joblib
+from sklearn.decomposition import PCA
 import numpy as np
 import time, os
 
@@ -24,67 +27,33 @@ def addNewDataSet (newSampleSet, newResponseSet):
 		responseSet = newResponseSet
 	saveTrainingSet(sampleSet,responseSet)
 
-#~ class StatModel(object):
-	#~ def load(self, fn):
-		#~ self.model.load(fn)
-	#~ def save(self, fn):
-		#~ self.model.save(fn)
-
-class SVM():
+class classifier():
 	def __init__(self):
-		self.model = svm.SVC(C=1.0, kernel='rbf', degree=3, gamma='auto', \
-		coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
-		class_weight=None, verbose=False, max_iter=-1, decision_function_shape=None, \
-		random_state=None)
+		# self.SVCModel = svm.SVC(C=1.0, kernel='rbf', degree=3, gamma='auto', \
+		# coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
+		# class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovo', \
+		# random_state=None)
+		# self.TreeModel = tree.DecisionTreeClassifier()
+		self.TreeModel = RandomForestClassifier(n_estimators=30)
+		# self.PCA = PCA(n_components = 15)
 	def load(self):
-		self.model = joblib.load('SVM.dat')
+		# self.SVCModel = joblib.load('SVC.dat')
+		self.TreeModel = joblib.load('Tree.dat')
+		# self.PCA = joblib.load('PCA.dat')
 	def train(self):
 		sampleSet , responseSet = loadTrainingSet()
-		self.model.fit(sampleSet, responseSet)
-		joblib.dump(self.model, 'SVM.dat')
+		# self.PCA.fit(sampleSet)
+		# reduced_dimen_sampleSet = self.PCA.transform(sampleSet)
+		# self.SVCModel.fit(reduced_dimen_sampleSet, responseSet)
+		# self.TreeModel.fit(reduced_dimen_sampleSet, responseSet)
+		self.TreeModel.fit(sampleSet, responseSet)
+		# joblib.dump(self.SVCModel, 'SVC.dat')
+		joblib.dump(self.TreeModel, 'Tree.dat')
+		# joblib.dump(self.PCA, 'PCA.dat')
 	def predict(self, sample):
-		return self.model.predict(sample)
+		# reduced_dimen_sample = self.PCA.transform(sample)
+		return self.TreeModel.predict(sample)
 	def predict_prob(self, sample):
-		return self.model.predict_proba(sample)
-
-
-# samples = np.array(np.random.random((4,2)), dtype = np.float32)
-# y_train = np.array([1.,0.,0.,1.], dtype = np.float32)
-# print (samples.shape)
-# print (samples)
-# print (y_train.shape)
-# print (y_train)
-
-# initalTrainingSet()
-
-# newSampleSet = np.array([0.2,0.8,0.6,0.1], dtype=np.float32)
-# newResponseSet = np.array([2], dtype=np.int)
-# newSampleSet = np.array([0.8,0.2,0.1,0.9], dtype=np.float32)
-# newResponseSet = np.array([3], dtype=np.int)
-# addNewDataSet(newSampleSet,newResponseSet)
-
-# sampleSet , responseSet = loadTrainingSet()
-
-# print (sampleSet.dtype)
-# print (sampleSet.shape)
-# print (sampleSet)
-# print (responseSet.dtype)
-# print (responseSet.shape)
-# print (responseSet)
-
-# print (newSampleSet.shape)
-# print (newSampleSet)
-# print (newResponseSet.shape)
-# print (newResponseSet)
-
-#~ clf = SVM()
-#~ clf.train()
-#~
-#~ clf = SVM()
-#~ clf.load()
-#~ sample = np.array([[0.9,0.1,0.2,0.8]], dtype=np.float32)
-#~ print (sample.shape)
-#~ result = clf.predict(sample)
-#~ print(result)
-
-# sample = [2,3,3]
+		# reduced_dimen_sample = self.PCA.transform(sample)
+		return self.TreeModel.predict_proba(sample)
+		# return self.SVCModel.predict_proba(reduced_dimen_sample)
