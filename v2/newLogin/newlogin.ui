@@ -149,10 +149,10 @@
      <widget class="QFrame" name="keyboard">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>70</x>
         <y>60</y>
-        <width>491</width>
-        <height>191</height>
+        <width>561</width>
+        <height>241</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -165,11 +165,24 @@
        <item>
         <layout class="QHBoxLayout" name="row1">
          <item>
+          <spacer name="hSpaceL2_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QPushButton" name="Q">
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -182,7 +195,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -195,7 +208,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -208,7 +221,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -221,7 +234,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -234,7 +247,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -247,7 +260,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -260,7 +273,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -273,7 +286,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -286,13 +299,26 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
             <string>P</string>
            </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="hSpaceR2_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
@@ -316,7 +342,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -329,7 +355,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -342,7 +368,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -355,7 +381,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -368,7 +394,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -381,7 +407,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -394,7 +420,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -407,7 +433,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -420,7 +446,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -449,8 +475,8 @@
           <widget class="QPushButton" name="btnShift">
            <property name="minimumSize">
             <size>
-             <width>46</width>
-             <height>32</height>
+             <width>0</width>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -459,7 +485,7 @@
           </widget>
          </item>
          <item>
-          <spacer name="hSpaceL3">
+          <spacer name="hSpaceR2_3">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -476,7 +502,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -489,7 +515,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -502,7 +528,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -515,7 +541,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -528,7 +554,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -541,7 +567,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -554,7 +580,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -563,7 +589,7 @@
           </widget>
          </item>
          <item>
-          <spacer name="hSpaceR3">
+          <spacer name="hSpaceL2_3">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -579,8 +605,8 @@
           <widget class="QPushButton" name="btnDel">
            <property name="minimumSize">
             <size>
-             <width>46</width>
-             <height>32</height>
+             <width>0</width>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -596,8 +622,8 @@
           <widget class="QPushButton" name="btnToggle">
            <property name="minimumSize">
             <size>
-             <width>46</width>
-             <height>32</height>
+             <width>0</width>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -607,6 +633,12 @@
          </item>
          <item>
           <spacer name="hSpaceL4">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>46</height>
+            </size>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -623,7 +655,7 @@
            <property name="minimumSize">
             <size>
              <width>221</width>
-             <height>42</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -636,7 +668,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -649,7 +681,7 @@
            <property name="minimumSize">
             <size>
              <width>46</width>
-             <height>32</height>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -661,8 +693,8 @@
           <widget class="QPushButton" name="btnReturn">
            <property name="minimumSize">
             <size>
-             <width>65</width>
-             <height>42</height>
+             <width>0</width>
+             <height>46</height>
             </size>
            </property>
            <property name="text">
@@ -673,20 +705,6 @@
         </layout>
        </item>
       </layout>
-      <zorder>P</zorder>
-      <zorder>W</zorder>
-      <zorder>U</zorder>
-      <zorder>T</zorder>
-      <zorder>Y</zorder>
-      <zorder>O</zorder>
-      <zorder>Q</zorder>
-      <zorder>E</zorder>
-      <zorder>I</zorder>
-      <zorder>R</zorder>
-      <zorder>layoutWidget</zorder>
-      <zorder>layoutWidget_3</zorder>
-      <zorder>layoutWidget_2</zorder>
-      <zorder>layoutWidget_4</zorder>
      </widget>
     </widget>
    </item>
