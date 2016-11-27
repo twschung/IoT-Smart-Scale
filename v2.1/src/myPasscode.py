@@ -20,9 +20,9 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 		self.btn_7.clicked.connect(lambda:self.handleBtn_7())
 		self.btn_8.clicked.connect(lambda:self.handleBtn_8())
 		self.btn_9.clicked.connect(lambda:self.handleBtn_9())
+		self.btn_done.setEnabled(False)
+		self.btn_del.setEnabled(False)
 		if (layoutSetting == "newPasscode"):
-			self.btn_done.setEnabled(False)
-			self.btn_del.setEnabled(False)
 			self.btn_forgot.setEnabled(False)
 			self.btn_back.setEnabled(False)
 			self.label.setText("Please Enter a New Passcode")
