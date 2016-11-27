@@ -10,75 +10,33 @@
     <height>480</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>newLogin</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="lbl_title">
+   <item row="2" column="2">
+    <widget class="QPushButton" name="btn_login">
      <property name="minimumSize">
       <size>
-       <width>121</width>
-       <height>31</height>
+       <width>141</width>
+       <height>71</height>
       </size>
      </property>
      <property name="font">
       <font>
        <family>Helvetica Neue</family>
-       <pointsize>24</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
-      <string>New Login</string>
+      <string>Login</string>
      </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="3">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="minimumSize">
-      <size>
-       <width>741</width>
-       <height>331</height>
-      </size>
-     </property>
-     <property name="title">
-      <string/>
-     </property>
-     <layout class="QFormLayout" name="formLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="lbl_email">
-        <property name="minimumSize">
-         <size>
-          <width>50</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Email:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit_email">
-        <property name="minimumSize">
-         <size>
-          <width>513</width>
-          <height>19</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
    </item>
    <item row="2" column="0">
@@ -100,6 +58,27 @@
      </property>
     </widget>
    </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="lbl_title">
+     <property name="minimumSize">
+      <size>
+       <width>121</width>
+       <height>31</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>24</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>New Login</string>
+     </property>
+    </widget>
+   </item>
    <item row="2" column="1">
     <spacer name="horizontalSpacer">
      <property name="orientation">
@@ -113,23 +92,602 @@
      </property>
     </spacer>
    </item>
-   <item row="2" column="2">
-    <widget class="QPushButton" name="btn_login">
+   <item row="1" column="0" colspan="3">
+    <widget class="QGroupBox" name="groupBox">
      <property name="minimumSize">
       <size>
-       <width>141</width>
-       <height>71</height>
+       <width>741</width>
+       <height>331</height>
       </size>
      </property>
-     <property name="font">
-      <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
-      </font>
+     <property name="title">
+      <string/>
      </property>
-     <property name="text">
-      <string>Login</string>
-     </property>
+     <widget class="QLabel" name="lbl_email">
+      <property name="geometry">
+       <rect>
+        <x>15</x>
+        <y>15</y>
+        <width>50</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>50</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Helvetica Neue</family>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Email:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_email">
+      <property name="geometry">
+       <rect>
+        <x>73</x>
+        <y>15</y>
+        <width>513</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>513</width>
+        <height>19</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QFrame" name="keyboard">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>60</y>
+        <width>491</width>
+        <height>191</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QHBoxLayout" name="row1">
+         <item>
+          <widget class="QPushButton" name="Q">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Q</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="W">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>W</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="E">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>E</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="R">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>R</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="T">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>T</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Y">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Y</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="U">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>U</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="I">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>I</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="O">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>O</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="P">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>P</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="row2">
+         <item>
+          <spacer name="hSpaceL2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="A">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>A</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="S">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>S</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="D">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>D</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="F">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>F</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="G">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>G</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="H">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>H</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="J">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>J</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="K">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>K</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="L">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>L</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="hSpaceR2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="row3">
+         <item>
+          <widget class="QPushButton" name="btnShift">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Shift</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="hSpaceL3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="Z">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Z</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="X">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>X</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="C">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>C</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="V">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>V</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="B">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>B</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="N">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>N</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="M">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>M</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="hSpaceR3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnDel">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Del</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="row4">
+         <item>
+          <widget class="QPushButton" name="btnToggle">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>123</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="hSpaceL4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="space">
+           <property name="minimumSize">
+            <size>
+             <width>221</width>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>space</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnAt">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>@</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnDot">
+           <property name="minimumSize">
+            <size>
+             <width>46</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>.</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnReturn">
+           <property name="minimumSize">
+            <size>
+             <width>65</width>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>return</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+      <zorder>P</zorder>
+      <zorder>W</zorder>
+      <zorder>U</zorder>
+      <zorder>T</zorder>
+      <zorder>Y</zorder>
+      <zorder>O</zorder>
+      <zorder>Q</zorder>
+      <zorder>E</zorder>
+      <zorder>I</zorder>
+      <zorder>R</zorder>
+      <zorder>layoutWidget</zorder>
+      <zorder>layoutWidget_3</zorder>
+      <zorder>layoutWidget_2</zorder>
+      <zorder>layoutWidget_4</zorder>
+     </widget>
     </widget>
    </item>
   </layout>
