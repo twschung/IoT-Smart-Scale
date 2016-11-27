@@ -1,5 +1,9 @@
 CREATE DATABASE smartscale
 
+CREATE USER 'terminal_user'@'%' IDENTIFIED BY 'abcd1234';
+GRANT ALL PRIVILEGES ON smartscale.* TO 'terminal_user'@'%';
+FLUSH PRIVILEGES;
+
 CREATE TABLE smartscale.userinfo_db
 (id INT NOT NULL AUTO_INCREMENT,
 username VARCHAR(25),

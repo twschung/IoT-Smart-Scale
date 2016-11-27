@@ -21,6 +21,7 @@ def main():
 	print(" [3] - Publish the trained SVM ")
 	print(" [4] - Add new item into database & add into the data training queue ")
 	print(" [5] - Exit Program ")
+	print(" [6] - Erase SampleSet & RasposeSet and reset everything")
 	print("-----------------------------------------------------------")
 	usrInput=input("Please input the one of the option ->  ")
 	if (usrInput == "1"):
@@ -33,6 +34,8 @@ def main():
 		opt_4()
 	elif (usrInput == "5"):
 		print("Program exiting !!!!")
+	elif (usrInput == "6"):
+		opt_6()
 	else:
 		print("-----------------------------------------------------------")
 		print("ERROR: Invaild Input !!!!!!!")
