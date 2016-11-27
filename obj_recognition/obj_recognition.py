@@ -98,14 +98,16 @@ def colourHist(img, mask,queue):
 	color = ('b','g','r')
 	norm_set = []
 	for channel,col in enumerate(color):
-		hist = cv2.calcHist([img],[channel],mask,[8],[0,256])
+		hist = cv2.calcHist([img],[channel],mask,[16],[0,256])
+		'''
 		norm = cv2.normalize(hist, hist, 1, 0, cv2.NORM_L1, -1)
 		norm_set.append(norm)
-		#plt.plot(norm,color = col)
-		#plt.xlim([0,8])
-	#plt.title('Normalized histogram for color scale picture')
-	#plt.show()
-	#print("Colour Histogram", norm_set)
+		plt.plot(norm,color = col)
+		plt.xlim([0,16])
+	plt.title('Normalized histogram for color scale picture')
+	plt.show()
+	print("Colour Histogram", norm_set)
+	'''
 	queue.put(norm_set)
 
 def shapes(img,cnt):
