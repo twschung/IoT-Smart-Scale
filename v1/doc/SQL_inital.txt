@@ -33,3 +33,34 @@ INSERT INTO smartscale.foodinfo_db (category, description, energy, fat, saturate
 INSERT INTO smartscale.foodinfo_db (category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES ('', 'banana', '89', '0', '0', '23', '12', '3', '1', '0.001');
 INSERT INTO smartscale.foodinfo_db (category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES ('', 'pear', '42', '0', '0', '11', '7', '4', '0', '0');
 INSERT INTO smartscale.foodinfo_db (category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES ('', 'mango', '65', '0', '0', '17', '15', '2', '1', '0.002');
+
+CREATE TABLE smartscale.userfoodintake_db
+(id INT NOT NULL AUTO_INCREMENT,
+datetime DATETIMEs,
+userid VARCHAR(25),
+foodid VARCHAR(25),
+weight VARCHAR(25),
+foodcategory VARCHAR(25),
+fooddescription VARCHAR(25),
+energy VARCHAR(25),
+fat VARCHAR(25),
+saturates VARCHAR(25),
+carbohydrate VARCHAR(25),
+sugars VARCHAR(25),
+fibre VARCHAR(25),
+salt VARCHAR(25),
+PRIMARY KEY (id))
+
+CREATE TABLE smartscale.userdailyintake
+(id INT NOT NULL AUTO_INCREMENT,
+userid VARCHAR(25),
+date DATE,
+energy VARCHAR(25),
+fat VARCHAR(25),
+saturates VARCHAR(25),
+carbohydrate VARCHAR(25),
+sugars VARCHAR(25),
+fibre VARCHAR(25),
+protein VARCHAR(25),
+salt VARCHAR(25),
+PRIMARY KEY (id))

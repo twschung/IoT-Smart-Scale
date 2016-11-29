@@ -1,9 +1,10 @@
-import os , time, shutil
+import os , time, shutil, glob
 import svm
 import numpy as np
 import imgFeatureExtractSim
 import cv2
 import db_access
+import obj_recognition
 
 
 SVMPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/SVM'
@@ -48,29 +49,41 @@ def opt_2():
 	print("-----------------------------------------------------------")
 	print("Getting images from queue...")
 	totalItemProcessed = 0
-	for filename in os.listdir(exisitingItemPath):
+	searchPath = os.path.join(exisitingItemPath,'*.jpg')
+	for filename in glob.glob(searchPath):
 		print("Processing %s ..." % (filename))
-		currentPath = os.path.join(exisitingItemPath,filename)
-		imgFeature = imgFeatureExtractSim.sim(currentPath)
-		time, imgID = filename.split("_")
+		currentPath = filename
+		currentBackgroundPath = os.path.join(exisitingItemPath, "backgroundImage" , os.path.basename(filename))
+		#~ imgFeature = imgFeatureExtractSim.sim(currentPath) ###
+		imgFeature = obj_recognition.main(currentPath,currentBackgroundPath)
+		print (imgFeature.shape)
+		print (imgFeature.dtype)
+		time, imgID = os.path.basename(filename).split("_")
 		imgID, fileExtendion = imgID.split(".")
+		print (int(imgID))
 		svm.addNewDataSet(imgFeature,int(imgID))
-		newPath = os.path.join(processedItemPath,filename)
+		newPath = os.path.join(processedItemPath,os.path.basename(filename))
+		newBackgroundPath = os.path.join(processedItemPath, 'backgroundImage', os.path.basename(filename))
 		os.rename(currentPath,newPath)
+		os.rename(currentBackgroundPath,newBackgroundPath)
 		totalItemProcessed = totalItemProcessed + 1
 	print("Finished modifiing training set. Total of %i is added"% (totalItemProcessed))
 	if (totalItemProcessed > 0):
 		displayTrainingDataInfo()
 		print("Moving current SVM model to archive")
-		currentPath = os.path.join(os.getcwd(),'SVM.dat')
-		newFilename = "SVM_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
-		newPath = os.path.join(SVMArchivePath, newFilename)
-		os.rename(currentPath,newPath)
-		print("Training SVM from Training Set...")
-		SVMmodel = svm.SVM()
-		SVMmodel.train()
-		print("Finished training SVM")
-		displaySVMInfo()
+		try:
+			currentPath = os.path.join(os.getcwd(),'SVM.dat')
+			newFilename = "SVM_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
+			newPath = os.path.join(SVMArchivePath, newFilename)
+			os.rename(currentPath,newPath)
+		except:
+			print ("new SVM model will be created")
+		finally:
+			print("Training SVM from Training Set...")
+			SVMmodel = svm.SVM()
+			SVMmodel.train()
+			print("Finished training SVM")
+			displaySVMInfo()
 	else:
 		print("SVM Training is skipped, as no new image is processed")
 	print("-----------------------------------------------------------")
@@ -94,7 +107,8 @@ def opt_3():
 def opt_4():
 	print("-----------------------------------------------------------")
 	print("Fetching new item images!")
-	for filename in os.listdir(newItemPath):
+	searchPath = os.path.join(newItemPath,'*.jpg')
+	for filename in glob.glob(searchPath):
 		filePath = os.path.join(newItemPath,filename)
 		print(filePath)
 		previewImage(filePath)
@@ -122,10 +136,15 @@ def newImageProcessMenu(filePath):
 				newFilename = newFilename.replace(".jpg", extendion)
 				newFilePath = os.path.join(exisitingItemPath,newFilename)
 				os.rename(filePath,newFilePath)
+				backgroundImgPath = os.path.join(newItemPath,'backgroundImage', (os.path.basename(filePath)))
+				newBackgroundImgPath = os.path.join(exisitingItemPath,'backgroundImage',newFilename)
+				os.rename(backgroundImgPath, newBackgroundImgPath)
+				
 				currentPath = newFilePath
 				newFilename = str(dbResult[1].id) + ".jpg"
 				newPath = os.path.join(sampleItemPath, newFilename)
 				shutil.copyfile(currentPath,newPath)
+				
 				np.save('imageSample_version.npy',dbResult[1].id)
 				currentPath = os.path.join(os.getcwd(),'imageSample_version.npy')
 				newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
@@ -148,6 +167,9 @@ def newImageProcessMenu(filePath):
 						newFilename = newFilename.replace(".jpg", extendion)
 						newFilePath = os.path.join(exisitingItemPath,newFilename)
 						os.rename(filePath,newFilePath)
+						backgroundImgPath = os.path.join(newItemPath,'backgroundImage', (os.path.basename(filePath)))
+						newBackgroundImgPath = os.path.join(exisitingItemPath,'backgroundImage',newFilename)
+						os.rename(backgroundImgPath, newBackgroundImgPath)
 					elif (confirmInput == "n"):
 						stayInLoop_2 = True
 					else:

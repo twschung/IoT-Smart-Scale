@@ -1,6 +1,6 @@
 import ftplib
 import urllib.request
-import os, time
+import os, time, glob
 import numpy as np
 
 FTP_ServerAddress = '42.2.205.124'
@@ -13,33 +13,41 @@ def connectToServer ():
 	
 def generateNewItemFilePath ():
 	filename = str(time.time()) + ".jpg"
-	filePath = os.path.join(os.getcwd(),filename)
-	return filePath
+	filePath = os.path.join(os.getcwd(),"imageHistory/newItem",filename)
+	backgroundFilePath = os.path.join(os.getcwd(),"imageHistory/newItem/backgroundImage",filename)
+	return filePath , backgroundFilePath
 
-def generateExisitngItemFilePath (imgID):
+def generateExisitingItemFilePath (imgID):
 	filename = str(time.time()) + "_" + str(imgID) + ".jpg"
-	filePath = os.path.join(os.getcwd(),filename)
-	return filePath
+	filePath = os.path.join(os.getcwd(),"imageHistory/exisitingItem",filename)
+	backgroundFilePath = os.path.join(os.getcwd(),"imageHistory/exisitingItem/backgroundImage",filename)
+	return filePath , backgroundFilePath
+	
+def uploadEverythingInFolder(currentFilePath , session)
+	searchPath = os.path.join(currentFilePath,'*.jpg')
+	for filename in glob.glob(searchPath):
+		currentImgPath = os.path.join(currentFilePath,filename)
+		imageFile = open(currentImgPath,'rb')
+		session.storbinary(('STOR %s'% filename), imageFile)
+		imageFile.close()
+		os.remove(currentImgPath)
+	return session
 	
 def uploadImageHistory ():
 	try:
 		session = connectToServer()
 		session.cwd ("/imageUploaded/newItem")
 		currentFilePath = os.path.join(os.getcwd(),"imageHistory/newItem")
-		for filename in os.listdir(currentFilePath):
-			currentImgPath = os.path.join(currentFilePath,filename)
-			imageFile = open(currentImgPath,'rb')
-			session.storbinary(('STOR %s'% filename), imageFile)
-			imageFile.close()
-			os.remove(currentImgPath)
+		session = uploadEverythingInFolder(currentFilePath , session)
+		session.cwd ("/imageUploaded/newItem/backgroundImage")
+		currentFilePath = os.path.join(os.getcwd(),"imageHistory/newItem/backgroundImage")
+		session = uploadEverythingInFolder(currentFilePath , session)
 		session.cwd ("/imageUploaded/existingItem")
 		currentFilePath = os.path.join(os.getcwd(),"imageHistory/existingItem")
-		for filename in os.listdir(currentFilePath):
-			currentImgPath = os.path.join(currentFilePath,filename)
-			imageFile = open(currentImgPath,'rb')
-			session.storbinary(('STOR %s'% filename), imageFile)
-			imageFile.close()
-			os.remove(currentImgPath)
+		session = uploadEverythingInFolder(currentFilePath , session)
+		session.cwd ("/imageUploaded/existingItem/backgroundImage")
+		currentFilePath = os.path.join(os.getcwd(),"imageHistory/existingItem/backgroundImage")
+		session = uploadEverythingInFolder(currentFilePath , session)
 		session.quit()
 	except:
 		return False

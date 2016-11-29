@@ -80,6 +80,7 @@ class SVM():
 #~ clf = SVM()
 #~ clf.load()
 #~ sample = np.array([[0.9,0.1,0.2,0.8]], dtype=np.float32)
+#~ print (sample.shape)
 #~ result = clf.predict(sample)
 #~ print(result)
 
