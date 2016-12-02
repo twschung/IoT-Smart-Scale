@@ -2,9 +2,8 @@ import os , time, shutil, glob
 import svm
 import numpy as np
 import imgFeatureExtractSim
-# import cv2
 import db_access
-# import obj_recognition
+import obj_recognition
 
 
 SVMPath = '/home/pi/IoT-Smart-Scale/SVM/FTP/SVM'
@@ -55,12 +54,12 @@ def opt_2():
 		currentPath = filename
 		currentBackgroundPath = os.path.join(exisitingItemPath, "backgroundImage" , os.path.basename(filename))
 		#~ imgFeature = imgFeatureExtractSim.sim(currentPath) ###
-		# imgFeature = obj_recognition.main(currentPath,currentBackgroundPath)
-		print (imgFeature.shape)
-		print (imgFeature.dtype)
+		imgFeature = obj_recognition.main(currentPath,currentBackgroundPath)
+		imgFeature = np.nan_to_num(imgFeature)
+		#~ print (imgFeature.shape)
+		#~ print (imgFeature.dtype)
 		time, imgID = os.path.basename(filename).split("_")
 		imgID, fileExtendion = imgID.split(".")
-		print (int(imgID))
 		svm.addNewDataSet(imgFeature,int(imgID))
 		newPath = os.path.join(processedItemPath,os.path.basename(filename))
 		newBackgroundPath = os.path.join(processedItemPath, 'backgroundImage', os.path.basename(filename))
@@ -68,7 +67,7 @@ def opt_2():
 		os.rename(currentBackgroundPath,newBackgroundPath)
 		totalItemProcessed = totalItemProcessed + 1
 	print("Finished modifiing training set. Total of %i is added"% (totalItemProcessed))
-	if (totalItemProcessed > 0):
+	if (totalItemProcessed > -1):
 		displayTrainingDataInfo()
 		print("Moving current SVM model to archive")
 		try:

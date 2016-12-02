@@ -33,7 +33,7 @@ def addNewDataSet (newSampleSet, newResponseSet):
 class SVM():
 	def __init__(self):
 		self.model = svm.SVC(C=1.0, kernel='rbf', degree=3, gamma='auto', \
-		coef0=0.0, shrinking=True, probability=False, tol=0.001, cache_size=200, \
+		coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
 		class_weight=None, verbose=False, max_iter=-1, decision_function_shape=None, \
 		random_state=None)
 	def load(self):
@@ -44,6 +44,8 @@ class SVM():
 		joblib.dump(self.model, 'SVM.dat')
 	def predict(self, sample):
 		return self.model.predict(sample)
+	def predict_prob(self, sample):
+		return self.model.predict_proba(sample)
 
 
 # samples = np.array(np.random.random((4,2)), dtype = np.float32)
