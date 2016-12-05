@@ -35,7 +35,7 @@ def main():
 	elif (usrInput == "5"):
 		print("Program exiting !!!!")
 	elif (usrInput == "6"):
-		# opt_6()
+		opt_6()
 	else:
 		print("-----------------------------------------------------------")
 		print("ERROR: Invaild Input !!!!!!!")
