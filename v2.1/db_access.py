@@ -18,6 +18,18 @@ def user_login(inputUsername, inputPassword):
 		returnUser = db_structure.userDataStructure(sqlResult['id'],sqlResult['username'],sqlResult['password'],sqlResult['email'],sqlResult['firstname'],sqlResult['lastname'],sqlResult['dob'],sqlResult['gender'],sqlResult['height'],sqlResult['weight'])
 		return (True, returnUser)
 
+def user_checkIfEmailAlreadyRegisted(inputEmail):
+	serverConnection = connectToServer()
+	cursor = serverConnection.cursor()
+	sql = "SELECT id FROM `userinfo_db` WHERE `username`=%s"
+	cursor.execute(sql,(inputEmail))
+	sqlResult = cursor.fetchone()
+	serverConnection.close()
+	if (sqlResult is None):
+		return False
+	else:
+		return True
+
 def user_register(inputUser):
 	serverConnection = connectToServer()
 	cursor = serverConnection.cursor()
