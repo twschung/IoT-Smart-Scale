@@ -6,7 +6,7 @@ from sklearn.externals import joblib
 from sklearn.decomposition import PCA
 import numpy as np
 import time, os
-
+import pickle
 
 def loadTrainingSet ():
 	sampleSet = np.load('sampleSet.npy')
@@ -38,7 +38,8 @@ class classifier():
 		# self.PCA = PCA(n_components = 15)
 	def load(self):
 		# self.SVCModel = joblib.load('SVC.dat')
-		self.TreeModel = joblib.load('Tree.dat')
+		# self.TreeModel = joblib.load('Tree.dat')
+		self.TreeModel = pickle.load(open( "Tree.dat", "rb"))
 		# self.PCA = joblib.load('PCA.dat')
 	def train(self):
 		sampleSet , responseSet = loadTrainingSet()
@@ -48,8 +49,9 @@ class classifier():
 		# self.TreeModel.fit(reduced_dimen_sampleSet, responseSet)
 		self.TreeModel.fit(sampleSet, responseSet)
 		# joblib.dump(self.SVCModel, 'SVC.dat')
-		joblib.dump(self.TreeModel, 'Tree.dat')
+		# joblib.dump(self.TreeModel, 'Tree.dat')
 		# joblib.dump(self.PCA, 'PCA.dat')
+		pickle.dump(self.TreeModel, open( "Tree.dat", "wb"))
 	def predict(self, sample):
 		# reduced_dimen_sample = self.PCA.transform(sample)
 		return self.TreeModel.predict(sample)
