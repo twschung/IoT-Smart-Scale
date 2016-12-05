@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainMenu</class>
+ <widget class="QWidget" name="mainMenu">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>mainMenu</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="lbl_title">
+     <property name="minimumSize">
+      <size>
+       <width>341</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>24</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>IoT Smart Scale</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="btn_login">
+     <property name="minimumSize">
+      <size>
+       <width>341</width>
+       <height>191</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Login</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="btn_guest">
+     <property name="minimumSize">
+      <size>
+       <width>341</width>
+       <height>191</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Guest</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="btn_scaleOnly">
+     <property name="minimumSize">
+      <size>
+       <width>341</width>
+       <height>191</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Scale Only</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="btn_userSetup">
+     <property name="minimumSize">
+      <size>
+       <width>341</width>
+       <height>191</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>User Setup</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
