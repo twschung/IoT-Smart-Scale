@@ -26,6 +26,4 @@ class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
 		mainWindow.central_widget.addWidget(self.widget)
 		mainWindow.central_widget.setCurrentWidget(self.widget)
 	def handleBtn_userSetup(self, mainWindow):
-		self.widget = myUserSetup.myUserSetup(mainWindow)
-		mainWindow.central_widget.addWidget(self.widget)
-		mainWindow.central_widget.setCurrentWidget(self.widget)
+		myUserSetup.myUserSetup(mainWindow)
