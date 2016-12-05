@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from ui import ui_passcode
-from src import myUserSetup, myUserLogin, myUserEdit
+from src import myUserSetup, myUserLogin, myUserEdit, myUserLogin
 import db_access
 
 class myPasscode(QWidget, ui_passcode.Ui_passCode):
@@ -54,7 +54,32 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 			self.btn_done.setText("Next")
 			self.btn_done.clicked.connect(lambda:self.handleBtn_done_editUser_verfyPasscode(mainWindow,dataStruc))
 			self.btn_back.clicked.connect(lambda:mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget()))
-
+		if (layoutSetting == "editUser_oldPasscode"):
+			self.btn_forgot.setVisible(False)
+			self.btn_remUser.setVisible(True)
+			if (myUserLogin.myUserLogin.checkRemeberUserStatus(self, currentUserInfo=dataStruc) == True):
+				self.btn_remUser.setChecked(True)
+			else:
+				self.btn_remUser.setChecked(False)
+			self.lbl_title.setText("Passcode Verification")
+			self.lbl_info.setText("Please Enter Passcode")
+			self.btn_done.setText("Next")
+			self.btn_done.clicked.connect(lambda:self.handleBtn_done_editUser_oldPasscode(mainWindow,dataStruc))
+			self.btn_back.clicked.connect(lambda:self.handleBtn_back_editUser_oldPasscode(mainWindow,dataStruc))
+		if (layoutSetting == "editUser_newPasscode"):
+			self.btn_forgot.setVisible(False)
+			self.lbl_title.setText("Changing Passcode")
+			self.lbl_info.setText("Please Enter New Passcode")
+			self.btn_done.setText("Next")
+			self.btn_back.setEnabled(False)
+			self.btn_done.clicked.connect(lambda:self.handleBtn_done_editUser_newPasscode(mainWindow,dataStruc))
+		if (layoutSetting == "editUser_confirmPasscode"):
+			self.btn_forgot.setVisible(False)
+			self.lbl_title.setText("Changing Passcode")
+			self.lbl_info.setText("Please Confirm New Passcode")
+			self.btn_done.setText("Summit")
+			self.btn_back.clicked.connect(lambda:myUserEdit.myUserEdit.editUser_newPasscode(self,mainWindow=mainWindow,currentUserInfo=dataStruc))
+			self.btn_done.clicked.connect(lambda:self.handleBtn_done_editUser_confirmPasscode(mainWindow,dataStruc))
 
 	def handleBtn_done_newPasscode(self, mainWindow, dataStruc):
 		dataStruc.password = self.passcode
@@ -83,6 +108,32 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 			myUserEdit.myUserEdit.editUser_gender(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
 		else:
 			msg = QMessageBox.information(self, 'Failed',"Passcode Incorrect",QMessageBox.Ok)
+	def handleBtn_done_editUser_oldPasscode(self, mainWindow, dataStruc):
+		if (self.passcode == dataStruc.password):
+			myUserEdit.myUserEdit.editUser_newPasscode(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+			if (self.btn_remUser.isChecked() == True):
+				myUserLogin.myUserLogin.rememberUser(self, currentUserInfo=dataStruc)
+			else:
+				myUserLogin.myUserLogin.forgetUser(self, currentUserInfo=dataStruc)
+		else:
+			msg = QMessageBox.information(self, 'Failed',"Passcode Incorrect",QMessageBox.Ok)
+	def handleBtn_done_editUser_newPasscode(self, mainWindow, dataStruc):
+		dataStruc.password = self.passcode
+		myUserEdit.myUserEdit.editUser_confirmPasscode(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+	def handleBtn_done_editUser_confirmPasscode(self, mainWindow, dataStruc):
+		if (dataStruc.password == self.passcode):
+			myUserEdit.myUserEdit.editUserPasscodes_add2db(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+		else:
+			msg = QMessageBox.information(self, 'Error',"Passcode doesnt not match",QMessageBox.Ok)
+			dataStruc.passcode = ""
+			myUserEdit.myUserEdit.editUser_newPasscode(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+	def handleBtn_back_editUser_oldPasscode(self, mainWindow, dataStruc):
+		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
+		if (self.btn_remUser.isChecked() == True):
+			myUserLogin.myUserLogin.rememberUser(self, currentUserInfo=dataStruc)
+		else:
+			myUserLogin.myUserLogin.forgetUser(self, currentUserInfo=dataStruc)
+
 
 	def handleBtn_remUser(self):
 		if (self.btn_remUser.isChecked()== True):

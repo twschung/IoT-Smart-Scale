@@ -10,4 +10,4 @@ class myUserProfile(QWidget, ui_profile.Ui_profile):
 		super(myUserProfile, self).__init__()
 		self.setupUi(self)
 		self.btn_back.clicked.connect(lambda:mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget()))
-		self.btn_edit.clicked.connect(lambda:myUserEdit.myUserEdit.passcodeVerify(self,mainWindow=mainWindow,currentUserInfo=currentUserInfo))
+		self.btn_edit.clicked.connect(lambda:myUserEdit.myUserEdit.editUser_verifyPasscode(self,mainWindow=mainWindow,currentUserInfo=currentUserInfo))

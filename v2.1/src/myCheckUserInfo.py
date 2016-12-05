@@ -17,6 +17,7 @@ def checkUserDetails(self,userInfo, option):
     if (userInfo.lastname == ""): errorMsg = "Last name can not be blank"
   if (option == "dob"):
     if (userInfo.dob == ""): errorMsg = "Year of Birth can not be blank"
+    elif (len(userInfo.dob)>4): errorMsg = "Year of Birth can not be longer than 4 digits"
   if (option == "height"):
     if (userInfo.height == ""): errorMsg = "Height can not be blank"
   if (option == "weight"):

@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from src import myUserProfile
+from src import myUserProfile, myUserEdit
 from ui import ui_accountsetting
 
 class myAccountSetting(QWidget, ui_accountsetting.Ui_accountSetting):
@@ -10,7 +10,11 @@ class myAccountSetting(QWidget, ui_accountsetting.Ui_accountSetting):
 		super(myAccountSetting, self).__init__()
 		self.setupUi(self)
 		self.btn_back.clicked.connect(lambda:mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget()))
+		self.btn_passcode.clicked.connect(lambda:self.handleBtn_passcode(mainWindow,currentUserInfo))
 		self.btn_profile.clicked.connect(lambda:self.handleBtn_profile(mainWindow,currentUserInfo))
+
+	def handleBtn_passcode(self,mainWindow,currentUserInfo):
+		self.widget = myUserEdit.myUserEdit.editUser_oldPasscode(self, mainWindow=mainWindow,currentUserInfo=currentUserInfo)
 
 	def handleBtn_profile(self,mainWindow,currentUserInfo):
 		self.widget = myUserProfile.myUserProfile(mainWindow=mainWindow,currentUserInfo=currentUserInfo)

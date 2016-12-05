@@ -52,22 +52,18 @@ def user_changeUserDetails(inputUser):
 		# else:
 			# return (False,1)
 
-def user_changePassword(inputUser,oldPassword, newPassword):
-	verifedUser = user_login(inputUser.username,oldPassword)
-	if (verifedUser[0] == False):
+def user_changePassword(inputUser):
+	serverConnection = connectToServer()
+	cursor = serverConnection.cursor()
+	sql = "UPDATE `userinfo_db` SET `password`=%s WHERE id = %s"
+	cursor.execute(sql, (inputUser.password,inputUser.id))
+	serverConnection.commit()
+	serverConnection.close()
+	comfirmUser = user_login(inputUser.username, inputUser.password)
+	if (comfirmUser[0] == False):
 		return (False,0)
 	else:
-		serverConnection = connectToServer()
-		cursor = serverConnection.cursor()
-		sql = "UPDATE `userinfo_db` SET `password`=%s WHERE id = %s"
-		cursor.execute(sql, (newPassword,verifedUser[1].id))
-		serverConnection.commit()
-		serverConnection.close()
-		comfirmUser = user_login(inputUser.username, newPassword)
-		if (comfirmUser[0] == False):
-			return (False,1)
-		else:
-			return (True, comfirmUser[1])
+		return (True, comfirmUser[1])
 
 def food_getInfo(itemID):
 	serverConnection = connectToServer()

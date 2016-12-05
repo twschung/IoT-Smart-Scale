@@ -7,7 +7,7 @@ from src import myPasscode, myTextInput, myGenderSelection, myNumInput, myUserLo
 import db_structure, db_access
 
 class myUserEdit():
-	def passcodeVerify(self,mainWindow, currentUserInfo):
+	def editUser_verifyPasscode(self,mainWindow, currentUserInfo):
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 		self.widget = myPasscode.myPasscode(mainWindow, layoutSetting = "editUser_verifyPasscode", dataStruc=currentUserInfo)
 		mainWindow.central_widget.addWidget(self.widget)
@@ -52,20 +52,28 @@ class myUserEdit():
 		else:
 			msg = QMessageBox.information(self, 'Failed',"Server Error",QMessageBox.Ok)
 
-	def newUser_passcode(self, mainWindow, newUserInfo):
+	def editUser_oldPasscode(self, mainWindow, currentUserInfo):
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
-		self.widget = myPasscode.myPasscode(mainWindow, layoutSetting = "newUser_passcode", dataStruc=newUserInfo)
+		self.widget = myPasscode.myPasscode(mainWindow, layoutSetting = "editUser_oldPasscode", dataStruc=currentUserInfo)
 		mainWindow.central_widget.addWidget(self.widget)
 		mainWindow.central_widget.setCurrentWidget(self.widget)
-	def newUser_confirmPasscode(self, mainWindow, newUserInfo):
+	def editUser_newPasscode(self, mainWindow, currentUserInfo):
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
-		self.widget = myPasscode.myPasscode(mainWindow, layoutSetting = "newUser_confirmPasscode", dataStruc=newUserInfo)
+		self.widget = myPasscode.myPasscode(mainWindow, layoutSetting = "editUser_newPasscode", dataStruc=currentUserInfo)
 		mainWindow.central_widget.addWidget(self.widget)
 		mainWindow.central_widget.setCurrentWidget(self.widget)
-	def newUser_add2db(self, mainWindow, newUserInfo):
+	def editUser_confirmPasscode(self, mainWindow, currentUserInfo):
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
-		if (db_access.user_register(newUserInfo)[0] == True):
-			msg = QMessageBox.information(self, 'Success',"Account created",QMessageBox.Ok)
+		self.widget = myPasscode.myPasscode(mainWindow, layoutSetting = "editUser_confirmPasscode", dataStruc=currentUserInfo)
+		mainWindow.central_widget.addWidget(self.widget)
+		mainWindow.central_widget.setCurrentWidget(self.widget)
+	def editUserPasscodes_add2db(self, mainWindow, currentUserInfo):
+		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
+		if (db_access.user_changePassword(currentUserInfo)[0] == True):
+			msg = QMessageBox.information(self, 'Success',"Saved Changes",QMessageBox.Ok)
+			mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
+			mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
+			myUserLogin.myUserLogin.enterUserMenu(self, mainWindow, currentUserInfo)
 		else:
 			msg = QMessageBox.information(self, 'Failed',"Server Error",QMessageBox.Ok)
 

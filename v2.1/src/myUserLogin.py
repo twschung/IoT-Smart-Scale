@@ -29,6 +29,13 @@ class myUserLogin():
         mainWindow.central_widget.addWidget(self.widget)
         mainWindow.central_widget.setCurrentWidget(self.widget)
 
+    def checkRemeberUserStatus(self,currentUserInfo):
+        self.config = np.load('config.npy').item()
+        finishFlag = False
+        for x in range(0,6):
+            if (self.config['expUsr'][x].id == currentUserInfo.id): finishFlag = True
+        return finishFlag
+
     def rememberUser(self,currentUserInfo):
         self.config = np.load('config.npy').item()
         finishFlag = False
@@ -41,6 +48,18 @@ class myUserLogin():
                 np.save('config.npy', self.config)
                 finishFlag = True
         if (finishFlag == False): msg = QMessageBox.information(self, 'Failed',"Unable to assign user to login menu",QMessageBox.Ok)
+
+    def forgetUser(self,currentUserInfo):
+        self.config = np.load('config.npy').item()
+        finishFlag = True
+        for x in range(0,6):
+            if (self.config['expUsr'][x].id == currentUserInfo.id): finishFlag = False
+        for x in range(0,6):
+            if (finishFlag == False and self.config['expUsr'][x].id == currentUserInfo.id):
+                self.config['expUsr'][x] = db_structure.userDataStructure()
+                np.save('config.npy', self.config)
+                finishFlag = True
+        if (finishFlag == False): msg = QMessageBox.information(self, 'Failed',"Unable to remove user to login menu",QMessageBox.Ok)
 
     def rememberUserAndFingerPrint(self,currentUserInfo):
         self.config = np.load('config.npy').item()
