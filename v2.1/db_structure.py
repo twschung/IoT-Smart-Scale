@@ -1,12 +1,6 @@
-class simpleUserDataStructure:
-	def __init__(self, username='~', password='~', firstname='~', lastname='~'):
-		self.username = username
-		self.password = password
-		self.firstname = firstname
-		self.lastname = lastname
 
 class userDataStructure:
-	def __init__(self, id="", username="", password="", email="", firstname="", lastname="", dob="", gender="", height="", weight=""):
+	def __init__(self, id="", username="", password="", email="", firstname="", lastname="", dob="", gender="", height="", weight="", targetWeight="", targetIntake=""):
 		self.id = id
 		self.username = username
 		self.password = password
@@ -17,6 +11,8 @@ class userDataStructure:
 		self.gender = gender
 		self.height = height
 		self.weight = weight
+		self.targetWeight = targetWeight
+		self.targetIntake = targetIntake
 
 	def printUserDetails(self):
 		print ("id : ", self.id)

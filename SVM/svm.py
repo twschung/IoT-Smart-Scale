@@ -6,7 +6,8 @@ from sklearn.externals import joblib
 from sklearn.decomposition import PCA
 import numpy as np
 import time, os
-
+import pickle
+import _pickle as cpickle
 
 def loadTrainingSet ():
 	sampleSet = np.load('sampleSet.npy')
@@ -34,11 +35,12 @@ class classifier():
 		# class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovo', \
 		# random_state=None)
 		# self.TreeModel = tree.DecisionTreeClassifier()
-		self.TreeModel = RandomForestClassifier(n_estimators=30)
+		self.TreeModel = RandomForestClassifier(n_estimators=50)
 		# self.PCA = PCA(n_components = 15)
 	def load(self):
 		# self.SVCModel = joblib.load('SVC.dat')
-		self.TreeModel = joblib.load('Tree.dat')
+		# self.TreeModel = joblib.load('Tree.dat')
+		self.TreeModel = cpickle.load(open( "Tree.dat", "rb"))
 		# self.PCA = joblib.load('PCA.dat')
 	def train(self):
 		sampleSet , responseSet = loadTrainingSet()
@@ -48,8 +50,9 @@ class classifier():
 		# self.TreeModel.fit(reduced_dimen_sampleSet, responseSet)
 		self.TreeModel.fit(sampleSet, responseSet)
 		# joblib.dump(self.SVCModel, 'SVC.dat')
-		joblib.dump(self.TreeModel, 'Tree.dat')
+		# joblib.dump(self.TreeModel, 'Tree.dat')
 		# joblib.dump(self.PCA, 'PCA.dat')
+		cpickle.dump(self.TreeModel, open( "Tree.dat", "wb"))
 	def predict(self, sample):
 		# reduced_dimen_sample = self.PCA.transform(sample)
 		return self.TreeModel.predict(sample)
