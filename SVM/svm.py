@@ -1,6 +1,7 @@
 # import cv2
 from sklearn import svm
 from sklearn import tree
+from sklearn.neural_network import MLPClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.externals import joblib
 from sklearn.decomposition import PCA
@@ -35,7 +36,7 @@ class classifier():
 		# class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovo', \
 		# random_state=None)
 		# self.TreeModel = tree.DecisionTreeClassifier()
-		self.TreeModel = svm.SVC(decision_function_shape='ovo', probability=True)
+		self.TreeModel = MLPClassifier()
 		# self.TreeModel = RandomForestClassifier(n_estimators=25)
 		# self.PCA = PCA(n_components = 15)
 	def load(self):
