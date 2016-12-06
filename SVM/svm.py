@@ -34,9 +34,9 @@ class classifier():
 		# coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
 		# class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovo', \
 		# random_state=None)
-		self.TreeModel = svm.SVC()
+		# self.TreeModel = svm.SVC()
 		# self.TreeModel = tree.DecisionTreeClassifier()
-		# self.TreeModel = RandomForestClassifier(n_estimators=50)
+		self.TreeModel = RandomForestClassifier(n_estimators=60)
 		# self.PCA = PCA(n_components = 15)
 	def load(self):
 		# self.SVCModel = joblib.load('SVC.dat')
