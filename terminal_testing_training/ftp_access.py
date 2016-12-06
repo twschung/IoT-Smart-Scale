@@ -93,8 +93,8 @@ def updateSVM():
 		if (serverSVMVersion > currentSVMVersion):
 			# urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/SVM.dat'),'SVM.dat')
 			# urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/PCA.dat'),'PCA.dat')
-			# urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/Tree.dat'),'Tree.dat')
-			urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/Tree.npy'),'Tree.npy')
+			urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/Tree.dat'),'Tree.dat')
+			# urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/Tree.npy'),'Tree.npy')
 			currentSVMVersion = serverSVMVersion
 		config['currentSVMVersion'] = currentSVMVersion
 		np.save('config.npy', config)
