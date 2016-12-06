@@ -1,6 +1,7 @@
 # import cv2
 from sklearn import svm
 from sklearn import tree
+from sklearn.ensemble import BaggingClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.externals import joblib
@@ -36,8 +37,9 @@ class classifier():
 		# class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovo', \
 		# random_state=None)
 		# self.TreeModel = tree.DecisionTreeClassifier()
+		self.TreeModel = BaggingClassifier()
 		# self.TreeModel = MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(15,), random_state=1)
-		self.TreeModel = RandomForestClassifier(n_estimators=25)
+		# self.TreeModel = RandomForestClassifier(n_estimators=25)
 		# self.PCA = PCA(n_components = 15)
 	def load(self):
 		# self.SVCModel = joblib.load('SVC.dat')
