@@ -37,8 +37,8 @@ def user_register(inputUser):
 	cursor.execute(sql,(inputUser.username))
 	sqlResult = cursor.fetchone()
 	if (sqlResult is None):
-		sql = "INSERT INTO `userinfo_db` (`username`, `password`, `email`, `firstname`, `lastname`, `dob`, `gender`, `height`, `weight`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-		cursor.execute(sql, (inputUser.username,inputUser.password,inputUser.email,inputUser.firstname,inputUser.lastname,inputUser.dob,inputUser.gender,inputUser.height,inputUser.weight) )
+		sql = "INSERT INTO `userinfo_db` (`username`, `password`, `email`, `firstname`, `lastname`, `dob`, `gender`, `height`, `weight`, `targetWeight`, `targetIntake`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+		cursor.execute(sql, (inputUser.username,inputUser.password,inputUser.email,inputUser.firstname,inputUser.lastname,inputUser.dob,inputUser.gender,inputUser.height,inputUser.weight,inputUser.targetWeight,inputUser.targetIntake) )
 		serverConnection.commit()
 		serverConnection.close()
 		return (True,0)
@@ -53,8 +53,8 @@ def user_changeUserDetails(inputUser):
 	else:
 		serverConnection = connectToServer()
 		cursor = serverConnection.cursor()
-		sql = "UPDATE `userinfo_db` SET `email`=%s , `firstname`=%s , `lastname`=%s , `dob`=%s , `gender`=%s , `height`=%s , `weight`=%s WHERE id = %s"
-		cursor.execute(sql, (inputUser.email, inputUser.firstname, inputUser.lastname, inputUser.dob, inputUser.gender, inputUser.height, inputUser.weight, verifedUser[1].id))
+		sql = "UPDATE `userinfo_db` SET `email`=%s , `firstname`=%s , `lastname`=%s , `dob`=%s , `gender`=%s , `height`=%s , `weight`=%s , `targetWeight`=%s , `targetIntake`=%s WHERE id = %s"
+		cursor.execute(sql, (inputUser.email, inputUser.firstname, inputUser.lastname, inputUser.dob, inputUser.gender, inputUser.height, inputUser.weight, inputUser.targetWeight, inputUser.targetIntake, verifedUser[1].id))
 		serverConnection.commit()
 		serverConnection.close()
 		comfirmUser = user_login(verifedUser[1].username, verifedUser[1].password)
