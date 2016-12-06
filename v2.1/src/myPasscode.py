@@ -3,9 +3,11 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from ui import ui_passcode
+from src import myUserSetup, myUserLogin, myUserEdit, myUserLogin
+import db_access
 
 class myPasscode(QWidget, ui_passcode.Ui_passCode):
-	def __init__(self, mainWindow, name=None, layoutSetting=None):
+	def __init__(self, mainWindow, name=None, layoutSetting=None, dataStruc=None):
 		super(myPasscode, self).__init__()
 		self.setupUi(self)
 		self.passcode = str()
@@ -22,11 +24,124 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 		self.btn_9.clicked.connect(lambda:self.handleBtn_9())
 		self.btn_done.setEnabled(False)
 		self.btn_del.setEnabled(False)
-		if (layoutSetting == "newPasscode"):
-			self.btn_forgot.setEnabled(False)
+		self.btn_remUser.setVisible(False)
+		self.btn_remFingerPrint.setVisible(False)
+		if (layoutSetting == "newUser_passcode"):
+			self.btn_forgot.setVisible(False)
+			self.lbl_title.setText("New User Setup Wizard")
+			self.lbl_info.setText("Please Enter a New Passcode")
+			self.btn_done.setText("Next")
+			self.btn_done.clicked.connect(lambda:self.handleBtn_done_newPasscode(mainWindow,dataStruc))
+			self.btn_back.clicked.connect(lambda:myUserSetup.myUserSetup.newUser_weight(self,mainWindow=mainWindow,newUserInfo=dataStruc))
+		if (layoutSetting == "newUser_confirmPasscode"):
+			self.btn_forgot.setVisible(False)
+			self.lbl_title.setText("New User Setup Wizard")
+			self.lbl_info.setText("Please confirm New Passcode")
+			self.btn_done.clicked.connect(lambda:self.handleBtn_done_newConfirmPasscode(mainWindow,dataStruc))
+			self.btn_back.clicked.connect(lambda:myUserSetup.myUserSetup.newUser_passcode(self,mainWindow=mainWindow,newUserInfo=dataStruc))
+		if (layoutSetting == "loginUser_passcode"):
+			self.lbl_title.setText("User login")
+			self.lbl_info.setText("Please enter Passcode")
+			self.btn_remUser.setVisible(True)
+			self.btn_remFingerPrint.setVisible(True)
+			self.btn_remUser.clicked.connect(lambda:self.handleBtn_remUser())
+			self.btn_done.clicked.connect(lambda:self.handleBtn_done_loginPasscode(mainWindow,dataStruc))
+			self.btn_back.clicked.connect(lambda:myUserLogin.myUserLogin.loginUser_email(self,mainWindow=mainWindow,currentUserInfo=dataStruc))
+		if (layoutSetting == "editUser_verifyPasscode"):
+			self.btn_forgot.setVisible(False)
+			self.lbl_title.setText("Passcode Verification")
+			self.lbl_info.setText("Please Enter Passcode")
+			self.btn_done.setText("Next")
+			self.btn_done.clicked.connect(lambda:self.handleBtn_done_editUser_verfyPasscode(mainWindow,dataStruc))
+			self.btn_back.clicked.connect(lambda:mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget()))
+		if (layoutSetting == "editUser_oldPasscode"):
+			self.btn_forgot.setVisible(False)
+			self.btn_remUser.setVisible(True)
+			if (myUserLogin.myUserLogin.checkRemeberUserStatus(self, currentUserInfo=dataStruc) == True):
+				self.btn_remUser.setChecked(True)
+			else:
+				self.btn_remUser.setChecked(False)
+			self.lbl_title.setText("Passcode Verification")
+			self.lbl_info.setText("Please Enter Passcode")
+			self.btn_done.setText("Next")
+			self.btn_done.clicked.connect(lambda:self.handleBtn_done_editUser_oldPasscode(mainWindow,dataStruc))
+			self.btn_back.clicked.connect(lambda:self.handleBtn_back_editUser_oldPasscode(mainWindow,dataStruc))
+		if (layoutSetting == "editUser_newPasscode"):
+			self.btn_forgot.setVisible(False)
+			self.lbl_title.setText("Changing Passcode")
+			self.lbl_info.setText("Please Enter New Passcode")
+			self.btn_done.setText("Next")
 			self.btn_back.setEnabled(False)
-			self.label.setText("Please Enter a New Passcode")
-			self.btn_done.clicked.connect(lambda:self.handleBtn_done_newPasscode())
+			self.btn_done.clicked.connect(lambda:self.handleBtn_done_editUser_newPasscode(mainWindow,dataStruc))
+		if (layoutSetting == "editUser_confirmPasscode"):
+			self.btn_forgot.setVisible(False)
+			self.lbl_title.setText("Changing Passcode")
+			self.lbl_info.setText("Please Confirm New Passcode")
+			self.btn_done.setText("Summit")
+			self.btn_back.clicked.connect(lambda:myUserEdit.myUserEdit.editUser_newPasscode(self,mainWindow=mainWindow,currentUserInfo=dataStruc))
+			self.btn_done.clicked.connect(lambda:self.handleBtn_done_editUser_confirmPasscode(mainWindow,dataStruc))
+
+	def handleBtn_done_newPasscode(self, mainWindow, dataStruc):
+		dataStruc.password = self.passcode
+		myUserSetup.myUserSetup.newUser_confirmPasscode(self,mainWindow=mainWindow,newUserInfo=dataStruc)
+	def handleBtn_done_newConfirmPasscode(self, mainWindow, dataStruc):
+		if (dataStruc.password == self.passcode):
+			myUserSetup.myUserSetup.newUser_add2db(self,mainWindow=mainWindow,newUserInfo=dataStruc)
+		else:
+			msg = QMessageBox.information(self, 'Error',"Passcode doesnt not match",QMessageBox.Ok)
+			dataStruc.passcode = ""
+			myUserSetup.myUserSetup.newUser_passcode(self,mainWindow=mainWindow,newUserInfo=dataStruc)
+	def handleBtn_done_loginPasscode(self, mainWindow, dataStruc):
+		dataStruc.password = self.passcode
+		db_result = db_access.user_login(dataStruc.username,dataStruc.password)
+		if (db_result[0] == True):
+			currentUserInfo = db_result[1]
+			if (self.btn_remUser.isChecked()==True and self.btn_remFingerPrint.isChecked()==True):
+				myUserLogin.myUserLogin.rememberUserAndFingerPrint(self,currentUserInfo)
+			elif (self.btn_remUser.isChecked()==True and self.btn_remFingerPrint.isChecked()==False):
+				myUserLogin.myUserLogin.rememberUser(self,currentUserInfo)
+			myUserLogin.myUserLogin.enterUserMenu(self,mainWindow=mainWindow,currentUserInfo=currentUserInfo)
+		else:
+			msg = QMessageBox.information(self, 'Failed',"Email / Passcode Incorrect",QMessageBox.Ok)
+	def handleBtn_done_editUser_verfyPasscode(self, mainWindow, dataStruc):
+		if (self.passcode == dataStruc.password):
+			myUserEdit.myUserEdit.editUser_gender(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+		else:
+			msg = QMessageBox.information(self, 'Failed',"Passcode Incorrect",QMessageBox.Ok)
+	def handleBtn_done_editUser_oldPasscode(self, mainWindow, dataStruc):
+		if (self.passcode == dataStruc.password):
+			myUserEdit.myUserEdit.editUser_newPasscode(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+			if (self.btn_remUser.isChecked() == True):
+				myUserLogin.myUserLogin.rememberUser(self, currentUserInfo=dataStruc)
+			else:
+				myUserLogin.myUserLogin.forgetUser(self, currentUserInfo=dataStruc)
+		else:
+			msg = QMessageBox.information(self, 'Failed',"Passcode Incorrect",QMessageBox.Ok)
+	def handleBtn_done_editUser_newPasscode(self, mainWindow, dataStruc):
+		dataStruc.password = self.passcode
+		myUserEdit.myUserEdit.editUser_confirmPasscode(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+	def handleBtn_done_editUser_confirmPasscode(self, mainWindow, dataStruc):
+		if (dataStruc.password == self.passcode):
+			myUserEdit.myUserEdit.editUserPasscodes_add2db(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+		else:
+			msg = QMessageBox.information(self, 'Error',"Passcode doesnt not match",QMessageBox.Ok)
+			dataStruc.passcode = ""
+			myUserEdit.myUserEdit.editUser_newPasscode(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+	def handleBtn_back_editUser_oldPasscode(self, mainWindow, dataStruc):
+		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
+		if (self.btn_remUser.isChecked() == True):
+			myUserLogin.myUserLogin.rememberUser(self, currentUserInfo=dataStruc)
+		else:
+			myUserLogin.myUserLogin.forgetUser(self, currentUserInfo=dataStruc)
+
+
+	def handleBtn_remUser(self):
+		if (self.btn_remUser.isChecked()== True):
+			self.btn_remFingerPrint.setEnabled(True)
+		else:
+			self.btn_remFingerPrint.setEnabled(False)
+			self.btn_remFingerPrint.setChecked(False)
+
 	def updateLineEdit(self):
 		self.btn_done.setEnabled(False)
 		self.btn_del.setEnabled(True)
@@ -95,6 +210,3 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 	def handleBtn_7(self): self.addNum2Passcode('7')
 	def handleBtn_8(self): self.addNum2Passcode('8')
 	def handleBtn_9(self): self.addNum2Passcode('9')
-
-	def handleBtn_done_newPasscode(self):
-		print(self.passcode)
