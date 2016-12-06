@@ -34,7 +34,6 @@ class classifier():
 		# coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
 		# class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovo', \
 		# random_state=None)
-		# self.TreeModel = svm.SVC()
 		# self.TreeModel = tree.DecisionTreeClassifier()
 		self.TreeModel = RandomForestClassifier(n_estimators=25)
 		# self.PCA = PCA(n_components = 15)
@@ -51,7 +50,7 @@ class classifier():
 		# self.TreeModel.fit(reduced_dimen_sampleSet, responseSet)
 		self.TreeModel.fit(sampleSet, responseSet)
 		# joblib.dump(self.SVCModel, 'SVC.dat')
-		joblib.dump(self.TreeModel, 'Tree.dat',compress=3)
+		joblib.dump(self.TreeModel, 'Tree.dat')
 		# joblib.dump(self.PCA, 'PCA.dat')
 		# cpickle.dump(self.TreeModel, open( "Tree.dat", "wb"))
 	def predict(self, sample):
