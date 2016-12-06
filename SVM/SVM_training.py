@@ -21,7 +21,7 @@ def main():
 	print(" [3] - Publish the trained SVM ")
 	print(" [4] - Add new item into database & add into the data training queue ")
 	print(" [5] - Exit Program ")
-	print(" [6] - Erase SampleSet & RasposeSet and reset everything")
+	# print(" [6] - Erase SampleSet & RasposeSet and reset everything")
 	print("-----------------------------------------------------------")
 	usrInput=input("Please input the one of the option ->  ")
 	if (usrInput == "1"):
@@ -80,9 +80,9 @@ def opt_2():
 			# pca_newPath = os.path.join(SVMArchivePath, pca_newFilename)
 			tree_currentPath = os.path.join(os.getcwd(),'Tree.dat')
 			tree_newFilename = "Tree_" + str(os.stat("Tree.dat").st_mtime) + ".dat"
-			tree_newPath = os.path.join(SVMArchivePath, pca_newFilename)
-			os.rename(svm_currentPath,svm_newPath)
-			os.rename(pca_currentPath,pca_newPath)
+			tree_newPath = os.path.join(SVMArchivePath, tree_newFilename)
+			os.rename(tree_currentPath,tree_newPath)
+			# os.rename(pca_currentPath,pca_newPath)
 		except:
 			print ("new SVM model will be created")
 		finally:
