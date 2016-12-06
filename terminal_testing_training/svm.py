@@ -39,7 +39,8 @@ class classifier():
 		# self.PCA = PCA(n_components = 15)
 	def load(self):
 		# self.SVCModel = joblib.load('SVC.dat')
-		self.TreeModel = joblib.load('Tree.dat')
+		# self.TreeModel = joblib.load('Tree.dat')
+		self.TreeModel = np.load('Tree.dat')
 		# self.TreeModel = cpickle.load(open( "Tree.dat", "rb"))
 		# self.PCA = joblib.load('PCA.dat')
 	def train(self):
@@ -50,7 +51,8 @@ class classifier():
 		# self.TreeModel.fit(reduced_dimen_sampleSet, responseSet)
 		self.TreeModel.fit(sampleSet, responseSet)
 		# joblib.dump(self.SVCModel, 'SVC.dat')
-		joblib.dump(self.TreeModel, 'Tree.dat')
+		# joblib.dump(self.TreeModel, 'Tree.dat')
+		np.save('Tree.dat',self.TreeModel)
 		# joblib.dump(self.PCA, 'PCA.dat')
 		# cpickle.dump(self.TreeModel, open( "Tree.dat", "wb"))
 	def predict(self, sample):
