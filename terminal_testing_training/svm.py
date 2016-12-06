@@ -30,12 +30,12 @@ def addNewDataSet (newSampleSet, newResponseSet):
 
 class classifier():
 	def __init__(self):
-		# self.SVCModel = svm.SVC(C=1.0, kernel='rbf', degree=3, gamma='auto', \
-		# coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
-		# class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovo', \
-		# random_state=None)
+		self.TreeModel = svm.SVC(C=1.0, kernel='rbf', degree=3, gamma='auto', \
+		coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
+		class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovo', \
+		random_state=None)
 		# self.TreeModel = tree.DecisionTreeClassifier()
-		self.TreeModel = RandomForestClassifier(n_estimators=50)
+		# self.TreeModel = RandomForestClassifier(n_estimators=50)
 		# self.PCA = PCA(n_components = 15)
 	def load(self):
 		# self.SVCModel = joblib.load('SVC.dat')
