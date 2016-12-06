@@ -54,9 +54,9 @@ class classifier():
 		joblib.dump(self.PCA, 'PCA.dat')
 		# cpickle.dump(self.TreeModel, open( "Tree.dat", "wb"))
 	def predict(self, sample):
-		# reduced_dimen_sample = self.PCA.transform(sample)
-		return self.TreeModel.predict(sample)
+		reduced_dimen_sample = self.PCA.transform(sample)
+		return self.TreeModel.predict(reduced_dimen_sample)
 	def predict_prob(self, sample):
-		# reduced_dimen_sample = self.PCA.transform(sample)
-		return self.TreeModel.predict_proba(sample)
+		reduced_dimen_sample = self.PCA.transform(sample)
+		return self.TreeModel.predict_proba(reduced_dimen_sample)
 		# return self.SVCModel.predict_proba(reduced_dimen_sample)
