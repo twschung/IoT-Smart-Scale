@@ -36,7 +36,7 @@ class classifier():
 		# class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovo', \
 		# random_state=None)
 		# self.TreeModel = tree.DecisionTreeClassifier()
-		self.TreeModel = MLPClassifier()
+		self.TreeModel = MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(15,), random_state=1)
 		# self.TreeModel = RandomForestClassifier(n_estimators=25)
 		# self.PCA = PCA(n_components = 15)
 	def load(self):
