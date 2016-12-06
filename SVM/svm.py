@@ -36,7 +36,7 @@ class classifier():
 		# random_state=None)
 		# self.TreeModel = svm.SVC()
 		# self.TreeModel = tree.DecisionTreeClassifier()
-		self.TreeModel = RandomForestClassifier(n_estimators=20)
+		self.TreeModel = RandomForestClassifier(n_estimators=25)
 		# self.PCA = PCA(n_components = 15)
 	def load(self):
 		# self.SVCModel = joblib.load('SVC.dat')
