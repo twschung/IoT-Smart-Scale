@@ -8,6 +8,8 @@ import ui_foodinformation
 import db_access, db_structure
 import time
 
+from hx711 import HX711
+
 class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def __init__(self, mainWindow, currentUserInfo, name=None, layoutSetting=None):
 		super(myFoodInformation, self).__init__()
@@ -22,6 +24,19 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_tare.clicked.connect(lambda:self.handleBtn_tare(mainWindow))
 		self.btn_addIntake.setEnabled(False)
 		self.btn_addIntake.clicked.connect(lambda:self.handleBtn_addIntake())
+
+		# set up thread that will update weight
+		self.thread = QThread()
+		self.getWeight = get_weight_thread()
+		self.getWeight.finished[int].connect(self.onFinished)
+		self.getWeight.moveToThread(self.thread)
+		self.thread.started.connect(self.getWeight.work)
+		self.thread.start()	
+	
+	@pyqtSlot(int)
+	def onFinished(self, i):
+		self.lcd_number.display(int(i))
+
 	def handleBtn_back(self,mainWindow):
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 	def handleBtn_scan(self,mainWindow,currentUserInfo):
@@ -43,12 +58,29 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		else:
 			self.btn_addIntake.setEnabled(True)
 	def handleBtn_tare(self, mainWindow):
-		pass
 		# add tare stuff here
+		scale.tare()
 	def handleBtn_addIntake(self):
 		db_access.user_addNewFoodIntake(self.foodInfo)
 		msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
 		self.btn_addIntake.setEnabled(False)
 
+class get_weight_thread (QObject):
+	finished = pyqtSignal(int)
 
+	def __init__(self):
+		print ("get_weight_thread init")
+		#super (self.__class__, self).__init__()
+		super().__init__()
 
+	def work(self):
+		print ("get_weight_thread work")
+		while True:
+			self.i = int(scale.get_weight(5))
+			self.finished.emit(self.i)
+
+# setup scale
+scale = HX711(23,24)
+scale.set_reference_unit(770)
+scale.reset()
+scale.tare()
