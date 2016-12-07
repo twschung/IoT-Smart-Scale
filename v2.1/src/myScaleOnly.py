@@ -1,10 +1,8 @@
 import sys
-<<<<<<< HEAD
 
-=======
 sys.path.insert(0,"/home/pi/Desktop/v2.1/src")
 sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
->>>>>>> master
+
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *

@@ -4,7 +4,7 @@ sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-import myMainMenu, myLoginMenu, myFoodInformation, myScaleOnly, myUserSetup
+import myLoginMenu, myFoodInformation, myScaleOnly, myUserSetup
 import ui_mainmenu
 
 class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
