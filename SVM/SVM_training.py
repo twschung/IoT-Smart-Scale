@@ -133,18 +133,20 @@ def opt_6():
 	searchPath = os.path.join(processedItemPath,'*.jpg')
 	for filename in glob.glob(searchPath):
 		currentFilePath = os.path.join(processedItemPath,filename)
-		print("Moving ",currentFilePath)
 		newFilePath = os.path.join(exisitingItemPath, filename)
+		print("Moving ",currentFilePath , " to ", newFilePath)
 		os.rename(currentFilePath,newFilePath)
 	searchPath = os.path.join(processedItemPath,'backgroundImage/*.jpg')
 	for filename in glob.glob(searchPath):
 		currentFilePath = os.path.join(processedItemPath,"/backgroundImage",filename)
-		print("Moving ",currentFilePath)
+		print("Moving ",currentFilePath , " to ", newFilePath)
 		newFilePath = os.path.join(exisitingItemPath,"/backgroundImage", filename)
 		os.rename(currentFilePath,newFilePath)
-	os.remove("sampleSet.npy")
-	os.remove("responseSet.npy")
-	main()
+	try:
+		os.remove("sampleSet.npy")
+		os.remove("responseSet.npy")
+	finally:
+		main()
 
 def newImageProcessMenu(filePath):
 	stayInLoop = True
