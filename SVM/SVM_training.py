@@ -11,6 +11,7 @@ SVMArchivePath = '/home/public/HTTP/SVM/archive'
 processedItemPath = '/home/public/FTP/imageUploaded/processedItem'
 newItemPath = '/home/public/FTP/imageUploaded/newItem'
 exisitingItemPath =  '/home/public/FTP/imageUploaded/existingItem'
+exisitingBackgroundItemPath = '/home/public/FTP/imageUploaded/existingItem/backgroundImage'
 sampleItemPath = '/home/public/HTTP/imageSample'
 
 def main():
@@ -139,8 +140,7 @@ def opt_6():
 	searchPath = os.path.join(processedItemPath,'backgroundImage/*.jpg')
 	for filename in glob.glob(searchPath):
 		currentFilePath = filename
-		newFilePath = os.path.join(exisitingItemPath,'/backgroundImage')
-		newFilePath = os.path.join(newFilePath, (os.path.basename(filename)))
+		newFilePath = os.path.join(exisitingBackgroundItemPath,(os.path.basename(filename)))
 		print("Moving ",currentFilePath , " to ", newFilePath)
 		os.rename(currentFilePath,newFilePath)
 	try:
