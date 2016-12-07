@@ -82,7 +82,6 @@ def opt_2():
 			Model_newFilename = "Model_" + str(os.stat("Model.dat").st_mtime) + ".dat"
 			Model_newPath = os.path.join(SVMArchivePath, Model_newFilename)
 			os.rename(Model_currentPath,Model_newPath)
-			# os.rename(pca_currentPath,pca_newPath)
 		except:
 			print ("new SVM model will be created")
 		finally:
@@ -126,6 +125,25 @@ def opt_4():
 		print(filePath)
 		previewImage(filePath)
 		newImageProcessMenu(filePath)
+	main()
+
+def opt_6():
+	print("-----------------------------------------------------------")
+	print("Moving images from processedItem's folder to existingItem's folder !")
+	searchPath = os.path.join(processedItemPath,'*.jpg')
+	for filename in glob.glob(searchPath):
+		currentFilePath = os.path.join(processedItem,filename)
+		print("Moving ",currentFilePath)
+		newFilePath = os.path.join(exisitingItemPath, filename)
+		os.rename(currentFilePath,newFilePath)
+	searchPath = os.path.join(processedItemPath,'backgroundImage/*.jpg')
+	for filename in glob.glob(searchPath):
+		currentFilePath = os.path.join(processedItem,"/backgroundImage",filename)
+		print("Moving "currentFilePath)
+		newFilePath = os.path.join(exisitingItemPath,"/backgroundImage" filename)
+		os.rename(currentFilePath,newFilePath)
+	os.remove("sampleSet.npy")
+	os.remove("responseSet.npy")
 	main()
 
 def newImageProcessMenu(filePath):
