@@ -145,7 +145,7 @@ def displaySVMInfo():
 	print("Loading classifier Info......")
 	try:
 		print ("Last modified :")
-		fileLastModified = os.stat("Tree.dat").st_mtime
+		fileLastModified = os.stat("Model.dat").st_mtime
 		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
 	except:
 		print ("No SVM is found")

@@ -78,10 +78,10 @@ def opt_2():
 			# pca_currentPath = os.path.join(os.getcwd(),'PCA.dat')
 			# pca_newFilename = "PCA_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
 			# pca_newPath = os.path.join(SVMArchivePath, pca_newFilename)
-			tree_currentPath = os.path.join(os.getcwd(),'Tree.dat')
-			tree_newFilename = "Tree_" + str(os.stat("Tree.dat").st_mtime) + ".dat"
-			tree_newPath = os.path.join(SVMArchivePath, tree_newFilename)
-			os.rename(tree_currentPath,tree_newPath)
+			Model_currentPath = os.path.join(os.getcwd(),'Model.dat')
+			Model_newFilename = "Model_" + str(os.stat("Model.dat").st_mtime) + ".dat"
+			Model_newPath = os.path.join(SVMArchivePath, Model_newFilename)
+			os.rename(Model_currentPath,Model_newPath)
 			# os.rename(pca_currentPath,pca_newPath)
 		except:
 			print ("new SVM model will be created")
@@ -105,13 +105,13 @@ def opt_3():
 	# currentPath = os.path.join(os.getcwd(),'PCA.dat')
 	# newPath = os.path.join(SVMPath, 'PCA.dat')
 	# shutil.copyfile(currentPath,newPath)
-	currentPath = os.path.join(os.getcwd(),'Tree.dat')
-	newPath = os.path.join(SVMPath, 'Tree.dat')
+	currentPath = os.path.join(os.getcwd(),'Model.dat')
+	newPath = os.path.join(SVMPath, 'Model.dat')
 	shutil.copyfile(currentPath,newPath)
-	version = np.array(os.stat("Tree.dat").st_mtime)
-	np.save('SVM_version.npy',version)
-	currentPath = os.path.join(os.getcwd(),'SVM_version.npy')
-	newPath = os.path.join(SVMPath, 'SVM_version.npy')
+	version = np.array(os.stat("Model.dat").st_mtime)
+	np.save('Model_version.npy',version)
+	currentPath = os.path.join(os.getcwd(),'Model_version.npy')
+	newPath = os.path.join(SVMPath, 'Model_version.npy')
 	shutil.copyfile(currentPath,newPath)
 	print("Done!")
 	print("-----------------------------------------------------------")
@@ -279,7 +279,7 @@ def displaySVMInfo():
 	print("Loading SVM Info......")
 	try:
 		print ("Last modified :")
-		fileLastModified = os.stat("Tree.dat").st_mtime
+		fileLastModified = os.stat("Model.dat").st_mtime
 		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
 	except:
 		print ("No SVM is found")
