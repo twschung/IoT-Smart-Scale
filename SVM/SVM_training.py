@@ -139,7 +139,7 @@ def opt_6():
 	searchPath = os.path.join(processedItemPath,'backgroundImage/*.jpg')
 	for filename in glob.glob(searchPath):
 		currentFilePath = os.path.join(processedItem,"/backgroundImage",filename)
-		print("Moving "currentFilePath)
+		print("Moving ",currentFilePath)
 		newFilePath = os.path.join(exisitingItemPath,"/backgroundImage" filename)
 		os.rename(currentFilePath,newFilePath)
 	os.remove("sampleSet.npy")
