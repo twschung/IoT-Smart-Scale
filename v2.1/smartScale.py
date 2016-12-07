@@ -1,9 +1,10 @@
 import sys
+sys.path.insert(0,"/home/pi/Desktop/v2.1/src")
+sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-from src import myMainMenu, myLoginMenu
-from ui import ui_mainmenu, ui_loginmenu, ui_foodinformation, ui_scaleonly, ui_usersetup, ui_passcode
+import myMainMenu, myLoginMenu
+import ui_mainmenu, ui_loginmenu, ui_foodinformation, ui_scaleonly, ui_usersetup, ui_passcode
 
 class myMainWindow(QMainWindow):
 	def __init__(self, parent=None):

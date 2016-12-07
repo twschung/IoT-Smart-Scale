@@ -1,9 +1,11 @@
 import sys
+sys.path.insert(0,"/home/pi/Desktop/v2.1/src")
+sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from ui import ui_genderSelection
-from src import myUserSetup, myUserEdit
+import ui_genderSelection
+import myUserSetup, myUserEdit
 
 class myGenderSelection(QWidget, ui_genderSelection.Ui_genderSelection):
 	def __init__(self, mainWindow, name=None, layoutSetting=None, dataStruc=None):
@@ -12,7 +14,7 @@ class myGenderSelection(QWidget, ui_genderSelection.Ui_genderSelection):
 
 		if (layoutSetting == "newUser_gender"):
 			self.lbl_title.setText("New User Setup Wizard")
-			self.btn_back.clicked.connect(lambda:self.mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget()))
+			self.btn_back.clicked.connect(lambda:mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget()))
 			self.btn_male.clicked.connect(lambda:self.handleBtn_male_new(mainWindow,dataStruc))
 			self.btn_female.clicked.connect(lambda:self.handleBtn_female_new(mainWindow,dataStruc))
 		if (layoutSetting == "editUser_gender"):

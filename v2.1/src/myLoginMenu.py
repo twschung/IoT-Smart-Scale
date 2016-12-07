@@ -1,9 +1,11 @@
 import sys
+sys.path.insert(0,"/home/pi/Desktop/v2.1/src")
+sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from ui import ui_loginmenu
-from src import myUserLogin, myPasscode
+import ui_loginmenu
+import myUserLogin, myPasscode
 import db_structure
 import numpy as np
 
@@ -23,10 +25,10 @@ class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
 	def handleBtn_back(self, mainWindow):
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 	def handleBtn_newLogin(self, mainWindow):
-		myUserLogin.myUserLogin(mainWindow)
+		myUserLogin.myUserLogin(mainWindow, newUser=True)
 	def handleBtn_user(self, mainWindow, userNum):
 		self.config = np.load('config.npy').item()
-		myUserLogin.myUserLogin.loginUser_passcode(self, mainWindow=mainWindow, currentUserInfo=self.config['expUsr'][userNum])
+		myUserLogin.myUserLogin.loginUser_passcode(self, mainWindow=mainWindow, currentUserInfo=self.config['expUsr'][userNum], newUser=False)
 	def processConfig(self):
 		try:
 			self.config = np.load('config.npy').item()

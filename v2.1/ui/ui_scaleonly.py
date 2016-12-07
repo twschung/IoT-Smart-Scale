@@ -70,7 +70,7 @@ class Ui_scaleOnly(object):
         self.lbl_g.setMaximumSize(QtCore.QSize(31, 71))
         font = QtGui.QFont()
         font.setFamily("Helvetica Neue")
-        font.setPointSize(48)
+        font.setPointSize(36)
         font.setBold(True)
         font.setWeight(75)
         self.lbl_g.setFont(font)

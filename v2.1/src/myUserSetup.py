@@ -1,9 +1,11 @@
 import sys
+sys.path.insert(0,"/home/pi/Desktop/v2.1/src")
+sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from ui import ui_newlogin
-from src import myPasscode, myTextInput, myGenderSelection, myNumInput
+import ui_newlogin
+import myPasscode, myTextInput, myGenderSelection, myNumInput
 import db_structure, db_access
 
 class myUserSetup():
@@ -12,7 +14,6 @@ class myUserSetup():
 		self.widget = myGenderSelection.myGenderSelection(mainWindow, layoutSetting = "newUser_gender", dataStruc=newUserInfo)
 		mainWindow.central_widget.addWidget(self.widget)
 		mainWindow.central_widget.setCurrentWidget(self.widget)
-
 	def newUser_gender(self, mainWindow, newUserInfo):
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 		self.widget = myGenderSelection.myGenderSelection(mainWindow, layoutSetting = "newUser_gender", dataStruc=newUserInfo)
