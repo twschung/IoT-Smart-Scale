@@ -132,15 +132,15 @@ def opt_6():
 	print("Moving images from processedItem's folder to existingItem's folder !")
 	searchPath = os.path.join(processedItemPath,'*.jpg')
 	for filename in glob.glob(searchPath):
-		currentFilePath = os.path.join(processedItemPath,filename)
-		newFilePath = os.path.join(exisitingItemPath, filename)
+		currentFilePath = filename
+		newFilePath = os.path.join(exisitingItemPath, (os.basename(filename)))
 		print("Moving ",currentFilePath , " to ", newFilePath)
 		os.rename(currentFilePath,newFilePath)
 	searchPath = os.path.join(processedItemPath,'backgroundImage/*.jpg')
 	for filename in glob.glob(searchPath):
-		currentFilePath = os.path.join(processedItemPath,"/backgroundImage",filename)
+		currentFilePath = filename
+		newFilePath = os.path.join(exisitingItemPath,"/backgroundImage", (os.basename(filename)))
 		print("Moving ",currentFilePath , " to ", newFilePath)
-		newFilePath = os.path.join(exisitingItemPath,"/backgroundImage", filename)
 		os.rename(currentFilePath,newFilePath)
 	try:
 		os.remove("sampleSet.npy")

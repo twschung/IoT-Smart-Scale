@@ -19,8 +19,6 @@ responseSet = np.load('responseSet.npy')
 
 trainingSS , validationSS , trainingRS , validationRS = train_test_split(sampleSet, responseSet, test_size=0.33, random_state=42)
 
-
-
 clf = []
 clf.append(tree.DecisionTreeClassifier())
 clf.append(RandomForestClassifier(n_estimators=25))
