@@ -139,6 +139,7 @@ def opt_6():
 	searchPath = os.path.join(processedItemPath,'backgroundImage/*.jpg')
 	for filename in glob.glob(searchPath):
 		currentFilePath = filename
+		print(exisitingItemPath)
 		newFilePath = os.path.join(exisitingItemPath,"/backgroundImage/")
 		print(newFilePath)
 		newFilePath = os.path.join(newFilePath, (os.path.basename(filename)))
