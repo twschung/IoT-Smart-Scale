@@ -21,7 +21,7 @@ def main():
 	print(" [3] - Publish the trained SVM ")
 	print(" [4] - Add new item into database & add into the data training queue ")
 	print(" [5] - Exit Program ")
-	# print(" [6] - Erase SampleSet & RasposeSet and reset everything")
+	print(" [6] - Erase SampleSet & RasposeSet and reset everything")
 	print("-----------------------------------------------------------")
 	usrInput=input("Please input the one of the option ->  ")
 	if (usrInput == "1"):
@@ -132,13 +132,13 @@ def opt_6():
 	print("Moving images from processedItem's folder to existingItem's folder !")
 	searchPath = os.path.join(processedItemPath,'*.jpg')
 	for filename in glob.glob(searchPath):
-		currentFilePath = os.path.join(processedItem,filename)
+		currentFilePath = os.path.join(processedItemPath,filename)
 		print("Moving ",currentFilePath)
 		newFilePath = os.path.join(exisitingItemPath, filename)
 		os.rename(currentFilePath,newFilePath)
 	searchPath = os.path.join(processedItemPath,'backgroundImage/*.jpg')
 	for filename in glob.glob(searchPath):
-		currentFilePath = os.path.join(processedItem,"/backgroundImage",filename)
+		currentFilePath = os.path.join(processedItemPath,"/backgroundImage",filename)
 		print("Moving ",currentFilePath)
 		newFilePath = os.path.join(exisitingItemPath,"/backgroundImage", filename)
 		os.rename(currentFilePath,newFilePath)
