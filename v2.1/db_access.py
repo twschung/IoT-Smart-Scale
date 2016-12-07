@@ -15,7 +15,7 @@ def user_login(inputUsername, inputPassword):
 		#print ("Fail to fetch user details from DB (Incorrect Username or Password)")
 		return (False,0)
 	else:
-		returnUser = db_structure.userDataStructure(sqlResult['id'],sqlResult['username'],sqlResult['password'],sqlResult['email'],sqlResult['firstname'],sqlResult['lastname'],sqlResult['dob'],sqlResult['gender'],sqlResult['height'],sqlResult['weight'])
+		returnUser = db_structure.userDataStructure(sqlResult['id'],sqlResult['username'],sqlResult['password'],sqlResult['email'],sqlResult['firstname'],sqlResult['lastname'],sqlResult['dob'],sqlResult['gender'],sqlResult['height'],sqlResult['weight'],sqlResult['targetWeight'],sqlResult['targetIntake'])
 		return (True, returnUser)
 
 def user_checkIfEmailAlreadyRegisted(inputEmail):

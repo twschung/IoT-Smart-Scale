@@ -17,7 +17,7 @@ class Ui_accountSetting(object):
         self.gridLayout.setSpacing(6)
         self.gridLayout.setObjectName("gridLayout")
         self.label = QtWidgets.QLabel(accountSetting)
-        self.label.setMinimumSize(QtCore.QSize(261, 71))
+        self.label.setMinimumSize(QtCore.QSize(780, 71))
         self.label.setMaximumSize(QtCore.QSize(261, 71))
         font = QtGui.QFont()
         font.setFamily("Helvetica Neue")

@@ -1,9 +1,11 @@
 import sys
+sys.path.insert(0,"/home/pi/Desktop/v2.1/src")
+sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from src import myMainMenu, myLoginMenu, myFoodInformation, myScaleOnly, myUserSetup
-from ui import ui_mainmenu
+import myMainMenu, myLoginMenu, myFoodInformation, myScaleOnly, myUserSetup
+import ui_mainmenu
 
 class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
 	def __init__(self, mainWindow, name=None):
@@ -18,7 +20,7 @@ class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
 		mainWindow.central_widget.addWidget(self.widget)
 		mainWindow.central_widget.setCurrentWidget(self.widget)
 	def handleBtn_guest(self, mainWindow):
-		self.widget = myFoodInformation.myFoodInformation(mainWindow, layoutSetting = "guest")
+		self.widget = myFoodInformation.myFoodInformation(mainWindow,currentUserInfo=None,layoutSetting = "guest")
 		mainWindow.central_widget.addWidget(self.widget)
 		mainWindow.central_widget.setCurrentWidget(self.widget)
 	def handleBtn_scaleOnly(self, mainWindow):

@@ -4,11 +4,11 @@ sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-import ui_scaleonly
+import ui_foodinformation
 
-class myScaleOnly(QWidget, ui_scaleonly.Ui_scaleOnly):
-	def __init__(self, mainWindow, name=None):
-		super(myScaleOnly, self).__init__()
+class myScan(QWidget, ui_foodinformation.Ui_foodInformation):
+	def __init__(self, mainWindow, name=None, currentUserInfo=None):
+		super(myScan, self).__init__()
 		self.setupUi(self)
 		self.btn_back.clicked.connect(lambda:self.handleBtn_back(mainWindow))
 	def handleBtn_back(self, mainWindow):
