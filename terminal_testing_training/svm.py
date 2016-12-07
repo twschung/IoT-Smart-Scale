@@ -33,7 +33,7 @@ def addNewDataSet (newSampleSet, newResponseSet):
 
 class classifier():
 	def __init__(self):
-		self.Model = svm.SVC(C=1.0, kernel='poly', degree=3)
+		self.Model = svm.SVC(C=1.0, kernel='poly', degree=3, probability=True)
 	def load(self):
 		self.Model = joblib.load('Model.dat')
 	def train(self):
