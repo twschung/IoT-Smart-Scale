@@ -136,7 +136,7 @@ class myTextInput(QWidget, ui_textInput.Ui_textInput):
 	def handle_btn_login_loginUser_email(self, mainWindow, dataStruc):
 		dataStruc.email=self.inputedText
 		dataStruc.username=self.inputedText
-		myUserLogin.myUserLogin.loginUser_passcode(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+		myUserLogin.myUserLogin.loginUser_passcode(self,mainWindow=mainWindow,currentUserInfo=dataStruc,newUser=True)
 	def handle_btn_login_editUser_firstname(self, mainWindow, dataStruc):
 		dataStruc.firstname=self.inputedText
 		if(myCheckUserInfo.checkUserDetails(self,dataStruc, "firstname")==True):

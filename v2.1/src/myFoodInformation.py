@@ -42,14 +42,21 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def handleBtn_scan(self,mainWindow,currentUserInfo):
 		# add camera modules stuff here
 		self.btn_addIntake.setEnabled(False)
-		self.foodInfo = db_access.food_getActualInfo(currentUserInfo.id,1,100)
+		if(currentUserInfo==None):
+			userId=0
+		else:
+			userId=currentUserInfo.id
+		self.foodInfo = db_access.food_getActualInfo(userId,1,100)
 		self.lbl_evergyVal.setText(str(self.foodInfo.energy)) #typo on the ui file, use 'evergy'
 		self.lbl_proteinVal.setText(str(self.foodInfo.protein))
 		self.lbl_sugarVal.setText(str(self.foodInfo.sugars))
 		self.lbl_fibreVal.setText(str(self.foodInfo.fibre))
 		self.lbl_fatVal.setText(str(self.foodInfo.fat))
 		self.lbl_saltVal.setText(str(self.foodInfo.salt))
-		self.btn_addIntake.setEnabled(True)
+		if(currentUserInfo==None):
+			self.btn_addIntake.setEnabled(False)
+		else:
+			self.btn_addIntake.setEnabled(True)
 	def handleBtn_tare(self, mainWindow):
 		# add tare stuff here
 		scale.tare()
