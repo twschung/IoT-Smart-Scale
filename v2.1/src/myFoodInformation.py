@@ -11,11 +11,25 @@ import db_access, db_structure
 import time
 from hx711 import HX711
 
+from picamera import PiCamera
+from time import sleep
+import RPi.GPIO as GPIO
+
+import ml
+import numpy as np
+import obj_recognition
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(11, GPIO.OUT)
+camera = PiCamera()
+camera.resolution = (1024, 768)
+
 class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def __init__(self, mainWindow, currentUserInfo, name=None, layoutSetting=None):
 		super(myFoodInformation, self).__init__()
 		self.setupUi(self)
 		self.foodInfo = None
+		self.setUpBackgroundImage()
 		userDailyIntakeInfo = db_structure.userDailyIntakeStructure()
 		self.btn_new.setText("Scan")
 		if (layoutSetting == "guest"):
@@ -26,15 +40,15 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_addIntake.setEnabled(False)
 		self.btn_addIntake.clicked.connect(lambda:self.handleBtn_addIntake())
 		self.foodWeight = 0
-		
+
 		# set up thread that will update weight
 		self.thread = QThread()
 		self.getWeight = get_weight_thread()
 		self.getWeight.finished[int].connect(self.onFinished)
 		self.getWeight.moveToThread(self.thread)
 		self.thread.started.connect(self.getWeight.work)
-		self.thread.start()	
-	
+		self.thread.start()
+
 	@pyqtSlot(int)
 	def onFinished(self, i):
 		self.lcd_number.display(int(i))
@@ -43,6 +57,13 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 	def handleBtn_scan(self,mainWindow,currentUserInfo):
 		# add camera modules stuff here
+		self.setUpForgroundImage()
+		imageFeature = obj_recognition.main("forground.jpg", "background.jpg")
+		clf = ml.classifier()
+		clf.load()
+		clfResult = clf.predict(imageFeature)
+		foodID = clfResult[0]
+
 		self.foodWeight = int(scale.get_weight(5))
 		self.btn_addIntake.setEnabled(False)
 		if(currentUserInfo==None):
@@ -52,7 +73,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		if(self.foodWeight==0):
 			msg = QMessageBox.information(self, 'Error',"Food not detected! (Item mass is 0g)",QMessageBox.Ok)
 		else:
-			self.foodInfo = db_access.food_getActualInfo(userId,1,self.foodWeight)
+			self.foodInfo = db_access.food_getActualInfo(userId,foodID,self.foodWeight)
 			self.lbl_evergyVal.setText(str(self.foodInfo.energy)) #typo on the ui file, use 'evergy'
 			self.lbl_proteinVal.setText(str(self.foodInfo.protein))
 			self.lbl_sugarVal.setText(str(self.foodInfo.sugars))
@@ -70,6 +91,26 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		db_access.user_addNewFoodIntake(self.foodInfo)
 		msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
 		self.btn_addIntake.setEnabled(False)
+
+	def setUpBackgroundImage(self):
+		ftp_access.updateML()
+		camera.start_preview()
+		GPIO.output(11,True)
+		msg = QMessageBox.information(self, 'Wait....',"Camera initalising",QMessageBox.Ok)
+		sleep(1)
+		camera.capture("background.jpg")
+		camera.stop_preview()
+		GPIO.output(11,False)
+
+	def setUpForgroundImage(self):
+		camera.start_preview()
+		GPIO.output(11,True)
+		msg = QMessageBox.information(self, 'Wait....',"Camera initalising",QMessageBox.Ok)
+		sleep(1)
+		camera.capture("forground.jpg")
+		camera.stop_preview()
+		GPIO.output(11,False)
+
 
 class get_weight_thread (QObject):
 	finished = pyqtSignal(int)
