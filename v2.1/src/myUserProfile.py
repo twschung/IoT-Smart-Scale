@@ -1,6 +1,8 @@
 import sys
-sys.path.insert(0,"/home/pi/Desktop/v2.1/src")
-sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
+import os
+currentDir = os.getcwd()
+sys.path.insert(0,currentDir+"/src")
+sys.path.insert(0,currentDir+"/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -22,8 +24,9 @@ class myUserProfile(QWidget, ui_profile.Ui_profile):
 		self.lbl_birthYearVal.setText(currentUserInfo.dob)
 		self.lbl_heightVal.setText(currentUserInfo.height+"/"+str(round(float(currentUserInfo.height)*3.28084,2)))
 		self.lbl_weightVal.setText(currentUserInfo.weight+"/"+str(round(float(currentUserInfo.weight)*2.20462,2)))
+		self.bmi = str(round(float(currentUserInfo.weight)/((float(currentUserInfo.height))**2),2))
 		#bmi = str(round((int(currentUserInfo.weight)/(int(currentUserInfo.height)/100))/(int(currentUserInfo.height)/100),2))
-		#self.lbl_bmiVal.setText(bmi)
+		self.lbl_bmiVal.setText(self.bmi)
 		#self.lbl_idealWeightVal = 
 		#self.lbl_exerciseVal = 
 		
