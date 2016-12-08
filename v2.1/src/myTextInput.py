@@ -1,9 +1,11 @@
 import sys
+sys.path.insert(0,"/home/pi/Desktop/v2.1/src")
+sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from ui import ui_textInput
-from src import myUserSetup, myUserLogin, myUserEdit, myCheckUserInfo
+import ui_textInput
+import myUserSetup, myUserLogin, myUserEdit, myCheckUserInfo
 
 keyList=[\
 ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','@','.',' '] , \
@@ -134,7 +136,7 @@ class myTextInput(QWidget, ui_textInput.Ui_textInput):
 	def handle_btn_login_loginUser_email(self, mainWindow, dataStruc):
 		dataStruc.email=self.inputedText
 		dataStruc.username=self.inputedText
-		myUserLogin.myUserLogin.loginUser_passcode(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+		myUserLogin.myUserLogin.loginUser_passcode(self,mainWindow=mainWindow,currentUserInfo=dataStruc,newUser=True)
 	def handle_btn_login_editUser_firstname(self, mainWindow, dataStruc):
 		dataStruc.firstname=self.inputedText
 		if(myCheckUserInfo.checkUserDetails(self,dataStruc, "firstname")==True):

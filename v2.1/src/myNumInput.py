@@ -1,9 +1,13 @@
 import sys
+sys.path.insert(0,"/home/pi/Desktop/v2.1/src")
+sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from ui import ui_numInput
-from src import myUserSetup, myUserEdit, myCheckUserInfo
+import ui_numInput
+import myUserSetup, myUserEdit, myCheckUserInfo, myGoal
+
+num = str()
 
 class myNumInput(QWidget, ui_numInput.Ui_numInput):
 	def __init__(self, mainWindow, name=None, layoutSetting=None, dataStruc=None):
@@ -94,6 +98,32 @@ class myNumInput(QWidget, ui_numInput.Ui_numInput):
 			self.btn_next.clicked.connect(lambda:self.handleBtn_next_editWeight(mainWindow,dataStruc))
 			self.btn_back.clicked.connect(lambda:myUserEdit.myUserEdit.editUser_height(self,mainWindow=mainWindow,currentUserInfo=dataStruc))
 			self.btn_unit.clicked.connect(lambda:self.handle_btn_unit_weight())
+		if (layoutSetting == "editUserTarget_weight"):
+			self.inputedText = dataStruc.targetWeight
+			self.updateLineEdit()
+			self.decimalEnable = True
+			self.btn_dot.setEnabled(True)
+			self.btn_unit.setEnabled(True)
+			self.btn_unit.setText("kg")
+			self.btn_next.setText("Next")
+			self.unit = "k"
+			self.lbl_title.setText("Set Goals")
+			self.lbl_currentText.setText("Weight: ")
+			self.btn_next.clicked.connect(lambda:self.handleBtn_next_editIntake(mainWindow,dataStruc))
+			self.btn_back.clicked.connect(lambda:myGoal.myGoal.handleBtn_back(self,mainWindow=mainWindow))
+			self.btn_unit.clicked.connect(lambda:self.handle_btn_unit_weight())
+		if (layoutSetting == "editUserTarget_intake"):
+			self.inputedText = dataStruc.targetIntake
+			self.updateLineEdit()
+			self.decimalEnable = True
+			self.btn_dot.setEnabled(True)
+			self.btn_unit.setEnabled(True)
+			self.btn_unit.setText("cal")
+			self.btn_next.setText("Done")
+			self.lbl_title.setText("Set Goals")
+			self.lbl_currentText.setText("Intake: ")
+			self.btn_next.clicked.connect(lambda:self.handleBtn_done_editGoal(mainWindow,dataStruc))
+			self.btn_back.clicked.connect(lambda:myGoal.myGoal.handleBtn_back(self,mainWindow=mainWindow))
 
 	def handleBtn_next_newDob(self, mainWindow, dataStruc):
 		dataStruc.dob=self.inputedText
@@ -131,7 +161,18 @@ class myNumInput(QWidget, ui_numInput.Ui_numInput):
 			dataStruc.weight=str(float(self.inputedText)*0.453)
 		if(myCheckUserInfo.checkUserDetails(self,dataStruc, "weight")==True):
 			myUserEdit.myUserEdit.editUser_add2db(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
-
+	def handleBtn_next_editIntake(self, mainWindow, dataStruc):
+		if (self.unit == "k"):
+			dataStruc.targetWeight=self.inputedText
+		else:
+			dataStruc.targetWeight=str(float(self.inputedText)*0.453)
+		if(myCheckUserInfo.checkUserDetails(self,dataStruc, "targetWeight")==True):
+			myGoal.myGoal.handleBtn_next(self,mainWindow=mainWindow, currentUserInfo=dataStruc)
+	def handleBtn_done_editGoal(self, mainWindow, dataStruc):
+		dataStruc.targetIntake=self.inputedText
+		if(myCheckUserInfo.checkUserDetails(self,dataStruc, "targetIntake")==True):
+			myUserEdit.myUserEdit.editUser_add2db(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+		
 	def handle_btn_unit_height(self):
 		if (self.unit == "m"):
 			self.unit = "f"
@@ -157,18 +198,18 @@ class myNumInput(QWidget, ui_numInput.Ui_numInput):
 			if (("." not in self.inputedText)and(self.decimalEnable == True)):
 				self.btn_dot.setEnabled(True)
 			self.updateLineEdit()
-	def handleBtn_0(self): self.addNum2InputedText('0')
-	def handleBtn_1(self): self.addNum2InputedText('1')
-	def handleBtn_2(self): self.addNum2InputedText('2')
-	def handleBtn_3(self): self.addNum2InputedText('3')
-	def handleBtn_4(self): self.addNum2InputedText('4')
-	def handleBtn_5(self): self.addNum2InputedText('5')
-	def handleBtn_6(self): self.addNum2InputedText('6')
-	def handleBtn_7(self): self.addNum2InputedText('7')
-	def handleBtn_8(self): self.addNum2InputedText('8')
-	def handleBtn_9(self): self.addNum2InputedText('9')
+	def handleBtn_0(self): self.addNum2InputedText("0")
+	def handleBtn_1(self): self.addNum2InputedText("1")
+	def handleBtn_2(self): self.addNum2InputedText("2")
+	def handleBtn_3(self): self.addNum2InputedText("3")
+	def handleBtn_4(self): self.addNum2InputedText("4")
+	def handleBtn_5(self): self.addNum2InputedText("5")
+	def handleBtn_6(self): self.addNum2InputedText("6")
+	def handleBtn_7(self): self.addNum2InputedText("7")
+	def handleBtn_8(self): self.addNum2InputedText("8")
+	def handleBtn_9(self): self.addNum2InputedText("9")
 	def handleBtn_dot(self):
-		self.addNum2InputedText('.')
+		self.addNum2InputedText(".")
 		self.btn_dot.setEnabled(False)
 
 	def handleBtn_done_newPasscode(self):
