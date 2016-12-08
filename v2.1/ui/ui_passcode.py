@@ -90,7 +90,7 @@ class Ui_passCode(object):
         self.horizontalLayout_2.setSpacing(6)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.frame = QtWidgets.QFrame(passCode)
-        self.frame.setMinimumSize(QtCore.QSize(470, 270))
+        self.frame.setMinimumSize(QtCore.QSize(450, 240))
         font = QtGui.QFont()
         font.setFamily("Helvetica Neue")
         font.setPointSize(16)
@@ -307,6 +307,8 @@ class Ui_passCode(object):
         self.btn_remFingerPrint.setObjectName("btn_remFingerPrint")
         self.verticalLayout_3.addWidget(self.btn_remFingerPrint)
         self.gridLayout.addLayout(self.verticalLayout_3, 1, 0, 1, 2)
+        spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem5, 2, 6, 1, 1)
 
         self.retranslateUi(passCode)
         QtCore.QMetaObject.connectSlotsByName(passCode)

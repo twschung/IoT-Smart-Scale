@@ -219,8 +219,8 @@
       <widget class="QFrame" name="frame">
        <property name="minimumSize">
         <size>
-         <width>470</width>
-         <height>270</height>
+         <width>450</width>
+         <height>240</height>
         </size>
        </property>
        <property name="font">
@@ -650,9 +650,23 @@ Print</string>
      </item>
     </layout>
    </item>
+   <item row="2" column="6">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
   </layout>
   <zorder></zorder>
   <zorder></zorder>
+  <zorder>verticalSpacer</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
