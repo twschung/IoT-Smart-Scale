@@ -34,6 +34,13 @@ class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
 	def processConfig(self):
 		try:
 			self.config = np.load('config.npy').item()
+			try:
+				temp = self.config['expUsr']
+			except:
+				blankUsrInfo = db_structure.userDataStructure()
+				expUsr = [blankUsrInfo,blankUsrInfo,blankUsrInfo,blankUsrInfo,blankUsrInfo,blankUsrInfo]
+				self.config = {'expUsr':expUsr}
+				np.save('config.npy', self.config)
 		except:
 			blankUsrInfo = db_structure.userDataStructure()
 			expUsr = [blankUsrInfo,blankUsrInfo,blankUsrInfo,blankUsrInfo,blankUsrInfo,blankUsrInfo]
