@@ -38,7 +38,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_addIntake.setEnabled(False)
 		self.btn_addIntake.clicked.connect(lambda:self.handleBtn_addIntake())
 		self.foodWeight = 0
-		self.setUpBackgroundImage
+		self.setUpBackgroundImage()
 		# set up thread that will update weight
 		self.thread = QThread()
 		self.getWeight = get_weight_thread()
@@ -93,7 +93,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def setUpBackgroundImage(self):
 		camera.start_preview()
 		GPIO.output(17,True)
-		msg = QMessageBox.information(self, 'Wait....',"Camera initalising",QMessageBox.Ok)
+		# msg = QMessageBox.information(self, 'Wait....',"Camera initalising",QMessageBox.Ok)
 		sleep(1)
 		camera.capture("background.jpg")
 		camera.stop_preview()
@@ -102,7 +102,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def setUpForgroundImage(self):
 		camera.start_preview()
 		GPIO.output(17,True)
-		msg = QMessageBox.information(self, 'Wait....',"Camera initalising",QMessageBox.Ok)
+		# msg = QMessageBox.information(self, 'Wait....',"Camera initalising",QMessageBox.Ok)
 		sleep(1)
 		camera.capture("forground.jpg")
 		camera.stop_preview()
