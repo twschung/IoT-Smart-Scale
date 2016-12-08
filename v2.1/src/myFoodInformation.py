@@ -57,13 +57,10 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		# add camera modules stuff here
 		self.setUpForgroundImage()
 		imageFeature = obj_recognition.main("forground.jpg", "background.jpg")
-		print(imageFeature.shape)
 		clf = ml.classifier()
 		clf.load()
 		clfResult = clf.predict(imageFeature)
 		foodID = clfResult[0]
-		print(foodID)
-
 		self.foodWeight = int(scale.get_weight(5))
 		self.btn_addIntake.setEnabled(False)
 		if(currentUserInfo==None):
@@ -73,7 +70,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		if(self.foodWeight==0):
 			msg = QMessageBox.information(self, 'Error',"Food not detected! (Item mass is 0g)",QMessageBox.Ok)
 		else:
-			self.foodInfo = db_access.food_getActualInfo(userId,foodID,self.foodWeight)
+			self.foodInfo = db_access.food_getActualInfo(userId,str(foodID),str(self.foodWeight))
 			self.lbl_evergyVal.setText(str(self.foodInfo.energy)) #typo on the ui file, use 'evergy'
 			self.lbl_proteinVal.setText(str(self.foodInfo.protein))
 			self.lbl_sugarVal.setText(str(self.foodInfo.sugars))
