@@ -144,8 +144,11 @@ def opt_6():
 		print("Moving ",currentFilePath , " to ", newFilePath)
 		os.rename(currentFilePath,newFilePath)
 	try:
+		print ("Removing sampleSet and responseSet")
 		os.remove("sampleSet.npy")
 		os.remove("responseSet.npy")
+	except:
+		print ("No sampleSet or responseSet is found")
 	finally:
 		main()
 
