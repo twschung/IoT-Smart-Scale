@@ -27,7 +27,7 @@
        <property name="font">
         <font>
          <family>Helvetica Neue</family>
-         <pointsize>24</pointsize>
+         <pointsize>18</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -69,12 +69,19 @@
         <widget class="QLineEdit" name="lineEdit_1">
          <property name="minimumSize">
           <size>
-           <width>111</width>
-           <height>71</height>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>75</height>
           </size>
          </property>
          <property name="font">
           <font>
+           <family>Arial</family>
            <pointsize>20</pointsize>
            <weight>75</weight>
            <bold>true</bold>
@@ -105,12 +112,19 @@
         <widget class="QLineEdit" name="lineEdit_2">
          <property name="minimumSize">
           <size>
-           <width>111</width>
-           <height>71</height>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>75</height>
           </size>
          </property>
          <property name="font">
           <font>
+           <family>Arial</family>
            <pointsize>20</pointsize>
            <weight>75</weight>
            <bold>true</bold>
@@ -141,12 +155,19 @@
         <widget class="QLineEdit" name="lineEdit_3">
          <property name="minimumSize">
           <size>
-           <width>111</width>
-           <height>71</height>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>75</height>
           </size>
          </property>
          <property name="font">
           <font>
+           <family>Arial</family>
            <pointsize>20</pointsize>
            <weight>75</weight>
            <bold>true</bold>
@@ -177,12 +198,19 @@
         <widget class="QLineEdit" name="lineEdit_4">
          <property name="minimumSize">
           <size>
-           <width>111</width>
-           <height>71</height>
+           <width>60</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>75</height>
           </size>
          </property>
          <property name="font">
           <font>
+           <family>Arial</family>
            <pointsize>20</pointsize>
            <weight>75</weight>
            <bold>true</bold>
@@ -249,8 +277,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>130</width>
-            <height>50</height>
+            <width>80</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="font">
@@ -274,8 +308,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>130</width>
-            <height>50</height>
+            <width>80</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="font">
@@ -299,8 +339,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>130</width>
-            <height>50</height>
+            <width>80</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="font">
@@ -324,8 +370,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>130</width>
-            <height>50</height>
+            <width>80</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="font">
@@ -349,8 +401,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>130</width>
-            <height>50</height>
+            <width>80</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="font">
@@ -374,8 +432,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>130</width>
-            <height>50</height>
+            <width>80</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="font">
@@ -399,8 +463,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>130</width>
-            <height>50</height>
+            <width>80</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="font">
@@ -424,8 +494,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>130</width>
-            <height>50</height>
+            <width>80</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="font">
@@ -449,8 +525,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>130</width>
-            <height>50</height>
+            <width>80</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="font">
@@ -474,8 +556,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>130</width>
-            <height>50</height>
+            <width>80</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="font">
@@ -499,8 +587,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>130</width>
-            <height>50</height>
+            <width>80</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="font">
@@ -524,8 +618,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>130</width>
-            <height>50</height>
+            <width>80</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
            </size>
           </property>
           <property name="font">
@@ -658,7 +758,7 @@ Print</string>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>40</height>
+       <height>50</height>
       </size>
      </property>
     </spacer>

@@ -22,5 +22,5 @@ class myMainWindow(QMainWindow):
 if __name__ == '__main__':
 	app = QApplication(sys.argv)
 	window = myMainWindow()
-	window.show()
+	window.showMaximised()
 	sys.exit(app.exec_())
