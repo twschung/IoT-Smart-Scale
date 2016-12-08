@@ -1,6 +1,8 @@
 import sys
-sys.path.insert(0,"/home/pi/Desktop/v2.1/src")
-sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
+import os
+currentDir = os.getcwd()
+sys.path.insert(0,currentDir+"/src")
+sys.path.insert(0,currentDir+"/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
