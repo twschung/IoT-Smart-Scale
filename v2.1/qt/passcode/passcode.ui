@@ -249,14 +249,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>70</height>
+            <width>130</width>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica Neue</family>
-            <pointsize>16</pointsize>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="text">
@@ -274,14 +274,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>70</height>
+            <width>130</width>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica Neue</family>
-            <pointsize>16</pointsize>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="text">
@@ -299,14 +299,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>70</height>
+            <width>130</width>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica Neue</family>
-            <pointsize>16</pointsize>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="text">
@@ -324,14 +324,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>70</height>
+            <width>130</width>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica Neue</family>
-            <pointsize>16</pointsize>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="text">
@@ -349,14 +349,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>70</height>
+            <width>130</width>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica Neue</family>
-            <pointsize>16</pointsize>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="text">
@@ -374,14 +374,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>70</height>
+            <width>130</width>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica Neue</family>
-            <pointsize>16</pointsize>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="text">
@@ -399,14 +399,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>70</height>
+            <width>130</width>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica Neue</family>
-            <pointsize>16</pointsize>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="text">
@@ -424,14 +424,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>70</height>
+            <width>130</width>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica Neue</family>
-            <pointsize>16</pointsize>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="text">
@@ -449,14 +449,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>70</height>
+            <width>130</width>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica Neue</family>
-            <pointsize>16</pointsize>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="text">
@@ -474,14 +474,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>70</height>
+            <width>130</width>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica Neue</family>
-            <pointsize>16</pointsize>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="text">
@@ -499,14 +499,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>70</height>
+            <width>130</width>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica Neue</family>
-            <pointsize>16</pointsize>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="text">
@@ -524,14 +524,14 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
-            <height>70</height>
+            <width>130</width>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
            <font>
-            <family>Helvetica Neue</family>
-            <pointsize>16</pointsize>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="text">
