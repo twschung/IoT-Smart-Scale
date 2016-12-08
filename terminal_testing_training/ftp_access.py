@@ -80,32 +80,32 @@ def updateImageSample ():
 		return (False,0)
 	return (True,0)
 
-def updateSVM():
+def updateML():
 	try:
 		try:
 			config = np.load('config.npy').item()
 			try:
-				currentSVMVersion = float(config['currentSVMVersion'])
+				currentMLVersion = float(config['currentMLVersion'])
 			except:
-				currentSVMVersion = 0
+				currentMLVersion = 0
 		except:
-			currentSVMVersion = 0
-		urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/Model_version.npy'),'Model_version.npy')
-		serverSVMVersion = np.load('Model_version.npy')
+			currentMLVersion = 0
+		urllib.request.urlretrieve ((HTTP_ServerAddress + '/ML/Model_version.npy'),'Model_version.npy')
+		serverMLVersion = np.load('Model_version.npy')
 		os.remove('Model_version.npy')
-		if (serverSVMVersion > currentSVMVersion):
-			# urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/SVM.dat'),'SVM.dat')
-			# urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/PCA.dat'),'PCA.dat')
-			urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/Model.dat'),'Model.dat')
-			# urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/Tree.npy'),'Tree.npy')
-			currentSVMVersion = serverSVMVersion
-		config['currentSVMVersion'] = currentSVMVersion
+		if (serverMLVersion > currentMLVersion):
+			# urllib.request.urlretrieve ((HTTP_ServerAddress + '/ML/ML.dat'),'ML.dat')
+			# urllib.request.urlretrieve ((HTTP_ServerAddress + '/ML/PCA.dat'),'PCA.dat')
+			urllib.request.urlretrieve ((HTTP_ServerAddress + '/ML/Model.dat'),'Model.dat')
+			# urllib.request.urlretrieve ((HTTP_ServerAddress + '/ML/Tree.npy'),'Tree.npy')
+			currentMLVersion = serverMLVersion
+		config['currentMLVersion'] = currentMLVersion
 		np.save('config.npy', config)
 	except:
 		return False
 	return True
 
-# updateSVM()
+# updateML()
 #~ uploadImageHistory ()
 #~ updateImageSample()
-#~ updateSVM()
+#~ updateML()

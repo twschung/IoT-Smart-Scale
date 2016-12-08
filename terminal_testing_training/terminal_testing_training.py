@@ -110,9 +110,9 @@ def opt_4():
 def opt_5():
 	print("-----------------------------------------------------------")
 	print("Fetching Trained Model from Server!")
-	ftp_access.updateSVM()
+	ftp_access.updateML()
 	print("Done!")
-	displaySVMInfo()
+	displayMLInfo()
 	print("-----------------------------------------------------------")
 	main()
 
@@ -141,14 +141,14 @@ def opt_6():
 	main()
 
 
-def displaySVMInfo():
+def displayMLInfo():
 	print("Loading classifier Info......")
 	try:
 		print ("Last modified :")
 		fileLastModified = os.stat("Model.dat").st_mtime
 		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
 	except:
-		print ("No SVM is found")
+		print ("No ML is found")
 
 
 if __name__ == "__main__":
