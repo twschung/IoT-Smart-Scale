@@ -1,6 +1,8 @@
 import sys
-sys.path.insert(0,"/home/pi/Desktop/v2.1/src")
-sys.path.insert(0,"/home/pi/Desktop/v2.1/ui")
+import os
+currentDir = os.getcwd()
+sys.path.insert(0,currentDir+"/src")
+sys.path.insert(0,currentDir+"/ui")
 import datetime
 from decimal import Decimal
 from PyQt5.QtWidgets import *
