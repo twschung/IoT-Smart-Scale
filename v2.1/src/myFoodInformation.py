@@ -28,7 +28,6 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		super(myFoodInformation, self).__init__()
 		self.setupUi(self)
 		self.foodInfo = None
-		self.setUpBackgroundImage()
 		userDailyIntakeInfo = db_structure.userDailyIntakeStructure()
 		self.btn_new.setText("Scan")
 		if (layoutSetting == "guest"):
@@ -39,7 +38,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_addIntake.setEnabled(False)
 		self.btn_addIntake.clicked.connect(lambda:self.handleBtn_addIntake())
 		self.foodWeight = 0
-
+		self.setUpBackgroundImage
 		# set up thread that will update weight
 		self.thread = QThread()
 		self.getWeight = get_weight_thread()
@@ -92,7 +91,6 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_addIntake.setEnabled(False)
 
 	def setUpBackgroundImage(self):
-		ftp_access.updateML()
 		camera.start_preview()
 		GPIO.output(17,True)
 		msg = QMessageBox.information(self, 'Wait....',"Camera initalising",QMessageBox.Ok)
