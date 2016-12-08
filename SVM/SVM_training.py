@@ -62,7 +62,7 @@ def opt_2():
 		imgFeature = np.nan_to_num(imgFeature)
 		time, imgID = os.path.basename(filename).split("_")
 		imgID, fileExtendion = imgID.split(".")
-		svm.addNewDataSet(imgFeature,int(imgID))
+		ml.addNewDataSet(imgFeature,int(imgID))
 		newPath = os.path.join(processedItemPath,os.path.basename(filename))
 		newBackgroundPath = os.path.join(processedItemPath, 'backgroundImage', os.path.basename(filename))
 		os.rename(currentPath,newPath)
@@ -87,7 +87,7 @@ def opt_2():
 			print ("new SVM model will be created")
 		finally:
 			print("Training SVM from Training Set...")
-			SVMmodel = svm.classifier()
+			SVMmodel = ml.classifier()
 			SVMmodel.train()
 			print("Finished training SVM")
 			displaySVMInfo()
