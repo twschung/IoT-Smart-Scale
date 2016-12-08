@@ -4,6 +4,7 @@ import numpy as np
 import imgFeatureExtractSim
 import db_access_server
 import obj_recognition
+import evaluateML
 
 
 SVMPath = '/home/public/HTTP/SVM'
@@ -25,6 +26,7 @@ def main():
 	print(" [5] - Exit Program ")
 	print(" [6] - Erase SampleSet & RasposeSet and reset everything")
 	print(" [7] - Editing sampleImageVersion.npy")
+	print(" [8] - Evaluate Machine Learning")
 	print("-----------------------------------------------------------")
 	usrInput=input("Please input the one of the option ->  ")
 	if (usrInput == "1"):
@@ -41,12 +43,8 @@ def main():
 		opt_6()
 	elif (usrInput == "7"):
 		opt_7()
-	else:
-		print("-----------------------------------------------------------")
-		print("ERROR: Invaild Input !!!!!!!")
-		print("-----------------------------------------------------------")
-		main()
-
+	elif (usrInput == "8"):
+		opt_8()
 def opt_1():
 	displayTrainingDataInfo()
 	displaySVMInfo()
@@ -168,6 +166,11 @@ def opt_7():
 	newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
 	shutil.copyfile(currentPath,newPath)
 	print ("Finish editing sampleImageVersion.npy")
+	wait = input("Press Any Key to continue ... ")
+	main()
+
+def opt_8():
+	evaluateML.evaluateML()
 	wait = input("Press Any Key to continue ... ")
 	main()
 
