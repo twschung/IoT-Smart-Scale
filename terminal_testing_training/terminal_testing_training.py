@@ -1,5 +1,5 @@
 import os , time, shutil, glob
-import svm
+import ml
 import numpy as np
 import db_access, ftp_access
 import obj_recognition
@@ -130,7 +130,7 @@ def opt_6():
 	GPIO.output(11,False)
 	imageFeature = obj_recognition.main("forground.jpg", "background.jpg")
 	print("-----------------------------------------------------------")
-	clf = svm.classifier()
+	clf = ml.classifier()
 	clf.load()
 	clfResult = clf.predict(imageFeature)
 	print(clfResult[0])

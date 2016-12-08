@@ -84,7 +84,10 @@ def updateSVM():
 	try:
 		try:
 			config = np.load('config.npy').item()
-			currentSVMVersion = float(config['currentSVMVersion'])
+			try:
+				currentSVMVersion = float(config['currentSVMVersion'])
+			except:
+				currentSVMVersion = 0
 		except:
 			currentSVMVersion = 0
 		urllib.request.urlretrieve ((HTTP_ServerAddress + '/SVM/Model_version.npy'),'Model_version.npy')
