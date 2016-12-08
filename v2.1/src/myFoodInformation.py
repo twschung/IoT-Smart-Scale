@@ -39,7 +39,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def onFinished(self, i):
 		self.lcd_number.display(int(i))
 	def handleBtn_back(self,mainWindow):
-		#self.thread.terminate()
+		self.thread.terminate()
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 	def handleBtn_scan(self,mainWindow,currentUserInfo):
 		# add camera modules stuff here
