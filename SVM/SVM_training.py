@@ -38,7 +38,7 @@ def main():
 		print("Program exiting !!!!")
 	elif (usrInput == "6"):
 		opt_6()
-	elif (usrInput == "6"):
+	elif (usrInput == "7"):
 		opt_7()
 	else:
 		print("-----------------------------------------------------------")
