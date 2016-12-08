@@ -23,6 +23,7 @@ def main():
 	print(" [4] - Add new item into database & add into the data training queue ")
 	print(" [5] - Exit Program ")
 	print(" [6] - Erase SampleSet & RasposeSet and reset everything")
+	print(" [7] - Editing sampleImageVersion.npy")
 	print("-----------------------------------------------------------")
 	usrInput=input("Please input the one of the option ->  ")
 	if (usrInput == "1"):
@@ -37,6 +38,8 @@ def main():
 		print("Program exiting !!!!")
 	elif (usrInput == "6"):
 		opt_6()
+	elif (usrInput == "6"):
+		opt_7()
 	else:
 		print("-----------------------------------------------------------")
 		print("ERROR: Invaild Input !!!!!!!")
@@ -151,6 +154,14 @@ def opt_6():
 		print ("No sampleSet or responseSet is found")
 	finally:
 		main()
+
+def opt_7():
+	versionNum =  input("Please enter the new version number for the sample image")
+	np.save('imageSample_version.npy',versionNum)
+	currentPath = os.path.join(os.getcwd(),'imageSample_version.npy')
+	newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
+	shutil.copyfile(currentPath,newPath)
+	main()
 
 def newImageProcessMenu(filePath):
 	stayInLoop = True
