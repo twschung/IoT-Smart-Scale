@@ -1,5 +1,5 @@
 import os , time, shutil, glob
-import svm
+import ml
 import numpy as np
 import db_access, ftp_access
 import obj_recognition
@@ -110,9 +110,9 @@ def opt_4():
 def opt_5():
 	print("-----------------------------------------------------------")
 	print("Fetching Trained Model from Server!")
-	ftp_access.updateSVM()
+	ftp_access.updateML()
 	print("Done!")
-	displaySVMInfo()
+	displayMLInfo()
 	print("-----------------------------------------------------------")
 	main()
 
@@ -130,7 +130,7 @@ def opt_6():
 	GPIO.output(11,False)
 	imageFeature = obj_recognition.main("forground.jpg", "background.jpg")
 	print("-----------------------------------------------------------")
-	clf = svm.classifier()
+	clf = ml.classifier()
 	clf.load()
 	clfResult = clf.predict(imageFeature)
 	print(clfResult[0])
@@ -141,14 +141,14 @@ def opt_6():
 	main()
 
 
-def displaySVMInfo():
+def displayMLInfo():
 	print("Loading classifier Info......")
 	try:
 		print ("Last modified :")
-		fileLastModified = os.stat("Tree.dat").st_mtime
+		fileLastModified = os.stat("Model.dat").st_mtime
 		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
 	except:
-		print ("No SVM is found")
+		print ("No ML is found")
 
 
 if __name__ == "__main__":
