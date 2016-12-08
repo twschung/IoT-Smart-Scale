@@ -26,6 +26,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_addIntake.setEnabled(False)
 		self.btn_addIntake.clicked.connect(lambda:self.handleBtn_addIntake())
 		self.foodWeight = 0
+		
 		# set up thread that will update weight
 		self.thread = QThread()
 		self.getWeight = get_weight_thread()
@@ -38,6 +39,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def onFinished(self, i):
 		self.lcd_number.display(int(i))
 	def handleBtn_back(self,mainWindow):
+		self.thread.terminate()
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 	def handleBtn_scan(self,mainWindow,currentUserInfo):
 		# add camera modules stuff here
@@ -73,18 +75,19 @@ class get_weight_thread (QObject):
 	finished = pyqtSignal(int)
 
 	def __init__(self):
-		print ("get_weight_thread init")
+		#print ("get_weight_thread init")
 		#super (self.__class__, self).__init__()
 		super().__init__()
 
 	def work(self):
-		print ("get_weight_thread work")
+		#print ("get_weight_thread work")
 		while True:
 			self.i = int(scale.get_weight(5))
 			self.finished.emit(self.i)
 
 # setup scale
 scale = HX711(23,24)
-scale.set_reference_unit(770)
+# set reference unit is 435 for 5kg scale and 770 for 3kg scale
+scale.set_reference_unit(435)
 scale.reset()
 scale.tare()
