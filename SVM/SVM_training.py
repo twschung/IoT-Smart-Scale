@@ -50,7 +50,7 @@ def main():
 def opt_1():
 	displayTrainingDataInfo()
 	displaySVMInfo()
-	input("Press Any Key to continue ... ")
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_2():
@@ -99,7 +99,7 @@ def opt_2():
 	else:
 		print("SVM Training is skipped, as no new image is processed")
 	print("-----------------------------------------------------------")
-	input("Press Any Key to continue ... ")
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_3():
@@ -121,7 +121,7 @@ def opt_3():
 	shutil.copyfile(currentPath,newPath)
 	print("Done!")
 	print("-----------------------------------------------------------")
-	input("Press Any Key to continue ... ")
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_4():
@@ -133,7 +133,7 @@ def opt_4():
 		print(filePath)
 		previewImage(filePath)
 		newImageProcessMenu(filePath)
-	input("Press Any Key to continue ... ")
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_6():
@@ -158,7 +158,7 @@ def opt_6():
 	except:
 		print ("No sampleSet or responseSet is found")
 	finally:
-		input("Press Any Key to continue ... ")
+		wait = input("Press Any Key to continue ... ")
 		main()
 
 def opt_7():
@@ -168,7 +168,7 @@ def opt_7():
 	newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
 	shutil.copyfile(currentPath,newPath)
 	print ("Finish editing sampleImageVersion.npy")
-	input("Press Any Key to continue ... ")
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def newImageProcessMenu(filePath):
