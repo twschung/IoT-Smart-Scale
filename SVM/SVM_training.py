@@ -1,5 +1,5 @@
 import os , time, shutil, glob
-import svm
+import ml
 import numpy as np
 import imgFeatureExtractSim
 import db_access_server
@@ -11,6 +11,7 @@ SVMArchivePath = '/home/public/HTTP/SVM/archive'
 processedItemPath = '/home/public/FTP/imageUploaded/processedItem'
 newItemPath = '/home/public/FTP/imageUploaded/newItem'
 exisitingItemPath =  '/home/public/FTP/imageUploaded/existingItem'
+exisitingBackgroundItemPath = '/home/public/FTP/imageUploaded/existingItem/backgroundImage'
 sampleItemPath = '/home/public/HTTP/imageSample'
 
 def main():
@@ -21,7 +22,8 @@ def main():
 	print(" [3] - Publish the trained SVM ")
 	print(" [4] - Add new item into database & add into the data training queue ")
 	print(" [5] - Exit Program ")
-	# print(" [6] - Erase SampleSet & RasposeSet and reset everything")
+	print(" [6] - Erase SampleSet & RasposeSet and reset everything")
+	print(" [7] - Editing sampleImageVersion.npy")
 	print("-----------------------------------------------------------")
 	usrInput=input("Please input the one of the option ->  ")
 	if (usrInput == "1"):
@@ -36,6 +38,8 @@ def main():
 		print("Program exiting !!!!")
 	elif (usrInput == "6"):
 		opt_6()
+	elif (usrInput == "6"):
+		opt_7()
 	else:
 		print("-----------------------------------------------------------")
 		print("ERROR: Invaild Input !!!!!!!")
@@ -61,7 +65,7 @@ def opt_2():
 		imgFeature = np.nan_to_num(imgFeature)
 		time, imgID = os.path.basename(filename).split("_")
 		imgID, fileExtendion = imgID.split(".")
-		svm.addNewDataSet(imgFeature,int(imgID))
+		ml.addNewDataSet(imgFeature,int(imgID))
 		newPath = os.path.join(processedItemPath,os.path.basename(filename))
 		newBackgroundPath = os.path.join(processedItemPath, 'backgroundImage', os.path.basename(filename))
 		os.rename(currentPath,newPath)
@@ -78,16 +82,15 @@ def opt_2():
 			# pca_currentPath = os.path.join(os.getcwd(),'PCA.dat')
 			# pca_newFilename = "PCA_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
 			# pca_newPath = os.path.join(SVMArchivePath, pca_newFilename)
-			tree_currentPath = os.path.join(os.getcwd(),'Tree.dat')
-			tree_newFilename = "Tree_" + str(os.stat("Tree.dat").st_mtime) + ".dat"
-			tree_newPath = os.path.join(SVMArchivePath, tree_newFilename)
-			os.rename(tree_currentPath,tree_newPath)
-			# os.rename(pca_currentPath,pca_newPath)
+			Model_currentPath = os.path.join(os.getcwd(),'Model.dat')
+			Model_newFilename = "Model_" + str(os.stat("Model.dat").st_mtime) + ".dat"
+			Model_newPath = os.path.join(SVMArchivePath, Model_newFilename)
+			os.rename(Model_currentPath,Model_newPath)
 		except:
 			print ("new SVM model will be created")
 		finally:
 			print("Training SVM from Training Set...")
-			SVMmodel = svm.classifier()
+			SVMmodel = ml.classifier()
 			SVMmodel.train()
 			print("Finished training SVM")
 			displaySVMInfo()
@@ -105,13 +108,13 @@ def opt_3():
 	# currentPath = os.path.join(os.getcwd(),'PCA.dat')
 	# newPath = os.path.join(SVMPath, 'PCA.dat')
 	# shutil.copyfile(currentPath,newPath)
-	currentPath = os.path.join(os.getcwd(),'Tree.dat')
-	newPath = os.path.join(SVMPath, 'Tree.dat')
+	currentPath = os.path.join(os.getcwd(),'Model.dat')
+	newPath = os.path.join(SVMPath, 'Model.dat')
 	shutil.copyfile(currentPath,newPath)
-	version = np.array(os.stat("Tree.dat").st_mtime)
-	np.save('SVM_version.npy',version)
-	currentPath = os.path.join(os.getcwd(),'SVM_version.npy')
-	newPath = os.path.join(SVMPath, 'SVM_version.npy')
+	version = np.array(os.stat("Model.dat").st_mtime)
+	np.save('Model_version.npy',version)
+	currentPath = os.path.join(os.getcwd(),'Model_version.npy')
+	newPath = os.path.join(SVMPath, 'Model_version.npy')
 	shutil.copyfile(currentPath,newPath)
 	print("Done!")
 	print("-----------------------------------------------------------")
@@ -126,6 +129,38 @@ def opt_4():
 		print(filePath)
 		previewImage(filePath)
 		newImageProcessMenu(filePath)
+	main()
+
+def opt_6():
+	print("-----------------------------------------------------------")
+	print("Moving images from processedItem's folder to existingItem's folder !")
+	searchPath = os.path.join(processedItemPath,'*.jpg')
+	for filename in glob.glob(searchPath):
+		currentFilePath = filename
+		newFilePath = os.path.join(exisitingItemPath, (os.path.basename(filename)))
+		print("Moving ",currentFilePath , " to ", newFilePath)
+		os.rename(currentFilePath,newFilePath)
+	searchPath = os.path.join(processedItemPath,'backgroundImage/*.jpg')
+	for filename in glob.glob(searchPath):
+		currentFilePath = filename
+		newFilePath = os.path.join(exisitingBackgroundItemPath,(os.path.basename(filename)))
+		print("Moving ",currentFilePath , " to ", newFilePath)
+		os.rename(currentFilePath,newFilePath)
+	try:
+		print ("Removing sampleSet and responseSet")
+		os.remove("sampleSet.npy")
+		os.remove("responseSet.npy")
+	except:
+		print ("No sampleSet or responseSet is found")
+	finally:
+		main()
+
+def opt_7():
+	versionNum =  input("Please enter the new version number for the sample image")
+	np.save('imageSample_version.npy',versionNum)
+	currentPath = os.path.join(os.getcwd(),'imageSample_version.npy')
+	newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
+	shutil.copyfile(currentPath,newPath)
 	main()
 
 def newImageProcessMenu(filePath):
@@ -279,7 +314,7 @@ def displaySVMInfo():
 	print("Loading SVM Info......")
 	try:
 		print ("Last modified :")
-		fileLastModified = os.stat("Tree.dat").st_mtime
+		fileLastModified = os.stat("Model.dat").st_mtime
 		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
 	except:
 		print ("No SVM is found")
