@@ -19,8 +19,7 @@ import ml
 import numpy as np
 import obj_recognition
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(11, GPIO.OUT)
+GPIO.setup(17, GPIO.OUT)
 camera = PiCamera()
 camera.resolution = (1024, 768)
 
@@ -95,21 +94,21 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def setUpBackgroundImage(self):
 		ftp_access.updateML()
 		camera.start_preview()
-		GPIO.output(11,True)
+		GPIO.output(17,True)
 		msg = QMessageBox.information(self, 'Wait....',"Camera initalising",QMessageBox.Ok)
 		sleep(1)
 		camera.capture("background.jpg")
 		camera.stop_preview()
-		GPIO.output(11,False)
+		GPIO.output(17,False)
 
 	def setUpForgroundImage(self):
 		camera.start_preview()
-		GPIO.output(11,True)
+		GPIO.output(17,True)
 		msg = QMessageBox.information(self, 'Wait....',"Camera initalising",QMessageBox.Ok)
 		sleep(1)
 		camera.capture("forground.jpg")
 		camera.stop_preview()
-		GPIO.output(11,False)
+		GPIO.output(17,False)
 
 
 class get_weight_thread (QObject):
