@@ -59,7 +59,10 @@ def updateImageSample ():
 	try:
 		try:
 			config = np.load('config.npy').item()
-			currentImageSampleVersion = int(config['currentImageSampleVersion'])
+			try:
+				currentImageSampleVersion = int(config['currentImageSampleVersion'])
+			except:
+				currentImageSampleVersion = 0 
 		except:
 			currentImageSampleVersion = 0
 		urllib.request.urlretrieve ((HTTP_ServerAddress + '/imageSample/imageSample_version.npy'),'imageSample_version.npy')
