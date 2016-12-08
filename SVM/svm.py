@@ -1,7 +1,10 @@
 # import cv2
 from sklearn import svm
 from sklearn import tree
+from sklearn.ensemble import BaggingClassifier
+from sklearn.neural_network import MLPClassifier
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.externals import joblib
 from sklearn.decomposition import PCA
 import numpy as np
@@ -30,33 +33,14 @@ def addNewDataSet (newSampleSet, newResponseSet):
 
 class classifier():
 	def __init__(self):
-		# self.SVCModel = svm.SVC(C=1.0, kernel='rbf', degree=3, gamma='auto', \
-		# coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200, \
-		# class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovo', \
-		# random_state=None)
-		# self.TreeModel = tree.DecisionTreeClassifier()
-		self.TreeModel = RandomForestClassifier(n_estimators=50)
-		# self.PCA = PCA(n_components = 15)
+		self.Model = svm.SVC(C=1.0, kernel='poly', degree=3, probability=True)
 	def load(self):
-		# self.SVCModel = joblib.load('SVC.dat')
-		# self.TreeModel = joblib.load('Tree.dat')
-		self.TreeModel = cpickle.load(open( "Tree.dat", "rb"))
-		# self.PCA = joblib.load('PCA.dat')
+		self.Model = joblib.load('Model.dat')
 	def train(self):
 		sampleSet , responseSet = loadTrainingSet()
-		# self.PCA.fit(sampleSet)
-		# reduced_dimen_sampleSet = self.PCA.transform(sampleSet)
-		# self.SVCModel.fit(reduced_dimen_sampleSet, responseSet)
-		# self.TreeModel.fit(reduced_dimen_sampleSet, responseSet)
-		self.TreeModel.fit(sampleSet, responseSet)
-		# joblib.dump(self.SVCModel, 'SVC.dat')
-		# joblib.dump(self.TreeModel, 'Tree.dat')
-		# joblib.dump(self.PCA, 'PCA.dat')
-		cpickle.dump(self.TreeModel, open( "Tree.dat", "wb"))
+		self.Model.fit(sampleSet, responseSet)
+		joblib.dump(self.Model, 'Model.dat')
 	def predict(self, sample):
-		# reduced_dimen_sample = self.PCA.transform(sample)
-		return self.TreeModel.predict(sample)
+		return self.Model.predict(sample)
 	def predict_prob(self, sample):
-		# reduced_dimen_sample = self.PCA.transform(sample)
-		return self.TreeModel.predict_proba(sample)
-		# return self.SVCModel.predict_proba(reduced_dimen_sample)
+		return self.Model.predict_proba(sample)
