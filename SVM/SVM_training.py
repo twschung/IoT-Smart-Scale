@@ -15,6 +15,7 @@ exisitingBackgroundItemPath = '/home/public/FTP/imageUploaded/existingItem/backg
 sampleItemPath = '/home/public/HTTP/imageSample'
 
 def main():
+	os.system('clear')
 	print("IoT Smart Scale SVM Training Program")
 	print("-----------------------------------------------------------")
 	print(" [1] - Current Training sets and Trained SVM model's info ")
@@ -156,11 +157,12 @@ def opt_6():
 		main()
 
 def opt_7():
-	versionNum =  input("Please enter the new version number for the sample image")
+	versionNum =  input("Please enter the new version number for the sample image -> ")
 	np.save('imageSample_version.npy',versionNum)
 	currentPath = os.path.join(os.getcwd(),'imageSample_version.npy')
 	newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
 	shutil.copyfile(currentPath,newPath)
+	print ("Finish editing sampleImageVersion.npy")
 	main()
 
 def newImageProcessMenu(filePath):
