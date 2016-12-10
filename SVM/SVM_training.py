@@ -4,6 +4,7 @@ import numpy as np
 import imgFeatureExtractSim
 import db_access_server
 import obj_recognition
+import evaluateML
 
 
 SVMPath = '/home/public/HTTP/SVM'
@@ -15,6 +16,7 @@ exisitingBackgroundItemPath = '/home/public/FTP/imageUploaded/existingItem/backg
 sampleItemPath = '/home/public/HTTP/imageSample'
 
 def main():
+	os.system('clear')
 	print("IoT Smart Scale SVM Training Program")
 	print("-----------------------------------------------------------")
 	print(" [1] - Current Training sets and Trained SVM model's info ")
@@ -23,6 +25,8 @@ def main():
 	print(" [4] - Add new item into database & add into the data training queue ")
 	print(" [5] - Exit Program ")
 	print(" [6] - Erase SampleSet & RasposeSet and reset everything")
+	print(" [7] - Editing sampleImageVersion.npy")
+	print(" [8] - Evaluate Machine Learning")
 	print("-----------------------------------------------------------")
 	usrInput=input("Please input the one of the option ->  ")
 	if (usrInput == "1"):
@@ -37,15 +41,14 @@ def main():
 		print("Program exiting !!!!")
 	elif (usrInput == "6"):
 		opt_6()
-	else:
-		print("-----------------------------------------------------------")
-		print("ERROR: Invaild Input !!!!!!!")
-		print("-----------------------------------------------------------")
-		main()
-
+	elif (usrInput == "7"):
+		opt_7()
+	elif (usrInput == "8"):
+		opt_8()
 def opt_1():
 	displayTrainingDataInfo()
 	displaySVMInfo()
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_2():
@@ -62,7 +65,7 @@ def opt_2():
 		imgFeature = np.nan_to_num(imgFeature)
 		time, imgID = os.path.basename(filename).split("_")
 		imgID, fileExtendion = imgID.split(".")
-		svm.addNewDataSet(imgFeature,int(imgID))
+		ml.addNewDataSet(imgFeature,int(imgID))
 		newPath = os.path.join(processedItemPath,os.path.basename(filename))
 		newBackgroundPath = os.path.join(processedItemPath, 'backgroundImage', os.path.basename(filename))
 		os.rename(currentPath,newPath)
@@ -87,13 +90,14 @@ def opt_2():
 			print ("new SVM model will be created")
 		finally:
 			print("Training SVM from Training Set...")
-			SVMmodel = svm.classifier()
+			SVMmodel = ml.classifier()
 			SVMmodel.train()
 			print("Finished training SVM")
 			displaySVMInfo()
 	else:
 		print("SVM Training is skipped, as no new image is processed")
 	print("-----------------------------------------------------------")
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_3():
@@ -115,6 +119,7 @@ def opt_3():
 	shutil.copyfile(currentPath,newPath)
 	print("Done!")
 	print("-----------------------------------------------------------")
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_4():
@@ -126,6 +131,7 @@ def opt_4():
 		print(filePath)
 		previewImage(filePath)
 		newImageProcessMenu(filePath)
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_6():
@@ -150,11 +156,28 @@ def opt_6():
 	except:
 		print ("No sampleSet or responseSet is found")
 	finally:
+		wait = input("Press Any Key to continue ... ")
 		main()
+
+def opt_7():
+	versionNum =  input("Please enter the new version number for the sample image -> ")
+	np.save('imageSample_version.npy',versionNum)
+	currentPath = os.path.join(os.getcwd(),'imageSample_version.npy')
+	newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
+	shutil.copyfile(currentPath,newPath)
+	print ("Finish editing sampleImageVersion.npy")
+	wait = input("Press Any Key to continue ... ")
+	main()
+
+def opt_8():
+	evaluateML.evaluateML()
+	wait = input("Press Any Key to continue ... ")
+	main()
 
 def newImageProcessMenu(filePath):
 	stayInLoop = True
 	while (stayInLoop == True):
+		os.system('clear')
 		print("-----------------------------------------------------------")
 		print(" [1] - Assign the current item as new item")
 		print(" [2] - Assign the current item as existing item")
