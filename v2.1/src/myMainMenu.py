@@ -17,6 +17,7 @@ class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
 		self.btn_guest.clicked.connect(lambda:self.handleBtn_guest(mainWindow))
 		self.btn_scaleOnly.clicked.connect(lambda:self.handleBtn_scaleOnly(mainWindow))
 		self.btn_userSetup.clicked.connect(lambda:self.handleBtn_userSetup(mainWindow))
+		self.btn_close.clicked.connect(lambda:self.handleBtn_close())
 	def handleBtn_login(self, mainWindow):
 		self.widget = myLoginMenu.myLoginMenu(mainWindow)
 		mainWindow.central_widget.addWidget(self.widget)
@@ -31,3 +32,10 @@ class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
 		mainWindow.central_widget.setCurrentWidget(self.widget)
 	def handleBtn_userSetup(self, mainWindow):
 		myUserSetup.myUserSetup(mainWindow)
+	def handleBtn_close(self):
+		quit_msg = "Are you sure you want to exit the program?"
+		reply = QMessageBox.question(self,'Message',quit_msg,QMessageBox.Yes,QMessageBox.No)
+		if(reply==QMessageBox.Yes):
+			sys.exit()
+		else:
+			pass

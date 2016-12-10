@@ -70,13 +70,17 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		if(self.foodWeight==0):
 			msg = QMessageBox.information(self, 'Error',"Food not detected! (Item mass is 0g)",QMessageBox.Ok)
 		else:
+			s = str(foodID)+".jpg"
+			self.pic = QPixmap(currentDir+'/imageSample/'+s)
+			self.scaledPic = self.pic.scaled(self.lbl_foodPic.width(), self.lbl_foodPic.height(),Qt.KeepAspectRatio,transformMode=Qt.SmoothTransformation)
+			self.lbl_foodPic.setPixmap(self.scaledPic)
 			self.foodInfo = db_access.food_getActualInfo(userId,str(foodID),str(self.foodWeight))
-			self.lbl_evergyVal.setText(str(self.foodInfo.energy)) #typo on the ui file, use 'evergy'
-			self.lbl_proteinVal.setText(str(self.foodInfo.protein))
-			self.lbl_sugarVal.setText(str(self.foodInfo.sugars))
-			self.lbl_fibreVal.setText(str(self.foodInfo.fibre))
-			self.lbl_fatVal.setText(str(self.foodInfo.fat))
-			self.lbl_saltVal.setText(str(self.foodInfo.salt))
+			self.lbl_evergyVal.setText(str(round(self.foodInfo.energy,2))) #typo on the ui file, use 'evergy'
+			self.lbl_proteinVal.setText(str(round(self.foodInfo.protein,2)))
+			self.lbl_sugarVal.setText(str(round(self.foodInfo.sugars,2)))
+			self.lbl_fibreVal.setText(str(round(self.foodInfo.fibre,2)))
+			self.lbl_fatVal.setText(str(round(self.foodInfo.fat,2)))
+			self.lbl_saltVal.setText(str(round(self.foodInfo.salt,2)))
 			if(currentUserInfo==None):
 				self.btn_addIntake.setEnabled(False)
 			else:
