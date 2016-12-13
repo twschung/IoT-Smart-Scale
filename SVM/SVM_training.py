@@ -7,8 +7,8 @@ import obj_recognition
 import evaluateML
 
 
-SVMPath = '/home/public/HTTP/SVM'
-SVMArchivePath = '/home/public/HTTP/SVM/archive'
+MLPath = '/home/public/HTTP/ML'
+MLArchivePath = '/home/public/HTTP/ML/archive'
 processedItemPath = '/home/public/FTP/imageUploaded/processedItem'
 newItemPath = '/home/public/FTP/imageUploaded/newItem'
 exisitingItemPath =  '/home/public/FTP/imageUploaded/existingItem'
@@ -17,11 +17,11 @@ sampleItemPath = '/home/public/HTTP/imageSample'
 
 def main():
 	os.system('clear')
-	print("IoT Smart Scale SVM Training Program")
+	print("IoT Smart Scale ML Training Program")
 	print("-----------------------------------------------------------")
-	print(" [1] - Current Training sets and Trained SVM model's info ")
-	print(" [2] - Fetch new data from queue and add to the current training sets & Train SVM ")
-	print(" [3] - Publish the trained SVM ")
+	print(" [1] - Current Training sets and Trained ML model's info ")
+	print(" [2] - Fetch new data from queue and add to the current training sets & Train ML ")
+	print(" [3] - Publish the trained ML ")
 	print(" [4] - Add new item into database & add into the data training queue ")
 	print(" [5] - Exit Program ")
 	print(" [6] - Erase SampleSet & RasposeSet and reset everything")
@@ -47,7 +47,7 @@ def main():
 		opt_8()
 def opt_1():
 	displayTrainingDataInfo()
-	displaySVMInfo()
+	displayMLInfo()
 	wait = input("Press Any Key to continue ... ")
 	main()
 
@@ -74,48 +74,48 @@ def opt_2():
 	print("Finished modifiing training set. Total of %i is added"% (totalItemProcessed))
 	if (totalItemProcessed > -1):
 		displayTrainingDataInfo()
-		print("Moving current SVM model to archive")
+		print("Moving current ML model to archive")
 		try:
-			# svm_currentPath = os.path.join(os.getcwd(),'SVM.dat')
-			# svm_newFilename = "SVM_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
-			# svm_newPath = os.path.join(SVMArchivePath, svm_newFilename)
+			# svm_currentPath = os.path.join(os.getcwd(),'ML.dat')
+			# svm_newFilename = "ML_" + str(os.stat("ML.dat").st_mtime) + ".dat"
+			# svm_newPath = os.path.join(MLArchivePath, svm_newFilename)
 			# pca_currentPath = os.path.join(os.getcwd(),'PCA.dat')
-			# pca_newFilename = "PCA_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
-			# pca_newPath = os.path.join(SVMArchivePath, pca_newFilename)
+			# pca_newFilename = "PCA_" + str(os.stat("ML.dat").st_mtime) + ".dat"
+			# pca_newPath = os.path.join(MLArchivePath, pca_newFilename)
 			Model_currentPath = os.path.join(os.getcwd(),'Model.dat')
 			Model_newFilename = "Model_" + str(os.stat("Model.dat").st_mtime) + ".dat"
-			Model_newPath = os.path.join(SVMArchivePath, Model_newFilename)
+			Model_newPath = os.path.join(MLArchivePath, Model_newFilename)
 			os.rename(Model_currentPath,Model_newPath)
 		except:
-			print ("new SVM model will be created")
+			print ("new ML model will be created")
 		finally:
-			print("Training SVM from Training Set...")
-			SVMmodel = ml.classifier()
-			SVMmodel.train()
-			print("Finished training SVM")
-			displaySVMInfo()
+			print("Training ML from Training Set...")
+			MLmodel = ml.classifier()
+			MLmodel.train()
+			print("Finished training ML")
+			displayMLInfo()
 	else:
-		print("SVM Training is skipped, as no new image is processed")
+		print("ML Training is skipped, as no new image is processed")
 	print("-----------------------------------------------------------")
 	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_3():
-	displaySVMInfo()
+	displayMLInfo()
 	print ("Publishing current classifier model to classifier's path")
-	# currentPath = os.path.join(os.getcwd(),'SVM.dat')
-	# newPath = os.path.join(SVMPath, 'SVM.dat')
+	# currentPath = os.path.join(os.getcwd(),'ML.dat')
+	# newPath = os.path.join(MLPath, 'ML.dat')
 	# shutil.copyfile(currentPath,newPath)
 	# currentPath = os.path.join(os.getcwd(),'PCA.dat')
-	# newPath = os.path.join(SVMPath, 'PCA.dat')
+	# newPath = os.path.join(MLPath, 'PCA.dat')
 	# shutil.copyfile(currentPath,newPath)
 	currentPath = os.path.join(os.getcwd(),'Model.dat')
-	newPath = os.path.join(SVMPath, 'Model.dat')
+	newPath = os.path.join(MLPath, 'Model.dat')
 	shutil.copyfile(currentPath,newPath)
 	version = np.array(os.stat("Model.dat").st_mtime)
 	np.save('Model_version.npy',version)
 	currentPath = os.path.join(os.getcwd(),'Model_version.npy')
-	newPath = os.path.join(SVMPath, 'Model_version.npy')
+	newPath = os.path.join(MLPath, 'Model_version.npy')
 	shutil.copyfile(currentPath,newPath)
 	print("Done!")
 	print("-----------------------------------------------------------")
@@ -322,14 +322,14 @@ def displayTrainingDataInfo():
 		print ("No Training Set is found")
 	print("-----------------------------------------------------------")
 
-def displaySVMInfo():
-	print("Loading SVM Info......")
+def displayMLInfo():
+	print("Loading ML Info......")
 	try:
 		print ("Last modified :")
 		fileLastModified = os.stat("Model.dat").st_mtime
 		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
 	except:
-		print ("No SVM is found")
+		print ("No ML is found")
 
 
 if __name__ == "__main__":
