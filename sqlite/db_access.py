@@ -1,7 +1,7 @@
-import pymysql.cursors, time , db_structure
+import pymysql.cursors, time , db_structure, sqlite3
 
 def connectToServer():
-	connection = pymysql.connect(host='151.236.63.243',user='terminal_user',password='abcd1234',db='smartscale',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
+	connection = pymysql.connect(host='42.2.205.124',user='terminal_user',password='abcd1234',db='smartscale',charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor)
 	return connection
 
 def user_login(inputUsername, inputPassword):
@@ -224,6 +224,11 @@ def user_removeFoodIntake(removeFoodInTake):
 		return (True, 0)
 	else:
 		return (False, 0)
+
+	def food_localDB_syn ()
+		connection = sqlite3.connect('local_foodinfo_db')
+
+
 
 # result = user_getRangeFoodIntake("1", "2016-11-04", "2016-11-05")
 # result = result[1][0]
