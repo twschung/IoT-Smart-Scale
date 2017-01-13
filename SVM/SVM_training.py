@@ -14,6 +14,7 @@ newItemPath = '/home/public/FTP/imageUploaded/newItem'
 exisitingItemPath =  '/home/public/FTP/imageUploaded/existingItem'
 exisitingBackgroundItemPath = '/home/public/FTP/imageUploaded/existingItem/backgroundImage'
 sampleItemPath = '/home/public/HTTP/imageSample'
+localDBPath = '/home/public/HTTP/DB'
 
 def main():
 	os.system('clear')
@@ -181,7 +182,9 @@ def opt_8():
 def opt_9():
 	os.system('mysqldump --skip-extended-insert --compact -u terminal_user -pabcd1234 smartscale foodinfo_db > localFoodDB.sql')
 	os.system('./mysql2sqlite localFoodDB.sql | sqlite3 localFoodDB.db')
-
+	newFilePath = os.path.join(localDBPath,'localFoodDB.db')
+	os.rename('localFoodDB.db',newFilePath)
+	main()
 
 def newImageProcessMenu(filePath):
 	stayInLoop = True
