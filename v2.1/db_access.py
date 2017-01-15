@@ -77,6 +77,19 @@ def user_changePassword(inputUser):
 	else:
 		return (True, comfirmUser[1])
 
+def food_getInfo_localDB(itemID):
+	serverConnection = sqlite3.connect('localFoodDB.db')
+	serverConnection.row_factory = sqlite3.Row
+	cursor = serverConnection.cursor()
+	cursor.execute("SELECT * FROM `foodinfo_db` WHERE `id`=%s"%(itemID))
+	sqlResult = cursor.fetchone()
+	serverConnection.close()
+	if (sqlResult is None) :
+		return (False,0)
+	else:
+		returnFood = db_structure.foodDataStructure(sqlResult['id'],sqlResult['category'],sqlResult['description'],sqlResult['energy'],sqlResult['fat'],sqlResult['saturates'],sqlResult['carbohydrate'],sqlResult['sugars'],sqlResult['fibre'],sqlResult['protein'],sqlResult['salt'])
+		return (True, returnFood)
+
 def food_getInfo(itemID):
 	serverConnection = connectToServer()
 	cursor = serverConnection.cursor()
@@ -104,7 +117,7 @@ def user_getDailyIntake(userId, date):
 		return (True, returnDailyIntake)
 
 def food_getActualInfo(userId,foodId,weight):
-	foodInfo = food_getInfo(foodId)[1]
+	foodInfo = food_getInfo_localDB(foodId)[1]
 	actualFoodInfo = db_structure.userFoodIntakeStructure()
 	actualFoodInfo.userid = userId
 	actualFoodInfo.datetime = time.strftime('%Y-%m-%d %H:%M:%S')
@@ -225,10 +238,8 @@ def user_removeFoodIntake(removeFoodInTake):
 	else:
 		return (False, 0)
 
-def localDB_food_syn():
-	conn = sqlite3.connect('localFoodDB.db')
 
-localDB_food_syn()
+
 # result = user_getRangeFoodIntake("1", "2016-11-04", "2016-11-05")
 # result = result[1][0]
 # result = user_removeFoodIntake(result)
