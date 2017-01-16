@@ -13,6 +13,8 @@ class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
 	def __init__(self, mainWindow, name=None):
 		super(myMainMenu, self).__init__()
 		self.setupUi(self)
+		self.btn_login.setIcon(QtGui.QIcon('/ui/icon/login.png'))
+		self.btn_login.setIconSize(QtCore.QSize(24,24))
 		self.btn_login.clicked.connect(lambda:self.handleBtn_login(mainWindow))
 		self.btn_guest.clicked.connect(lambda:self.handleBtn_guest(mainWindow))
 		self.btn_scaleOnly.clicked.connect(lambda:self.handleBtn_scaleOnly(mainWindow))
