@@ -108,6 +108,14 @@ def updateML():
 		return False
 	return True
 
+def updatelocalDB():
+	try:
+		urllib.request.urlretrieve ((HTTP_ServerAddress + '/DB/localFoodDB.db'),'localFoodDB.db')
+	except:
+		return False
+	return True
+
+
 # updateML()
 #~ uploadImageHistory ()
 #~ updateImageSample()

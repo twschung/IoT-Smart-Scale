@@ -14,6 +14,7 @@ newItemPath = '/home/public/FTP/imageUploaded/newItem'
 exisitingItemPath =  '/home/public/FTP/imageUploaded/existingItem'
 exisitingBackgroundItemPath = '/home/public/FTP/imageUploaded/existingItem/backgroundImage'
 sampleItemPath = '/home/public/HTTP/imageSample'
+localDBPath = '/home/public/HTTP/DB'
 
 def main():
 	os.system('clear')
@@ -27,6 +28,7 @@ def main():
 	print(" [6] - Erase SampleSet & RasposeSet and reset everything")
 	print(" [7] - Editing sampleImageVersion.npy")
 	print(" [8] - Evaluate Machine Learning")
+	print(" [9] - Export and Publish Food DB into sqlite format")
 	print("-----------------------------------------------------------")
 	usrInput=input("Please input the one of the option ->  ")
 	if (usrInput == "1"):
@@ -45,6 +47,9 @@ def main():
 		opt_7()
 	elif (usrInput == "8"):
 		opt_8()
+	elif (usrInput == "9"):
+		opt_9()
+
 def opt_1():
 	displayTrainingDataInfo()
 	displayMLInfo()
@@ -172,6 +177,13 @@ def opt_7():
 def opt_8():
 	evaluateML.evaluateML()
 	wait = input("Press Any Key to continue ... ")
+	main()
+
+def opt_9():
+	os.system('mysqldump --skip-extended-insert --compact -u terminal_user -pabcd1234 smartscale foodinfo_db > localFoodDB.sql')
+	os.system('./mysql2sqlite localFoodDB.sql | sqlite3 localFoodDB.db')
+	newFilePath = os.path.join(localDBPath,'localFoodDB.db')
+	os.rename('localFoodDB.db',newFilePath)
 	main()
 
 def newImageProcessMenu(filePath):
