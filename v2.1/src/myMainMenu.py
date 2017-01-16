@@ -7,19 +7,20 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import myLoginMenu, myFoodInformation, myScaleOnly, myUserSetup
+import ftp_access
 import ui_mainmenu
 
 class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
 	def __init__(self, mainWindow, name=None):
 		super(myMainMenu, self).__init__()
 		self.setupUi(self)
-		self.btn_login.setIcon(QIcon('/ui/icon/login.png'))
-		self.btn_login.setIconSize(QSize(24,24))
+		self.btn_login.setIcon(QIcon(QPixmap(os.getcwd()+ "/ui/icon/login.png")))
 		self.btn_login.clicked.connect(lambda:self.handleBtn_login(mainWindow))
 		self.btn_guest.clicked.connect(lambda:self.handleBtn_guest(mainWindow))
 		self.btn_scaleOnly.clicked.connect(lambda:self.handleBtn_scaleOnly(mainWindow))
 		self.btn_userSetup.clicked.connect(lambda:self.handleBtn_userSetup(mainWindow))
 		self.btn_close.clicked.connect(lambda:self.handleBtn_close())
+		self.btn_update.clicked.connect(lambda:self.handleBtn_systemUpdate())
 	def handleBtn_login(self, mainWindow):
 		self.widget = myLoginMenu.myLoginMenu(mainWindow)
 		mainWindow.central_widget.addWidget(self.widget)
@@ -41,3 +42,9 @@ class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
 			sys.exit()
 		else:
 			pass
+	def handleBtn_systemUpdate(self):
+		msg = QMessageBox.information(self, 'System Update',"System and database being updated",QMessageBox.Ok)
+		ftp_access.updateImageSample()
+		ftp_access.updateML()
+		ftp_access.updatelocalDB()
+		ftp_access.uploadImageHistory()

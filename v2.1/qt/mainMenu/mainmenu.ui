@@ -95,10 +95,6 @@
      <property name="text">
       <string>Login</string>
      </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../ui/icon/login.png</normaloff>../../ui/icon/login.png</iconset>
-     </property>
     </widget>
    </item>
    <item row="1" column="1">
