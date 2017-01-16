@@ -13,7 +13,7 @@ class myUserMenu(QWidget, ui_usermenu.Ui_userMenu):
 	def __init__(self, mainWindow, name=None,layoutSetting=None, currentUserInfo=None):
 		super(myUserMenu, self).__init__()
 		self.setupUi(self)
-		self.lbl_title.setText("Welcome %s !"%(currentUserInfo.firstname))
+		self.lbl_title.setText("Welcome %s!"%(currentUserInfo.firstname))
 		self.btn_logout.clicked.connect(lambda:self.handleBtn_logout(mainWindow))
 		self.btn_accountSetting.clicked.connect(lambda:self.handleBtn_accountSetting(mainWindow,currentUserInfo))
 		self.btn_myTracking.clicked.connect(lambda:self.handleBtn_myTracking(mainWindow,currentUserInfo))
