@@ -1,5 +1,5 @@
 import sys
-import os
+import os, shutil
 currentDir = os.getcwd()
 sys.path.insert(0,currentDir+"/src")
 sys.path.insert(0,currentDir+"/ui")
@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import ui_foodinformation
-import db_access, db_structure
+import db_access, db_structure, ftp_access
 import time
 from hx711 import HX711
 
@@ -106,6 +106,9 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		camera.capture("forground.jpg")
 		camera.stop_preview()
 		GPIO.output(17,False)
+		(forgroundFilePath,backgroundFilePath) =  ftp_access.generateExisitingItemFilePath()
+		shutil.copyfile('forground.jpg',forgroundFilePath)
+		shutil.copyfile('background.jpg',backgroundFilePath)
 
 
 class get_weight_thread (QObject):
