@@ -8,6 +8,8 @@ sudo pip3 install scipy
 sudo pip3 install scikit-learn
 sudo pip3 install mahotas
 
+sudo apt-get install sqlite3 libsqlite3-dev
+
 sudo apt-get install build-essential cmake pkg-config
 sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
 sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
@@ -53,4 +55,3 @@ nano /etc/apache2/avavlible-site/000-defalut.conf
 mysql -u root -p
 create database smartscale;
 grant all on smartscale.* to ’terminal_user’ identified by ‘abcd1234’;
-

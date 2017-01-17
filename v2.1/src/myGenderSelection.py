@@ -13,7 +13,10 @@ class myGenderSelection(QWidget, ui_genderSelection.Ui_genderSelection):
 	def __init__(self, mainWindow, name=None, layoutSetting=None, dataStruc=None):
 		super(myGenderSelection, self).__init__()
 		self.setupUi(self)
-
+		self.btn_male.setIcon(QIcon(QPixmap(os.getcwd()+ "/ui/icon/male.png")))
+		self.btn_male.setIconSize(QSize(130,130))
+		self.btn_female.setIcon(QIcon(QPixmap(os.getcwd()+ "/ui/icon/female.png")))
+		self.btn_female.setIconSize(QSize(130,130))
 		if (layoutSetting == "newUser_gender"):
 			self.lbl_title.setText("New User Setup Wizard")
 			self.btn_back.clicked.connect(lambda:mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget()))
