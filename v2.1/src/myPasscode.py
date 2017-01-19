@@ -32,7 +32,7 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 		self.btn_remFingerPrint.setVisible(False)
 		if (layoutSetting == "newUser_passcode"):
 			self.btn_forgot.setVisible(False)
-			self.lbl_title.setText("New User Setup Wizard")
+			self.lbl_title.setText("New User Setup Wizard ")
 			self.lbl_info.setText("Please Enter a New Passcode")
 			self.btn_done.setText("Next")
 			self.btn_done.clicked.connect(lambda:self.handleBtn_done_newPasscode(mainWindow,dataStruc))
