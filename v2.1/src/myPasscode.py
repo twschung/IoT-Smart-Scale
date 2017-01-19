@@ -43,7 +43,7 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 			self.lbl_info.setText("Please confirm New Passcode")
 			self.btn_done.clicked.connect(lambda:self.handleBtn_done_newConfirmPasscode(mainWindow,dataStruc))
 			self.btn_back.clicked.connect(lambda:myUserSetup.myUserSetup.newUser_passcode(self,mainWindow=mainWindow,newUserInfo=dataStruc))
-		if (layoutSetting == "loginUser_passcode", newUser):
+		if (layoutSetting == "loginUser_passcode"):
 			self.lbl_title.setText("User login")
 			self.lbl_info.setText("Please enter Passcode")
 			self.btn_remUser.setVisible(True)
