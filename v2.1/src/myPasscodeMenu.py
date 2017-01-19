@@ -21,10 +21,13 @@ class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
 		self.btn_changePasscode.setIconSize(QSize(130,130))
 		self.btn_rmUsrFromMenu.setIcon(QIcon(QPixmap(os.getcwd()+ "/ui/icon/removeUser.png")))
 		self.btn_rmUsrFromMenu.setIconSize(QSize(130,130))
-		self.btn_back.clicked.connect(lambda:mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget()))
+		self.btn_back.clicked.connect(lambda:self.handleBtn_back(mainWindow,currentUserInfo))
 		self.btn_fingerprint.clicked.connect(lambda:self.handleBtn_fingerprint(mainWindow,currentUserInfo))
 		self.btn_changePasscode.clicked.connect(lambda:self.handleBtn_changePasscode(mainWindow,currentUserInfo))
 		self.btn_rmUsrFromMenu.clicked.connect(lambda:self.handleBtn_rmUsrFromMenu(mainWindow,currentUserInfo))
+	def handleBtn_back(self,mainWindow,currentUserInfo):
+		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
+		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 	def handleBtn_changePasscode(self,mainWindow,currentUserInfo):
 		myUserEdit.myUserEdit.editUser_newPasscode(self,mainWindow=mainWindow,currentUserInfo=currentUserInfo)
 	def handleBtn_fingerprint(self,mainWindow,currentUserInfo):
@@ -32,6 +35,4 @@ class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
 		mainWindow.central_widget.addWidget(self.widget)
 		mainWindow.central_widget.setCurrentWidget(self.widget)
 	def handleBtn_rmUsrFromMenu(self, mainWindow, currentUserInfo):
-		self.widget = myGoal.myGoal(mainWindow, currentUserInfo=currentUserInfo)
-		mainWindow.central_widget.addWidget(self.widget)
-		mainWindow.central_widget.setCurrentWidget(self.widget)
+		myUserLogin.myUserLogin.forgetUser(self, currentUserInfo=dataStruc)
