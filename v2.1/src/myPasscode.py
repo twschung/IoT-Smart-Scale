@@ -126,7 +126,7 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 			msg = QMessageBox.information(self, 'Failed',"Passcode Incorrect",QMessageBox.Ok)
 	def handleBtn_done_editUser_oldPasscode(self, mainWindow, dataStruc):
 		if (self.passcode == dataStruc.password):
-			self.widget = myPasscodeMenu.myPasscodeMenu(mainWindow=mainWindow,currentUserInfo=dataStruc))
+			self.widget = myPasscodeMenu.myPasscodeMenu(mainWindow=mainWindow,currentUserInfo=dataStruc)
 			mainWindow.central_widget.addWidget(self.widget)
 			mainWindow.central_widget.setCurrentWidget(self.widget)
 			if (self.btn_remUser.isChecked() == True):
