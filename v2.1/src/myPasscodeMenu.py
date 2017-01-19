@@ -35,4 +35,4 @@ class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
 		mainWindow.central_widget.addWidget(self.widget)
 		mainWindow.central_widget.setCurrentWidget(self.widget)
 	def handleBtn_rmUsrFromMenu(self, mainWindow, currentUserInfo):
-		myUserLogin.myUserLogin.forgetUser(self, currentUserInfo=dataStruc)
+		myUserLogin.myUserLogin.forgetUser(self, currentUserInfo=currentUserInfo)
