@@ -6,7 +6,7 @@ sys.path.insert(0,currentDir+"/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-import myUserEdit
+import myUserEdit,myUserLogin
 import ui_passcodeMenu
 
 class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):

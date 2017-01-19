@@ -63,7 +63,10 @@ class myUserLogin():
                 self.config['expUsr'][x] = db_structure.userDataStructure()
                 np.save('config.npy', self.config)
                 finishFlag = True
-        if (finishFlag == False): msg = QMessageBox.information(self, 'Failed',"Unable to remove user to login menu",QMessageBox.Ok)
+        if (finishFlag == False):
+            msg = QMessageBox.information(self, 'Failed',"Unable to remove user from login menu",QMessageBox.Ok)
+        else:
+            msg = QMessageBox.information(self, 'Success',"Removed user from login menu",QMessageBox.Ok)
 
     def rememberUserAndFingerPrint(self,currentUserInfo):
         self.config = np.load('config.npy').item()
