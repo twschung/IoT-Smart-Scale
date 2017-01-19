@@ -8,15 +8,15 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_accountSetting(object):
-    def setupUi(self, accountSetting):
-        accountSetting.setObjectName("accountSetting")
-        accountSetting.resize(800, 480)
-        self.gridLayout = QtWidgets.QGridLayout(accountSetting)
+class Ui_passcodeMenu(object):
+    def setupUi(self, passcodeMenu):
+        passcodeMenu.setObjectName("passcodeMenu")
+        passcodeMenu.resize(800, 480)
+        self.gridLayout = QtWidgets.QGridLayout(passcodeMenu)
         self.gridLayout.setContentsMargins(11, 11, 11, 11)
         self.gridLayout.setSpacing(6)
         self.gridLayout.setObjectName("gridLayout")
-        self.label = QtWidgets.QLabel(accountSetting)
+        self.label = QtWidgets.QLabel(passcodeMenu)
         self.label.setMinimumSize(QtCore.QSize(261, 71))
         self.label.setMaximumSize(QtCore.QSize(400, 71))
         font = QtGui.QFont()
@@ -31,7 +31,7 @@ class Ui_accountSetting(object):
         self.gridLayout_2.setContentsMargins(11, 11, 11, 11)
         self.gridLayout_2.setSpacing(6)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.btn_changePasscode = QtWidgets.QPushButton(accountSetting)
+        self.btn_changePasscode = QtWidgets.QPushButton(passcodeMenu)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -44,7 +44,7 @@ class Ui_accountSetting(object):
         self.btn_changePasscode.setFont(font)
         self.btn_changePasscode.setObjectName("btn_changePasscode")
         self.gridLayout_2.addWidget(self.btn_changePasscode, 0, 0, 1, 1)
-        self.btn_fingerprint = QtWidgets.QPushButton(accountSetting)
+        self.btn_fingerprint = QtWidgets.QPushButton(passcodeMenu)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -57,7 +57,7 @@ class Ui_accountSetting(object):
         self.btn_fingerprint.setFont(font)
         self.btn_fingerprint.setObjectName("btn_fingerprint")
         self.gridLayout_2.addWidget(self.btn_fingerprint, 0, 1, 1, 1)
-        self.btn_back = QtWidgets.QPushButton(accountSetting)
+        self.btn_back = QtWidgets.QPushButton(passcodeMenu)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -70,7 +70,7 @@ class Ui_accountSetting(object):
         self.btn_back.setFont(font)
         self.btn_back.setObjectName("btn_back")
         self.gridLayout_2.addWidget(self.btn_back, 1, 1, 1, 1)
-        self.btn_rmUsrFromMenu = QtWidgets.QPushButton(accountSetting)
+        self.btn_rmUsrFromMenu = QtWidgets.QPushButton(passcodeMenu)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -84,15 +84,15 @@ class Ui_accountSetting(object):
         self.gridLayout_2.addWidget(self.btn_rmUsrFromMenu, 1, 0, 1, 1)
         self.gridLayout.addLayout(self.gridLayout_2, 1, 0, 1, 2)
 
-        self.retranslateUi(accountSetting)
-        QtCore.QMetaObject.connectSlotsByName(accountSetting)
+        self.retranslateUi(passcodeMenu)
+        QtCore.QMetaObject.connectSlotsByName(passcodeMenu)
 
-    def retranslateUi(self, accountSetting):
+    def retranslateUi(self, passcodeMenu):
         _translate = QtCore.QCoreApplication.translate
-        accountSetting.setWindowTitle(_translate("accountSetting", "accountSetting"))
-        self.label.setText(_translate("accountSetting", "Passcode & Finger Print Menu"))
-        self.btn_changePasscode.setText(_translate("accountSetting", "Change Passcode"))
-        self.btn_fingerprint.setText(_translate("accountSetting", "Finger Print"))
-        self.btn_back.setText(_translate("accountSetting", "Back"))
-        self.btn_rmUsrFromMenu.setText(_translate("accountSetting", "Remove User from Login Menu"))
+        passcodeMenu.setWindowTitle(_translate("passcodeMenu", "passcodeMenu"))
+        self.label.setText(_translate("passcodeMenu", "Passcode & Finger Print Menu"))
+        self.btn_changePasscode.setText(_translate("passcodeMenu", "Change Passcode"))
+        self.btn_fingerprint.setText(_translate("passcodeMenu", "Finger Print"))
+        self.btn_back.setText(_translate("passcodeMenu", "Back"))
+        self.btn_rmUsrFromMenu.setText(_translate("passcodeMenu", "Remove User from Login Menu"))
 
