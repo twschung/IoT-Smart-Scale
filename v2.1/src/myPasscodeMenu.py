@@ -9,9 +9,9 @@ from PyQt5.QtCore import *
 import myUserEdit
 import ui_passcodeMenu
 
-class myAccountSetting(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
+class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
 	def __init__(self, mainWindow, name=None,layoutSetting=None, currentUserInfo=None):
-		super(myAccountSetting, self).__init__()
+		super(myPasscodeMenu, self).__init__()
 		self.setupUi(self)
 		self.btn_back.setIcon(QIcon(QPixmap(os.getcwd()+ "/ui/icon/back.png")))
 		self.btn_back.setIconSize(QSize(130,130))
