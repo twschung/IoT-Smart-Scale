@@ -8,6 +8,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import myUserEdit,myUserLogin
 import ui_passcodeMenu
+import numpy as np
 from pyfingerprint import PyFingerprint
 
 class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
