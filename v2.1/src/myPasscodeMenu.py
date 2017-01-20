@@ -6,10 +6,10 @@ sys.path.insert(0,currentDir+"/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-import myUserEdit,myUserLogin, db_structure
+import myUserEdit,myUserLogin, db_structure, fingerprint
 import ui_passcodeMenu
 import numpy as np
-from pyfingerprint import PyFingerprint
+
 
 class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
 	def __init__(self, mainWindow, name=None,layoutSetting=None, currentUserInfo=None):
@@ -50,16 +50,10 @@ class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
 			finally:
 				fpData.username = currentUserInfo.username
 				fpData.password = currentUserInfo.password
-				try:
-					f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
-					if ( f.verifyPassword() == False ):
-						raise ValueError('The given fingerprint sensor password is wrong!')
-				except Exception as e:
-				    print('The fingerprint sensor could not be initialized!')
-				    print('Exception message: ' + str(e))
-				    exit(1)
-				print('Currently used templates: ' + str(f.getTemplateCount()) +'/'+ str(f.getStorageCapacity()))
-				# if (fpData.fpid == ""):
+				fingerprint.enrollNewFinger(self)
+
+
+
 
 	def handleBtn_rmUsrFromMenu(self, mainWindow, currentUserInfo):
 		myUserLogin.myUserLogin.forgetUser(self, currentUserInfo=currentUserInfo)
