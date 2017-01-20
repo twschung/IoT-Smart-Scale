@@ -2,6 +2,7 @@ from pyfingerprint import PyFingerprint
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+import time
 
 def connectToFingerPrint():
     try:
@@ -21,7 +22,7 @@ def enrollNewFinger(self):
         msgbox = QMessageBox()
         msgbox.setIcon(QMessageBox.Information)
         msgbox.setText("Please place finger on scanner")
-        msgbox.exec_();
+        msgbox.show();
         while ( f.readImage() == False ):
             pass
         msgbox.done(1)
