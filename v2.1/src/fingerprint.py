@@ -23,9 +23,8 @@ def enrollNewFinger(self):
         msgbox.setIcon(QMessageBox.Information)
         msgbox.setText("Please place finger on scanner")
         msgbox.setWindowModality(Qt.NonModal)
-        QCoreApplication.processEvents()
         msgbox.show()
-        QCoreApplication.processEvents()
+        msgbox.exec_()
         while ( f.readImage() == False ):
             pass
         msgbox.done(1)
