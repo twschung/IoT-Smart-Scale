@@ -5,10 +5,11 @@ from PyQt5.QtCore import *
 
 def connectToFingerPrint():
     try:
-      f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
-      if ( f.verifyPassword() == False ):
-        raise ValueError('The given fingerprint sensor password is wrong!')
-        return f
+        f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
+        if ( f.verifyPassword() == False ):
+            raise ValueError('The given fingerprint sensor password is wrong!')
+        else:
+            return f
     except Exception as e:
         print('The fingerprint sensor could not be initialized!')
         print('Exception message: ' + str(e))
