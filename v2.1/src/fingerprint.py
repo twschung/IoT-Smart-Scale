@@ -19,11 +19,11 @@ def connectToFingerPrint():
 def enrollNewFinger(self):
     f = connectToFingerPrint()
     try:
-        msgbox = QMessageBox()
-        msgbox.setIcon(QMessageBox.Information)
-        msgbox.setText("Please place finger on scanner")
-        msgbox.setWindowModality(Qt.NonModal)
-        msgbox.show();
+        msgbox = QDialog()
+        # msgbox.setIcon(QMessageBox.Information)
+        # msgbox.setText("Please place finger on scanner")
+        # msgbox.setWindowModality(Qt.NonModal)
+        msgbox.exec_()();
         while ( f.readImage() == False ):
             pass
         msgbox.done(1)
