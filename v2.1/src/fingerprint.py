@@ -22,6 +22,7 @@ def enrollNewFinger(self):
         msgbox = QMessageBox()
         msgbox.setIcon(QMessageBox.Information)
         msgbox.setText("Please place finger on scanner")
+        msgbox.setWindowModality(Qt.NonModal)
         msgbox.show();
         while ( f.readImage() == False ):
             pass
@@ -29,7 +30,9 @@ def enrollNewFinger(self):
         f.convertImage(0x01)
         result = f.searchTemplate()
         positionNumber = result[0]
-        if ( positionNumber != 0 ):
+        if ( positionNumber >= 0 ):
+            return (False, 2)
+        else:
             print('Remove finger...')
             time.sleep(2)
             print('Waiting for same finger again...')
