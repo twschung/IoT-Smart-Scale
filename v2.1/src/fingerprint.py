@@ -18,10 +18,13 @@ def connectToFingerPrint():
 def enrollNewFinger(self):
     f = connectToFingerPrint()
     try:
-        QMessageBox.information(self, 'Waiting',"Please place finger on scanner")
+        msgbox = QMessageBox()
+        msgbox.setIcon(QMessageBox.Information)
+        msgbox.setText("Please place finger on scanner")
+        msgbox.exec_();
         while ( f.readImage() == False ):
             pass
-        QMessageBox.done(1)
+        msgbox.done(1)
         f.convertImage(0x01)
         result = f.searchTemplate()
         positionNumber = result[0]
