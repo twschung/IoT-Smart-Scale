@@ -6,7 +6,7 @@ sys.path.insert(0,currentDir+"/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-import myUserEdit,myUserLogin
+import myUserEdit,myUserLogin, db_structure
 import ui_passcodeMenu
 import numpy as np
 from pyfingerprint import PyFingerprint
