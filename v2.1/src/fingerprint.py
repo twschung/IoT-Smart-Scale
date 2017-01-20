@@ -8,17 +8,19 @@ def connectToFingerPrint():
       f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
       if ( f.verifyPassword() == False ):
         raise ValueError('The given fingerprint sensor password is wrong!')
+        return f
     except Exception as e:
         print('The fingerprint sensor could not be initialized!')
         print('Exception message: ' + str(e))
         exit(1)
 
 def enrollNewFinger(self):
-    connectToFingerPrint()
+    f = connectToFingerPrint()
     try:
-        QMessageBox.information(self, 'Waiting',"Please place finger on scanner",QMessageBox.Ok)
+        msgBox = QMessageBox.information(self, 'Waiting',"Please place finger on scanner",QMessageBox.Ok)
         while ( f.readImage() == False ):
             pass
+        msgBox.done(1)
         f.convertImage(0x01)
         result = f.searchTemplate()
         positionNumber = result[0]
