@@ -19,21 +19,21 @@ def connectToFingerPrint():
 def enrollNewFinger(self):
     f = connectToFingerPrint()
     try:
-        msgbox = QDialog()
-        # msgbox.setIcon(QMessageBox.Information)
-        # msgbox.setText("Please place finger on scanner")
-        # msgbox.setWindowModality(Qt.NonModal)
-        msgbox.open();
+        msgbox = QMessageBox()
+        msgbox.setIcon(QMessageBox.Information)
+        msgbox.setText("Please place finger on scanner")
+        msgbox.exec_();
         while ( f.readImage() == False ):
             pass
-        msgbox.done(1)
         f.convertImage(0x01)
         result = f.searchTemplate()
         positionNumber = result[0]
         if ( positionNumber >= 0 ):
+            msgbox.setText("Error")
             return (False, 2)
         else:
             print('Remove finger...')
+            msgbox.setText("Remove finger...")
             time.sleep(2)
             print('Waiting for same finger again...')
 
