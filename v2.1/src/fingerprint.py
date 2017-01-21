@@ -21,7 +21,7 @@ def enrollFinger(self,currentPositionNumber=None):
     f = connectToFingerPrint()
     try:
         msgbox = myInfoPopUp.myInfoPopUp("Place finger...", "Please place finger on scanner",self)
-		msgbox.exec_()
+        msgbox.exec_()
         while ( f.readImage() == False ):
             pass
         msgbox.done(1)
