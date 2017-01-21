@@ -47,7 +47,7 @@ class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
 		finally:
 			fpResult = fingerprint.searchFinger()
 			if (fpResult[0]==True):
-				for i=1:len(fpUsr):
+				for i in range(1,len(fpUsr)):
 					if (fpUsr[str(i)].fpid == fpResult[1]):
 						print (fpUsr[str(i)].username)
 						print (fpUsr[str(i)].password)
