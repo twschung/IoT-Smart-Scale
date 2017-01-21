@@ -33,7 +33,7 @@ def enrollFinger(self,currentPositionNumber=None):
             return (False, 2)
         else:
             msgbox = myInfoPopUp.myInfoPopUp("Remove finger...", "Please remove finger from scanner",self)
-    		msgbox.exec_()
+            msgbox.exec_()
             time.sleep(2)
             msgbox.done(1)
             msgbox = myInfoPopUp.myInfoPopUp("Place finger...", "Please place the same finger on scanner",self)
