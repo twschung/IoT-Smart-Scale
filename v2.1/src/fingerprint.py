@@ -1,3 +1,4 @@
+import myInfoPopUp
 from pyfingerprint import PyFingerprint
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
@@ -16,15 +17,11 @@ def connectToFingerPrint():
         print('Exception message: ' + str(e))
         exit(1)
 
-def enrollNewFinger(self):
+def enrollFinger(self,currentPositionNumber=None):
     f = connectToFingerPrint()
     try:
-        msgbox = QMessageBox(self)
-        msgbox.setIcon(QMessageBox.Information)
-        msgbox.setText("Please place finger on scanner")
-        msgbox.setWindowModality(Qt.NonModal)
-        msgbox.show()
-        # msgbox.exec_()
+        msgbox = myInfoPopUp.myInfoPopUp("Place finger...", "Please place finger on scanner",self)
+		msgbox.exec_()
         while ( f.readImage() == False ):
             pass
         msgbox.done(1)
@@ -32,22 +29,28 @@ def enrollNewFinger(self):
         result = f.searchTemplate()
         positionNumber = result[0]
         if ( positionNumber >= 0 ):
+            QMessageBox.information(self, 'Error',"Finger already registered",QMessageBox.Ok)
             return (False, 2)
         else:
-            print('Remove finger...')
+            msgbox = myInfoPopUp.myInfoPopUp("Remove finger...", "Please remove finger from scanner",self)
+    		msgbox.exec_()
             time.sleep(2)
-            print('Waiting for same finger again...')
-
+            msgbox.done(1)
+            msgbox = myInfoPopUp.myInfoPopUp("Place finger...", "Please place the same finger on scanner",self)
+            msgbox.exec_()
             while ( f.readImage() == False ):
                 pass
+            msgbox.done(1)
             f.convertImage(0x02)
             if f.compareCharacteristics() != 0:
                 f.createTemplate()
                 positionNumber = f.storeTemplate()
-                print('Finger enrolled successfully!')
+                QMessageBox.information(self, 'Success',"Finger enrolled successfully",QMessageBox.Ok)
+                if (currentPositionNumber is not None):
+                    f.deleteTemplate(int(currentPositionNumber))
                 return (True, positionNumber)
             else:
-                print('Fingerprints do not match')
+                QMessageBox.information(self, 'Error',"Finger not match",QMessageBox.Ok)
                 return (False, 1)
     except Exception as e:
         print('Operation failed!')

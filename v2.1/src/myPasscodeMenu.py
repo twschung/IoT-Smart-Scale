@@ -50,10 +50,12 @@ class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
 			finally:
 				fpData.username = currentUserInfo.username
 				fpData.password = currentUserInfo.password
-				fingerprint.enrollNewFinger(self)
-
-
-
+				fpScanResult = fingerprint.enrollFinger(self, ftpData.fpid)
+				if (fpScanResult[0]==True):
+					fpData.fpid = fpScanResult[1]
+				fpUsr[currentUserInfo.id]=fpData
+				config['fpUsr']=fpUsr
+				np.save('config.npy', config)
 
 	def handleBtn_rmUsrFromMenu(self, mainWindow, currentUserInfo):
 		myUserLogin.myUserLogin.forgetUser(self, currentUserInfo=currentUserInfo)
