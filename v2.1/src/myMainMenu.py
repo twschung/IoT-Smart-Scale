@@ -60,7 +60,7 @@ class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
 		# msgbox.setText("System and database being updated")
 		# msgbox.setWindowModality(Qt.NonModal)
 		# msgbox.open()
-		msgbox = myInfoPopUp(self,title = "System Updating...", message = "System and database being updated")
+		msgbox = myInfoPopUp.myInfoPopUp(self,title = "System Updating...", message = "System and database being updated")
 		msgbox.show()
 		ftp_access.updateImageSample()
 		ftp_access.updateML()
