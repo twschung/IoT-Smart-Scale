@@ -50,7 +50,7 @@ class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
 			finally:
 				fpData.username = currentUserInfo.username
 				fpData.password = currentUserInfo.password
-				fpScanResult = fingerprint.enrollFinger(self, ftpData.fpid)
+				fpScanResult = fingerprint.enrollFinger(self, fpData.fpid)
 				if (fpScanResult[0]==True):
 					fpData.fpid = fpScanResult[1]
 				fpUsr[currentUserInfo.id]=fpData
