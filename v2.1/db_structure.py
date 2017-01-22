@@ -1,5 +1,5 @@
 class userFingerPrintStructure:
-	def __init__(self,usrid  = "",fpid = None, usrid = "", username = "", password = ""):
+	def __init__(self,usrid  = "",fpid = None, username = "", password = ""):
 		self.usrid = usrid
 		self.fpid = fpid
 		self.username = username
