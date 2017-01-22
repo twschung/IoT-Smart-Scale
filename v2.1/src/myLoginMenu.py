@@ -8,7 +8,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import ui_loginmenu
 import myUserLogin, myPasscode, fingerprint
-import db_structure
+import db_structure, db_access
 import numpy as np
 
 class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
