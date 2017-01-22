@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import ui_passcode
-import myUserSetup, myLoginMenu, myUserEdit, myUserLogin, myForgotPasscode
+import myUserSetup, myLoginMenu, myUserEdit, myUserLogin, myForgotPasscode, myPasscodeMenu
 import db_access
 
 class myPasscode(QWidget, ui_passcode.Ui_passCode):
@@ -32,7 +32,7 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 		self.btn_remFingerPrint.setVisible(False)
 		if (layoutSetting == "newUser_passcode"):
 			self.btn_forgot.setVisible(False)
-			self.lbl_title.setText("New User Setup Wizard")
+			self.lbl_title.setText("New User Setup Wizard ")
 			self.lbl_info.setText("Please Enter a New Passcode")
 			self.btn_done.setText("Next")
 			self.btn_done.clicked.connect(lambda:self.handleBtn_done_newPasscode(mainWindow,dataStruc))
@@ -43,11 +43,11 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 			self.lbl_info.setText("Please confirm New Passcode")
 			self.btn_done.clicked.connect(lambda:self.handleBtn_done_newConfirmPasscode(mainWindow,dataStruc))
 			self.btn_back.clicked.connect(lambda:myUserSetup.myUserSetup.newUser_passcode(self,mainWindow=mainWindow,newUserInfo=dataStruc))
-		if (layoutSetting == "loginUser_passcode", newUser):
+		if (layoutSetting == "loginUser_passcode"):
 			self.lbl_title.setText("User login")
 			self.lbl_info.setText("Please enter Passcode")
 			self.btn_remUser.setVisible(True)
-			self.btn_remFingerPrint.setVisible(True)
+			# self.btn_remFingerPrint.setVisible(True)
 			self.btn_done.clicked.connect(lambda:self.handleBtn_done_loginPasscode(mainWindow,dataStruc))
 			if(newUser==True):
 				self.btn_back.clicked.connect(lambda:myUserLogin.myUserLogin.loginUser_email(self,mainWindow=mainWindow,currentUserInfo=dataStruc))
@@ -68,7 +68,7 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 			self.btn_back.clicked.connect(lambda:mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget()))
 		if (layoutSetting == "editUser_oldPasscode"):
 			self.btn_forgot.setVisible(False)
-			self.btn_remUser.hide()
+			self.btn_remUser.setVisible(False)
 			if (myUserLogin.myUserLogin.checkRemeberUserStatus(self, currentUserInfo=dataStruc) == True):
 				self.btn_remUser.setChecked(True)
 			else:
@@ -126,7 +126,9 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 			msg = QMessageBox.information(self, 'Failed',"Passcode Incorrect",QMessageBox.Ok)
 	def handleBtn_done_editUser_oldPasscode(self, mainWindow, dataStruc):
 		if (self.passcode == dataStruc.password):
-			myUserEdit.myUserEdit.editUser_newPasscode(self,mainWindow=mainWindow,currentUserInfo=dataStruc)
+			self.widget = myPasscodeMenu.myPasscodeMenu(mainWindow=mainWindow,currentUserInfo=dataStruc)
+			mainWindow.central_widget.addWidget(self.widget)
+			mainWindow.central_widget.setCurrentWidget(self.widget)
 			if (self.btn_remUser.isChecked() == True):
 				myUserLogin.myUserLogin.rememberUser(self, currentUserInfo=dataStruc)
 			else:
