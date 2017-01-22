@@ -44,11 +44,18 @@ class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
 		finally:
 			fpResult = fingerprint.searchFinger(self)
 			if (fpResult[0]==True):
-                                for i in range(0,len(fpUsr)):
-                                        if (fpUsr[i].fpid == fpResult[1]):
-                                                print (fpUsr[i].username)
-                                                print (fpUsr[i].password)
-                                                break
+				for i in range(0,len(fpUsr)):
+					if (fpUsr[i].fpid == fpResult[1]):
+						db_result = db_access.user_login(fpUsr[i].username,fpUsr[i].password)
+						if (db_result[0] == True):
+							currentUserInfo = db_result[1]
+							myUserLogin.myUserLogin.enterUserMenu(self,mainWindow=mainWindow,currentUserInfo=currentUserInfo)
+						else:
+							QMessageBox.information(self, 'Failed',"Email / Passcode Incorrect",QMessageBox.Ok)
+						break
+				QMessageBox.information(self, 'Error',"Fingerprint record not found",QMessageBox.Ok)
+			else:
+				QMessageBox.information(self, 'Error',"Fingerprint record not found",QMessageBox.Ok)
 
 	def handleBtn_user(self, mainWindow, userNum):
 		self.config = np.load('config.npy').item()
