@@ -1,5 +1,5 @@
 import sys
-import os
+import os, shutil
 currentDir = os.getcwd()
 sys.path.insert(0,currentDir+"/src")
 sys.path.insert(0,currentDir+"/ui")
@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import ui_foodinformation
-import db_access, db_structure
+import db_access, db_structure, ftp_access
 import time
 from hx711 import HX711
 
@@ -20,8 +20,8 @@ import numpy as np
 import obj_recognition
 
 GPIO.setup(17, GPIO.OUT)
-camera = PiCamera()
-camera.resolution = (1024, 768)
+# camera = PiCamera()
+# camera.resolution = (1024, 768)
 
 class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def __init__(self, mainWindow, currentUserInfo, name=None, layoutSetting=None):
@@ -98,8 +98,8 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		GPIO.output(17,True)
 		# msg = QMessageBox.information(self, 'Wait....',"Camera initalising",QMessageBox.Ok)
 		sleep(1)
-		camera.capture("background.jpg")
-		camera.stop_preview()
+		# camera.capture("background.jpg")
+		# camera.stop_preview()
 		GPIO.output(17,False)
 
 	def setUpForgroundImage(self):
@@ -107,9 +107,12 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		GPIO.output(17,True)
 		# msg = QMessageBox.information(self, 'Wait....',"Camera initalising",QMessageBox.Ok)
 		sleep(1)
-		camera.capture("forground.jpg")
-		camera.stop_preview()
+		# camera.capture("forground.jpg")
+		# camera.stop_preview()
 		GPIO.output(17,False)
+		(forgroundFilePath,backgroundFilePath) =  ftp_access.generateExisitingItemFilePath()
+		shutil.copyfile('forground.jpg',forgroundFilePath)
+		shutil.copyfile('background.jpg',backgroundFilePath)
 
 
 class get_weight_thread (QObject):

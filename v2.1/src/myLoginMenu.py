@@ -7,16 +7,23 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import ui_loginmenu
-import myUserLogin, myPasscode
-import db_structure
+import myUserLogin, myPasscode, fingerprint
+import db_structure, db_access
 import numpy as np
 
 class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
 	def __init__(self, mainWindow, name=None):
 		super(myLoginMenu, self).__init__()
 		self.setupUi(self)
+		self.btn_back.setIcon(QIcon(QPixmap(os.getcwd()+ "/ui/icon/back.png")))
+		self.btn_back.setIconSize(QSize(65,65))
+		self.btn_newLogin.setIcon(QIcon(QPixmap(os.getcwd()+ "/ui/icon/passcode.png")))
+		self.btn_newLogin.setIconSize(QSize(65,65))
+		self.btn_fingerprint.setIcon(QIcon(QPixmap(os.getcwd()+ "/ui/icon/fingerprint.png")))
+		self.btn_fingerprint.setIconSize(QSize(65,65))
 		self.btn_back.clicked.connect(lambda:self.handleBtn_back(mainWindow))
 		self.btn_newLogin.clicked.connect(lambda:self.handleBtn_newLogin(mainWindow))
+		self.btn_fingerprint.clicked.connect(lambda:self.handleBtn_fingerprintLogin(mainWindow))
 		self.btn_user1.clicked.connect(lambda:self.handleBtn_user(mainWindow=mainWindow,userNum=0))
 		self.btn_user2.clicked.connect(lambda:self.handleBtn_user(mainWindow=mainWindow,userNum=1))
 		self.btn_user3.clicked.connect(lambda:self.handleBtn_user(mainWindow=mainWindow,userNum=2))
@@ -28,6 +35,27 @@ class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 	def handleBtn_newLogin(self, mainWindow):
 		myUserLogin.myUserLogin(mainWindow, newUser=True)
+	def handleBtn_fingerprintLogin(self,mainWindow):
+		config = np.load('config.npy').item()
+		try:
+			fpUsr = config['fpUsr']
+		except:
+			fpUsr = []
+		finally:
+			fpResult = fingerprint.searchFinger(self)
+			if (fpResult[0]==True):
+				for i in range(0,len(fpUsr)):
+					if (fpUsr[i].fpid == fpResult[1]):
+						db_result = db_access.user_login(fpUsr[i].username,fpUsr[i].password)
+						if (db_result[0] == True):
+							currentUserInfo = db_result[1]
+							myUserLogin.myUserLogin.enterUserMenu(self,mainWindow=mainWindow,currentUserInfo=currentUserInfo)
+						else:
+							QMessageBox.information(self, 'Failed',"Email / Passcode Incorrect",QMessageBox.Ok)
+						break
+			else:
+				QMessageBox.information(self, 'Error',"Fingerprint record not found",QMessageBox.Ok)
+
 	def handleBtn_user(self, mainWindow, userNum):
 		self.config = np.load('config.npy').item()
 		myUserLogin.myUserLogin.loginUser_passcode(self, mainWindow=mainWindow, currentUserInfo=self.config['expUsr'][userNum], newUser=False)

@@ -3,10 +3,12 @@ sudo apt-get upgrade
 
 sudo apt install python3-pip
 sudo pip3 install pymysql
-sudo pip3 install scikit-learn
 sudo pip3 install numpy
 sudo pip3 install scipy
+sudo pip3 install scikit-learn
 sudo pip3 install mahotas
+
+sudo apt-get install sqlite3 libsqlite3-dev
 
 sudo apt-get install build-essential cmake pkg-config
 sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
@@ -46,3 +48,10 @@ git clone https://github.com/twschung/IoT-Smart-Scale.git
 sudo apt install apache2
 sudo apt install mysql-server
 sudo apt-get install proftpd
+
+nano /etc/apache2/apache2.conf
+nano /etc/apache2/avavlible-site/000-defalut.conf
+
+mysql -u root -p
+create database smartscale;
+grant all on smartscale.* to ’terminal_user’ identified by ‘abcd1234’;

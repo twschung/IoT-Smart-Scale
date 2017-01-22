@@ -3,8 +3,8 @@ import urllib.request
 import os, time, glob
 import numpy as np
 
-HTTP_ServerAddress = 'http://42.2.205.124'
-FTP_ServerAddress = '42.2.205.124'
+HTTP_ServerAddress = 'http://151.236.63.243/'
+FTP_ServerAddress = '151.236.63.243'
 FTP_Username = 'terminal_user'
 FTP_Password = 'abcd1234'
 
@@ -62,7 +62,7 @@ def updateImageSample ():
 			try:
 				currentImageSampleVersion = int(config['currentImageSampleVersion'])
 			except:
-				currentImageSampleVersion = 0 
+				currentImageSampleVersion = 0
 		except:
 			currentImageSampleVersion = 0
 		urllib.request.urlretrieve ((HTTP_ServerAddress + '/imageSample/imageSample_version.npy'),'imageSample_version.npy')
@@ -107,6 +107,14 @@ def updateML():
 	except:
 		return False
 	return True
+
+def updatelocalDB():
+	try:
+		urllib.request.urlretrieve ((HTTP_ServerAddress + '/DB/localFoodDB.db'),'localFoodDB.db')
+	except:
+		return False
+	return True
+
 
 # updateML()
 #~ uploadImageHistory ()

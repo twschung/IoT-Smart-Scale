@@ -1,0 +1,8 @@
+INSERT INTO smartscale.foodinfo_db(id, category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES (1, '', 'apple', '52', '0', '0', '14', '10', '2', '0', '0');
+INSERT INTO smartscale.foodinfo_db(id, category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES (2, '', 'orange', '47', '0', '0', '12', '9', '2', '1', '0');
+INSERT INTO smartscale.foodinfo_db(id, category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES (3, '', 'banana', '89', '0', '0', '23', '12', '3', '1', '0.001');
+INSERT INTO smartscale.foodinfo_db(id, category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES (4, '', 'pear', '42', '0', '0', '11', '7', '4', '0', '0');
+INSERT INTO smartscale.foodinfo_db(id, category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES (5, '', 'mango', '65', '0', '0', '17', '15', '2', '1', '0.002');
+INSERT INTO smartscale.foodinfo_db(id, category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES (6, '', 'pumpkin', '23', '0.1', '0.1', '7', '2.8', '0.5', '1', '0.001');
+INSERT INTO smartscale.foodinfo_db(id, category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES (7, '', 'tomato', '18', '0.2', '0', '3.9', '2.6', '0.9', '0.9', '0.005');
+INSERT INTO smartscale.foodinfo_db(id, category, description, energy, fat, saturates, carbohydrate, sugars, fibre, protein, salt) VALUES (8, '', 'broccoli', '34', '0.4', '0', '7', '1.7', '2.6', '2.8', '0.033');

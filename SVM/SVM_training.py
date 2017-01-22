@@ -4,26 +4,31 @@ import numpy as np
 import imgFeatureExtractSim
 import db_access_server
 import obj_recognition
+import evaluateML
 
 
-SVMPath = '/home/public/HTTP/SVM'
-SVMArchivePath = '/home/public/HTTP/SVM/archive'
+MLPath = '/home/public/HTTP/ML'
+MLArchivePath = '/home/public/HTTP/ML/archive'
 processedItemPath = '/home/public/FTP/imageUploaded/processedItem'
 newItemPath = '/home/public/FTP/imageUploaded/newItem'
 exisitingItemPath =  '/home/public/FTP/imageUploaded/existingItem'
 exisitingBackgroundItemPath = '/home/public/FTP/imageUploaded/existingItem/backgroundImage'
 sampleItemPath = '/home/public/HTTP/imageSample'
+localDBPath = '/home/public/HTTP/DB'
 
 def main():
-	print("IoT Smart Scale SVM Training Program")
+	os.system('clear')
+	print("IoT Smart Scale ML Training Program")
 	print("-----------------------------------------------------------")
-	print(" [1] - Current Training sets and Trained SVM model's info ")
-	print(" [2] - Fetch new data from queue and add to the current training sets & Train SVM ")
-	print(" [3] - Publish the trained SVM ")
+	print(" [1] - Current Training sets and Trained ML model's info ")
+	print(" [2] - Fetch new data from queue and add to the current training sets & Train ML ")
+	print(" [3] - Publish the trained ML ")
 	print(" [4] - Add new item into database & add into the data training queue ")
 	print(" [5] - Exit Program ")
 	print(" [6] - Erase SampleSet & RasposeSet and reset everything")
 	print(" [7] - Editing sampleImageVersion.npy")
+	print(" [8] - Evaluate Machine Learning")
+	print(" [9] - Export and Publish Food DB into sqlite format")
 	print("-----------------------------------------------------------")
 	usrInput=input("Please input the one of the option ->  ")
 	if (usrInput == "1"):
@@ -38,17 +43,17 @@ def main():
 		print("Program exiting !!!!")
 	elif (usrInput == "6"):
 		opt_6()
-	elif (usrInput == "6"):
+	elif (usrInput == "7"):
 		opt_7()
-	else:
-		print("-----------------------------------------------------------")
-		print("ERROR: Invaild Input !!!!!!!")
-		print("-----------------------------------------------------------")
-		main()
+	elif (usrInput == "8"):
+		opt_8()
+	elif (usrInput == "9"):
+		opt_9()
 
 def opt_1():
 	displayTrainingDataInfo()
-	displaySVMInfo()
+	displayMLInfo()
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_2():
@@ -74,50 +79,52 @@ def opt_2():
 	print("Finished modifiing training set. Total of %i is added"% (totalItemProcessed))
 	if (totalItemProcessed > -1):
 		displayTrainingDataInfo()
-		print("Moving current SVM model to archive")
+		print("Moving current ML model to archive")
 		try:
-			# svm_currentPath = os.path.join(os.getcwd(),'SVM.dat')
-			# svm_newFilename = "SVM_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
-			# svm_newPath = os.path.join(SVMArchivePath, svm_newFilename)
+			# svm_currentPath = os.path.join(os.getcwd(),'ML.dat')
+			# svm_newFilename = "ML_" + str(os.stat("ML.dat").st_mtime) + ".dat"
+			# svm_newPath = os.path.join(MLArchivePath, svm_newFilename)
 			# pca_currentPath = os.path.join(os.getcwd(),'PCA.dat')
-			# pca_newFilename = "PCA_" + str(os.stat("SVM.dat").st_mtime) + ".dat"
-			# pca_newPath = os.path.join(SVMArchivePath, pca_newFilename)
+			# pca_newFilename = "PCA_" + str(os.stat("ML.dat").st_mtime) + ".dat"
+			# pca_newPath = os.path.join(MLArchivePath, pca_newFilename)
 			Model_currentPath = os.path.join(os.getcwd(),'Model.dat')
 			Model_newFilename = "Model_" + str(os.stat("Model.dat").st_mtime) + ".dat"
-			Model_newPath = os.path.join(SVMArchivePath, Model_newFilename)
+			Model_newPath = os.path.join(MLArchivePath, Model_newFilename)
 			os.rename(Model_currentPath,Model_newPath)
 		except:
-			print ("new SVM model will be created")
+			print ("new ML model will be created")
 		finally:
-			print("Training SVM from Training Set...")
-			SVMmodel = ml.classifier()
-			SVMmodel.train()
-			print("Finished training SVM")
-			displaySVMInfo()
+			print("Training ML from Training Set...")
+			MLmodel = ml.classifier()
+			MLmodel.train()
+			print("Finished training ML")
+			displayMLInfo()
 	else:
-		print("SVM Training is skipped, as no new image is processed")
+		print("ML Training is skipped, as no new image is processed")
 	print("-----------------------------------------------------------")
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_3():
-	displaySVMInfo()
+	displayMLInfo()
 	print ("Publishing current classifier model to classifier's path")
-	# currentPath = os.path.join(os.getcwd(),'SVM.dat')
-	# newPath = os.path.join(SVMPath, 'SVM.dat')
+	# currentPath = os.path.join(os.getcwd(),'ML.dat')
+	# newPath = os.path.join(MLPath, 'ML.dat')
 	# shutil.copyfile(currentPath,newPath)
 	# currentPath = os.path.join(os.getcwd(),'PCA.dat')
-	# newPath = os.path.join(SVMPath, 'PCA.dat')
+	# newPath = os.path.join(MLPath, 'PCA.dat')
 	# shutil.copyfile(currentPath,newPath)
 	currentPath = os.path.join(os.getcwd(),'Model.dat')
-	newPath = os.path.join(SVMPath, 'Model.dat')
+	newPath = os.path.join(MLPath, 'Model.dat')
 	shutil.copyfile(currentPath,newPath)
 	version = np.array(os.stat("Model.dat").st_mtime)
 	np.save('Model_version.npy',version)
 	currentPath = os.path.join(os.getcwd(),'Model_version.npy')
-	newPath = os.path.join(SVMPath, 'Model_version.npy')
+	newPath = os.path.join(MLPath, 'Model_version.npy')
 	shutil.copyfile(currentPath,newPath)
 	print("Done!")
 	print("-----------------------------------------------------------")
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_4():
@@ -129,6 +136,7 @@ def opt_4():
 		print(filePath)
 		previewImage(filePath)
 		newImageProcessMenu(filePath)
+	wait = input("Press Any Key to continue ... ")
 	main()
 
 def opt_6():
@@ -153,19 +161,35 @@ def opt_6():
 	except:
 		print ("No sampleSet or responseSet is found")
 	finally:
+		wait = input("Press Any Key to continue ... ")
 		main()
 
 def opt_7():
-	versionNum =  input("Please enter the new version number for the sample image")
+	versionNum =  input("Please enter the new version number for the sample image -> ")
 	np.save('imageSample_version.npy',versionNum)
 	currentPath = os.path.join(os.getcwd(),'imageSample_version.npy')
 	newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
 	shutil.copyfile(currentPath,newPath)
+	print ("Finish editing sampleImageVersion.npy")
+	wait = input("Press Any Key to continue ... ")
+	main()
+
+def opt_8():
+	evaluateML.evaluateML()
+	wait = input("Press Any Key to continue ... ")
+	main()
+
+def opt_9():
+	os.system('mysqldump --skip-extended-insert --compact -u terminal_user -pabcd1234 smartscale foodinfo_db > localFoodDB.sql')
+	os.system('./mysql2sqlite localFoodDB.sql | sqlite3 localFoodDB.db')
+	newFilePath = os.path.join(localDBPath,'localFoodDB.db')
+	os.rename('localFoodDB.db',newFilePath)
 	main()
 
 def newImageProcessMenu(filePath):
 	stayInLoop = True
 	while (stayInLoop == True):
+		os.system('clear')
 		print("-----------------------------------------------------------")
 		print(" [1] - Assign the current item as new item")
 		print(" [2] - Assign the current item as existing item")
@@ -310,14 +334,14 @@ def displayTrainingDataInfo():
 		print ("No Training Set is found")
 	print("-----------------------------------------------------------")
 
-def displaySVMInfo():
-	print("Loading SVM Info......")
+def displayMLInfo():
+	print("Loading ML Info......")
 	try:
 		print ("Last modified :")
 		fileLastModified = os.stat("Model.dat").st_mtime
 		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
 	except:
-		print ("No SVM is found")
+		print ("No ML is found")
 
 
 if __name__ == "__main__":
