@@ -53,7 +53,6 @@ class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
 						else:
 							QMessageBox.information(self, 'Failed',"Email / Passcode Incorrect",QMessageBox.Ok)
 						break
-				QMessageBox.information(self, 'Error',"Fingerprint record not found",QMessageBox.Ok)
 			else:
 				QMessageBox.information(self, 'Error',"Fingerprint record not found",QMessageBox.Ok)
 
