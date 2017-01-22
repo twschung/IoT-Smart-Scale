@@ -43,10 +43,10 @@ class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
 					dataPostion = i
 					break
 			dataPostion = None
-			fpData = db_structure.userDataStructure()
+			fpData = db_structure.userFingerPrintStructure()
 		except:
 			fpUsr = []
-			fpData = db_structure.userDataStructure()
+			fpData = db_structure.userFingerPrintStructure()
 		finally:
 			fpData.usrid = currentUserInfo.id
 			fpData.username = currentUserInfo.username
