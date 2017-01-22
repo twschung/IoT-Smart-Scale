@@ -6,7 +6,7 @@ class userFingerPrintStructure:
 		self.password = password
 
 class userDataStructure:
-	def __init__(self, id="", username="", password="", email="", firstname="", lastname="", dob="", gender="", height="", weight="", targetWeight="", targetIntake=""):
+	def __init__(self, id="", username="", password="", email="", firstname="", lastname="", dob="", gender="", height="", weight="", targetWeight="0", targetIntake="0"):
 		self.id = id
 		self.username = username
 		self.password = password
