@@ -6,7 +6,7 @@ sys.path.insert(0,currentDir+"/ui")
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-import myLoginMenu, myFoodInformation, myScaleOnly, myUserSetup
+import myLoginMenu, myFoodInformation, myScaleOnly, myUserSetup, myInfoPopUp
 import ftp_access
 import ui_mainmenu
 
@@ -54,8 +54,10 @@ class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
 		else:
 			pass
 	def handleBtn_systemUpdate(self):
-		msg = QMessageBox.information(self, 'System Update',"System and database being updated",QMessageBox.Ok)
+		msgbox = myInfoPopUp.myInfoPopUp("System Updating...", "System and database being updated",self)
+		msgbox.exec_()
 		ftp_access.updateImageSample()
 		ftp_access.updateML()
 		ftp_access.updatelocalDB()
 		ftp_access.uploadImageHistory()
+		msgbox.done(1)
