@@ -40,17 +40,14 @@ class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
 		try:
 			fpUsr = config['fpUsr']
 		except:
-			blankFpUsrInfo = db_structure.userFingerPrintStructure()
-			fpUsr = {'0':blankFpUsrInfo}
-			config.update({'fpUsr':fpUsr})
-			np.save('config.npy', config)
+			fpUsr = []
 		finally:
 			fpResult = fingerprint.searchFinger()
 			if (fpResult[0]==True):
-				for i in range(1,len(fpUsr)):
-					if (fpUsr[str(i)].fpid == fpResult[1]):
-						print (fpUsr[str(i)].username)
-						print (fpUsr[str(i)].password)
+				for i in range(0,len(fpUsr)):
+					if (fpUsr[i].fpid == fpResult[1]):
+						print (fpUsr[i].username)
+						print (fpUsr[i].password)
 						break
 
 	def handleBtn_user(self, mainWindow, userNum):

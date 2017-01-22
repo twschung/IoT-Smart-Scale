@@ -34,28 +34,32 @@ class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
 		myUserEdit.myUserEdit.editUser_newPasscode(self,mainWindow=mainWindow,currentUserInfo=currentUserInfo)
 	def handleBtn_fingerprint(self,mainWindow,currentUserInfo):
 		config = np.load('config.npy').item()
+		dataPostion = None
 		try:
 			fpUsr = config['fpUsr']
+			for i in range(0,len(fpUsr)):
+				if (fpUsr[i].usrid == currentUserInfo.id):
+					fpData = fpUsr[i]
+					dataPostion = i
+					break
+			dataPostion = None
+			fpData = db_structure.userDataStructure()
 		except:
-			blankFpUsrInfo = db_structure.userFingerPrintStructure()
-			fpUsr = {'0':blankFpUsrInfo}
-			config.update({'fpUsr':fpUsr})
-			np.save('config.npy', config)
+			fpUsr = []
+			fpData = db_structure.userDataStructure()
 		finally:
-			try:
-				fpData = fpUsr[currentUserInfo.id]
-			except:
-				fpData = db_structure.userFingerPrintStructure()
-				fpUsr.update({currentUserInfo.id:fpData})
-			finally:
-				fpData.username = currentUserInfo.username
-				fpData.password = currentUserInfo.password
-				fpScanResult = fingerprint.enrollFinger(self, fpData.fpid)
-				if (fpScanResult[0]==True):
-					fpData.fpid = fpScanResult[1]
-				fpUsr[currentUserInfo.id]=fpData
-				config['fpUsr']=fpUsr
-				np.save('config.npy', config)
+			fpData.usrid = currentUserInfo.id
+			fpData.username = currentUserInfo.username
+			fpData.password = currentUserInfo.password
+			fpScanResult = fingerprint.enrollFinger(self, fpData.fpid)
+			if (fpScanResult[0]==True):
+				fpData.fpid = fpScanResult[1]
+			if (dataPostion is not None):
+				fpusr[dataPostion]=fpData
+			else:
+				fpusr.append(fpData)
+			config['fpUsr']=fpUsr
+			np.save('config.npy', config)
 
 	def handleBtn_rmUsrFromMenu(self, mainWindow, currentUserInfo):
 		myUserLogin.myUserLogin.forgetUser(self, currentUserInfo=currentUserInfo)
