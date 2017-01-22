@@ -42,7 +42,7 @@ class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
 		except:
 			fpUsr = []
 		finally:
-			fpResult = fingerprint.searchFinger()
+			fpResult = fingerprint.searchFinger(self)
 			if (fpResult[0]==True):
 				for i in range(0,len(fpUsr)):
 					if (fpUsr[i].fpid == fpResult[1]):
