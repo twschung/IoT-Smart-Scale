@@ -17,7 +17,7 @@ class Ui_accountSetting(object):
         self.gridLayout.setSpacing(6)
         self.gridLayout.setObjectName("gridLayout")
         self.label = QtWidgets.QLabel(accountSetting)
-        self.label.setMinimumSize(QtCore.QSize(780, 71))
+        self.label.setMinimumSize(QtCore.QSize(261, 71))
         self.label.setMaximumSize(QtCore.QSize(261, 71))
         font = QtGui.QFont()
         font.setFamily("Helvetica Neue")
@@ -94,5 +94,6 @@ class Ui_accountSetting(object):
         self.btn_profile.setText(_translate("accountSetting", "Profile"))
         self.btn_goal.setText(_translate("accountSetting", "Goal"))
         self.btn_back.setText(_translate("accountSetting", "Back"))
-        self.btn_passcode.setText(_translate("accountSetting", "Passcode"))
+        self.btn_passcode.setText(_translate("accountSetting", "Passcode\n"
+"Fingerprint"))
 

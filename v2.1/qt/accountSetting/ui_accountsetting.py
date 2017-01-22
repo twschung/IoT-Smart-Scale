@@ -94,5 +94,6 @@ class Ui_accountSetting(object):
         self.btn_profile.setText(_translate("accountSetting", "Profile"))
         self.btn_goal.setText(_translate("accountSetting", "Goal"))
         self.btn_back.setText(_translate("accountSetting", "Back"))
-        self.btn_passcode.setText(_translate("accountSetting", "Passcode"))
+        self.btn_passcode.setText(_translate("accountSetting", "Passcode\n"
+"Fingerprint"))
 

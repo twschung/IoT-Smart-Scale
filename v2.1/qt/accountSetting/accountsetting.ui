@@ -133,7 +133,8 @@
         </font>
        </property>
        <property name="text">
-        <string>Passcode</string>
+        <string>Passcode
+Fingerprint</string>
        </property>
       </widget>
      </item>
