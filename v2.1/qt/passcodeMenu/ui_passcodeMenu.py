@@ -78,7 +78,7 @@ class Ui_passcodeMenu(object):
         self.btn_rmUsrFromMenu.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Helvetica Neue")
-        font.setPointSize(16)
+        font.setPointSize(13)
         self.btn_rmUsrFromMenu.setFont(font)
         self.btn_rmUsrFromMenu.setObjectName("btn_rmUsrFromMenu")
         self.gridLayout_2.addWidget(self.btn_rmUsrFromMenu, 1, 0, 1, 1)
@@ -94,5 +94,6 @@ class Ui_passcodeMenu(object):
         self.btn_changePasscode.setText(_translate("passcodeMenu", "Change Passcode"))
         self.btn_fingerprint.setText(_translate("passcodeMenu", "Finger Print"))
         self.btn_back.setText(_translate("passcodeMenu", "Back"))
-        self.btn_rmUsrFromMenu.setText(_translate("passcodeMenu", "Remove User from Login Menu"))
+        self.btn_rmUsrFromMenu.setText(_translate("passcodeMenu", "Remove User \n"
+"from Login Menu"))
 

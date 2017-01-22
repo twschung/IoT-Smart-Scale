@@ -129,11 +129,12 @@
        <property name="font">
         <font>
          <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
+         <pointsize>13</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Remove User from Login Menu</string>
+        <string>Remove User 
+from Login Menu</string>
        </property>
       </widget>
      </item>
