@@ -23,7 +23,7 @@ class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
 		self.btn_fingerprint.setIconSize(QSize(65,65))
 		self.btn_back.clicked.connect(lambda:self.handleBtn_back(mainWindow))
 		self.btn_newLogin.clicked.connect(lambda:self.handleBtn_newLogin(mainWindow))
-		self.btn_fingerprint.clicked.connect(lambda:self.handleBtn_fingerprint(mainWindow))
+		self.btn_fingerprint.clicked.connect(lambda:self.handleBtn_fingerprintLogin(mainWindow))
 		self.btn_user1.clicked.connect(lambda:self.handleBtn_user(mainWindow=mainWindow,userNum=0))
 		self.btn_user2.clicked.connect(lambda:self.handleBtn_user(mainWindow=mainWindow,userNum=1))
 		self.btn_user3.clicked.connect(lambda:self.handleBtn_user(mainWindow=mainWindow,userNum=2))
