@@ -19,7 +19,7 @@ class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
 		self.btn_back.setIconSize(QSize(65,65))
 		self.btn_newLogin.setIcon(QIcon(QPixmap(os.getcwd()+ "/ui/icon/passcode.png")))
 		self.btn_newLogin.setIconSize(QSize(65,65))
-		self.btn_fingerprint.setIcon(QIcon(QPixmap(os.getcwd()+ "/ui/icon/passcode.png")))
+		self.btn_fingerprint.setIcon(QIcon(QPixmap(os.getcwd()+ "/ui/icon/fingerprint.png")))
 		self.btn_fingerprint.setIconSize(QSize(65,65))
 		self.btn_back.clicked.connect(lambda:self.handleBtn_back(mainWindow))
 		self.btn_newLogin.clicked.connect(lambda:self.handleBtn_newLogin(mainWindow))
@@ -35,7 +35,7 @@ class myLoginMenu(QWidget, ui_loginmenu.Ui_loginMenu):
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 	def handleBtn_newLogin(self, mainWindow):
 		myUserLogin.myUserLogin(mainWindow, newUser=True)
-	def handelBtn_fingerprintLogin(self,mainWindow):
+	def handleBtn_fingerprintLogin(self,mainWindow):
 		config = np.load('config.npy').item()
 		try:
 			fpUsr = config['fpUsr']
