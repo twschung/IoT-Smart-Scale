@@ -20,8 +20,8 @@ import numpy as np
 import obj_recognition
 
 GPIO.setup(17, GPIO.OUT)
-# camera = PiCamera()
-# camera.resolution = (1024, 768)
+camera = PiCamera()
+camera.resolution = (1024, 768)
 
 class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def __init__(self, mainWindow, currentUserInfo, name=None, layoutSetting=None):
