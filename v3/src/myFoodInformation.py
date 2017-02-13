@@ -47,6 +47,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.thread.started.connect(self.getWeight.work)
 		self.thread.start()
 		camera.start_preview()
+		camera.preview.alpha = 0
 
 	@pyqtSlot(int)
 	def onFinished(self, i):
