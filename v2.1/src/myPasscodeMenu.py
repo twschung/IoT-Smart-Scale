@@ -42,8 +42,8 @@ class myPasscodeMenu(QWidget, ui_passcodeMenu.Ui_passcodeMenu):
 					fpData = fpUsr[i]
 					dataPostion = i
 					break
-			dataPostion = None
-			fpData = db_structure.userFingerPrintStructure()
+			if (dataPostion is not None):
+				fpData = db_structure.userFingerPrintStructure()
 		except:
 			fpUsr = []
 			fpData = db_structure.userFingerPrintStructure()
