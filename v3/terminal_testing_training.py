@@ -121,7 +121,8 @@ def opt_6():
 	print("Camera initalising")
 	GPIO.output(11,True)
 	camera.start_preview()
-	sleep(2)
+	camera.preview.alpha = 50
+	sleep(1)
 	input("Tell me when Background is Ready")
 	camera.capture("background.jpg")
 	input("Tell me when Forground is Ready")
