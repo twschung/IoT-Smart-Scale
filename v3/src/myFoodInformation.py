@@ -38,7 +38,13 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_addIntake.setEnabled(False)
 		self.btn_addIntake.clicked.connect(lambda:self.handleBtn_addIntake())
 		self.foodWeight = 0
+		camera.start_preview()
+		camera.preview.alpha = 0
+		msgbox = myInfoPopUp.myInfoPopUp("Wait....", "Camera initalising",self)
+		msgbox.exec_()
+		sleep(1)
 		self.setUpBackgroundImage()
+		msgbox.done(1)
 		# set up thread that will update weight
 		self.thread = QThread()
 		self.getWeight = get_weight_thread()
@@ -46,8 +52,6 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.getWeight.moveToThread(self.thread)
 		self.thread.started.connect(self.getWeight.work)
 		self.thread.start()
-		camera.start_preview()
-		camera.preview.alpha = 0
 
 	@pyqtSlot(int)
 	def onFinished(self, i):
