@@ -61,6 +61,7 @@ def opt_2():
 	numOfSample = int(input("Please Enter the Number of samples you wish to take -> "))
 	GPIO.output(11,True)
 	camera.start_preview()
+	camera.preview.alpha = 128
 	print("Camera initalising")
 	sleep(2)
 	input("Tell me when Background is Ready")
@@ -121,7 +122,7 @@ def opt_6():
 	print("Camera initalising")
 	GPIO.output(11,True)
 	camera.start_preview()
-	camera.preview.alpha = 50
+	camera.preview.alpha = 0
 	sleep(1)
 	input("Tell me when Background is Ready")
 	camera.capture("background.jpg")
