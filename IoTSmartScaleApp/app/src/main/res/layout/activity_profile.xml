@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.selenatan.iotsmartscale.ProfileActivity">
+
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:text="Age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_age"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:textAlignment="textEnd"
+                android:paddingRight="8dp" />
+
+            <TextView
+                android:text="ageVal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_ageVal"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="BMI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_bmi"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:textAlignment="textEnd"
+                android:paddingRight="8dp"/>
+
+            <TextView
+                android:text="bmiVal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_bmiVal"
+                android:layout_row="0"
+                android:layout_column="3"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="BMR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_bmr"
+                android:layout_row="0"
+                android:layout_column="4"
+                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:textAlignment="textEnd"
+                android:paddingRight="8dp"/>
+
+            <TextView
+                android:text="bmrVal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_bmrVal"
+                android:layout_row="0"
+                android:layout_column="5"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <TabHost
+            android:id="@+id/tabHost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_columnSpan="6"
+            android:layout_gravity="fill_vertical|center_horizontal|fill_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/daily"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:text="progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:id="@+id/textView_progress"
+                            android:layout_marginTop="40dp"
+                            android:textSize="20dp" />
+
+                        <ProgressBar
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:max="100"
+                            android:progress="45"
+                            android:id="@+id/progressBar_targetIntake" />
+
+
+                        <TextView
+                            android:text="progressBarInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="40dp"
+                            android:id="@+id/textView_progressBar" />
+
+                        <TextView
+                            android:text="Total Recorded Nutritional Consumption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView_totalRecorded"
+                            android:textSize="18dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="8dp"/>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_marginBottom="5dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:text="Fat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_fat"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:text="fatVal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_fatVal"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp">
+
+                            <TextView
+                                android:text="Saturated Fat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_saturate"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:text="satVal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_satVal"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp">
+
+                            <TextView
+                                android:text="Carbohydrates"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_carbohydrate"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:text="carbVal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_carbVal"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp">
+
+                            <TextView
+                                android:text="Sugars"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_sugar"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:text="sugarVal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_sugarVal"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp">
+
+                            <TextView
+                                android:text="Fibre"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_fibre"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:text="fibreVal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_fibreVal"
+                                android:layout_weight="1" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp">
+
+                            <TextView
+                                android:text="Protein"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_protein"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:text="proteinVal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_proteinVal"
+                                android:layout_weight="1" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp">
+
+                            <TextView
+                                android:text="Salt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_salt"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:text="saltVal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView_saltVal"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/weekly"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/chart_weekly"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/monthly"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/chart_monthly"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
+    </GridLayout>
+
+</RelativeLayout>
