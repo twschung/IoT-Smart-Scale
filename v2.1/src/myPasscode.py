@@ -69,10 +69,10 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 		if (layoutSetting == "editUser_oldPasscode"):
 			self.btn_forgot.setVisible(False)
 			self.btn_remUser.setVisible(False)
-			if (myUserLogin.myUserLogin.checkRemeberUserStatus(self, currentUserInfo=dataStruc) == True):
-				self.btn_remUser.setChecked(True)
-			else:
-				self.btn_remUser.setChecked(False)
+			# if (myUserLogin.myUserLogin.checkRemeberUserStatus(self, currentUserInfo=dataStruc) == True):
+			# 	self.btn_remUser.setChecked(True)
+			# else:
+			# 	self.btn_remUser.setChecked(False)
 			self.lbl_title.setText("Passcode Verification")
 			self.lbl_info.setText("Please Enter Passcode")
 			self.btn_done.setText("Next")
@@ -129,10 +129,10 @@ class myPasscode(QWidget, ui_passcode.Ui_passCode):
 			self.widget = myPasscodeMenu.myPasscodeMenu(mainWindow=mainWindow,currentUserInfo=dataStruc)
 			mainWindow.central_widget.addWidget(self.widget)
 			mainWindow.central_widget.setCurrentWidget(self.widget)
-			if (self.btn_remUser.isChecked() == True):
-				myUserLogin.myUserLogin.rememberUser(self, currentUserInfo=dataStruc)
-			else:
-				myUserLogin.myUserLogin.forgetUser(self, currentUserInfo=dataStruc)
+			# if (self.btn_remUser.isChecked() == True):
+			# 	myUserLogin.myUserLogin.rememberUser(self, currentUserInfo=dataStruc)
+			# else:
+			# 	myUserLogin.myUserLogin.forgetUser(self, currentUserInfo=dataStruc)
 		else:
 			msg = QMessageBox.information(self, 'Failed',"Passcode Incorrect",QMessageBox.Ok)
 	def handleBtn_done_editUser_newPasscode(self, mainWindow, dataStruc):
