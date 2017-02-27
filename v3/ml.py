@@ -45,7 +45,8 @@ class classifier():
 	def predict_prob(self, sample):
 		proba = self.Model.predict_proba(sample)
 		result =[];
-		for k in range (1,len(proba)):
-			x = (k,proba(k))
+		print(len(proba));
+		for k in range (0,len(proba[0])):
+			x = (k+1,proba[0][k])
 			result.append(x)
 		return result
