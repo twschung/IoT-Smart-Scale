@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import ui_foodinformation
-import db_access, db_structure, ftp_access, myInfoPopUp
+import db_access, db_structure, ftp_access, myInfoPopUp, myFoodSuggestion
 import time
 from hx711 import HX711
 
@@ -37,7 +37,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_new.clicked.connect(lambda:self.handleBtn_scan(mainWindow,currentUserInfo))
 		self.btn_tare.clicked.connect(lambda:self.handleBtn_tare(mainWindow))
 		self.btn_suggestion.setEnabled(False)
-		self.btn_suggestion.clicked.connect(lambda:self.handleBtn_suggestion())
+		self.btn_suggestion.clicked.connect(lambda:self.handleBtn_suggestion(mainWindow,currentUserInfo))
 		self.btn_addIntake.setEnabled(False)
 		self.btn_addIntake.clicked.connect(lambda:self.handleBtn_addIntake())
 		self.foodWeight = 0
@@ -108,11 +108,13 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_addIntake.setEnabled(False)
 		self.btn_suggestion.setEnabled(False)
 
-	def handleBtn_suggestion(self):
+	def handleBtn_suggestion(self, mainWindow, currentUserInfo):
 		self.btn_addIntake.setEnabled(False)
 		self.btn_suggestion.setEnabled(False)
-		print (self.clfProb)
-		
+		self.widget = myFoodSuggestion.myFoodSuggestion(mainWindow, currentUserInfo, self.clfProb)
+		mainWindow.central_widget.addWidget(self.widget)
+		mainWindow.central_widget.setCurrentWidget(self.widget)
+
 
 	def setUpBackgroundImage(self):
 		GPIO.output(17,True)
