@@ -37,6 +37,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_new.clicked.connect(lambda:self.handleBtn_scan(mainWindow,currentUserInfo))
 		self.btn_tare.clicked.connect(lambda:self.handleBtn_tare(mainWindow))
 		self.btn_suggestion.setEnabled(False)
+		self.btn_suggestion.clicked.connect(lambda:self.handleBtn_suggestion())
 		self.btn_addIntake.setEnabled(False)
 		self.btn_addIntake.clicked.connect(lambda:self.handleBtn_addIntake())
 		self.foodWeight = 0
@@ -69,7 +70,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		clf = ml.classifier()
 		clf.load()
 		clfResult = clf.predict(imageFeature)
-		clfProb = clf.predict_prob(imageFeature)
+		self.clfProb = clf.predict_prob(imageFeature)
 		foodID = clfResult[0]
 		self.foodWeight = int(scale.get_weight(5))
 		self.btn_addIntake.setEnabled(False)
@@ -105,6 +106,13 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		db_access.user_addNewFoodIntake(self.foodInfo)
 		msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
 		self.btn_addIntake.setEnabled(False)
+		self.btn_suggestion.setEnabled(False)
+
+	def handleBtn_suggestion(self):
+		self.btn_addIntake.setEnabled(False)
+		self.btn_suggestion.setEnabled(False)
+		print (self.clfProb)
+		
 
 	def setUpBackgroundImage(self):
 		GPIO.output(17,True)
