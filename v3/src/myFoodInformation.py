@@ -83,7 +83,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			s = str(foodID)+".jpg"
 			self.pic = QPixmap(currentDir+'/imageSample/'+s)
 			self.scaledPic = self.pic.scaled(self.lbl_foodPic.width(), self.lbl_foodPic.height(),Qt.KeepAspectRatio,transformMode=Qt.SmoothTransformation)
-			self.lbl_foogName.setText(self.foodInfo.description)
+			self.lbl_foodName.setText(self.foodInfo.description)
 			self.lbl_foodPic.setPixmap(self.scaledPic)
 			self.foodInfo = db_access.food_getActualInfo(userId,str(foodID),str(self.foodWeight))
 			self.lbl_evergyVal.setText(str(round(self.foodInfo.energy,1))) #typo on the ui file, use 'evergy'
