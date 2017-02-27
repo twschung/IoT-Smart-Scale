@@ -9,6 +9,7 @@ currentDir = os.getcwd()
 class myFoodSuggestion(QWidget, ui_foodsuggestionmenu.Ui_foodSuggestionMenu):
     def __init__(self, mainWindow, currentUserInfo, clfResult_prob, foodWeight):
         super(myFoodSuggestion, self).__init__()
+        QWidget.__init__(self) 
         self.setupUi(self)
         self.foodWeight = foodWeight
         self.btn_Back.clicked.connect(lambda:mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget()))
