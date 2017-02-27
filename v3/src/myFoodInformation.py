@@ -83,14 +83,15 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			s = str(foodID)+".jpg"
 			self.pic = QPixmap(currentDir+'/imageSample/'+s)
 			self.scaledPic = self.pic.scaled(self.lbl_foodPic.width(), self.lbl_foodPic.height(),Qt.KeepAspectRatio,transformMode=Qt.SmoothTransformation)
+			self.lbl_foogName.setText(self.foodInfo.description)
 			self.lbl_foodPic.setPixmap(self.scaledPic)
 			self.foodInfo = db_access.food_getActualInfo(userId,str(foodID),str(self.foodWeight))
-			self.lbl_evergyVal.setText(str(round(self.foodInfo.energy,2))) #typo on the ui file, use 'evergy'
-			self.lbl_proteinVal.setText(str(round(self.foodInfo.protein,2)))
-			self.lbl_sugarVal.setText(str(round(self.foodInfo.sugars,2)))
-			self.lbl_fibreVal.setText(str(round(self.foodInfo.fibre,2)))
-			self.lbl_fatVal.setText(str(round(self.foodInfo.fat,2)))
-			self.lbl_saltVal.setText(str(round(self.foodInfo.salt,2)))
+			self.lbl_evergyVal.setText(str(round(self.foodInfo.energy,1))) #typo on the ui file, use 'evergy'
+			self.lbl_proteinVal.setText(str(round(self.foodInfo.protein,1)))
+			self.lbl_sugarVal.setText(str(round(self.foodInfo.sugars,1)))
+			self.lbl_fibreVal.setText(str(round(self.foodInfo.fibre,1)))
+			self.lbl_fatVal.setText(str(round(self.foodInfo.fat,1)))
+			self.lbl_saltVal.setText(str(round(self.foodInfo.salt,1)))
 			if(currentUserInfo==None):
 				self.btn_addIntake.setEnabled(False)
 				self.btn_suggestion.setEnabled(False)
