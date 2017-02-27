@@ -19,7 +19,7 @@
    <string>foodInformation</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
-   <item row="4" column="0" rowspan="2">
+   <item row="3" column="0" rowspan="2">
     <widget class="QFrame" name="frame_lcd">
      <property name="minimumSize">
       <size>
@@ -68,151 +68,7 @@
      </layout>
     </widget>
    </item>
-   <item row="6" column="0">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>17</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="5" column="2">
-    <widget class="QPushButton" name="btn_back">
-     <property name="minimumSize">
-      <size>
-       <width>161</width>
-       <height>51</height>
-      </size>
-     </property>
-     <property name="palette">
-      <palette>
-       <active>
-        <colorrole role="Light">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>249</red>
-           <green>249</green>
-           <blue>249</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Base">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>255</red>
-           <green>255</green>
-           <blue>255</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Window">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>214</red>
-           <green>214</green>
-           <blue>214</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </active>
-       <inactive>
-        <colorrole role="Light">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>249</red>
-           <green>249</green>
-           <blue>249</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Base">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>255</red>
-           <green>255</green>
-           <blue>255</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Window">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>214</red>
-           <green>214</green>
-           <blue>214</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </inactive>
-       <disabled>
-        <colorrole role="Light">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>249</red>
-           <green>249</green>
-           <blue>249</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Base">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>214</red>
-           <green>214</green>
-           <blue>214</blue>
-          </color>
-         </brush>
-        </colorrole>
-        <colorrole role="Window">
-         <brush brushstyle="SolidPattern">
-          <color alpha="255">
-           <red>214</red>
-           <green>214</green>
-           <blue>214</blue>
-          </color>
-         </brush>
-        </colorrole>
-       </disabled>
-      </palette>
-     </property>
-     <property name="font">
-      <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Back</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="lbl_title">
-     <property name="minimumSize">
-      <size>
-       <width>231</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Helvetica Neue</family>
-       <pointsize>24</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Food Item Information</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
+   <item row="0" column="3">
     <widget class="QGroupBox" name="grpBx_nutriInfo">
      <property name="minimumSize">
       <size>
@@ -437,7 +293,117 @@
      </layout>
     </widget>
    </item>
-   <item row="4" column="1" rowspan="2">
+   <item row="4" column="3">
+    <widget class="QPushButton" name="btn_back">
+     <property name="minimumSize">
+      <size>
+       <width>161</width>
+       <height>51</height>
+      </size>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Light">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>249</red>
+           <green>249</green>
+           <blue>249</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>214</red>
+           <green>214</green>
+           <blue>214</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="Light">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>249</red>
+           <green>249</green>
+           <blue>249</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>214</red>
+           <green>214</green>
+           <blue>214</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="Light">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>249</red>
+           <green>249</green>
+           <blue>249</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>214</red>
+           <green>214</green>
+           <blue>214</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>214</red>
+           <green>214</green>
+           <blue>214</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Back</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1" rowspan="2">
     <widget class="QPushButton" name="btn_new">
      <property name="minimumSize">
       <size>
@@ -456,20 +422,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QLabel" name="lbl_foodPic">
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="text">
-      <string>Picture</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="2">
+   <item row="3" column="3">
     <widget class="QPushButton" name="btn_tare">
      <property name="minimumSize">
       <size>
@@ -488,39 +441,65 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="2">
-    <layout class="QHBoxLayout" name="horizontalLayout">
+   <item row="0" column="0" colspan="2">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QPushButton" name="btn_suggestion">
+      <widget class="QLabel" name="lbl_foodPic">
        <property name="minimumSize">
         <size>
-         <width>161</width>
-         <height>51</height>
+         <width>0</width>
+         <height>280</height>
         </size>
        </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
        <property name="text">
-        <string>Incorrect</string>
+        <string>Picture</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btn_addIntake">
-       <property name="minimumSize">
-        <size>
-         <width>161</width>
-         <height>51</height>
-        </size>
+      <layout class="QHBoxLayout">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMinimumSize</enum>
        </property>
-       <property name="font">
-        <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Correct</string>
-       </property>
-      </widget>
+       <item>
+        <widget class="QPushButton" name="btn_suggestion">
+         <property name="minimumSize">
+          <size>
+           <width>161</width>
+           <height>51</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Incorrect</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_addIntake">
+         <property name="minimumSize">
+          <size>
+           <width>161</width>
+           <height>51</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Helvetica Neue</family>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Correct</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
