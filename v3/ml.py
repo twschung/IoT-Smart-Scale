@@ -49,4 +49,5 @@ class classifier():
 		for k in range (0,len(proba[0])):
 			x = (k+1,proba[0][k])
 			result.append(x)
-		return result
+		sorted_result = sorted(result, key=lambda result: result[1], reverse=True)
+		return sorted_result
