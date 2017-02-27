@@ -111,7 +111,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def handleBtn_suggestion(self, mainWindow, currentUserInfo):
 		self.btn_addIntake.setEnabled(False)
 		self.btn_suggestion.setEnabled(False)
-		self.widget = myFoodSuggestion.myFoodSuggestion(mainWindow, currentUserInfo, self.clfProb)
+		self.widget = myFoodSuggestion.myFoodSuggestion(mainWindow, currentUserInfo, self.clfProb, self.foodWeight)
 		mainWindow.central_widget.addWidget(self.widget)
 		mainWindow.central_widget.setCurrentWidget(self.widget)
 
