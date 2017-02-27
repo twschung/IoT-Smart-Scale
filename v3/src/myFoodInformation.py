@@ -26,6 +26,7 @@ camera.resolution = (1024, 768)
 class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def __init__(self, mainWindow, currentUserInfo, name=None, layoutSetting=None):
 		super(myFoodInformation, self).__init__()
+		msg = QMessageBox.information(self, 'Attention',"Please remove any itme on scale",QMessageBox.Ok)
 		self.setupUi(self)
 		self.foodInfo = None
 		userDailyIntakeInfo = db_structure.userDailyIntakeStructure()
@@ -35,6 +36,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_back.clicked.connect(lambda:self.handleBtn_back(mainWindow))
 		self.btn_new.clicked.connect(lambda:self.handleBtn_scan(mainWindow,currentUserInfo))
 		self.btn_tare.clicked.connect(lambda:self.handleBtn_tare(mainWindow))
+		self.btn_suggestion.setEnabled(False)
 		self.btn_addIntake.setEnabled(False)
 		self.btn_addIntake.clicked.connect(lambda:self.handleBtn_addIntake())
 		self.foodWeight = 0
@@ -67,6 +69,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		clf = ml.classifier()
 		clf.load()
 		clfResult = clf.predict(imageFeature)
+		clfProb = clf.predict_prob(imageFeature)
 		foodID = clfResult[0]
 		self.foodWeight = int(scale.get_weight(5))
 		self.btn_addIntake.setEnabled(False)
@@ -74,8 +77,8 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			userId=0
 		else:
 			userId=currentUserInfo.id
-		if(self.foodWeight==0):
-			msg = QMessageBox.information(self, 'Error',"Food not detected! (Item mass is 0g)",QMessageBox.Ok)
+		if(self.foodWeight<=0):
+			msg = QMessageBox.information(self, 'Error',"Food not detected! (Item mass is equal or less than 0g)",QMessageBox.Ok)
 		else:
 			s = str(foodID)+".jpg"
 			self.pic = QPixmap(currentDir+'/imageSample/'+s)
@@ -90,8 +93,10 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			self.lbl_saltVal.setText(str(round(self.foodInfo.salt,2)))
 			if(currentUserInfo==None):
 				self.btn_addIntake.setEnabled(False)
+				self.btn_suggestion.setEnabled(False)
 			else:
 				self.btn_addIntake.setEnabled(True)
+				self.btn_suggestion.setEnabled(True)
 	def handleBtn_tare(self, mainWindow):
 		# add tare stuff here
 		scale.tare()
@@ -101,29 +106,14 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_addIntake.setEnabled(False)
 
 	def setUpBackgroundImage(self):
-		# camera.start_preview()
 		GPIO.output(17,True)
-		# msgbox = myInfoPopUp.myInfoPopUp("Wait....", "Camera initalising",self)
-		# msgbox.exec_()
-		# sleep(1)
 		camera.capture("background.jpg")
-		# camera.stop_preview()
 		GPIO.output(17,False)
-		# msgbox.done(1)
 
 	def setUpForgroundImage(self):
-		# camera.start_preview()
 		GPIO.output(17,True)
-		# msgbox = myInfoPopUp.myInfoPopUp("Wait....", "Camera initalising",self)
-		# msgbox.exec_()
-		# sleep(1)
 		camera.capture("forground.jpg")
-		# camera.stop_preview()
 		GPIO.output(17,False)
-		# msgbox.done(1)
-		# (forgroundFilePath,backgroundFilePath) =  ftp_access.generateExisitingItemFilePath()
-		# shutil.copyfile('forground.jpg',forgroundFilePath)
-		# shutil.copyfile('background.jpg',backgroundFilePath)
 
 
 class get_weight_thread (QObject):

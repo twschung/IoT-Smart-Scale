@@ -46,7 +46,7 @@
         <x>0</x>
         <y>0</y>
         <width>779</width>
-        <height>334</height>
+        <height>425</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -56,178 +56,63 @@
        </size>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="1" column="1">
-        <widget class="QPushButton" name="btn_item5">
-         <property name="minimumSize">
-          <size>
-           <width>250</width>
-           <height>161</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
-          </font>
-         </property>
+       <item row="1" column="3">
+        <widget class="QLabel" name="lbl_sug3">
          <property name="text">
-          <string>Item 5</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="btn_item4">
-         <property name="minimumSize">
-          <size>
-           <width>250</width>
-           <height>161</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Item 4</string>
+          <string>-</string>
          </property>
         </widget>
        </item>
        <item row="1" column="2">
-        <widget class="QPushButton" name="btn_item6">
-         <property name="minimumSize">
-          <size>
-           <width>250</width>
-           <height>161</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
-          </font>
-         </property>
+        <widget class="QLabel" name="lbl_sug1">
          <property name="text">
-          <string>Item 6</string>
+          <string>-</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="btn_item2">
-         <property name="minimumSize">
-          <size>
-           <width>250</width>
-           <height>161</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
-          </font>
-         </property>
+       <item row="2" column="2">
+        <widget class="QLabel" name="lbl_sug2">
          <property name="text">
-          <string>Item 2</string>
+          <string>-</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="btn_item3">
-         <property name="minimumSize">
-          <size>
-           <width>250</width>
-           <height>161</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
-          </font>
-         </property>
+       <item row="2" column="3">
+        <widget class="QLabel" name="lbl_sug4">
          <property name="text">
-          <string>Item 3</string>
+          <string>-</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="btn_item1">
+       <item row="1" column="4">
+        <widget class="QLabel" name="lbl_sug5">
          <property name="minimumSize">
           <size>
-           <width>250</width>
-           <height>161</height>
+           <width>0</width>
+           <height>200</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
-          </font>
+         <property name="text">
+          <string>-</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <widget class="QPushButton" name="btn_Back">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>200</height>
+          </size>
          </property>
          <property name="text">
-          <string>Item 1</string>
+          <string>Back</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
     </widget>
-   </item>
-   <item row="2" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="btn_back">
-       <property name="minimumSize">
-        <size>
-         <width>151</width>
-         <height>81</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Back</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>458</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btn_notFound">
-       <property name="minimumSize">
-        <size>
-         <width>151</width>
-         <height>81</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Not found?</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </item>
   </layout>
  </widget>

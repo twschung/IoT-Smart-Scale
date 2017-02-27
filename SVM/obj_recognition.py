@@ -13,8 +13,8 @@ def main(imgPath,bgPath):
 	background = cv2.imread(bgPath)
 	queue = Queue()
 	queue2 = Queue()
-	queue3 = Queue()
-	queue4 = Queue()
+	# queue3 = Queue()
+	# queue4 = Queue()
 	imgP = Process(target=resizeImg, args=(img,queue))
 	bgP = Process(target=resizeImg, args=(background,queue2))
 	imgP.start()
@@ -26,29 +26,31 @@ def main(imgPath,bgPath):
 	obj, mask, cnt = backgroundSubtraction(img,background)
 	col = Process(target=colourHist(obj,mask,queue))
 	text = Process(target=haralick, args=(obj,queue2))
-	orb = Process(target=orbDetect, args=(obj.copy(),queue3))
-	kaze = Process(target=orbDetect, args=(obj.copy(),queue4))
+	# orb = Process(target=orbDetect, args=(obj.copy(),queue3))
+	# kaze = Process(target=orbDetect, args=(obj.copy(),queue4))
 	col.start()
 	text.start()
-	orb.start()
-	kaze.start()
+	# orb.start()
+	# kaze.start()
 	colour_set = queue.get()
 	texture = queue2.get()
-	ORBdes = queue3.get()
-	KAZEdes = queue4.get()
+	# ORBdes = queue3.get()
+	# KAZEdes = queue4.get()
 	col.join()
 	text.join()
-	orb.join()
-	kaze.join()
+	# orb.join()
+	# kaze.join()
 	H, area, perimeter, diameter = shapes(img,cnt)
-	if(ORBdes[0] == None):
-		ORBdes = np.zeros((6000,),dtype=np.int)
-	else:
-		ORBdes = np.pad(ORBdes,(0,6000-ORBdes.size),'constant',constant_values=0)
-	if(KAZEdes[0] == None):
-		KAZEdes = np.zeros((10000,),dtype=np.int)
-	else:
-		KAZEdes = np.pad(KAZEdes,(0,10000-KAZEdes.size),'constant',constant_values=0)
+	# if(ORBdes[0] == None):
+	# 	ORBdes = np.zeros((6000,),dtype=np.int)
+	# else:
+	# 	ORBdes = np.pad(ORBdes,(0,6000-ORBdes.size),'constant',constant_values=0)
+	# if(KAZEdes[0] == None):
+	# 	KAZEdes = np.zeros((10000,),dtype=np.int)
+	# else:
+	# 	KAZEdes = np.pad(KAZEdes,(0,10000-KAZEdes.size),'constant',constant_values=0)
+	ORBdes=0
+	KAZEdes=0
 	obj_array = appendAll(colour_set,H,area,perimeter,diameter,texture,ORBdes,KAZEdes)
 	obj_array = np.float64(obj_array)
 	return obj_array
