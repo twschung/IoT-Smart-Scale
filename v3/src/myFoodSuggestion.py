@@ -46,5 +46,5 @@ class myFoodSuggestion(QWidget, ui_foodsuggestionmenu.Ui_foodSuggestionMenu):
     def handleAddIntake(self,mainWindow,foodID):
         foodInfo = db_access.food_getActualInfo(currentUserInfo.id,str(foodID),str(self.foodWeight))
         db_access.user_addNewFoodIntake(foodInfo)
-		msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
+        msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
         mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
