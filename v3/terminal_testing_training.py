@@ -60,7 +60,7 @@ def opt_2():
 	foodID = input("Please Enter Food ID Number -> ")
 	numOfSample = int(input("Please Enter the Number of samples you wish to take -> "))
 	GPIO.output(11,True)
-	camera.start_preview()
+	camera.start_preview()	
 	camera.preview.alpha = 128
 	print("Camera initalising")
 	sleep(2)
