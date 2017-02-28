@@ -1,0 +1,30 @@
+<?php
+$con = mysqli_connect("solarpaygogo.com","spgg_user","spgg_user","solarpaygogo_db");
+
+if (mysqli_connect_errno($con))
+{
+	echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+$activationCode = $_GET['activationCode'];
+
+$sql = "SELECT * FROM `transaction` WHERE `activationCode` = " . $activationCode ;
+
+$result = mysqli_query($con, $sql);
+
+if ($result == TRUE){
+	if (mysqli_num_rows($result) > 0) {
+		echo "SUCCESS". "<br>";
+		while($row = mysqli_fetch_assoc($result)){
+			echo $row["id"] . "&nbsp" . $row["serialNum"] . "&nbsp" . $row["activationCode"] . "&nbsp" . $row["numOfHours"] . 
+			"&nbsp" . $row["issueBy"] . "&nbsp" . $row["issueAt"] . "&nbsp" . $row["expireAt"] . "<br>";
+		}
+	} else {
+		echo "NO RESULT";
+	}
+} else {
+	echo "FAIL";
+}
+
+mysqli_close($con);
+?>
