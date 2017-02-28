@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import ui_foodinformation
-import db_access, db_structure, ftp_access, myInfoPopUp
+import db_access, db_structure, ftp_access, myInfoPopUp, myFoodSuggestion
 import time
 from hx711 import HX711
 
@@ -37,6 +37,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_new.clicked.connect(lambda:self.handleBtn_scan(mainWindow,currentUserInfo))
 		self.btn_tare.clicked.connect(lambda:self.handleBtn_tare(mainWindow))
 		self.btn_suggestion.setEnabled(False)
+		self.btn_suggestion.clicked.connect(lambda:self.handleBtn_suggestion(mainWindow,currentUserInfo))
 		self.btn_addIntake.setEnabled(False)
 		self.btn_addIntake.clicked.connect(lambda:self.handleBtn_addIntake())
 		self.foodWeight = 0
@@ -69,7 +70,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		clf = ml.classifier()
 		clf.load()
 		clfResult = clf.predict(imageFeature)
-		clfProb = clf.predict_prob(imageFeature)
+		self.clfProb = clf.predict_prob(imageFeature)
 		foodID = clfResult[0]
 		self.foodWeight = int(scale.get_weight(5))
 		self.btn_addIntake.setEnabled(False)
@@ -85,12 +86,13 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			self.scaledPic = self.pic.scaled(self.lbl_foodPic.width(), self.lbl_foodPic.height(),Qt.KeepAspectRatio,transformMode=Qt.SmoothTransformation)
 			self.lbl_foodPic.setPixmap(self.scaledPic)
 			self.foodInfo = db_access.food_getActualInfo(userId,str(foodID),str(self.foodWeight))
-			self.lbl_evergyVal.setText(str(round(self.foodInfo.energy,2))) #typo on the ui file, use 'evergy'
-			self.lbl_proteinVal.setText(str(round(self.foodInfo.protein,2)))
-			self.lbl_sugarVal.setText(str(round(self.foodInfo.sugars,2)))
-			self.lbl_fibreVal.setText(str(round(self.foodInfo.fibre,2)))
-			self.lbl_fatVal.setText(str(round(self.foodInfo.fat,2)))
-			self.lbl_saltVal.setText(str(round(self.foodInfo.salt,2)))
+			self.lbl_foodName.setText(self.foodInfo.fooddescription)
+			self.lbl_evergyVal.setText(str(round(self.foodInfo.energy,1))) #typo on the ui file, use 'evergy'
+			self.lbl_proteinVal.setText(str(round(self.foodInfo.protein,1)))
+			self.lbl_sugarVal.setText(str(round(self.foodInfo.sugars,1)))
+			self.lbl_fibreVal.setText(str(round(self.foodInfo.fibre,1)))
+			self.lbl_fatVal.setText(str(round(self.foodInfo.fat,1)))
+			self.lbl_saltVal.setText(str(round(self.foodInfo.salt,1)))
 			if(currentUserInfo==None):
 				self.btn_addIntake.setEnabled(False)
 				self.btn_suggestion.setEnabled(False)
@@ -104,6 +106,15 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		db_access.user_addNewFoodIntake(self.foodInfo)
 		msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
 		self.btn_addIntake.setEnabled(False)
+		self.btn_suggestion.setEnabled(False)
+
+	def handleBtn_suggestion(self, mainWindow, currentUserInfo):
+		self.btn_addIntake.setEnabled(False)
+		self.btn_suggestion.setEnabled(False)
+		self.widget = myFoodSuggestion.myFoodSuggestion(mainWindow, currentUserInfo, self.clfProb, self.foodWeight)
+		mainWindow.central_widget.addWidget(self.widget)
+		mainWindow.central_widget.setCurrentWidget(self.widget)
+
 
 	def setUpBackgroundImage(self):
 		GPIO.output(17,True)

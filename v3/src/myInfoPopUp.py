@@ -13,7 +13,7 @@ class myInfoPopUp(QMessageBox):
         self.setStandardButtons(QMessageBox.Close)
         self.setWindowModality(Qt.NonModal)
         self.timer = QTimer(self)
-        self.timer.setInterval(80)
+        self.timer.setInterval(100)
         self.timer.timeout.connect(self.closePopUp)
         self.timer.start()
 

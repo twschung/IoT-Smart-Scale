@@ -43,4 +43,11 @@ class classifier():
 	def predict(self, sample):
 		return self.Model.predict(sample)
 	def predict_prob(self, sample):
-		return self.Model.predict_proba(sample)
+		proba = self.Model.predict_proba(sample)
+		result =[];
+		print(len(proba));
+		for k in range (0,len(proba[0])):
+			x = (k+1,proba[0][k])
+			result.append(x)
+		sorted_result = sorted(result, key=lambda result: result[1], reverse=True)
+		return sorted_result
