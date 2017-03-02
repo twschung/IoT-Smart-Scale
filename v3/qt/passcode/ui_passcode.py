@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'passcode.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.7.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -48,6 +48,7 @@ class Ui_passCode(object):
         font.setBold(True)
         font.setWeight(75)
         self.lineEdit_1.setFont(font)
+        self.lineEdit_1.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_1.setObjectName("lineEdit_1")
         self.horizontalLayout.addWidget(self.lineEdit_1)
         spacerItem1 = QtWidgets.QSpacerItem(43, 23, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -61,6 +62,7 @@ class Ui_passCode(object):
         font.setBold(True)
         font.setWeight(75)
         self.lineEdit_2.setFont(font)
+        self.lineEdit_2.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.horizontalLayout.addWidget(self.lineEdit_2)
         spacerItem2 = QtWidgets.QSpacerItem(43, 23, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -74,6 +76,7 @@ class Ui_passCode(object):
         font.setBold(True)
         font.setWeight(75)
         self.lineEdit_3.setFont(font)
+        self.lineEdit_3.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_3.setObjectName("lineEdit_3")
         self.horizontalLayout.addWidget(self.lineEdit_3)
         spacerItem3 = QtWidgets.QSpacerItem(43, 23, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -87,6 +90,7 @@ class Ui_passCode(object):
         font.setBold(True)
         font.setWeight(75)
         self.lineEdit_4.setFont(font)
+        self.lineEdit_4.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_4.setObjectName("lineEdit_4")
         self.horizontalLayout.addWidget(self.lineEdit_4)
         spacerItem4 = QtWidgets.QSpacerItem(43, 23, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)

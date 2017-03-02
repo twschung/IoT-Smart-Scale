@@ -15,19 +15,18 @@
 # Find your api_key here: https://plot.ly/settings/api
 
 import plotly.plotly as py
+import plotly.offline as offline
+
 from plotly.graph_objs import *
-#import datetime
 
+import barchart, db_access
 import datetime
-import db_access
 
-# from IPython.display import Image
 py.sign_in('xuenhoong', 'wmmlV25sNcqQGdiOeMgt')
-def plot_and_save_weekly_graph(self, this_week_list, previous_week_list, weekday, today_date):
+def plot_and_save_weekly_graph(this_week_list, previous_week_list, weekday):
     y_prev_week = previous_week_list
     y_curr_week = this_week_list
     x_today=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-    #i=(datetime.datetime.utcnow())
     x_today[weekday] = 'Today'
     current_week = Bar(
         x=x_today,
@@ -56,54 +55,86 @@ def plot_and_save_weekly_graph(self, this_week_list, previous_week_list, weekday
 
     data = Data([current_week, previous_week])
 
-    layout = Layout(
-        hovermode='closest',
-        showlegend=True,
-        title='Calorie Intake (This week v. Last Week)',
-        xaxis=XAxis(
-            autorange=True,
-            range=[-0.5, 6.5],
-            title='',
-            type='category'
-        ),
-        yaxis=YAxis(
-            autorange=True,
-            range=[0, 2631.5789473684213],
-            title='Calorie Consumption/kcal',
-            type='linear'
-        )
-    )
+    layout = {
+      "autosize": False,
+      "height": 265,
+      "hovermode": "x",
+      "legend": {
+        "orientation": "h",
+        "traceorder": "normal"
+      },
+      "margin": {
+        "t": 50,
+        "b": 50,
+        "l": 80
+      },
+      "showlegend": False,
+      "title": "<br>",
+      "width": 670,
+      "xaxis": {
+        "autorange": True,
+        "fixedrange": True,
+        "range": [-0.5, 6.5],
+        "title": "",
+        "type": "category",
+        "zeroline": False
+      },
+      "yaxis": {
+        "autorange": True,
+        "fixedrange": True,
+        "range": [0, 2631.57894737],
+        "title": "Calorie Consumption/kcal",
+        "type": "linear"
+      }
+    }
+
     #username = str(userId)
     fig = Figure(data=data, layout=layout)
-    # plot_url = offline.plot((fig),image='png', )
-    #py.image.save_as((fig), filename='%s_weekly.png' %(today_date))
-    py.image.save_as((fig), filename='weekly.png')
+    plot_url = offline.plot((fig), auto_open=False)
+	# py.image.save_as((fig), filename='%s_weekly.png' %(today_date))
+    # py.image.save_as((fig), filename='weekly.png')
 
-def plot_weekly_label(self,  currentUserInfo):
-    date = datetime.datetime.utcnow() #-datetime.timedelta(days=2)
-    userId = currentUserInfo.id
-
-    strtDate = (date - (datetime.timedelta(days=(date.weekday()+7)))).strftime("%Y-%m-%d")
-    print('Start date: %s '%(strtDate))
-    endDate = date.strftime("%Y-%m-%d")
-    print('End date: %s'%(endDate))
-
+def plot_weekly_label(self,date,userId):#,  currentUserInfo):
+    # print("barchart.py:date %s" %(str(date.strftime("%Y-%m-%d"))))
+    #userId = currentUserInfo.id # uncomment when using on RPi, replace userId with currentUserInfo
     weekday = date.weekday()
-
-    (vrai, entries) = db_access.user_getRangeDailyIntake(currentUserInfo.id,strtDate,endDate)
-    print("No. of Entries Found: %s"%(str(len(entries))))
-    for i in range(0,len(entries)):
-        print("Entry dates: %s" %(entries[i].date))
+    """
+    # block can be removed - was used to check if the dates are passed correctly
+    #start date from myTrackingMenu
+    currentWeek_startDate = (date - (datetime.timedelta(days=weekday))).strftime("%Y-%m-%d")
+    #strtDate = (date - (datetime.timedelta(days=(date.weekday()+7)))).strftime("%Y-%m-%d")
+    print("barchart.py:currentWeek_startDate \t%s" %(str(currentWeek_startDate)))
+    currentWeek_endDate = date.strftime("%Y-%m-%d") #aka today
+    print("barchart.py:currentWeek_endDate \t%s" %(str(currentWeek_endDate)))
+    """
+    # use getDailyIntake instead of getRangeDailyIntake
+    # was: entries = db_access.user_getRangeDailyIntake(userId,strtDate,endDate)[1]
+    # now: db_access.user_getDailyIntake(userId, date)
     thisweek = [0]*7
     lastweek = [0]*7
-    # updates the array with energy from sql (this week)
-    for i in range(0,(date.weekday())+1):
-        thisweek[i] = int(entries[-i+date.weekday()].energy)
-    # updates the array with energy from sql (last week)
-    for j in range(date.weekday()+1, len(entries)):
-        lastweek[(date.weekday()-j)] = int(entries[j].energy)
+    for i in range(0,(weekday+1)):
+        dateToPlot = date - (datetime.timedelta(days=weekday-i))
+        # print(dateToPlot.strftime("%Y-%m-%d"))
+        entry = db_access.user_getDailyIntake(userId, dateToPlot.strftime("%Y-%m-%d"))
+        if (entry[0] == False):
+            thisweek[i] = 0
+            # print(thisweek) # to check for error
+        else:
+            # print(int(entry[1].energy)) # to check for error
+            thisweek[i] = entry[1].energy
 
-    print('thisweek: %s' %thisweek)
-    print('lastweek: %s' %lastweek)
+    for j in range(0,7):
+        dateToPlot = date - (datetime.timedelta(days=abs((weekday-14+1+j))))
+        # print(dateToPlot.strftime("%Y-%m-%d"))
+        entry = db_access.user_getDailyIntake(userId, dateToPlot.strftime("%Y-%m-%d"))
+        if (entry[0] == False):
+            lastweek[j] = 0
+        else:
+            # print(int(entry[1].energy)) # to check for error
+            lastweek[j] = entry[1].energy
 
-    plot_and_save_weekly_graph(self, thisweek, lastweek, weekday, endDate)
+    # following two lines check if the data is correct
+    # print('barchart.py: thisweek: %s' %thisweek)
+    # print('barchart.py: lastweek: %s' %lastweek)
+
+    barchart.plot_and_save_weekly_graph(thisweek, lastweek, weekday)
