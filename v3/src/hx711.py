@@ -179,7 +179,7 @@ class HX711:
         self.power_down()
         self.power_up()
 
-    def cleanAndExit():
+    def cleanAndExit(self):
         GPIO.cleanup()
         sys.exit()
 

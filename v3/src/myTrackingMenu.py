@@ -1,7 +1,7 @@
 """
 Change the progress bar to int (from float) and check if the program runs correctly
 """
-import sys,datetime
+import sys,datetime,codecs
 import os
 
 from PyQt5.QtWidgets import *
@@ -9,8 +9,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 #from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtWebKitWidgets import *
-import ui_trackingmenu, barchart
-import db_access
+import ui_trackingmenu, db_access
+import mpl_barchart as barchart
 
 today = datetime.datetime.utcnow()# - datetime.timedelta(days=51)
 
@@ -26,8 +26,7 @@ class myTrackingMenu(QWidget, ui_trackingmenu.Ui_trackingMenu):
 		# tab 1 content
 		self.todayIntake = db_access.user_getDailyIntake(id, today.strftime('%Y-%m-%d'))
 		self.yesterdayIntake = db_access.user_getDailyIntake(id, ((today - datetime.timedelta(days=1)).strftime('%Y-%m-%d')))
-		# print('%s - %s'%(today.strftime('%Y-%m-%d'),self.todayIntake.energy))
-		# print('%s - %s'%(i_minus1.strftime('%Y-%m-%d'),self.yesterdayIntake.energy))
+		
 		if(gender == 'm'):
 			self.progressBar_today.setRange(0,2500)
 			self.progressBar_yesterday.setRange(0,2500)
@@ -50,23 +49,18 @@ class myTrackingMenu(QWidget, ui_trackingmenu.Ui_trackingMenu):
 			self.lbl_yesterday.setText("Yesterday's calorie intake: %s kcal" %(self.yesterdayIntake[1].energy))
 
 		#tab 2 content
-		barchart.plot_weekly_label(self,today, currentUserInfo.id)#, )
-		plot_dir = os.getcwd() + '/temp-plot.html' 
-		print(plot_dir)
-		print(QUrl.fromLocalFile(plot_dir))
-		self.weekly_label.load(QUrl.fromLocalFile(plot_dir))
-		#self.weekly_label.load(QUrl('file:///home/pi/Desktop/IoT-Smart-Scale/v3/temp-plot.html'))
-		#self.weekly_label.s(QUrl('file:///temp-plot.html'))
-
+		barchart.plot_weekly_label(self,today, currentUserInfo.id)
+		self.weekly_plt = (QPixmap('plot.png'))
+		self.weekly_label.setPixmap(self.weekly_plt)
+	
 		# tab 3 content
 		self.monthly_label.load(QUrl('http://m.google.com/'))
-		print(QUrl('http://m.google.com/'))
 		# self.monthly_label.show()
 
 	def handleBtn_back(self, mainWindow):
-		#mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
-		os.remove('temp-plot.html') # deletes the plot when back is pressed
-		sys.exit()
+		os.remove('plot.png') # deletes the plot when back is pressed
+		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
+		#sys.exit()
 
 	def plot_tab3(self, today): #, currentUserInfo):
 		pass

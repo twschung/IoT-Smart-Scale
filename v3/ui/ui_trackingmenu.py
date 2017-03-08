@@ -2,20 +2,19 @@
 
 # Form implementation generated from reading ui file 'trackingmenu.ui'
 #
-# Created by: PyQt5 UI code generator 5.3.2
+# Created: Wed Mar  8 13:22:46 2017
+#      by: PyQt5 UI code generator 5.3.2
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5 import QtWebKitWidgets
 
 class Ui_trackingMenu(object):
     def setupUi(self, trackingMenu):
         trackingMenu.setObjectName("trackingMenu")
         trackingMenu.resize(800, 526)
+        trackingMenu.setMaximumSize(QtCore.QSize(800, 526))
         self.gridLayout = QtWidgets.QGridLayout(trackingMenu)
-        self.gridLayout.setContentsMargins(11, 11, 11, 11)
-        self.gridLayout.setSpacing(6)
         self.gridLayout.setObjectName("gridLayout")
         self.btn_back = QtWidgets.QPushButton(trackingMenu)
         self.btn_back.setMinimumSize(QtCore.QSize(131, 71))
@@ -26,7 +25,6 @@ class Ui_trackingMenu(object):
         self.btn_back.setObjectName("btn_back")
         self.gridLayout.addWidget(self.btn_back, 2, 1, 1, 1)
         self.tabWidget = QtWidgets.QTabWidget(trackingMenu)
-        self.tabWidget.setMinimumSize(QtCore.QSize(0, 380))
         self.tabWidget.setAutoFillBackground(True)
         self.tabWidget.setTabPosition(QtWidgets.QTabWidget.West)
         self.tabWidget.setTabShape(QtWidgets.QTabWidget.Rounded)
@@ -35,14 +33,10 @@ class Ui_trackingMenu(object):
         self.tab_dailyRecord = QtWidgets.QWidget()
         self.tab_dailyRecord.setObjectName("tab_dailyRecord")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.tab_dailyRecord)
-        self.gridLayout_3.setContentsMargins(11, 11, 11, 11)
-        self.gridLayout_3.setSpacing(6)
         self.gridLayout_3.setObjectName("gridLayout_3")
         spacerItem = QtWidgets.QSpacerItem(20, 116, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout_3.addItem(spacerItem, 0, 0, 1, 1)
         self.gridLayout_2 = QtWidgets.QGridLayout()
-        self.gridLayout_2.setContentsMargins(11, 11, 11, 11)
-        self.gridLayout_2.setSpacing(6)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.progressBar_today = QtWidgets.QProgressBar(self.tab_dailyRecord)
         self.progressBar_today.setProperty("value", 24)
@@ -72,12 +66,8 @@ class Ui_trackingMenu(object):
         self.tab_weeklyRecord = QtWidgets.QWidget()
         self.tab_weeklyRecord.setObjectName("tab_weeklyRecord")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.tab_weeklyRecord)
-        self.gridLayout_5.setContentsMargins(11, 11, 11, 11)
-        self.gridLayout_5.setSpacing(6)
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.gridLayout_4 = QtWidgets.QGridLayout()
-        self.gridLayout_4.setContentsMargins(11, 11, 11, 11)
-        self.gridLayout_4.setSpacing(6)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.lbl_week = QtWidgets.QLabel(self.tab_weeklyRecord)
         self.lbl_week.setMaximumSize(QtCore.QSize(16777215, 15))
@@ -92,10 +82,8 @@ class Ui_trackingMenu(object):
         self.weekly_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.weekly_frame.setObjectName("weekly_frame")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.weekly_frame)
-        self.horizontalLayout_2.setContentsMargins(11, 11, 11, 11)
-        self.horizontalLayout_2.setSpacing(6)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.weekly_label = QtWebKitWidgets.QWebView(self.weekly_frame)
+        self.weekly_label = QtWidgets.QLabel(self.weekly_frame)
         self.weekly_label.setObjectName("weekly_label")
         self.horizontalLayout_2.addWidget(self.weekly_label)
         self.gridLayout_4.addWidget(self.weekly_frame, 1, 0, 1, 1)
@@ -104,12 +92,8 @@ class Ui_trackingMenu(object):
         self.tab_monthlyRecord = QtWidgets.QWidget()
         self.tab_monthlyRecord.setObjectName("tab_monthlyRecord")
         self.gridLayout_6 = QtWidgets.QGridLayout(self.tab_monthlyRecord)
-        self.gridLayout_6.setContentsMargins(11, 11, 11, 11)
-        self.gridLayout_6.setSpacing(6)
         self.gridLayout_6.setObjectName("gridLayout_6")
         self.verticalLayout = QtWidgets.QVBoxLayout()
-        self.verticalLayout.setContentsMargins(11, 11, 11, 11)
-        self.verticalLayout.setSpacing(6)
         self.verticalLayout.setObjectName("verticalLayout")
         self.lbl_month = QtWidgets.QLabel(self.tab_monthlyRecord)
         self.lbl_month.setMaximumSize(QtCore.QSize(16777215, 15))
@@ -120,12 +104,11 @@ class Ui_trackingMenu(object):
         self.lbl_month.setObjectName("lbl_month")
         self.verticalLayout.addWidget(self.lbl_month)
         self.monthly_frame = QtWidgets.QFrame(self.tab_monthlyRecord)
+        self.monthly_frame.setMaximumSize(QtCore.QSize(705, 309))
         self.monthly_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.monthly_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.monthly_frame.setObjectName("monthly_frame")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.monthly_frame)
-        self.horizontalLayout.setContentsMargins(11, 11, 11, 11)
-        self.horizontalLayout.setSpacing(6)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.monthly_label = QtWebKitWidgets.QWebView(self.monthly_frame)
         self.monthly_label.setObjectName("monthly_label")
@@ -135,7 +118,6 @@ class Ui_trackingMenu(object):
         self.tabWidget.addTab(self.tab_monthlyRecord, "")
         self.gridLayout.addWidget(self.tabWidget, 1, 0, 1, 2)
         self.lbl_title = QtWidgets.QLabel(trackingMenu)
-        self.lbl_title.setMinimumSize(QtCore.QSize(776, 31))
         font = QtGui.QFont()
         font.setFamily("Helvetica Neue")
         font.setPointSize(24)
@@ -148,7 +130,7 @@ class Ui_trackingMenu(object):
         self.gridLayout.addItem(spacerItem2, 2, 0, 1, 1)
 
         self.retranslateUi(trackingMenu)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(trackingMenu)
 
     def retranslateUi(self, trackingMenu):
@@ -159,8 +141,10 @@ class Ui_trackingMenu(object):
         self.lbl_yesterday.setText(_translate("trackingMenu", "Yesterday\'s calorie intake"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_dailyRecord), _translate("trackingMenu", "Daily Record"))
         self.lbl_week.setText(_translate("trackingMenu", "This week\'s vs. last week\'s intake"))
+        self.weekly_label.setText(_translate("trackingMenu", "TextLabel"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_weeklyRecord), _translate("trackingMenu", "Weekly Record"))
         self.lbl_month.setText(_translate("trackingMenu", "This month\'s vs. last month\'s intake"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_monthlyRecord), _translate("trackingMenu", "Monthly Record"))
         self.lbl_title.setText(_translate("trackingMenu", "My Tracking"))
 
+from PyQt5 import QtWebKitWidgets
