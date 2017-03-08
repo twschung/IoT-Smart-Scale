@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 currentDir = os.getcwd()
 sys.path.insert(0,currentDir+"/src")
 sys.path.insert(0,currentDir+"/ui")
@@ -49,7 +50,10 @@ class get_weight_thread (QObject):
 		#print ("get_weight_thread work")
 		while stop_thread is not True:
 			self.i = int(scale.get_weight(5))
+			time.sleep(0.05)
 			self.finished.emit(self.i)
+			if stop_thread is True:
+				break
 
 def cleanAndExit(self):
 	scale.cleanAndExit()
@@ -57,6 +61,6 @@ def cleanAndExit(self):
 # setup scale
 scale = HX711(23,24)
 # set reference unit is 435 for 5kg scale and 770 for 3kg scale
-scale.set_reference_unit(435)
+scale.set_reference_unit(770)
 scale.reset()
 scale.tare()

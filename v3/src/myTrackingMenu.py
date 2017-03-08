@@ -26,7 +26,7 @@ class myTrackingMenu(QWidget, ui_trackingmenu.Ui_trackingMenu):
 		# tab 1 content
 		self.todayIntake = db_access.user_getDailyIntake(id, today.strftime('%Y-%m-%d'))
 		self.yesterdayIntake = db_access.user_getDailyIntake(id, ((today - datetime.timedelta(days=1)).strftime('%Y-%m-%d')))
-		
+
 		if(gender == 'm'):
 			self.progressBar_today.setRange(0,2500)
 			self.progressBar_yesterday.setRange(0,2500)
@@ -46,13 +46,13 @@ class myTrackingMenu(QWidget, ui_trackingmenu.Ui_trackingMenu):
 			self.lbl_yesterday.setText('No Entry Found')
 		else:
 			self.progressBar_yesterday.setValue(float(self.yesterdayIntake[1].energy))
-			self.lbl_yesterday.setText("Yesterday's calorie intake: %s kcal" %(self.yesterdayIntake[1].energy))
+			self.lbl_yesterday.setText("Yesterday's calorie intake: %.0f kcal" %(float(self.yesterdayIntake[1].energy)))
 
 		#tab 2 content
 		barchart.plot_weekly_label(self,today, currentUserInfo.id)
 		self.weekly_plt = (QPixmap('plot.png'))
 		self.weekly_label.setPixmap(self.weekly_plt)
-	
+
 		# tab 3 content
 		self.monthly_label.load(QUrl('http://m.google.com/'))
 		# self.monthly_label.show()

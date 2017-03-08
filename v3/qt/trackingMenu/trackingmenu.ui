@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>526</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
     <width>800</width>
-    <height>526</height>
+    <height>480</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -24,8 +24,8 @@
     <widget class="QPushButton" name="btn_back">
      <property name="minimumSize">
       <size>
-       <width>131</width>
-       <height>71</height>
+       <width>120</width>
+       <height>60</height>
       </size>
      </property>
      <property name="font">
@@ -51,7 +51,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="iconSize">
       <size>
@@ -88,11 +88,6 @@
          </item>
          <item row="0" column="0">
           <widget class="QLabel" name="lbl_today">
-           <property name="font">
-            <font>
-             <pointsize>16</pointsize>
-            </font>
-           </property>
            <property name="text">
             <string>Today's calorie intake</string>
            </property>
@@ -100,11 +95,6 @@
          </item>
          <item row="0" column="1">
           <widget class="QLabel" name="lbl_yesterday">
-           <property name="font">
-            <font>
-             <pointsize>16</pointsize>
-            </font>
-           </property>
            <property name="text">
             <string>Yesterday's calorie intake</string>
            </property>
