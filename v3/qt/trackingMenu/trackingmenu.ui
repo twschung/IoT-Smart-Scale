@@ -10,6 +10,12 @@
     <height>526</height>
    </rect>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>526</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>trackingMenu</string>
   </property>
@@ -35,12 +41,6 @@
    </item>
    <item row="1" column="0" colspan="2">
     <widget class="QTabWidget" name="tabWidget">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>380</height>
-      </size>
-     </property>
      <property name="autoFillBackground">
       <bool>true</bool>
      </property>
@@ -51,7 +51,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <property name="iconSize">
       <size>
@@ -174,17 +174,8 @@
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
              <widget class="QLabel" name="weekly_label">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>200</height>
-               </size>
-              </property>
               <property name="text">
                <string>TextLabel</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -223,6 +214,12 @@
          </item>
          <item>
           <widget class="QFrame" name="monthly_frame">
+           <property name="maximumSize">
+            <size>
+             <width>705</width>
+             <height>309</height>
+            </size>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -231,20 +228,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QLabel" name="monthly_label">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>200</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
+             <widget class="QWebEngineView" name="monthly_label" native="true"/>
             </item>
            </layout>
           </widget>
@@ -257,12 +241,6 @@
    </item>
    <item row="0" column="0" colspan="2">
     <widget class="QLabel" name="lbl_title">
-     <property name="minimumSize">
-      <size>
-       <width>776</width>
-       <height>31</height>
-      </size>
-     </property>
      <property name="font">
       <font>
        <family>Helvetica Neue</family>
@@ -292,6 +270,13 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global">qwebengineview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
