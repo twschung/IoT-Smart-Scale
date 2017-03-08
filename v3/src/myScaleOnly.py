@@ -9,7 +9,7 @@ from PyQt5.QtCore import *
 import ui_scaleonly
 
 from hx711 import HX711
-
+stop_thread = False
 class myScaleOnly(QWidget, ui_scaleonly.Ui_scaleOnly):
 	def __init__(self, mainWindow, name=None):
 		super(myScaleOnly, self).__init__()
@@ -30,7 +30,8 @@ class myScaleOnly(QWidget, ui_scaleonly.Ui_scaleOnly):
 		self.lcd_number.display(int(i))
 	
 	def handleBtn_back(self, mainWindow):
-		self.thread.terminate()
+		#self.thread.stop()
+		stop_thread = True
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 	
 	def handleBtn_tare(self):
@@ -46,9 +47,12 @@ class get_weight_thread (QObject):
 	
 	def work(self):
 		#print ("get_weight_thread work")
-		while True:
+		while stop_thread is not True:
 			self.i = int(scale.get_weight(5))
 			self.finished.emit(self.i)
+
+def cleanAndExit(self):
+	scale.cleanAndExit()
 
 # setup scale
 scale = HX711(23,24)
