@@ -23,6 +23,8 @@ GPIO.setup(17, GPIO.OUT)
 camera = PiCamera()
 camera.resolution = (1024, 768)
 
+stop_thread = False
+
 class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def __init__(self, mainWindow, currentUserInfo, name=None, layoutSetting=None):
 		super(myFoodInformation, self).__init__()
