@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 #from PyQt5.QtWebEngineWidgets import *
-from PyQt5.QtWebKitWidgets import *
+#from PyQt5.QtWebKitWidgets import *
 import ui_trackingmenu, db_access
 import mpl_barchart as barchart
 
@@ -54,7 +54,7 @@ class myTrackingMenu(QWidget, ui_trackingmenu.Ui_trackingMenu):
 		self.weekly_label.setPixmap(self.weekly_plt)
 
 		# tab 3 content
-		self.monthly_label.load(QUrl('http://m.google.com/'))
+		# self.monthly_label.load(QUrl('http://m.google.com/'))
 		# self.monthly_label.show()
 
 	def handleBtn_back(self, mainWindow):
