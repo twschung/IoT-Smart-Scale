@@ -50,7 +50,7 @@ class get_weight_thread (QObject):
 		#print ("get_weight_thread work")
 		while stop_thread is not True:
 			self.i = int(scale.get_weight(5))
-			time.sleep(0.05)
+			time.sleep(0.01)
 			self.finished.emit(self.i)
 			if stop_thread is True:
 				break

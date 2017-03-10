@@ -121,7 +121,7 @@ class Ui_trackingMenu(object):
         self.horizontalLayout.setContentsMargins(11, 11, 11, 11)
         self.horizontalLayout.setSpacing(6)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.monthly_label = QtWebKitWidgets.QWebView(self.monthly_frame)
+        self.monthly_label = QtWidgets.QLabel(self.monthly_frame)
         self.monthly_label.setObjectName("monthly_label")
         self.horizontalLayout.addWidget(self.monthly_label)
         self.verticalLayout.addWidget(self.monthly_frame)
@@ -141,7 +141,7 @@ class Ui_trackingMenu(object):
         self.gridLayout.addItem(spacerItem2, 2, 0, 1, 1)
 
         self.retranslateUi(trackingMenu)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(trackingMenu)
 
     def retranslateUi(self, trackingMenu):
@@ -155,7 +155,7 @@ class Ui_trackingMenu(object):
         self.weekly_label.setText(_translate("trackingMenu", "TextLabel"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_weeklyRecord), _translate("trackingMenu", "Weekly Record"))
         self.lbl_month.setText(_translate("trackingMenu", "This month\'s vs. last month\'s intake"))
+        self.monthly_label.setText(_translate("trackingMenu", "TextLabel"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_monthlyRecord), _translate("trackingMenu", "Monthly Record"))
         self.lbl_title.setText(_translate("trackingMenu", "My Tracking"))
 
-from PyQt5 import QtWebKitWidgets
