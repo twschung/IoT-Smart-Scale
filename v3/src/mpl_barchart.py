@@ -7,6 +7,7 @@ fig_size = plt.rcParams['figure.figsize']
 fig_size[0] = 6.5
 fig_size[1] = 2.7
 plt.rcParams['figure.figsize'] = fig_size
+plt.rcParams['ytick.labelsize'] = 8
     
 def plot_and_save_weekly_graph(this_week_list, last_week_list, weekday):
 	y_prev_week = last_week_list
