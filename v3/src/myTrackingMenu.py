@@ -49,7 +49,8 @@ class myTrackingMenu(QWidget, ui_trackingmenu.Ui_trackingMenu):
 			self.lbl_yesterday.setText("Yesterday's calorie intake: %.0f kcal" %(float(self.yesterdayIntake[1].energy)))
 
 		#tab 2 content
-		barchart.plot_weekly_label(self,today, currentUserInfo.id)
+		barchart.plot_weekly_label(self,today, currentUserInfo)
+		self.weekly_label.setPixmap(QPixmap('white.jpg'))
 		self.weekly_plt = (QPixmap('plot.png'))
 		self.weekly_label.setPixmap(self.weekly_plt)
 
@@ -58,7 +59,7 @@ class myTrackingMenu(QWidget, ui_trackingmenu.Ui_trackingMenu):
 		# self.monthly_label.show()
 
 	def handleBtn_back(self, mainWindow):
-		os.remove('plot.png') # deletes the plot when back is pressed
+		#os.remove('plot.png') # deletes the plot when back is pressed
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 		#sys.exit()
 
