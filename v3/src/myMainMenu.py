@@ -50,7 +50,8 @@ class myMainMenu(QWidget, ui_mainmenu.Ui_mainMenu):
 		quit_msg = "Are you sure you want to exit the program?"
 		reply = QMessageBox.question(self,'Message',quit_msg,QMessageBox.Yes,QMessageBox.No)
 		if(reply==QMessageBox.Yes):
-			sys.exit()
+			myScaleOnly.cleanAndExit()
+			#sys.exit()
 		else:
 			pass
 	def handleBtn_systemUpdate(self):

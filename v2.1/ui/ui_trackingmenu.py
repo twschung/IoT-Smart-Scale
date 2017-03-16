@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'trackingmenu.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.7.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -94,9 +94,7 @@ class Ui_trackingMenu(object):
         self.horizontalLayout_2.setContentsMargins(11, 11, 11, 11)
         self.horizontalLayout_2.setSpacing(6)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.weekly_label = QtWidgets.QLabel(self.weekly_frame)
-        self.weekly_label.setMinimumSize(QtCore.QSize(0, 200))
-        self.weekly_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.weekly_label = QtWebEngineWidgets.QWebEngineView(self.weekly_frame)
         self.weekly_label.setObjectName("weekly_label")
         self.horizontalLayout_2.addWidget(self.weekly_label)
         self.gridLayout_4.addWidget(self.weekly_frame, 1, 0, 1, 1)
@@ -128,9 +126,7 @@ class Ui_trackingMenu(object):
         self.horizontalLayout.setContentsMargins(11, 11, 11, 11)
         self.horizontalLayout.setSpacing(6)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.monthly_label = QtWidgets.QLabel(self.monthly_frame)
-        self.monthly_label.setMinimumSize(QtCore.QSize(0, 200))
-        self.monthly_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.monthly_label = QtWebEngineWidgets.QWebEngineView(self.monthly_frame)
         self.monthly_label.setObjectName("monthly_label")
         self.horizontalLayout.addWidget(self.monthly_label)
         self.verticalLayout.addWidget(self.monthly_frame)
@@ -151,7 +147,7 @@ class Ui_trackingMenu(object):
         self.gridLayout.addItem(spacerItem2, 2, 0, 1, 1)
 
         self.retranslateUi(trackingMenu)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(trackingMenu)
 
     def retranslateUi(self, trackingMenu):
@@ -162,10 +158,9 @@ class Ui_trackingMenu(object):
         self.lbl_yesterday.setText(_translate("trackingMenu", "Yesterday\'s calorie intake"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_dailyRecord), _translate("trackingMenu", "Daily Record"))
         self.lbl_week.setText(_translate("trackingMenu", "This week\'s vs. last week\'s intake"))
-        self.weekly_label.setText(_translate("trackingMenu", "TextLabel"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_weeklyRecord), _translate("trackingMenu", "Weekly Record"))
         self.lbl_month.setText(_translate("trackingMenu", "This month\'s vs. last month\'s intake"))
-        self.monthly_label.setText(_translate("trackingMenu", "TextLabel"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_monthlyRecord), _translate("trackingMenu", "Monthly Record"))
         self.lbl_title.setText(_translate("trackingMenu", "My Tracking"))
 
+from PyQt5 import QtWebEngineWidgets

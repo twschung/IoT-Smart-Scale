@@ -23,6 +23,8 @@ GPIO.setup(17, GPIO.OUT)
 camera = PiCamera()
 camera.resolution = (1024, 768)
 
+stop_thread = False
+
 class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def __init__(self, mainWindow, currentUserInfo, name=None, layoutSetting=None):
 		super(myFoodInformation, self).__init__()
@@ -48,6 +50,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		sleep(1)
 		self.setUpBackgroundImage()
 		msgbox.done(1)
+
 		# set up thread that will update weight
 		self.thread = QThread()
 		self.getWeight = get_weight_thread()
@@ -61,7 +64,8 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.lcd_number.display(int(i))
 	def handleBtn_back(self,mainWindow):
 		camera.stop_preview()
-		self.thread.terminate()
+		#self.thread.terminate()
+		stop_thread = True
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 	def handleBtn_scan(self,mainWindow,currentUserInfo):
 		# add camera modules stuff here
@@ -100,8 +104,8 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 				self.btn_addIntake.setEnabled(True)
 				self.btn_suggestion.setEnabled(True)
 	def handleBtn_tare(self, mainWindow):
-		# add tare stuff here
 		scale.tare()
+
 	def handleBtn_addIntake(self):
 		db_access.user_addNewFoodIntake(self.foodInfo)
 		forgroundFilePath, backgroundFilePath = ftp_access.generateExisitingItemFilePath(foodInfo.foodid)
@@ -140,13 +144,19 @@ class get_weight_thread (QObject):
 
 	def work(self):
 		#print ("get_weight_thread work")
-		while True:
+		while stop_thread is not True:
+			if stop_thread is True:
+				break
 			self.i = int(scale.get_weight(5))
+			time.sleep(0.1)
 			self.finished.emit(self.i)
+		if stop_thread is True:
+				self.thread.terminate()
+
 
 # setup scale
 scale = HX711(23,24)
 # set reference unit is 435 for 5kg scale and 770 for 3kg scale
-scale.set_reference_unit(435)
+scale.set_reference_unit(770)
 scale.reset()
 scale.tare()
