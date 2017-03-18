@@ -191,6 +191,7 @@ def evaluateModel():
         print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
     except:
         print ("No Training Set is found")
+        wait = input("Press Any Key to continue ... ")
         return machineLearning_submenu()
     print("Loading ML Info......")
     try:
@@ -199,6 +200,7 @@ def evaluateModel():
         print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
     except:
         print ("No ML is found")
+        wait = input("Press Any Key to continue ... ")
         return machineLearning_submenu()
     print("-----------------------------------------------------------")
     trainingSS , validationSS , trainingRS , validationRS = train_test_split(sampleSet, responseSet, test_size=0.33, random_state=42)
