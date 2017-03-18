@@ -172,7 +172,7 @@ def evaluateModel():
     os.system('clear')
     print("-----------------------------------------------------------")
     print("Loading Training Set......")
-	try:
+    try:
         sampleSet, responseSet = svm.loadTrainingSet()
         print ("Training set size :")
         print (sampleSet.shape)
