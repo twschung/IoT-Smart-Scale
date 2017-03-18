@@ -68,7 +68,7 @@ def publishSystemUpdate_submenu():
     print(" [2] - Edit Sample Image Version ")
     print(" [3] - Publish local Food DB file")
     print(" [4] - Back ")
-    print("-----------------------------------------------------------"
+    print("-----------------------------------------------------------")
     usrInput = input("Please input the one of the option -> ")
     if (usrInput == "1"):
         publishML()
