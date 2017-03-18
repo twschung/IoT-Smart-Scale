@@ -23,7 +23,7 @@ def main():
     print(" [3] - SQL Database ")
     print(" [4] - Exit ")
     print("-----------------------------------------------------------")
-	usrInput=input("Please input the one of the option ->  ")
+    usrInput=input("Please input the one of the option ->  ")
     if (usrInput == "1"):
 		machineLearning_submenu()
 	elif (usrInput == "2"):
