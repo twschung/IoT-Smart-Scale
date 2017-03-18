@@ -4,6 +4,16 @@ import numpy as np
 import db_access_server
 import obj_recognition
 
+from sklearn import svm
+from sklearn import tree
+from sklearn.ensemble import BaggingClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.externals import joblib
+from sklearn.decomposition import PCA
+from sklearn.model_selection import train_test_split
+
 
 MLPath = '/home/public/HTTP/ML'
 MLArchivePath = '/home/public/HTTP/ML/archive'
