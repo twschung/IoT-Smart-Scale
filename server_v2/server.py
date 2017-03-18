@@ -171,7 +171,7 @@ def trainModel():
     print("-----------------------------------------------------------")
     print("Traiing will be using ", clfName[highestScoredClf])
     MLmodel = ml.classifier()
-    MLmodel.model = clf[highestScoredClf]
+    MLmodel.Model = clf[highestScoredClf]
     MLmodel.train()
     print("Finished training ML")
     print("-----------------------------------------------------------")
@@ -206,7 +206,7 @@ def evaluateModel():
     trainingSS , validationSS , trainingRS , validationRS = train_test_split(sampleSet, responseSet, test_size=0.33, random_state=42)
     clf = ml.classifier()
     clf.load()
-    print ("Current machine learning score: ",clf.model.score(validationSS,validationRS))
+    print ("Current machine learning score: ",clf.Model.score(validationSS,validationRS))
     wait = input("Press Any Key to continue ... ")
     return machineLearning_submenu()
 
