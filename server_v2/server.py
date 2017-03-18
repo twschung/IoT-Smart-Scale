@@ -315,7 +315,7 @@ def searchByCategory():
             foodInfo.printFoodDetailsInRow()
     print("-----------------------------------------------------------")
     wait = input("Press Any Key to continue ... ")
-	return SQLdatabase_submenu()
+    return SQLdatabase_submenu()
 
 def searchByDescrption():
     os.system('clear')
@@ -329,7 +329,7 @@ def searchByDescrption():
             foodInfo.printFoodDetailsInRow()
     print("-----------------------------------------------------------")
     wait = input("Press Any Key to continue ... ")
-	return SQLdatabase_submenu()
+    return SQLdatabase_submenu()
 
 
 if __name__ == "__main__":
