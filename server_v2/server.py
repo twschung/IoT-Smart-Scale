@@ -16,7 +16,7 @@ localDBPath = '/home/public/HTTP/DB'
 
 def main():
     os.system('clear')
-	print("IoT Smart Scale Server)
+	print("IoT Smart Scale Server")
 	print("-----------------------------------------------------------")
     print(" [1] - Machine Learning ")
     print(" [2] - Publish System Update ")
