@@ -129,14 +129,14 @@ def trainModel():
     print("Finished modifiing training set. Total of %i items are added"% (totalItemProcessed))
     print("-----------------------------------------------------------")
     print("Moving current ML model to archive")
-	try:
-		Model_currentPath = os.path.join(os.getcwd(),'Model.dat')
-		Model_newFilename = "Model_" + str(os.stat("Model.dat").st_mtime) + ".dat"
-		Model_newPath = os.path.join(MLArchivePath, Model_newFilename)
-		os.rename(Model_currentPath,Model_newPath)
-	except:
-		print ("new ML model will be created")
-	print("Analysicing which is best ML ...")
+    try:
+        Model_currentPath = os.path.join(os.getcwd(),'Model.dat')
+        Model_newFilename = "Model_" + str(os.stat("Model.dat").st_mtime) + ".dat"
+        Model_newPath = os.path.join(MLArchivePath, Model_newFilename)
+        os.rename(Model_currentPath,Model_newPath)
+    except:
+        print ("new ML model will be created")
+    print("Analysicing which is best ML ...")
     sampleSet = np.load('sampleSet.npy')
     responseSet = np.load('responseSet.npy')
     trainingSS , validationSS , trainingRS , validationRS = train_test_split(sampleSet, responseSet, test_size=0.33, random_state=42)
