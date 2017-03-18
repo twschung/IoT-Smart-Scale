@@ -109,7 +109,7 @@ def SQLdatabase_submenu():
 def trainModel():
     os.system('clear')
     print("-----------------------------------------------------------")
-	print("Getting new images from FTP server...")
+    print("Getting new images from FTP server...")
 	totalItemProcessed = 0
 	searchPath = os.path.join(exisitingItemPath,'*.jpg')
 	for filename in glob.glob(searchPath):
@@ -128,7 +128,7 @@ def trainModel():
 		totalItemProcessed = totalItemProcessed + 1
 	print("Finished modifiing training set. Total of %i items are added"% (totalItemProcessed))
     print("-----------------------------------------------------------")
-	print("Moving current ML model to archive")
+    print("Moving current ML model to archive")
 	try:
 		Model_currentPath = os.path.join(os.getcwd(),'Model.dat')
 		Model_newFilename = "Model_" + str(os.stat("Model.dat").st_mtime) + ".dat"
@@ -165,13 +165,13 @@ def trainModel():
 	MLmodel.train()
 	print("Finished training ML")
 	print("-----------------------------------------------------------")
-	wait = input("Press Any Key to continue ... ")
-	main()
+    wait = input("Press Any Key to continue ... ")
+    main()
 
 def evaluateModel():
     os.system('clear')
     print("-----------------------------------------------------------")
-	print("Loading Training Set......")
+    print("Loading Training Set......")
 	try:
 		sampleSet, responseSet = svm.loadTrainingSet()
 		print ("Training set size :")
