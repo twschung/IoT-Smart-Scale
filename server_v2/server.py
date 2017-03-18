@@ -25,14 +25,14 @@ def main():
     print("-----------------------------------------------------------")
     usrInput=input("Please input the one of the option ->  ")
     if (usrInput == "1"):
-		machineLearning_submenu()
-	elif (usrInput == "2"):
-		publishSystemUpdate_submenu()
-	elif (usrInput == "3"):
-		SQLdatabase_submenu()
-	elif (usrInput == "4"):
-		print("Program exiting !!!!")
-    else
+        machineLearning_submenu()
+    elif (usrInput == "2"):
+        publishSystemUpdate_submenu()
+    elif (usrInput == "3"):
+        SQLdatabase_submenu()
+    elif (usrInput == "4"):
+        print("Program exiting !!!!")
+    else:
         print("Invaild Input")
         wait = input("Press Any Key to continue ... ")
         return main()
@@ -48,14 +48,14 @@ def machineLearning_submenu():
     print("-----------------------------------------------------------")
     usrInput=input("Please input the one of the option ->  ")
     if (usrInput == "1"):
-
-	elif (usrInput == "2"):
-		evaluateModel()
-	elif (usrInput == "3"):
-		eraseTrainingSetAndReset()
-	elif (usrInput == "4"):
-		return main()
-    else
+        trainModel()
+    elif (usrInput == "2"):
+        evaluateModel()
+    elif (usrInput == "3"):
+        eraseTrainingSetAndReset()
+    elif (usrInput == "4"):
+        return main()
+    else:
         print("Invaild Input")
         wait = input("Press Any Key to continue ... ")
         return machineLearning_submenu()
@@ -68,17 +68,17 @@ def publishSystemUpdate_submenu():
     print(" [2] - Edit Sample Image Version ")
     print(" [3] - Publish local Food DB file")
     print(" [4] - Back ")
-    print("-----------------------------------------------------------")
-    usrInput=input("Please input the one of the option ->  ")
+    print("-----------------------------------------------------------"
+    usrInput=input("Please input the one of the option ->
     if (usrInput == "1"):
-		publishML()
-	elif (usrInput == "2"):
-		editImageSampleVersion()
-	elif (usrInput == "3"):
-		publishLocalFoodDB()
-	elif (usrInput == "4"):
-		return main()
-    else
+        publishML()
+    elif (usrInput == "2"):
+        editImageSampleVersion()
+    elif (usrInput == "3"):
+        publishLocalFoodDB()
+    elif (usrInput == "4"):
+        return main()
+    else:
         print("Invaild Input")
         wait = input("Press Any Key to continue ... ")
         return publishSystemUpdate_submenu()
@@ -94,14 +94,14 @@ def SQLdatabase_submenu():
     print("-----------------------------------------------------------")
     usrInput=input("Please input the one of the option ->  ")
     if (usrInput == "1"):
-		addNewItemToDB()
-	elif (usrInput == "2"):
-		searchByCategory()
-	elif (usrInput == "3"):
-		searchByDescrption()
-	elif (usrInput == "4"):
-		return main()
-    else
+        addNewItemToDB()
+    elif (usrInput == "2"):
+        searchByCategory()
+    elif (usrInput == "3"):
+        searchByDescrption()
+    elif (usrInput == "4"):
+        return main()
+    else:
         print("Invaild Input")
         wait = input("Press Any Key to continue ... ")
         return SQLdatabase_submenu()
@@ -298,7 +298,7 @@ def addNewItemToDB():
     if (dbResult[0] == True):
         print("Successfully added to the database :")
         dbResult[1].printFoodDetailsInRow();
-    else
+    else:
         print("Server Error")
     wait = input("Press Any Key to continue ... ")
 	return SQLdatabase_submenu()
