@@ -110,23 +110,23 @@ def trainModel():
     os.system('clear')
     print("-----------------------------------------------------------")
     print("Getting new images from FTP server...")
-	totalItemProcessed = 0
-	searchPath = os.path.join(exisitingItemPath,'*.jpg')
-	for filename in glob.glob(searchPath):
-		print("Processing %s ..." % (filename))
-		currentPath = filename
-		currentBackgroundPath = os.path.join(exisitingItemPath, "backgroundImage" , os.path.basename(filename))
-		imgFeature = obj_recognition.main(currentPath,currentBackgroundPath)
-		imgFeature = np.nan_to_num(imgFeature)
-		time, imgID = os.path.basename(filename).split("_")
-		imgID, fileExtendion = imgID.split(".")
-		ml.addNewDataSet(imgFeature,int(imgID))
-		newPath = os.path.join(processedItemPath,os.path.basename(filename))
-		newBackgroundPath = os.path.join(processedItemPath, 'backgroundImage', os.path.basename(filename))
-		os.rename(currentPath,newPath)
-		os.rename(currentBackgroundPath,newBackgroundPath)
-		totalItemProcessed = totalItemProcessed + 1
-	print("Finished modifiing training set. Total of %i items are added"% (totalItemProcessed))
+    totalItemProcessed = 0
+    searchPath = os.path.join(exisitingItemPath,'*.jpg')
+    for filename in glob.glob(searchPath):
+        print("Processing %s ..." % (filename))
+        currentPath = filename
+        currentBackgroundPath = os.path.join(exisitingItemPath, "backgroundImage" , os.path.basename(filename))
+        imgFeature = obj_recognition.main(currentPath,currentBackgroundPath)
+        imgFeature = np.nan_to_num(imgFeature)
+        time, imgID = os.path.basename(filename).split("_")
+        imgID, fileExtendion = imgID.split(".")
+        ml.addNewDataSet(imgFeature,int(imgID))
+        newPath = os.path.join(processedItemPath,os.path.basename(filename))
+        newBackgroundPath = os.path.join(processedItemPath, 'backgroundImage', os.path.basename(filename))
+        os.rename(currentPath,newPath)
+        os.rename(currentBackgroundPath,newBackgroundPath)
+        totalItemProcessed = totalItemProcessed + 1
+    print("Finished modifiing training set. Total of %i items are added"% (totalItemProcessed))
     print("-----------------------------------------------------------")
     print("Moving current ML model to archive")
 	try:
