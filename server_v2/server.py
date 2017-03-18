@@ -183,7 +183,7 @@ def evaluateModel():
     print("-----------------------------------------------------------")
     print("Loading Training Set......")
     try:
-        sampleSet, responseSet = svm.loadTrainingSet()
+        sampleSet, responseSet = ml.loadTrainingSet()
         print ("Training set size :")
         print (sampleSet.shape)
         print ("Last modified :")
