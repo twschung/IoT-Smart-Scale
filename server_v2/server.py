@@ -40,7 +40,7 @@ def main():
 def machineLearning_submenu():
     os.system('clear')
     print("Machcine Learning Menu")
-	print("-----------------------------------------------------------")
+    print("-----------------------------------------------------------")
     print(" [1] - Train model")
     print(" [2] - Evaluate model ")
     print(" [3] - Erase training sets and reset ")
@@ -63,7 +63,7 @@ def machineLearning_submenu():
 def publishSystemUpdate_submenu():
     os.system('clear')
     print("Publish System Update Menu")
-	print("-----------------------------------------------------------")
+    print("-----------------------------------------------------------")
     print(" [1] - Publish Trained ML model")
     print(" [2] - Edit Sample Image Version ")
     print(" [3] - Publish local Food DB file")
@@ -86,7 +86,7 @@ def publishSystemUpdate_submenu():
 def SQLdatabase_submenu():
     os.system('clear')
     print("SQL Database Menu")
-	print("-----------------------------------------------------------")
+    print("-----------------------------------------------------------")
     print(" [1] - Add new Item to Database")
     print(" [2] - Search Item by Category ")
     print(" [3] - Search Item by Descrption ")
