@@ -160,13 +160,13 @@ def trainModel():
     highestScoredClf = clfscore.index(max(clfscore))
     print("-----------------------------------------------------------")
     print("Traiing will be using ", clfName[highestScoredClf])
-	MLmodel = ml.classifier()
+    MLmodel = ml.classifier()
     MLmodel.model = clf[highestScoredClf]
-	MLmodel.train()
-	print("Finished training ML")
+    MLmodel.train()
+    print("Finished training ML")
 	print("-----------------------------------------------------------")
     wait = input("Press Any Key to continue ... ")
-    main()
+    return machineLearning_submenu()
 
 def evaluateModel():
     os.system('clear')
