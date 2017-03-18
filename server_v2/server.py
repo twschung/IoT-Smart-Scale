@@ -164,7 +164,7 @@ def trainModel():
     MLmodel.model = clf[highestScoredClf]
     MLmodel.train()
     print("Finished training ML")
-	print("-----------------------------------------------------------")
+    print("-----------------------------------------------------------")
     wait = input("Press Any Key to continue ... ")
     return machineLearning_submenu()
 
@@ -173,22 +173,22 @@ def evaluateModel():
     print("-----------------------------------------------------------")
     print("Loading Training Set......")
 	try:
-		sampleSet, responseSet = svm.loadTrainingSet()
-		print ("Training set size :")
-		print (sampleSet.shape)
-		print ("Last modified :")
-		fileLastModified = os.stat("sampleSet.npy").st_mtime
-		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
-	except:
-		print ("No Training Set is found")
+        sampleSet, responseSet = svm.loadTrainingSet()
+        print ("Training set size :")
+        print (sampleSet.shape)
+        print ("Last modified :")
+        fileLastModified = os.stat("sampleSet.npy").st_mtime
+        print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
+    except:
+        print ("No Training Set is found")
         return machineLearning_submenu()
     print("Loading ML Info......")
-	try:
-		print ("Last modified :")
-		fileLastModified = os.stat("Model.dat").st_mtime
-		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
-	except:
-		print ("No ML is found")
+    try:
+        print ("Last modified :")
+        fileLastModified = os.stat("Model.dat").st_mtime
+        print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
+    except:
+        print ("No ML is found")
         return machineLearning_submenu()
     print("-----------------------------------------------------------")
     trainingSS , validationSS , trainingRS , validationRS = train_test_split(sampleSet, responseSet, test_size=0.33, random_state=42)
@@ -201,107 +201,106 @@ def evaluateModel():
 
 def eraseTrainingSetAndReset():
     os.system('clear')
-	print("Moving images from processedItem's folder to existingItem's folder !")
-	searchPath = os.path.join(processedItemPath,'*.jpg')
-	for filename in glob.glob(searchPath):
-		currentFilePath = filename
-		newFilePath = os.path.join(exisitingItemPath, (os.path.basename(filename)))
-		print("Moving ",currentFilePath , " to ", newFilePath)
-		os.rename(currentFilePath,newFilePath)
-	searchPath = os.path.join(processedItemPath,'backgroundImage/*.jpg')
-	for filename in glob.glob(searchPath):
-		currentFilePath = filename
-		newFilePath = os.path.join(exisitingBackgroundItemPath,(os.path.basename(filename)))
-		print("Moving ",currentFilePath , " to ", newFilePath)
-		os.rename(currentFilePath,newFilePath)
-	try:
-		print ("Removing sampleSet and responseSet")
-		os.remove("sampleSet.npy")
-		os.remove("responseSet.npy")
-	except:
-		print ("No sampleSet or responseSet is found")
-	finally:
-		wait = input("Press Any Key to continue ... ")
-		return machineLearning_submenu()
+    print("Moving images from processedItem's folder to existingItem's folder !")
+    searchPath = os.path.join(processedItemPath,'*.jpg')
+    for filename in glob.glob(searchPath):
+        currentFilePath = filename
+        newFilePath = os.path.join(exisitingItemPath, (os.path.basename(filename)))
+        print("Moving ",currentFilePath , " to ", newFilePath)
+        os.rename(currentFilePath,newFilePath)
+    searchPath = os.path.join(processedItemPath,'backgroundImage/*.jpg')
+    for filename in glob.glob(searchPath):
+        currentFilePath = filename
+        newFilePath = os.path.join(exisitingBackgroundItemPath,(os.path.basename(filename)))
+        print("Moving ",currentFilePath , " to ", newFilePath)
+        os.rename(currentFilePath,newFilePath)
+    try:
+        print ("Removing sampleSet and responseSet")
+        os.remove("sampleSet.npy")
+        os.remove("responseSet.npy")
+    except:
+        print ("No sampleSet or responseSet is found")
+    wait = input("Press Any Key to continue ... ")
+    return machineLearning_submenu()
 
 def publishML():
     os.system('clear')
     print("Loading ML Info......")
-	try:
-		print ("Last modified :")
-		fileLastModified = os.stat("Model.dat").st_mtime
-		print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
-	except:
-		print ("No ML is found")
+    try:
+        print ("Last modified :")
+        fileLastModified = os.stat("Model.dat").st_mtime
+        print (time.strftime('%d/%m/%Y %H:%M:%S',  time.gmtime(fileLastModified)))
+    except:
+        print ("No ML is found")
         wait = input("Press Any Key to continue ... ")
         return publishSystemUpdate_submenu()
     print ("Publishing current classifier model to classifier's path")
-	currentPath = os.path.join(os.getcwd(),'Model.dat')
-	newPath = os.path.join(MLPath, 'Model.dat')
-	shutil.copyfile(currentPath,newPath)
-	version = np.array(os.stat("Model.dat").st_mtime)
-	np.save('Model_version.npy',version)
-	currentPath = os.path.join(os.getcwd(),'Model_version.npy')
-	newPath = os.path.join(MLPath, 'Model_version.npy')
-	shutil.copyfile(currentPath,newPath)
-	print("Complete!")
-	print("-----------------------------------------------------------")
-	wait = input("Press Any Key to continue ... ")
+    currentPath = os.path.join(os.getcwd(),'Model.dat')
+    newPath = os.path.join(MLPath, 'Model.dat')
+    shutil.copyfile(currentPath,newPath)
+    version = np.array(os.stat("Model.dat").st_mtime)
+    np.save('Model_version.npy',version)
+    currentPath = os.path.join(os.getcwd(),'Model_version.npy')
+    newPath = os.path.join(MLPath, 'Model_version.npy')
+    shutil.copyfile(currentPath,newPath)
+    print("Complete!")
+    print("-----------------------------------------------------------")
+    wait = input("Press Any Key to continue ... ")
     return publishSystemUpdate_submenu()
 
 def editImageSampleVersion():
     os.system('clear')
     versionNum =  input("Please enter the new version number for the sample image -> ")
-	np.save('imageSample_version.npy',versionNum)
-	currentPath = os.path.join(os.getcwd(),'imageSample_version.npy')
-	newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
-	shutil.copyfile(currentPath,newPath)
-	print ("Complete!")
-	wait = input("Press Any Key to continue ... ")
-	return publishSystemUpdate_submenu()
+    np.save('imageSample_version.npy',versionNum)
+    currentPath = os.path.join(os.getcwd(),'imageSample_version.npy')
+    newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
+    shutil.copyfile(currentPath,newPath)
+    print ("Complete!")
+    wait = input("Press Any Key to continue ... ")
+    return publishSystemUpdate_submenu()
 
 def publishLocalFoodDB():
     os.system('clear')
     print ("Publishing Local Food Database to Server ...")
     os.system('mysqldump --skip-extended-insert --compact -u terminal_user -pabcd1234 smartscale foodinfo_db > localFoodDB.sql')
-	os.system('./mysql2sqlite localFoodDB.sql | sqlite3 localFoodDB.db')
-	newFilePath = os.path.join(localDBPath,'localFoodDB.db')
-	os.rename('localFoodDB.db',newFilePath)
+    os.system('./mysql2sqlite localFoodDB.sql | sqlite3 localFoodDB.db')
+    newFilePath = os.path.join(localDBPath,'localFoodDB.db')
+    os.rename('localFoodDB.db',newFilePath)
     print ("Complete!")
-	wait = input("Press Any Key to continue ... ")
-	return publishSystemUpdate_submenu()
+    wait = input("Press Any Key to continue ... ")
+    return publishSystemUpdate_submenu()
 
 def addNewItemToDB():
     stayInLoop = True
-	while (stayInLoop == True):
+    while (stayInLoop == True):
         os.system('clear')
-		newFoodInfo = db_access_server.foodDataStructure()
-		print("-----------------------------------------------------------")
-		newFoodInfo.category = input("Please enter category : ")
-		newFoodInfo.description = input("Please enter description : ")
-		newFoodInfo.fat = input("Please enter fat (g/100g) : ")
-		newFoodInfo.saturates = input("Please enter saturates (g/100g) : ")
-		newFoodInfo.carbohydrate = input("Please enter carbohydrate (g/100g) : ")
-		newFoodInfo.sugars = input("Please enter sugars (g/100g) : ")
-		newFoodInfo.fibre = input("Please enter fibre (g/100g) : ")
-		newFoodInfo.protein = input("Please enter protein (g/100g) : ")
-		newFoodInfo.salt = input("Please enter salt (g/100g) : ")
-		print("-----------------------------------------------------------")
-		newFoodInfo.printFoodDetails()
-		confirmInput = input("Confirm ? y/n   ->  ")
-		if (confirmInput.upper == "Y"):
-			stayInLoop = False
-		elif (confirmInput.upper != "N"):
-			print("Invalid Input")
+        newFoodInfo = db_access_server.foodDataStructure()
+        print("-----------------------------------------------------------")
+        newFoodInfo.category = input("Please enter category : ")
+        newFoodInfo.description = input("Please enter description : ")
+        newFoodInfo.fat = input("Please enter fat (g/100g) : ")
+        newFoodInfo.saturates = input("Please enter saturates (g/100g) : ")
+        newFoodInfo.carbohydrate = input("Please enter carbohydrate (g/100g) : ")
+        newFoodInfo.sugars = input("Please enter sugars (g/100g) : ")
+        newFoodInfo.fibre = input("Please enter fibre (g/100g) : ")
+        newFoodInfo.protein = input("Please enter protein (g/100g) : ")
+        newFoodInfo.salt = input("Please enter salt (g/100g) : ")
+        print("-----------------------------------------------------------")
+        newFoodInfo.printFoodDetails()
+        confirmInput = input("Confirm ? y/n   ->  ")
+        if (confirmInput.upper == "Y"):
+            stayInLoop = False
+        elif (confirmInput.upper != "N"):
+            print("Invalid Input")
     print("Adding Food item to Database...")
     dbResult = db_access_server.food_register(newFoodInfo)
     if (dbResult[0] == True):
         print("Successfully added to the database :")
-        dbResult[1].printFoodDetailsInRow();
+        dbResult[1].printFoodDetailsInRow()
     else:
         print("Server Error")
     wait = input("Press Any Key to continue ... ")
-	return SQLdatabase_submenu()
+    return SQLdatabase_submenu()
 
 
 def searchByCategory():
