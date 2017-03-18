@@ -69,7 +69,7 @@ def publishSystemUpdate_submenu():
     print(" [3] - Publish local Food DB file")
     print(" [4] - Back ")
     print("-----------------------------------------------------------"
-    usrInput=input("Please input the one of the option ->
+    usrInput=input("Please input the one of the option -> ")
     if (usrInput == "1"):
         publishML()
     elif (usrInput == "2"):
