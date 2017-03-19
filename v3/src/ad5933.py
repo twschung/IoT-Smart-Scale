@@ -70,7 +70,7 @@ class AD5933:
 		bus.write_byte_data(DEV_ADD, CNTRL_1, bus.read_byte_data(DEV_ADD,CNTRL_1)&0x07 |0x10)
 	def START_FREQ_SWEEP(self):
 		bus.write_byte_data(DEV_ADD, CNTRL_1, bus.read_byte_data(DEV_ADD,CNTRL_1)&0x07 |0x20)
-	def READ_TEMP(self):
+	def MEASURE_TEMP(self):
 		bus.write_byte_data(DEV_ADD, CNTRL_1, bus.read_byte_data(DEV_ADD,CNTRL_1)&0x07 |0x90)
 	def SETTLE_TIME_CYCLE(self):
 		bus.write_byte_data(DEV_ADD, SETTL_CYCL_1, 0x01) #0x07
@@ -157,6 +157,22 @@ class AD5933:
 				pass
 			
 		return [self.average_dsp_real, self.average_dsp_imag, self.average_real, self.average_imag]
+	
+	def READ_TEMP(self):
+		self.MEASURE_TEMP()
+		while True:
+			self.STATUS = bus.read_byte_data(DEV_ADD,STATUS_REG)
+			if ((self.STATUS & 0x01) == 1):
+				TEMP = (bus.read_byte_data(DEV_ADD, TEMP_1) << 8)|bus.read_byte_data(DEV_ADD, TEMP_2)
+				bus.write_byte_data(DEV_ADD, CNTRL_1,bus.read_byte_data(DEV_ADD,CNTRL_1)&0x07 |0x90)
+				if TEMP < 8192: 
+					TEMP = TEMP/32
+				else: 
+					TEMP = (TEMP-16384)/32
+				return TEMP
+				break
+			
+		
 	
 def READ_REG_VALUES():
 	print('CNTRL_1: %s'%bin(bus.read_byte_data(DEV_ADD,CNTRL_1)))
