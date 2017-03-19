@@ -45,7 +45,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.btn_suggestion.clicked.connect(lambda:self.handleBtn_suggestion(mainWindow,currentUserInfo))
 		self.btn_addIntake.setEnabled(False)
 		self.btn_addIntake.clicked.connect(lambda:self.handleBtn_addIntake())
-		
+
 		self.foodWeight = 0
 		camera.start_preview()
 		camera.preview.alpha = 0
@@ -55,7 +55,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.setUpBackgroundImage()
 		msgbox.done(1)
 
-		self.start_threads()		
+		self.start_threads()
 
 	def start_threads(self):
 		global i
@@ -68,23 +68,23 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			thread = QThread()
 			thread.setObjectName("get_weight_"+str(idx)+"_"+str(i))
 			self.__threads.append((thread,worker))
-			
+
 			worker.moveToThread(thread)
-			
+
 			# get progress messages from worker:
 			worker.sig_step.connect(self.on_worker_step)
 			worker.sig_done.connect(self.on_worker_done)
-						
+
 			# control worker:
 			self.sig_abort_workers.connect(worker.abort)
-			
+
 			# get ready to start worker:
 			thread.started.connect(worker.work)
 			thread.start()  # this will emit 'started' and start thread's event loop
-	
+
 	@pyqtSlot(int, str)
 	def on_worker_step(self, worker_id: int, data: str):
-		self.lcd_number.display(str(data))	
+		self.lcd_number.display(str(data))
 		#print('worker #%i : %s' %(worker_id, data))
 		#self.progress.append('{}: {}'.format(worker_id, data))
 
@@ -93,7 +93,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		print('worker %i done' %(worker_id))
 		#self.progress.append('-- worker {} done'.format(worker_id))
 		self.__workers_done += 1
-	
+
 	@pyqtSlot()
 	def abort_workers(self):
 		print('Asking each worker to abort')
@@ -104,7 +104,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		# even though threads have exited, there may still be messages on the main thread's
 		# queue (messages that threads emitted before the abort):
 		print('All threads exited')
-	
+
 	def handleBtn_back(self,mainWindow):
 		camera.stop_preview()
 		stop_thread = True
@@ -118,7 +118,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		clfResult = clf.predict(imageFeature)
 		self.clfProb = clf.predict_prob(imageFeature)
 		foodID = clfResult[0]
-		
+
 		self.foodWeight = int(scale.get_weight(5))
 		self.btn_addIntake.setEnabled(False)
 		if(currentUserInfo==None):
@@ -146,7 +146,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			else:
 				self.btn_addIntake.setEnabled(True)
 				self.btn_suggestion.setEnabled(True)
-		
+
 		# BioImpedance Stuff here
 		gain_factor = 5.12e-10 #5.75882e-10#4.902e-11 #1.013e-9
 		system_phase = 1.95 #rads
@@ -157,7 +157,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		print(percentage)
 #		self.lbl_(newlab).setText("Fat Percentage " + str(percentage) +"%")
 
-		
+
 	
 	def handleBtn_tare(self, mainWindow):
 		scale.reset()
@@ -165,7 +165,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 
 	def handleBtn_addIntake(self):
 		db_access.user_addNewFoodIntake(self.foodInfo)
-		forgroundFilePath, backgroundFilePath = ftp_access.generateExisitingItemFilePath(foodInfo.foodid)
+		forgroundFilePath, backgroundFilePath = ftp_access.generateExisitingItemFilePath(self.foodInfo.foodid)
 		shutil.copyfile(os.path.join(os.getcwd(),"background.jpg"),backgroundFilePath)
 		shutil.copyfile(os.path.join(os.getcwd(),"forground.jpg"),forgroundFilePath)
 		msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
@@ -188,7 +188,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		GPIO.output(17,True)
 		camera.capture("forground.jpg")
 		GPIO.output(17,False)
-	
+
 	def getFatPercentage(self, weight, R):
 		print(weight)
 		print(R)
@@ -209,7 +209,7 @@ class Worker (QObject):
 		super().__init__()
 		self.__id = id
 		self.__abort = False
-		
+
 	@pyqtSlot()
 	def work(self):
 		starttime = datetime.datetime.utcnow()
@@ -224,7 +224,7 @@ class Worker (QObject):
 				#break
 		pre_val = 0
 		count = 0
-		while self.__abort != True:		
+		while self.__abort != True:
 		#for step in range(100):
 			time.sleep(0.01)
 			currenttime = datetime.datetime.utcnow()
@@ -248,7 +248,7 @@ class Worker (QObject):
 				#break
 			pre_val = self.current_weight
 		self.sig_done.emit(self.__id)
-		
+
 	def abort(self):
 		self.__abort = True
 		self.sig_msg.emit('worker #{} notified to abort'.format(self.__id))

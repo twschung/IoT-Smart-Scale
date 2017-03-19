@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import ui_foodsuggestionmenu
-import db_access, db_structure
+import db_access, db_structure, ftp_access
 currentDir = os.getcwd()
 
 class myFoodSuggestion(QWidget, ui_foodsuggestionmenu.Ui_foodSuggestionMenu):
@@ -54,7 +54,7 @@ class myFoodSuggestion(QWidget, ui_foodsuggestionmenu.Ui_foodSuggestionMenu):
 			foodInfo = db_access.food_getInfo_localDB(clfResult_prob[4][0])[1]
 			self.btn_sug5.setText(foodInfo.description)
 			self.btn_sug5.clicked.connect(lambda: self.handleAddIntake(mainWindow,clfResult_prob[4][0]))
-			
+
 	def handleAddIntake(self,mainWindow,foodID):
 		foodInfo = db_access.food_getActualInfo(self.currentUserInfo.id,str(foodID),str(self.foodWeight))
 		db_access.user_addNewFoodIntake(foodInfo)
@@ -63,4 +63,3 @@ class myFoodSuggestion(QWidget, ui_foodsuggestionmenu.Ui_foodSuggestionMenu):
 		shutil.copyfile(os.path.join(os.getcwd(),"forground.jpg"),forgroundFilePath)
 		msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
-		
