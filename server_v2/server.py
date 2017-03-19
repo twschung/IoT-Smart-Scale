@@ -153,16 +153,25 @@ def trainModel():
     clfName = []
     clf = []
     clfscore = []
+
     clf.append(BaggingClassifier(KNeighborsClassifier(),max_samples=0.5, max_features=0.5))
     clfName.append("BaggingClassifier(KNeighborsClassifier(),max_samples=0.5, max_features=0.5)")
+
     clf.append(svm.LinearSVC())
     clfName.append("svm.LinearSVC()")
+
     clf.append(svm.SVC(C=1.0, kernel='linear'))
     clfName.append("svm.SVC(C=1.0, kernel='linear')")
-    clf.append(svm.SVC(C=1.0, kernel='rbf', gamma=0.7))
-    clfName.append("svm.SVC(C=1.0, kernel='rbf', gamma=0.7)")
+
+    clf.append(svm.SVC(C=1.0, kernel='rbf'))
+    clfName.append("svm.SVC(C=1.0, kernel='rbf')")
+
+    clf.append(svm.SVC(C=1.0, kernel='sigmoid'))
+    clfName.append("svm.SVC(C=1.0, kernel='sigmoid')")
+
     clf.append(svm.SVC(C=1.0, kernel='poly', degree=3))
     clfName.append("svm.SVC(C=1.0, kernel='poly', degree=3)")
+
     for x in range (0,len(clf)):
         clf[x].fit(trainingSS,trainingRS)
         clfscore.append(clf[x].score(validationSS,validationRS))
