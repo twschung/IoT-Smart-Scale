@@ -37,11 +37,10 @@ bus = smbus.SMBus(1)
 DEV_ADD = 0x0D
 
 class AD5933:
-	cumulative_impedance = 0
-	cumulative_real = 0
-	cumulative_imag = 0
-	cumulative_resistance = 0
-	cumulative_admittance = 0
+	resistance_list = []
+	admittance_list = []
+	real_dsp_list = []
+	imag_dsp_list = []
 	
 	run_num = 0
 	result_num = 0
@@ -53,7 +52,7 @@ class AD5933:
 	def POWER_DOWN(self):
 		##Power-Down (ie 1010 0000)	
 		bus.write_byte_data(DEV_ADD, CNTRL_1, bus.read_byte_data(DEV_ADD,CNTRL_1)&0x07 | 0xA0)
-		# print('Power-Down Command Issued')
+		print('Power-Down Command Issued')
 	def SET_START_FREQ(self):
 		bus.write_byte_data(DEV_ADD, START_FREQ_1, 0x0E) #186A73 @ 50kHz
 		bus.write_byte_data(DEV_ADD, START_FREQ_2, 0xA6) 
@@ -70,11 +69,27 @@ class AD5933:
 	def INIT_START_FREQ_CMD(self):
 		bus.write_byte_data(DEV_ADD, CNTRL_1, bus.read_byte_data(DEV_ADD,CNTRL_1)&0x07 |0x10)
 	def START_FREQ_SWEEP(self):
-		bus.write_byte_data(DEV_ADD, CNTRL_1,bus.read_byte_data(DEV_ADD,CNTRL_1)&0x07 |0x20)
-
-	####
-	##	Other funtions such as set PGA Gain, Settling Time Cycle, Range of Operation, Read Temperature
-	####
+		bus.write_byte_data(DEV_ADD, CNTRL_1, bus.read_byte_data(DEV_ADD,CNTRL_1)&0x07 |0x20)
+	def MEASURE_TEMP(self):
+		bus.write_byte_data(DEV_ADD, CNTRL_1, bus.read_byte_data(DEV_ADD,CNTRL_1)&0x07 |0x90)
+	def SETTLE_TIME_CYCLE(self):
+		bus.write_byte_data(DEV_ADD, SETTL_CYCL_1, 0x01) #0x07
+		bus.write_byte_data(DEV_ADD, SETTL_CYCL_2, 0xFF) #0x4F
+	def SET_OPERATING_RANGE(self, op_range):
+		if op_range == 1:
+			bus.write_byte_data(DEV_ADD, CNTRL_1, 0x01)  # Setting this to Range 1 (i.e. 00 (D10 and D9)
+			print("Operating in Range 1")
+		elif op_range == 2:
+			bus.write_byte_data(DEV_ADD, CNTRL_1, 0x07)  # Setting this to Range 2 (i.e. 11 (D10 and D9)
+			print("Operating in Range 2")
+		elif op_range == 3:
+			bus.write_byte_data(DEV_ADD, CNTRL_1, 0x05)  # Setting this to Range 3 (i.e. 10 (D10 and D9)
+			print("Operating in Range 3")
+		elif op_range == 4:
+			bus.write_byte_data(DEV_ADD, CNTRL_1, 0x03)  # Setting this to Range 4 (i.e. 01 (D10 and D9)
+			print("Operating in Range 4")
+		else:
+			print("Error: SET_OPERATION_RANGE Failed")
 	
 	def MEASURE_IMPEDANCE(self):
 		self.SET_START_FREQ()
@@ -102,11 +117,13 @@ class AD5933:
 				resistance = impedance * math.cos(Z_PHASE)
 				admittance = impedance * math.sin(Z_PHASE)
 				
-				self.cumulative_impedance += impedance
-				self.cumulative_real += resistance
-				self.cumulative_imag += admittance
-				# Status 0000 0100 - Freq Sweep Complete
-				if (self.STATUS & 0x04) != 4:
+				self.real_dsp_list.append(int(SIGNED_REAL))
+				self.imag_dsp_list.append(int(SIGNED_IMAG))
+				self.resistance_list.append(int(resistance))
+				self.admittance_list.append(int(admittance))
+				
+				
+				if (self.STATUS & 0x04) != 4: #Status Register of 0000 0100 - Freq Sweep Complete
 					### increment frequency ###
 					#cont_reg = bus.read_byte_data(DEV_ADD,CNTRL_1)
 					#cont_reg_inc_buffer = cont_reg | (0x03 << 4)
@@ -120,10 +137,16 @@ class AD5933:
 					bus.write_byte_data (DEV_ADD, CNTRL_1, cont_reg_buffer)
 					#print('CNTRL_1\AFTER REPEAT FREQ: %s'%bin(bus.read_byte_data(DEV_ADD,CNTRL_1)))
 					#print('Status: %s'%(bin(status)))
+					
 					if (self.result_num == self.samples_num):
-						print('|Re{Z} (average)|:%.2f Ohm' %(self.cumulative_real/(self.samples_num)))
-						print('|Im{Z} (average)|:%.2f Ohm' %(self.cumulative_imag/(self.samples_num)))
-						print('|Z (average)|:%.2f Ohm' %(self.cumulative_impedance/(self.samples_num)))
+						self.average_imag = numpy.mean(self.admittance_list)
+						self.average_real = numpy.mean(self.resistance_list)
+						self.average_dsp_real = numpy.mean(self.real_dsp_list)
+						self.average_dsp_imag = numpy.mean(self.imag_dsp_list)
+						print('|Re{Z} (average)|:%.2f Ohm' %(self.average_real))
+						print('|Im{Z} (average)|:%.2f Ohm' %(self.average_imag))
+						self.cumulative_impedance = math.sqrt((self.average_real**2) + (self.average_imag**2))
+						print('|Z (average)|:%.2f Ohm' %(self.cumulative_impedance))#/(self.samples_num)))
 						self.POWER_DOWN()
 						break
 					
@@ -133,4 +156,49 @@ class AD5933:
 			elif (self.STATUS & 0x02) != 2:
 				pass
 			
-		#return [self.cumulative_real, cumulative_imag]
+		return [self.average_dsp_real, self.average_dsp_imag, self.average_real, self.average_imag]
+	
+	def READ_TEMP(self):
+		self.MEASURE_TEMP()
+		while True:
+			self.STATUS = bus.read_byte_data(DEV_ADD,STATUS_REG)
+			if ((self.STATUS & 0x01) == 1):
+				TEMP = (bus.read_byte_data(DEV_ADD, TEMP_1) << 8)|bus.read_byte_data(DEV_ADD, TEMP_2)
+				bus.write_byte_data(DEV_ADD, CNTRL_1,bus.read_byte_data(DEV_ADD,CNTRL_1)&0x07 |0x90)
+				if TEMP < 8192: 
+					TEMP = TEMP/32
+				else: 
+					TEMP = (TEMP-16384)/32
+				return TEMP
+				break
+			
+		
+	
+def READ_REG_VALUES():
+	print('CNTRL_1: %s'%bin(bus.read_byte_data(DEV_ADD,CNTRL_1)))
+	print('CNTRL_2: %s'%bin(bus.read_byte_data(DEV_ADD,CNTRL_2)))
+	print('')
+	print('START_FREQ_1: %s'%bin(bus.read_byte_data(DEV_ADD,START_FREQ_1)))
+	print('START_FREQ_2: %s'%bin(bus.read_byte_data(DEV_ADD,START_FREQ_2)))
+	print('START_FREQ_3: %s'%bin(bus.read_byte_data(DEV_ADD,START_FREQ_3)))
+	print('')
+	print('FREQ_INC_1: %s'%bin(bus.read_byte_data(DEV_ADD,FREQ_INC_1)))
+	print('FREQ_INC_2: %s'%bin(bus.read_byte_data(DEV_ADD,FREQ_INC_2)))
+	print('FREQ_INC_3: %s'%bin(bus.read_byte_data(DEV_ADD,FREQ_INC_3)))
+	print('')
+	print('NUM_FREQ_1: %s'%bin(bus.read_byte_data(DEV_ADD,NUM_FREQ_1)))
+	print('NUM_FREQ_2: %s'%bin(bus.read_byte_data(DEV_ADD,NUM_FREQ_2)))
+	print('')
+	print('SETTL_CYCL_1: %s'%bin(bus.read_byte_data(DEV_ADD,SETTL_CYCL_1)))
+	print('SETTL_CYCL_2: %s'%bin(bus.read_byte_data(DEV_ADD,SETTL_CYCL_2)))
+	print('')
+	print('STATUS_REG: %s'%bin(bus.read_byte_data(DEV_ADD,STATUS_REG)))
+	print('')
+	print('TEMP_1: %s'%bin(bus.read_byte_data(DEV_ADD,TEMP_1)))
+	print('TEMP_2: %s'%bin(bus.read_byte_data(DEV_ADD,TEMP_2)))
+	print('')
+	print('REAL_1: %s'%bin(bus.read_byte_data(DEV_ADD,REAL_1)))
+	print('REAL_2: %s'%bin(bus.read_byte_data(DEV_ADD,REAL_2)))
+	print('')
+	print('IMAG_1: %s'%bin(bus.read_byte_data(DEV_ADD,IMAG_1)))
+	print('IMAG_2: %s'%bin(bus.read_byte_data(DEV_ADD,IMAG_2)))
