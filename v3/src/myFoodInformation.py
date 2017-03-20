@@ -20,7 +20,7 @@ import ml
 import numpy as np
 import obj_recognition
 
-GPIO.setup(22, GPIO.OUT)
+GPIO.setup(15, GPIO.OUT)
 camera = PiCamera()
 camera.resolution = (1024, 768)
 
@@ -180,14 +180,14 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		mainWindow.central_widget.setCurrentWidget(self.widget)
 
 	def setUpBackgroundImage(self):
-		GPIO.output(22,True)
+		GPIO.output(15,True)
 		camera.capture("background.jpg")
-		GPIO.output(22,False)
+		GPIO.output(15,False)
 
 	def setUpForgroundImage(self):
-		GPIO.output(22,True)
+		GPIO.output(15,True)
 		camera.capture("forground.jpg")
-		GPIO.output(22,False)
+		GPIO.output(15,False)
 
 	def getFatPercentage(self, weight, R):
 		print(weight)
