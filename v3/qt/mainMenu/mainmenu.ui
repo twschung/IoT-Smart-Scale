@@ -26,10 +26,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
          <pointsize>24</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
         </font>
        </property>
        <property name="text">
@@ -52,11 +49,22 @@
      </item>
      <item>
       <widget class="QPushButton" name="btn_update">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="minimumSize">
         <size>
-         <width>0</width>
-         <height>65</height>
+         <width>135</width>
+         <height>0</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>System Update</string>
@@ -65,11 +73,22 @@
      </item>
      <item>
       <widget class="QPushButton" name="btn_close">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="minimumSize">
         <size>
-         <width>0</width>
-         <height>65</height>
+         <width>135</width>
+         <height>0</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>Close</string>
@@ -88,8 +107,7 @@
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
+       <pointsize>15</pointsize>
       </font>
      </property>
      <property name="text">
@@ -107,8 +125,7 @@
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
+       <pointsize>15</pointsize>
       </font>
      </property>
      <property name="text">
@@ -126,8 +143,7 @@
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
+       <pointsize>15</pointsize>
       </font>
      </property>
      <property name="text">
@@ -145,8 +161,7 @@
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
+       <pointsize>15</pointsize>
       </font>
      </property>
      <property name="text">
