@@ -67,7 +67,7 @@ def updateImageSample ():
 			serverImageSampleVersion = np.load('imageSample_version.npy')
 			os.remove('imageSample_version.npy')
 			if (serverImageSampleVersion > currentImageSampleVersion):
-				for nextSampleImage in range((currentImageSampleVersion + 1),(serverImageSampleVersion)):
+				for nextSampleImage in range((currentImageSampleVersion + 1),(serverImageSampleVersion + 1)):
 					nextFilename = str(nextSampleImage) + ".jpg"
 					newPath = os.path.join(os.getcwd(),'imageSample',nextFilename)
 					urllib.request.urlretrieve ((HTTP_ServerAddress + '/imageSample/%s' % nextFilename),newPath)
