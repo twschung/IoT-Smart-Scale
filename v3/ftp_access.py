@@ -63,6 +63,7 @@ def updateImageSample ():
 		except:
 			currentImageSampleVersion = 0
 		finally:
+			print ("ok")
 			urllib.request.urlretrieve ((HTTP_ServerAddress + '/imageSample/imageSample_version.npy'),'imageSample_version.npy')
 			serverImageSampleVersion = np.load('imageSample_version.npy')
 			os.remove('imageSample_version.npy')
