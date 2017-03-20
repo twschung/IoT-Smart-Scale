@@ -272,7 +272,7 @@ def publishML():
 def editImageSampleVersion():
     os.system('clear')
     versionNum =  input("Please enter the new version number for the sample image -> ")
-    np.save('imageSample_version.npy',versionNum)
+    np.save('imageSample_version.npy',int(versionNum))
     currentPath = os.path.join(os.getcwd(),'imageSample_version.npy')
     newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
     shutil.copyfile(currentPath,newPath)
