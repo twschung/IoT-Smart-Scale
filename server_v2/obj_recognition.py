@@ -116,6 +116,7 @@ def shapes(img,cnt):
 	# this method computes all sorts of shape descriptors
 	H = cv2.HuMoments(cv2.moments(cnt)).flatten()
 	area = cv2.contourArea(cnt)
+	area = area/61088
 	perimeter = cv2.arcLength(cnt,True)
 	(x,y),radius = cv2.minEnclosingCircle(cnt)
 	diameter = radius*2
