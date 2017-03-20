@@ -154,23 +154,23 @@ def trainModel():
     clf = []
     clfscore = []
 
-    # clf.append(BaggingClassifier(KNeighborsClassifier(),max_samples=0.5, max_features=0.5))
-    # clfName.append("BaggingClassifier(KNeighborsClassifier(),max_samples=0.5, max_features=0.5)")
+    clf.append(BaggingClassifier(KNeighborsClassifier(),max_samples=0.5, max_features=0.5))
+    clfName.append("BaggingClassifier(KNeighborsClassifier(),max_samples=0.5, max_features=0.5)")
 
     # clf.append(svm.LinearSVC())
     # clfName.append("svm.LinearSVC()")
 
     clf.append(svm.SVC(C=1.0, kernel='linear', probability=True))
     clfName.append("svm.SVC(C=1.0, kernel='linear')")
-    #
-    # clf.append(svm.SVC(C=1.0, kernel='rbf', probability=True))
-    # clfName.append("svm.SVC(C=1.0, kernel='rbf')")
-    #
-    # clf.append(svm.SVC(C=1.0, kernel='sigmoid', probability=True))
-    # clfName.append("svm.SVC(C=1.0, kernel='sigmoid')")
-    #
-    # clf.append(svm.SVC(C=1.0, kernel='poly', degree=3, probability=True))
-    # clfName.append("svm.SVC(C=1.0, kernel='poly', degree=3)")
+
+    clf.append(svm.SVC(C=1.0, kernel='rbf', probability=True))
+    clfName.append("svm.SVC(C=1.0, kernel='rbf')")
+
+    clf.append(svm.SVC(C=1.0, kernel='sigmoid', probability=True))
+    clfName.append("svm.SVC(C=1.0, kernel='sigmoid')")
+
+    clf.append(svm.SVC(C=1.0, kernel='poly', degree=3, probability=True))
+    clfName.append("svm.SVC(C=1.0, kernel='poly', degree=3)")
 
     for x in range (0,len(clf)):
         clf[x].fit(trainingSS,trainingRS)
@@ -272,7 +272,7 @@ def publishML():
 def editImageSampleVersion():
     os.system('clear')
     versionNum =  input("Please enter the new version number for the sample image -> ")
-    np.save('imageSample_version.npy',versionNum)
+    np.save('imageSample_version.npy',int(versionNum))
     currentPath = os.path.join(os.getcwd(),'imageSample_version.npy')
     newPath = os.path.join(sampleItemPath, 'imageSample_version.npy')
     shutil.copyfile(currentPath,newPath)

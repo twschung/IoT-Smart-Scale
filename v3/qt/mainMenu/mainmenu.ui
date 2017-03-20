@@ -26,7 +26,6 @@
        </property>
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
          <pointsize>24</pointsize>
          <weight>75</weight>
          <bold>true</bold>
@@ -52,10 +51,22 @@
      </item>
      <item>
       <widget class="QPushButton" name="btn_update">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="minimumSize">
         <size>
-         <width>0</width>
-         <height>65</height>
+         <width>165</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>100</height>
         </size>
        </property>
        <property name="text">
@@ -65,10 +76,22 @@
      </item>
      <item>
       <widget class="QPushButton" name="btn_close">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="minimumSize">
         <size>
-         <width>0</width>
-         <height>65</height>
+         <width>165</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>100</height>
         </size>
        </property>
        <property name="text">
@@ -80,16 +103,21 @@
    </item>
    <item row="1" column="0">
     <widget class="QPushButton" name="btn_login">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
-       <width>341</width>
-       <height>191</height>
+       <width>0</width>
+       <height>160</height>
       </size>
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
+       <pointsize>15</pointsize>
       </font>
      </property>
      <property name="text">
@@ -99,16 +127,21 @@
    </item>
    <item row="1" column="1">
     <widget class="QPushButton" name="btn_guest">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
-       <width>341</width>
-       <height>191</height>
+       <width>0</width>
+       <height>160</height>
       </size>
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
+       <pointsize>15</pointsize>
       </font>
      </property>
      <property name="text">
@@ -118,16 +151,21 @@
    </item>
    <item row="2" column="0">
     <widget class="QPushButton" name="btn_scaleOnly">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
-       <width>341</width>
-       <height>191</height>
+       <width>0</width>
+       <height>160</height>
       </size>
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
+       <pointsize>15</pointsize>
       </font>
      </property>
      <property name="text">
@@ -137,16 +175,21 @@
    </item>
    <item row="2" column="1">
     <widget class="QPushButton" name="btn_userSetup">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
-       <width>341</width>
-       <height>191</height>
+       <width>0</width>
+       <height>160</height>
       </size>
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
+       <pointsize>15</pointsize>
       </font>
      </property>
      <property name="text">
