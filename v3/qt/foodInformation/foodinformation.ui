@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>490</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="font">
@@ -21,10 +21,16 @@
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="3" column="0" rowspan="2">
     <widget class="QFrame" name="frame_lcd">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
-       <width>321</width>
-       <height>101</height>
+       <width>351</width>
+       <height>65</height>
       </size>
      </property>
      <property name="frameShape">
@@ -36,25 +42,37 @@
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
        <widget class="QLCDNumber" name="lcd_number">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
-          <width>311</width>
-          <height>81</height>
+          <width>275</width>
+          <height>50</height>
          </size>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
        <widget class="QLabel" name="lbl_g">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
-          <width>21</width>
-          <height>41</height>
+          <width>40</width>
+          <height>50</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
+          <family>Arial</family>
           <pointsize>28</pointsize>
           <weight>75</weight>
           <bold>true</bold>
@@ -70,64 +88,38 @@
    </item>
    <item row="0" column="3">
     <widget class="QGroupBox" name="grpBx_nutriInfo">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
-       <width>201</width>
-       <height>298</height>
+       <width>250</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>350</height>
       </size>
      </property>
      <property name="title">
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="6" column="0">
-       <widget class="QLabel" name="lbl_salt">
-        <property name="minimumSize">
-         <size>
-          <width>91</width>
-          <height>16</height>
-         </size>
-        </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbl_foodName">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>13</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Salt (g)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1">
-       <widget class="QLabel" name="lbl_saltVal">
-        <property name="font">
-         <font>
-          <family>Helvetica Neue</family>
-          <pointsize>13</pointsize>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
          </font>
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QLabel" name="lbl_fatVal">
-        <property name="font">
-         <font>
-          <family>Helvetica Neue</family>
-          <pointsize>13</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -135,8 +127,8 @@
        <widget class="QLabel" name="lbl_proteinVal">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>13</pointsize>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
          </font>
         </property>
         <property name="text">
@@ -147,41 +139,51 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="lbl_protein">
-        <property name="minimumSize">
-         <size>
-          <width>91</width>
-          <height>16</height>
-         </size>
-        </property>
+      <item row="6" column="1">
+       <widget class="QLabel" name="lbl_saltVal">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>13</pointsize>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
          </font>
         </property>
         <property name="text">
-         <string>Protein (g)</string>
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="lbl_fat">
-        <property name="minimumSize">
-         <size>
-          <width>91</width>
-          <height>16</height>
-         </size>
-        </property>
+      <item row="4" column="1">
+       <widget class="QLabel" name="lbl_fibreVal">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>13</pointsize>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
          </font>
         </property>
         <property name="text">
-         <string>Fat (g)</string>
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="lbl_evergyVal">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -195,8 +197,8 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>13</pointsize>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
          </font>
         </property>
         <property name="text">
@@ -204,47 +206,12 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="lbl_sugar">
-        <property name="minimumSize">
-         <size>
-          <width>91</width>
-          <height>16</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Helvetica Neue</family>
-          <pointsize>13</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Sugar (g)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QLabel" name="lbl_fibreVal">
-        <property name="font">
-         <font>
-          <family>Helvetica Neue</family>
-          <pointsize>13</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
       <item row="3" column="1">
        <widget class="QLabel" name="lbl_sugarVal">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>13</pointsize>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
          </font>
         </property>
         <property name="text">
@@ -265,8 +232,8 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>13</pointsize>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
          </font>
         </property>
         <property name="text">
@@ -274,12 +241,69 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QLabel" name="lbl_evergyVal">
+      <item row="6" column="0">
+       <widget class="QLabel" name="lbl_salt">
+        <property name="minimumSize">
+         <size>
+          <width>91</width>
+          <height>16</height>
+         </size>
+        </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>13</pointsize>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Salt (g)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="lbl_fat">
+        <property name="minimumSize">
+         <size>
+          <width>91</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Fat (g)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="lbl_sugar">
+        <property name="minimumSize">
+         <size>
+          <width>91</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Sugar (g)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLabel" name="lbl_fatVal">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
          </font>
         </property>
         <property name="text">
@@ -290,23 +314,109 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0" colspan="2">
-       <widget class="QLabel" name="lbl_foodName">
+      <item row="2" column="0">
+       <widget class="QLabel" name="lbl_protein">
+        <property name="minimumSize">
+         <size>
+          <width>91</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string/>
+         <string>Protein (g)</string>
         </property>
        </widget>
+      </item>
+      <item row="7" column="0">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Minimum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>100</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
    </item>
+   <item row="0" column="0" colspan="2">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="lbl_foodPic">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>500</width>
+         <height>303</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="text">
+        <string>Picture</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSplitter" name="splitter">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QPushButton" name="btn_suggestion">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Incorrect</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_addIntake">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Correct</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
    <item row="4" column="3">
     <widget class="QPushButton" name="btn_back">
-     <property name="minimumSize">
-      <size>
-       <width>161</width>
-       <height>51</height>
-      </size>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
      <property name="palette">
       <palette>
@@ -401,8 +511,8 @@
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
+       <family>Arial</family>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="text">
@@ -412,16 +522,16 @@
    </item>
    <item row="3" column="1" rowspan="2">
     <widget class="QPushButton" name="btn_new">
-     <property name="minimumSize">
-      <size>
-       <width>101</width>
-       <height>110</height>
-      </size>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
+       <family>Arial</family>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="text">
@@ -431,84 +541,22 @@
    </item>
    <item row="3" column="3">
     <widget class="QPushButton" name="btn_tare">
-     <property name="minimumSize">
-      <size>
-       <width>101</width>
-       <height>51</height>
-      </size>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
+       <family>Arial</family>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="text">
       <string>Tare</string>
      </property>
     </widget>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QLabel" name="lbl_foodPic">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>280</height>
-        </size>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="text">
-        <string>Picture</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetMinimumSize</enum>
-       </property>
-       <item>
-        <widget class="QPushButton" name="btn_suggestion">
-         <property name="minimumSize">
-          <size>
-           <width>161</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Incorrect</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_addIntake">
-         <property name="minimumSize">
-          <size>
-           <width>161</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Correct</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
    </item>
   </layout>
  </widget>

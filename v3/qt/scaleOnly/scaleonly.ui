@@ -18,16 +18,10 @@
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <widget class="QLabel" name="lbl_title">
-       <property name="minimumSize">
-        <size>
-         <width>571</width>
-         <height>51</height>
-        </size>
-       </property>
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
-         <pointsize>24</pointsize>
+         <family>Arial</family>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -41,12 +35,12 @@
       <widget class="QLabel" name="lbl_instruction">
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Please place food item on scale. You may leave the door open.</string>
+        <string>Please place food item on scale.</string>
        </property>
       </widget>
      </item>
@@ -111,11 +105,11 @@
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QLCDNumber" name="lcd_number">
-            <property name="minimumSize">
-             <size>
-              <width>501</width>
-              <height>121</height>
-             </size>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <property name="maximumSize">
              <size>
@@ -127,16 +121,22 @@
           </item>
           <item>
            <widget class="QLabel" name="lbl_g">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="minimumSize">
              <size>
-              <width>31</width>
-              <height>71</height>
+              <width>40</width>
+              <height>80</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>31</width>
-              <height>71</height>
+              <width>40</width>
+              <height>80</height>
              </size>
             </property>
             <property name="font">
@@ -208,14 +208,14 @@
         <widget class="QPushButton" name="btn_back">
          <property name="minimumSize">
           <size>
-           <width>151</width>
-           <height>81</height>
+           <width>160</width>
+           <height>80</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
+           <family>Arial</family>
+           <pointsize>13</pointsize>
           </font>
          </property>
          <property name="text">
@@ -240,14 +240,14 @@
         <widget class="QPushButton" name="btn_tare">
          <property name="minimumSize">
           <size>
-           <width>151</width>
-           <height>81</height>
+           <width>160</width>
+           <height>80</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
+           <family>Arial</family>
+           <pointsize>13</pointsize>
           </font>
          </property>
          <property name="text">
