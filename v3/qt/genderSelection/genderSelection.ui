@@ -24,14 +24,13 @@
     <widget class="QPushButton" name="btn_back">
      <property name="minimumSize">
       <size>
-       <width>141</width>
-       <height>71</height>
+       <width>160</width>
+       <height>80</height>
       </size>
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>16</pointsize>
+       <family>Arial</family>
       </font>
      </property>
      <property name="text">
@@ -83,17 +82,17 @@
         <layout class="QHBoxLayout" name="row1">
          <item>
           <widget class="QPushButton" name="btn_male">
-           <property name="minimumSize">
-            <size>
-             <width>46</width>
-             <height>250</height>
-            </size>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
            <property name="font">
             <font>
              <pointsize>24</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
+             <weight>50</weight>
+             <bold>false</bold>
             </font>
            </property>
            <property name="text">
@@ -103,17 +102,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="btn_female">
-           <property name="minimumSize">
-            <size>
-             <width>46</width>
-             <height>250</height>
-            </size>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
            <property name="font">
             <font>
              <pointsize>24</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
+             <weight>50</weight>
+             <bold>false</bold>
             </font>
            </property>
            <property name="text">
@@ -136,7 +135,7 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>24</pointsize>
+        <pointsize>15</pointsize>
        </font>
       </property>
       <property name="text">
@@ -147,16 +146,10 @@
    </item>
    <item row="0" column="0" colspan="3">
     <widget class="QLabel" name="lbl_title">
-     <property name="minimumSize">
-      <size>
-       <width>121</width>
-       <height>31</height>
-      </size>
-     </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>24</pointsize>
+       <family>Arial Narrow</family>
+       <pointsize>20</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
