@@ -63,16 +63,16 @@ def updateImageSample ():
 		except:
 			currentImageSampleVersion = 0
 		finally:
-		urllib.request.urlretrieve ((HTTP_ServerAddress + '/imageSample/imageSample_version.npy'),'imageSample_version.npy')
-		serverImageSampleVersion = np.load('imageSample_version.npy')
-		os.remove('imageSample_version.npy')
-		if (serverImageSampleVersion > currentImageSampleVersion):
-			for nextSampleImage in range((currentImageSampleVersion + 1),(serverImageSampleVersion)):
-				nextFilename = str(nextSampleImage) + ".jpg"
-				newPath = os.path.join(os.getcwd(),'imageSample',nextFilename)
-				urllib.request.urlretrieve ((HTTP_ServerAddress + '/imageSample/%s' % nextFilename),newPath)
-			config['currentImageSampleVersion'] = nextSampleImage
-			np.save('config.npy', config)
+			urllib.request.urlretrieve ((HTTP_ServerAddress + '/imageSample/imageSample_version.npy'),'imageSample_version.npy')
+			serverImageSampleVersion = np.load('imageSample_version.npy')
+			os.remove('imageSample_version.npy')
+			if (serverImageSampleVersion > currentImageSampleVersion):
+				for nextSampleImage in range((currentImageSampleVersion + 1),(serverImageSampleVersion)):
+					nextFilename = str(nextSampleImage) + ".jpg"
+					newPath = os.path.join(os.getcwd(),'imageSample',nextFilename)
+					urllib.request.urlretrieve ((HTTP_ServerAddress + '/imageSample/%s' % nextFilename),newPath)
+				config['currentImageSampleVersion'] = nextSampleImage
+				np.save('config.npy', config)
 	except:
 		return (False,0)
 	return (True,0)
