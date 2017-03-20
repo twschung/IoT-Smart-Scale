@@ -11,6 +11,7 @@ import mahotas.features
 def main(imgPath,bgPath):
 	img = cv2.imread(imgPath)
 	background = cv2.imread(bgPath)
+	#obj, mask, cnt = backgroundSubtraction2(img)
 	queue = Queue()
 	queue2 = Queue()
 	# queue3 = Queue()
@@ -23,37 +24,46 @@ def main(imgPath,bgPath):
 	background = queue2.get()
 	imgP.join()
 	bgP.join()
-	obj, mask, cnt = backgroundSubtraction(img,background)
-	col = Process(target=colourHist(obj,mask,queue))
-	text = Process(target=haralick, args=(obj,queue2))
-	# orb = Process(target=orbDetect, args=(obj.copy(),queue3))
-	# kaze = Process(target=orbDetect, args=(obj.copy(),queue4))
-	col.start()
-	text.start()
-	# orb.start()
-	# kaze.start()
-	colour_set = queue.get()
-	texture = queue2.get()
-	# ORBdes = queue3.get()
-	# KAZEdes = queue4.get()
-	col.join()
-	text.join()
-	# orb.join()
-	# kaze.join()
-	H, area, perimeter, diameter = shapes(img,cnt)
-	# if(ORBdes[0] == None):
-	# 	ORBdes = np.zeros((6000,),dtype=np.int)
-	# else:
-	# 	ORBdes = np.pad(ORBdes,(0,6000-ORBdes.size),'constant',constant_values=0)
-	# if(KAZEdes[0] == None):
-	# 	KAZEdes = np.zeros((10000,),dtype=np.int)
-	# else:
-	# 	KAZEdes = np.pad(KAZEdes,(0,10000-KAZEdes.size),'constant',constant_values=0)
-	ORBdes=0
-	KAZEdes=0
-	obj_array = appendAll(colour_set,H,area,perimeter,diameter,texture,ORBdes,KAZEdes)
-	obj_array = np.float64(obj_array)
-	return obj_array
+	try:
+		obj, mask, cnt = backgroundSubtraction(img,background)
+		col = Process(target=colourHist(obj,mask,queue))
+		text = Process(target=haralick, args=(obj,queue2))
+		# orb = Process(target=orbDetect, args=(obj.copy(),queue3))
+		# kaze = Process(target=orbDetect, args=(obj.copy(),queue4))
+		col.start()
+		text.start()
+		# orb.start()
+		# kaze.start()
+		colour_set = queue.get()
+		texture = queue2.get()
+		# ORBdes = queue3.get()
+		# KAZEdes = queue4.get()
+		col.join()
+		text.join()
+		# orb.join()
+		# kaze.join()
+		H, area, perimeter, diameter = shapes(img,cnt)
+		# if(ORBdes[0] == None):
+		# 	ORBdes = np.zeros((6000,),dtype=np.int)
+		# else:
+		# 	ORBdes = np.pad(ORBdes,(0,6000-ORBdes.size),'constant',constant_values=0)
+		# if(KAZEdes[0] == None):
+		# 	KAZEdes = np.zeros((10000,),dtype=np.int)
+		# else:
+		# 	KAZEdes = np.pad(KAZEdes,(0,10000-KAZEdes.size),'constant',constant_values=0)
+		ORBdes=0
+		KAZEdes=0
+		obj_array = appendAll(colour_set,H,area,perimeter,diameter,texture,ORBdes,KAZEdes)
+		obj_array = np.float64(obj_array)
+		#print(obj_array.shape)
+		resultValid = True
+	except:
+		print('Error: Unable to detect food item')
+		obj_array = np.nan * np.empty(71)
+		#print(obj_array.shape)
+		resultValid = False
+	
+	return obj_array, resultValid
 
 def denoise(img):
 	# This method uses non-local mean to denoise the image
@@ -85,7 +95,44 @@ def backgroundSubtraction(img, background):
 	fgmask = fgbg.apply(img)
 	subtracted = cv2.bitwise_and(img,img,mask = fgmask)
 	subtracted, fgmask, cnt = findCnt(subtracted, fgmask)
+	#displayImg('subtracted',subtracted)
 	return subtracted, fgmask, cnt
+	
+def backgroundSubtraction2(img):
+	img = cv2.bilateralFilter(img, 12, 8, 8)
+	lab= cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+	l,a,b = cv2.split(lab)
+	clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(12,12))
+	cl = clahe.apply(l)
+	limg = cv2.merge((cl,a,b))
+	img = cv2.cvtColor(limg, cv2.COLOR_LAB2BGR)
+	hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+	#hsv_img[:,:,1] = cv2.bilateralFilter(hsv_img[:,:,1], 20, 8, 8)
+	hsv_img[:,:,1]= cv2.GaussianBlur(hsv_img[:,:,1],(5,5),0)
+	_,hsv_img[:,:,1] = cv2.threshold(hsv_img[:,:,1],0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+	kernel = np.ones((10,10),np.uint8)
+	hsv_img[:,:,1] = cv2.morphologyEx(hsv_img[:,:,1], cv2.MORPH_OPEN, kernel)
+	#cv2.imshow("hsv", hsv_img[:,:,1])
+	edged = cv2.Canny(hsv_img[:,:,1],50,200)
+	#cv2.imshow('edges',edged)
+	
+	_,contours,_ = cv2.findContours(edged, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+	contours = sorted(contours, key = cv2.contourArea, reverse=True)
+	mask = np.zeros(img.shape, np.uint8)
+		
+	for c in contours:
+		if cv2.contourArea(c)<678000 and cv2.contourArea(c)>10:
+			print(cv2.contourArea(c)) #678756
+			hull = cv2.convexHull(c)
+			cv2.drawContours(img, [hull], -1, (0, 0, 255), 1)		
+			cv2.drawContours(mask, [hull], -1, (255,255,255), -1)
+			break
+	cv2.imshow("Show",img)
+	#img, mask = cropImg(img, mask, hull)
+	#cv2.imshow("Mask",mask)
+	cv2.waitKey()
+	
+	return img, mask, hull
 
 def findCnt(img, mask):
 	# This method finds the contour and crops the image as well
