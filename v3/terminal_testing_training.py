@@ -8,7 +8,7 @@ from picamera import PiCamera
 from time import sleep
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(11, GPIO.OUT)
+GPIO.setup(15, GPIO.OUT)
 camera = PiCamera()
 camera.resolution = (1024, 768)
 
@@ -48,10 +48,10 @@ def opt_1():
 	print("-----------------------------------------------------------")
 	print("Starting Camera Preview...")
 	camera.start_preview()
-	GPIO.output(11,True)
+	GPIO.output(15,True)
 	input("Press any button to exit")
 	camera.stop_preview()
-	GPIO.output(11,False)
+	GPIO.output(15,False)
 	print("-----------------------------------------------------------")
 	main()
 
@@ -59,8 +59,8 @@ def opt_2():
 	print("-----------------------------------------------------------")
 	foodID = input("Please Enter Food ID Number -> ")
 	numOfSample = int(input("Please Enter the Number of samples you wish to take -> "))
-	GPIO.output(11,True)
-	camera.start_preview()	
+	GPIO.output(15,True)
+	camera.start_preview()
 	camera.preview.alpha = 128
 	print("Camera initalising")
 	sleep(2)
@@ -76,7 +76,7 @@ def opt_2():
 		os.rename(os.path.join(os.getcwd(),os.path.basename(forgroundFilePath)),forgroundFilePath)
 		numOfSample -= 1
 	camera.stop_preview()
-	GPIO.output(11,False)
+	GPIO.output(15,False)
 	print("-----------------------------------------------------------")
 	main()
 
@@ -84,7 +84,7 @@ def opt_3():
 	print("-----------------------------------------------------------")
 	forgroundFilePath, backgroundFilePath = ftp_access.generateNewItemFilePath()
 	print("Camera initalising")
-	GPIO.output(11,True)
+	GPIO.output(15,True)
 	camera.start_preview()
 	sleep(2)
 	input("Tell me when Background is Ready")
@@ -94,7 +94,7 @@ def opt_3():
 	camera.capture(os.path.basename(forgroundFilePath))
 	os.rename(os.path.join(os.getcwd(),os.path.basename(forgroundFilePath)),forgroundFilePath)
 	camera.stop_preview()
-	GPIO.output(11,False)
+	GPIO.output(15,False)
 	print("-----------------------------------------------------------")
 	main()
 
@@ -120,7 +120,7 @@ def opt_5():
 def opt_6():
 	print("-----------------------------------------------------------")
 	print("Camera initalising")
-	GPIO.output(11,True)
+	GPIO.output(15,True)
 	camera.start_preview()
 	camera.preview.alpha = 0
 	sleep(1)
@@ -129,7 +129,7 @@ def opt_6():
 	input("Tell me when Forground is Ready")
 	camera.capture("forground.jpg")
 	camera.stop_preview()
-	GPIO.output(11,False)
+	GPIO.output(15,False)
 	imageFeature = obj_recognition.main("forground.jpg", "background.jpg")
 	print("-----------------------------------------------------------")
 	clf = ml.classifier()
