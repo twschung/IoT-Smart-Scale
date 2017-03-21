@@ -14,33 +14,6 @@
    <string>passcodeMenu</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="label">
-     <property name="minimumSize">
-      <size>
-       <width>261</width>
-       <height>71</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>400</width>
-       <height>71</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Helvetica Neue</family>
-       <pointsize>24</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Passcode &amp; Finger Print Menu</string>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="0" colspan="2">
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="0" column="0">
@@ -51,16 +24,10 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="minimumSize">
-        <size>
-         <width>281</width>
-         <height>91</height>
-        </size>
-       </property>
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
+         <family>Arial</family>
+         <pointsize>13</pointsize>
         </font>
        </property>
        <property name="text">
@@ -76,16 +43,10 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="minimumSize">
-        <size>
-         <width>281</width>
-         <height>91</height>
-        </size>
-       </property>
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
+         <family>Arial</family>
+         <pointsize>13</pointsize>
         </font>
        </property>
        <property name="text">
@@ -101,16 +62,10 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="minimumSize">
-        <size>
-         <width>141</width>
-         <height>71</height>
-        </size>
-       </property>
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
+         <family>Arial</family>
+         <pointsize>13</pointsize>
         </font>
        </property>
        <property name="text">
@@ -128,7 +83,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
+         <family>Arial</family>
          <pointsize>13</pointsize>
         </font>
        </property>
@@ -139,6 +94,21 @@ from Login Menu</string>
       </widget>
      </item>
     </layout>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>20</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Passcode &amp; Fingerprint Menu</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
