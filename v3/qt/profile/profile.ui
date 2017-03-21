@@ -16,16 +16,10 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QLabel" name="lbl_title">
-     <property name="minimumSize">
-      <size>
-       <width>121</width>
-       <height>31</height>
-      </size>
-     </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
-       <pointsize>24</pointsize>
+       <family>Arial</family>
+       <pointsize>20</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
@@ -35,30 +29,17 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1" colspan="2">
-    <spacer name="horizontalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>630</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="2" column="0">
     <widget class="QPushButton" name="btn_back">
      <property name="minimumSize">
       <size>
-       <width>141</width>
-       <height>71</height>
+       <width>140</width>
+       <height>70</height>
       </size>
      </property>
      <property name="font">
       <font>
-       <pointsize>16</pointsize>
+       <family>Arial</family>
       </font>
      </property>
      <property name="text">
@@ -83,13 +64,13 @@
     <widget class="QPushButton" name="btn_edit">
      <property name="minimumSize">
       <size>
-       <width>141</width>
-       <height>71</height>
+       <width>140</width>
+       <height>70</height>
       </size>
      </property>
      <property name="font">
       <font>
-       <pointsize>16</pointsize>
+       <family>Arial</family>
       </font>
      </property>
      <property name="text">
@@ -97,13 +78,18 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="3">
+   <item row="1" column="0" colspan="3" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
     <widget class="QGroupBox" name="groupBox">
      <property name="minimumSize">
       <size>
        <width>741</width>
        <height>331</height>
       </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
      </property>
      <property name="title">
       <string/>
@@ -119,10 +105,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -134,8 +117,7 @@
        <widget class="QLabel" name="lbl__nameVal">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -153,10 +135,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -168,8 +147,7 @@
        <widget class="QLabel" name="lbl_emailVal">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -187,10 +165,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -202,8 +177,7 @@
        <widget class="QLabel" name="lbl_genderVal">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -221,10 +195,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -236,8 +207,7 @@
        <widget class="QLabel" name="lbl_birthYearVal">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -255,10 +225,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -270,8 +237,7 @@
        <widget class="QLabel" name="lbl_heightVal">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -283,8 +249,7 @@
        <widget class="QLabel" name="lbl_heightUnits">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -302,10 +267,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -317,8 +279,7 @@
        <widget class="QLabel" name="lbl_weightVal">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -330,8 +291,7 @@
        <widget class="QLabel" name="lbl_weightUnits">
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -349,10 +309,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -370,8 +327,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -389,10 +345,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -410,8 +363,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -429,10 +381,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
@@ -450,8 +399,7 @@
         </property>
         <property name="font">
          <font>
-          <family>Helvetica Neue</family>
-          <pointsize>16</pointsize>
+          <family>Arial</family>
          </font>
         </property>
         <property name="text">
