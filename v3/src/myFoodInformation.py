@@ -113,10 +113,13 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		# add camera modules stuff here
 		self.setUpForgroundImage()
 		imageFeature = obj_recognition.main("forground.jpg", "background.jpg")
+		if (imageFeature[1]==False):
+			msg = QMessageBox.information(self, 'Error',"Food not detected! (No object is detected)",QMessageBox.Ok)
+			return
 		clf = ml.classifier()
 		clf.load()
-		clfResult = clf.predict(imageFeature)
-		self.clfProb = clf.predict_prob(imageFeature)
+		clfResult = clf.predict(imageFeature[0])
+		self.clfProb = clf.predict_prob(imageFeature[0])
 		foodID = clfResult[0]
 
 		self.foodWeight = int(scale.get_weight(5))
