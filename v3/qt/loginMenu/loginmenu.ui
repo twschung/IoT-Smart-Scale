@@ -18,7 +18,6 @@
     <widget class="QLabel" name="lbl_title">
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
        <pointsize>24</pointsize>
        <weight>75</weight>
        <bold>true</bold>
@@ -35,14 +34,13 @@
       <widget class="QPushButton" name="btn_back">
        <property name="minimumSize">
         <size>
-         <width>161</width>
-         <height>81</height>
+         <width>160</width>
+         <height>80</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
+         <pointsize>15</pointsize>
         </font>
        </property>
        <property name="text">
@@ -77,12 +75,6 @@
          <height>81</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string>Username
 Login</string>
@@ -96,12 +88,6 @@ Login</string>
          <width>161</width>
          <height>81</height>
         </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
-        </font>
        </property>
        <property name="text">
         <string>Fingerprint
@@ -151,8 +137,7 @@ Login</string>
          </property>
          <property name="font">
           <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
+           <pointsize>15</pointsize>
           </font>
          </property>
          <property name="text">
@@ -173,8 +158,7 @@ Login</string>
          </property>
          <property name="font">
           <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
+           <pointsize>15</pointsize>
           </font>
          </property>
          <property name="text">
@@ -195,8 +179,7 @@ Login</string>
          </property>
          <property name="font">
           <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
+           <pointsize>15</pointsize>
           </font>
          </property>
          <property name="text">
@@ -217,8 +200,7 @@ Login</string>
          </property>
          <property name="font">
           <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
+           <pointsize>15</pointsize>
           </font>
          </property>
          <property name="text">
@@ -239,8 +221,7 @@ Login</string>
          </property>
          <property name="font">
           <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
+           <pointsize>15</pointsize>
           </font>
          </property>
          <property name="text">
@@ -261,8 +242,7 @@ Login</string>
          </property>
          <property name="font">
           <font>
-           <family>Helvetica Neue</family>
-           <pointsize>16</pointsize>
+           <pointsize>15</pointsize>
           </font>
          </property>
          <property name="text">
