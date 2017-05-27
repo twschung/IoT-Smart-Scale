@@ -133,27 +133,10 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		if(self.foodWeight<=0):
 			msg = QMessageBox.information(self, 'Error',"Food not detected! (Item mass is equal or less than 0g)",QMessageBox.Ok)
 		else:
-			if(currentUserInfo==None):
-				# self.btn_addIntake.setEnabled(False)
-				# self.btn_suggestion.setEnabled(False)
-				s = str(foodID)+".jpg"
-				self.pic = QPixmap(currentDir+'/imageSample/'+s)
-				self.scaledPic = self.pic.scaled(self.lbl_foodPic.width(), self.lbl_foodPic.height(),Qt.KeepAspectRatio,transformMode=Qt.SmoothTransformation)
-				self.lbl_foodPic.setPixmap(self.scaledPic)
-				self.foodInfo = db_access.food_getActualInfo(userId,str(foodID),str(self.foodWeight))
-				self.lbl_foodName.setText(self.foodInfo.fooddescription)
-				self.lbl_evergyVal.setText(str(round(self.foodInfo.energy,1))) #typo on the ui file, use 'evergy'
-				self.lbl_proteinVal.setText(str(round(self.foodInfo.protein,1)))
-				self.lbl_sugarVal.setText(str(round(self.foodInfo.sugars,1)))
-				self.lbl_fibreVal.setText(str(round(self.foodInfo.fibre,1)))
-				self.lbl_fatVal.setText(str(round(self.foodInfo.fat,1)))
-				self.lbl_saltVal.setText(str(round(self.foodInfo.salt,1)))
-			else:
-				# self.btn_addIntake.setEnabled(True)
-				# self.btn_suggestion.setEnabled(True)
-				self.widget = myFoodSuggestion.myFoodSuggestion(mainWindow, currentUserInfo, self.clfProb, self.foodWeight, self)
-				mainWindow.central_widget.addWidget(self.widget)
-				mainWindow.central_widget.setCurrentWidget(self.widget)
+			self.widget = myFoodSuggestion.myFoodSuggestion(mainWindow, currentUserInfo, self.clfProb, self.foodWeight, self)
+			mainWindow.central_widget.addWidget(self.widget)
+			mainWindow.central_widget.setCurrentWidget(self.widget)
+
 
 
 		# BioImpedance Stuff here
@@ -225,6 +208,12 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.lbl_fibreVal.setText(str(round(self.foodInfo.fibre,1)))
 		self.lbl_fatVal.setText(str(round(self.foodInfo.fat,1)))
 		self.lbl_saltVal.setText(str(round(self.foodInfo.salt,1)))
+		if(currentUserInfo!=None):
+			db_access.user_addNewFoodIntake(self.foodInfo)
+			forgroundFilePath, backgroundFilePath = ftp_access.generateExisitingItemFilePath(self.foodInfo.foodid)
+			shutil.copyfile(os.path.join(os.getcwd(),"background.jpg"),backgroundFilePath)
+			shutil.copyfile(os.path.join(os.getcwd(),"forground.jpg"),forgroundFilePath)
+			msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
 
 
 class Worker (QObject):
