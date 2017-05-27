@@ -149,7 +149,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			else:
 				self.btn_addIntake.setEnabled(True)
 				# self.btn_suggestion.setEnabled(True)
-			self.widget = myFoodSuggestion.myFoodSuggestion(mainWindow, currentUserInfo, self.clfProb, self.foodWeight)
+			self.widget = myFoodSuggestion.myFoodSuggestion(mainWindow, currentUserInfo, self.clfProb, self.foodWeight, self)
 			mainWindow.central_widget.addWidget(self.widget)
 			mainWindow.central_widget.setCurrentWidget(self.widget)
 
@@ -205,7 +205,8 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		fat_perc = int(self.coeff/weight*100)
 		return fat_perc
 
-	def updateFoodInfo(self,foodID):
+	def updateFoodInfo(self,self_e,foodID):
+		self=self_e
 		s = str(foodID)+".jpg"
 		self.pic = QPixmap(currentDir+'/imageSample/'+s)
 		self.scaledPic = self.pic.scaled(self.lbl_foodPic.width(), self.lbl_foodPic.height(),Qt.KeepAspectRatio,transformMode=Qt.SmoothTransformation)
