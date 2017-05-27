@@ -131,24 +131,28 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		if(self.foodWeight<=0):
 			msg = QMessageBox.information(self, 'Error',"Food not detected! (Item mass is equal or less than 0g)",QMessageBox.Ok)
 		else:
-			s = str(foodID)+".jpg"
-			self.pic = QPixmap(currentDir+'/imageSample/'+s)
-			self.scaledPic = self.pic.scaled(self.lbl_foodPic.width(), self.lbl_foodPic.height(),Qt.KeepAspectRatio,transformMode=Qt.SmoothTransformation)
-			self.lbl_foodPic.setPixmap(self.scaledPic)
-			self.foodInfo = db_access.food_getActualInfo(userId,str(foodID),str(self.foodWeight))
-			self.lbl_foodName.setText(self.foodInfo.fooddescription)
-			self.lbl_evergyVal.setText(str(round(self.foodInfo.energy,1))) #typo on the ui file, use 'evergy'
-			self.lbl_proteinVal.setText(str(round(self.foodInfo.protein,1)))
-			self.lbl_sugarVal.setText(str(round(self.foodInfo.sugars,1)))
-			self.lbl_fibreVal.setText(str(round(self.foodInfo.fibre,1)))
-			self.lbl_fatVal.setText(str(round(self.foodInfo.fat,1)))
-			self.lbl_saltVal.setText(str(round(self.foodInfo.salt,1)))
+			# s = str(foodID)+".jpg"
+			# self.pic = QPixmap(currentDir+'/imageSample/'+s)
+			# self.scaledPic = self.pic.scaled(self.lbl_foodPic.width(), self.lbl_foodPic.height(),Qt.KeepAspectRatio,transformMode=Qt.SmoothTransformation)
+			# self.lbl_foodPic.setPixmap(self.scaledPic)
+			# self.foodInfo = db_access.food_getActualInfo(userId,str(foodID),str(self.foodWeight))
+			# self.lbl_foodName.setText(self.foodInfo.fooddescription)
+			# self.lbl_evergyVal.setText(str(round(self.foodInfo.energy,1))) #typo on the ui file, use 'evergy'
+			# self.lbl_proteinVal.setText(str(round(self.foodInfo.protein,1)))
+			# self.lbl_sugarVal.setText(str(round(self.foodInfo.sugars,1)))
+			# self.lbl_fibreVal.setText(str(round(self.foodInfo.fibre,1)))
+			# self.lbl_fatVal.setText(str(round(self.foodInfo.fat,1)))
+			# self.lbl_saltVal.setText(str(round(self.foodInfo.salt,1)))
 			if(currentUserInfo==None):
 				self.btn_addIntake.setEnabled(False)
-				self.btn_suggestion.setEnabled(False)
+				# self.btn_suggestion.setEnabled(False)
 			else:
 				self.btn_addIntake.setEnabled(True)
-				self.btn_suggestion.setEnabled(True)
+				# self.btn_suggestion.setEnabled(True)
+			self.widget = myFoodSuggestion.myFoodSuggestion(mainWindow, currentUserInfo, self.clfProb, self.foodWeight)
+			mainWindow.central_widget.addWidget(self.widget)
+			mainWindow.central_widget.setCurrentWidget(self.widget)
+
 
 		# BioImpedance Stuff here
 		gain_factor = 5.12e-10 #5.75882e-10#4.902e-11 #1.013e-9
@@ -200,6 +204,20 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.coeff = self.intercept + self.coeff_weight + self.coeff_logR2 + self.coeff_R
 		fat_perc = int(self.coeff/weight*100)
 		return fat_perc
+
+	def updateFoodInfo(self,foodID):
+		s = str(foodID)+".jpg"
+		self.pic = QPixmap(currentDir+'/imageSample/'+s)
+		self.scaledPic = self.pic.scaled(self.lbl_foodPic.width(), self.lbl_foodPic.height(),Qt.KeepAspectRatio,transformMode=Qt.SmoothTransformation)
+		self.lbl_foodPic.setPixmap(self.scaledPic)
+		self.foodInfo = db_access.food_getActualInfo(userId,str(foodID),str(self.foodWeight))
+		self.lbl_foodName.setText(self.foodInfo.fooddescription)
+		self.lbl_evergyVal.setText(str(round(self.foodInfo.energy,1))) #typo on the ui file, use 'evergy'
+		self.lbl_proteinVal.setText(str(round(self.foodInfo.protein,1)))
+		self.lbl_sugarVal.setText(str(round(self.foodInfo.sugars,1)))
+		self.lbl_fibreVal.setText(str(round(self.foodInfo.fibre,1)))
+		self.lbl_fatVal.setText(str(round(self.foodInfo.fat,1)))
+		self.lbl_saltVal.setText(str(round(self.foodInfo.salt,1)))
 
 
 class Worker (QObject):
