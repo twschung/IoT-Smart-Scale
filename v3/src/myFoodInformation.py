@@ -205,8 +205,12 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		fat_perc = int(self.coeff/weight*100)
 		return fat_perc
 
-	def updateFoodInfo(self,self_e,foodID):
+	def updateFoodInfo(self,self_e,foodID,currentUserInfo):
 		self=self_e
+		if(currentUserInfo==None):
+			userId=0
+		else:
+			userId=currentUserInfo.id
 		s = str(foodID)+".jpg"
 		self.pic = QPixmap(currentDir+'/imageSample/'+s)
 		self.scaledPic = self.pic.scaled(self.lbl_foodPic.width(), self.lbl_foodPic.height(),Qt.KeepAspectRatio,transformMode=Qt.SmoothTransformation)

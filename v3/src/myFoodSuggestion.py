@@ -62,5 +62,5 @@ class myFoodSuggestion(QWidget, ui_foodsuggestionmenu.Ui_foodSuggestionMenu):
 		# shutil.copyfile(os.path.join(os.getcwd(),"background.jpg"),backgroundFilePath)
 		# shutil.copyfile(os.path.join(os.getcwd(),"forground.jpg"),forgroundFilePath)
 		# msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
-		myFoodInformation.myFoodInformation.updateFoodInfo(self,myFoodInformationSelf, foodID)
+		myFoodInformation.myFoodInformation.updateFoodInfo(self,myFoodInformationSelf, foodID, self.currentUserInfo)
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
