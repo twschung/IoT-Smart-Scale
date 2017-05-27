@@ -213,7 +213,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			forgroundFilePath, backgroundFilePath = ftp_access.generateExisitingItemFilePath(self.foodInfo.foodid)
 			shutil.copyfile(os.path.join(os.getcwd(),"background.jpg"),backgroundFilePath)
 			shutil.copyfile(os.path.join(os.getcwd(),"forground.jpg"),forgroundFilePath)
-			msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
+			# msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
 
 
 class Worker (QObject):
