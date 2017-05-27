@@ -14,14 +14,14 @@ class HX711:
 
         self.GAIN = 0
         self.REFERENCE_UNIT = 1  # The value returned by the hx711 that corresponds to your reference unit AFTER dividing by the SCALE.
-        
+
         self.OFFSET = 1
         self.lastVal = int(0)
 
         # [start, stop, step]
         self.LSByte = [2, -1, -1]
         self.MSByte = [0, 3, 1]
-        
+
         self.MSBit = [0, 8, 1]
         self.LSBit = [7, -1, -1]
 
@@ -47,7 +47,7 @@ class HX711:
 
         GPIO.output(self.PD_SCK, False)
         self.read()
-    
+
     def createBoolList(self, size=8):
         ret = []
         for i in range(8):
@@ -103,7 +103,7 @@ class HX711:
                 comma = ""
             np_arr8_string += str(np_arr8[i]) + comma
         np_arr8_string += "]";
-        
+
         return np_arr8_string
     # To Here
     """
@@ -136,7 +136,7 @@ class HX711:
         return value
 
     def tare(self, times=15):
-       
+
         # Backup REFERENCE_UNIT value
         reference_unit = self.REFERENCE_UNIT
         self.set_reference_unit(1)
@@ -186,24 +186,23 @@ class HX711:
 
     # Try this: main prog calls this, stores current value, gets new value
     # returns new value if the current value is the same as previous value
-    def call_this(self):
-        current_val = 0
-        pre_val = 0
-        if current_val != pre_val or current_val<=0:
+    def check_if_done(self, current_weight, previous_weight):
+        self.current_val = current_weight
+        self.pre_val = previous_weight
+        if self.current_val != self.pre_val or self.current_val<=0:
             # saves the previous value from scale
-            pre_val = current_val
+            self.pre_val = self.current_val
             # gets the new value from scale
-            current_val = self.get_weight(5) 
-            print("current reading: "+str(current_val)+"g")
-            time.sleep(0.5)
-            if current_val<0:
-                self.tare()
-                
-        elif current_val == pre_val and current_val > 0:
-            current_value = current_val
-            return current_value
-            self.power_down()
-            self.power_up()
+            #current_val = self.get_weight(5)
+            #print("current reading: "+str(self.current_val)+"g")
+            #time.sleep(0.5)
+            #if current_val<0:
+            #    self.tare()
+            return self.pre_val
 
-
-        
+        elif self.current_val == self.pre_val and self.current_val > 0:
+            #current_value = current_val
+            #return current_value
+            return True
+            #self.power_down()
+            #self.power_up()
