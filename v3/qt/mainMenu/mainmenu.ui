@@ -18,14 +18,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="lbl_title">
-       <property name="minimumSize">
-        <size>
-         <width>341</width>
-         <height>20</height>
-        </size>
-       </property>
        <property name="font">
         <font>
+         <family>Arial</family>
          <pointsize>24</pointsize>
          <weight>75</weight>
          <bold>true</bold>
@@ -60,13 +55,13 @@
        <property name="minimumSize">
         <size>
          <width>165</width>
-         <height>80</height>
+         <height>70</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>100</height>
+         <height>80</height>
         </size>
        </property>
        <property name="text">
@@ -85,7 +80,7 @@
        <property name="minimumSize">
         <size>
          <width>165</width>
-         <height>80</height>
+         <height>70</height>
         </size>
        </property>
        <property name="maximumSize">
