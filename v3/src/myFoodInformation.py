@@ -25,10 +25,17 @@ camera = PiCamera()
 camera.resolution = (1024, 768)
 
 i = 0
+previous_weight = 0
+current_weight = 0
+run_scan = False
+
 class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	NUM_THREADS = 1
 	sig_abort_workers = pyqtSignal()
 	def __init__(self, mainWindow, currentUserInfo, name=None, layoutSetting=None):
+		global previous_weight
+		previous_weight = 0
+		run_scan = False
 		super(myFoodInformation, self).__init__()
 		msg = QMessageBox.information(self, 'Attention',"Please remove any itme on scale",QMessageBox.Ok)
 		self.setupUi(self)
@@ -56,9 +63,9 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		self.setUpBackgroundImage()
 		msgbox.done(1)
 
-		self.start_threads()
+		self.start_threads(mainWindow, currentUserInfo)
 
-	def start_threads(self):
+	def start_threads(self, mainWindow, currentUserInfo):
 		global i
 		i += 1
 		#print('Starting thread %i' %i)
@@ -74,7 +81,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 
 			# get progress messages from worker:
 			worker.sig_step.connect(self.on_worker_step)
-			worker.sig_done.connect(self.on_worker_done)
+			worker.sig_done.connect(lambda: self.on_worker_done(mainWindow, currentUserInfo))
 
 			# control worker:
 			self.sig_abort_workers.connect(worker.abort)
@@ -83,16 +90,39 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			thread.started.connect(worker.work)
 			thread.start()  # this will emit 'started' and start thread's event loop
 
+	def automated_scan(self, mainWindow, currentUserInfo):
+		global run_scan
+		if run_scan == True:
+			self.handleBtn_scan(mainWindow, currentUserInfo)
+		else:
+			pass
+
+	def print_weight_values(self):
+		global current_weight, previous_weight
+		print("current_weight = %i" %(current_weight))
+		print("previous_weight = %i" %(previous_weight))
+	def compare(self):
+		global current_weight, previous_weight, run_scan
+		if current_weight == previous_weight and current_weight > 0:
+			run_scan = True
+			self.abort_workers()
+		elif current_weight != previous_weight:
+			#self.print_weight_values()
+			previous_weight = current_weight
+
 	@pyqtSlot(int, str)
 	def on_worker_step(self, worker_id: int, data: str):
 		self.lcd_number.display(str(data))
 		#print('worker #%i : %s' %(worker_id, data))
 		#self.progress.append('{}: {}'.format(worker_id, data))
+		global current_weight, previous_weight
+		current_weight = int(data)
+		self.compare()
 
-	@pyqtSlot(int)
-	def on_worker_done(self, worker_id):
-		#print('worker %i done' %(worker_id))
+	@pyqtSlot()
+	def on_worker_done(self, mainWindow, currentUserInfo):
 		self.__workers_done += 1
+		self.automated_scan(mainWindow, currentUserInfo)
 
 	@pyqtSlot()
 	def abort_workers(self):
@@ -107,6 +137,8 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		#print('UI.abort_workers - All threads exited')
 
 	def handleBtn_back(self,mainWindow):
+		global run_scan
+		run_scan = False
 		camera.stop_preview()
 		self.abort_workers()
 		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
@@ -136,8 +168,6 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			self.widget = myFoodSuggestion.myFoodSuggestion(mainWindow, currentUserInfo, self.clfProb, self.foodWeight, self)
 			mainWindow.central_widget.addWidget(self.widget)
 			mainWindow.central_widget.setCurrentWidget(self.widget)
-
-
 
 		# BioImpedance Stuff here
 		gain_factor = 5.12e-10 #5.75882e-10#4.902e-11 #1.013e-9
