@@ -13,7 +13,7 @@ class myFoodSuggestion(QWidget, ui_foodsuggestionmenu.Ui_foodSuggestionMenu):
 		self.setupUi(self)
 		self.currentUserInfo = currentUserInfo
 		self.foodWeight = foodWeight
-		self.btn_Back.clicked.connect(lambda:mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget()))
+		self.btn_Back.clicked.connect(lambda:self.handleBtn_back(mainWindow,myFoodInformationSelf))
 		if (len(clfResult_prob)>0):
 			s = str(clfResult_prob[0][0])+".jpg"
 			pic = QPixmap(currentDir+'/imageSample/'+s)
@@ -54,6 +54,10 @@ class myFoodSuggestion(QWidget, ui_foodsuggestionmenu.Ui_foodSuggestionMenu):
 			foodInfo = db_access.food_getInfo_localDB(clfResult_prob[4][0])[1]
 			self.btn_sug5.setText(foodInfo.description)
 			self.btn_sug5.clicked.connect(lambda: self.handleAddIntake(mainWindow,clfResult_prob[4][0],myFoodInformationSelf))
+
+	def handleBtn_back(self,mainWindow,myFoodInformationSelf):
+		myFoodInformation.myFoodInformation.cancelFoodSuggestion(self,myFoodInformationSelf, self.currentUserInfo, mainWindow)
+		mainWindow.central_widget.removeWidget(mainWindow.central_widget.currentWidget())
 
 	def handleAddIntake(self,mainWindow,foodID,myFoodInformationSelf):
 		# foodInfo = db_access.food_getActualInfo(self.currentUserInfo.id,str(foodID),str(self.foodWeight))

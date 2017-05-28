@@ -109,7 +109,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		global current_weight, previous_weight, run_scan, automated_scan_latch
 		if current_weight > 0 and current_weight < 1:
 			automated_scan_latch = False
-		if automated_scan_latch = False:
+		if automated_scan_latch == False:
 			if current_weight == previous_weight and current_weight > 0:
 				run_scan = True
 				self.abort_workers()
@@ -251,6 +251,10 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			shutil.copyfile(os.path.join(os.getcwd(),"background.jpg"),backgroundFilePath)
 			shutil.copyfile(os.path.join(os.getcwd(),"forground.jpg"),forgroundFilePath)
 			# msg = QMessageBox.information(self, 'Added',"Food item has been added to your intake",QMessageBox.Ok)
+		self.start_threads(mainWindow, currentUserInfo)
+
+	def cancelFoodSuggestion(self,self_e,currentUserInfo,mainWindow):
+		self=self_e
 		self.start_threads(mainWindow, currentUserInfo)
 
 
