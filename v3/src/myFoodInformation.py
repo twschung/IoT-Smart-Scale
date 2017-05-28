@@ -107,7 +107,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 
 	def compare(self):
 		global current_weight, previous_weight, run_scan, automated_scan_latch
-		if current_weight >= 0 and current_weight < 2:
+		if current_weight >= -2 and current_weight < 2:
 			automated_scan_latch = False
 		if automated_scan_latch == False:
 			if current_weight == previous_weight and current_weight > 0:

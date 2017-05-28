@@ -14,13 +14,13 @@ class myGoal(QWidget, ui_goal.Ui_goal):
 		super(myGoal, self).__init__()
 		self.setupUi(self)
 		if(currentUserInfo.targetIntake == "" or currentUserInfo.targetIntake == None):
-			self.lbl_targetIntakeVal.setText("Not entered")
+			self.lbl_recommendedIntakeVal.setText("Not entered")
 		else:
-			self.lbl_targetIntakeVal.setText(currentUserInfo.targetIntake)
+			self.lbl_recommendedIntakeVal.setText(currentUserInfo.targetIntake)
 		if(currentUserInfo.targetWeight == "" or currentUserInfo.targetWeight == None):
-			self.lbl_targetWeightVal.setText("Not entered")
+			self.lbl_recommendedWeightVal.setText("Not entered")
 		else:
-			self.lbl_targetWeightVal.setText(currentUserInfo.targetWeight)
+			self.lbl_recommendedWeightVal.setText(currentUserInfo.targetWeight)
 		self.btn_back.clicked.connect(lambda:self.handleBtn_back(mainWindow))
 		self.btn_edit.clicked.connect(lambda:self.handleBtn_edit(mainWindow,currentUserInfo))
 	def handleBtn_back(self, mainWindow):
