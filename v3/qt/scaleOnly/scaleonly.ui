@@ -20,8 +20,7 @@
       <widget class="QLabel" name="lbl_title">
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>20</pointsize>
+         <pointsize>25</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -35,8 +34,7 @@
       <widget class="QLabel" name="lbl_instruction">
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
+         <pointsize>15</pointsize>
         </font>
        </property>
        <property name="text">
@@ -214,7 +212,6 @@
          </property>
          <property name="font">
           <font>
-           <family>Arial</family>
            <pointsize>13</pointsize>
           </font>
          </property>
@@ -246,7 +243,6 @@
          </property>
          <property name="font">
           <font>
-           <family>Arial</family>
            <pointsize>13</pointsize>
           </font>
          </property>

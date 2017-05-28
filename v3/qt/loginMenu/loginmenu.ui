@@ -18,7 +18,7 @@
     <widget class="QLabel" name="lbl_title">
      <property name="font">
       <font>
-       <pointsize>24</pointsize>
+       <pointsize>25</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
@@ -40,7 +40,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>15</pointsize>
+         <pointsize>13</pointsize>
         </font>
        </property>
        <property name="text">
@@ -75,6 +75,11 @@
          <height>81</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Username
 Login</string>
@@ -88,6 +93,11 @@ Login</string>
          <width>161</width>
          <height>81</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>Fingerprint
@@ -114,7 +124,7 @@ Login</string>
         <x>0</x>
         <y>0</y>
         <width>779</width>
-        <height>334</height>
+        <height>333</height>
        </rect>
       </property>
       <property name="minimumSize">

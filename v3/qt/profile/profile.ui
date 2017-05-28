@@ -18,8 +18,7 @@
     <widget class="QLabel" name="lbl_title">
      <property name="font">
       <font>
-       <family>Arial</family>
-       <pointsize>20</pointsize>
+       <pointsize>24</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
@@ -36,11 +35,6 @@
        <width>140</width>
        <height>70</height>
       </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-      </font>
      </property>
      <property name="text">
       <string>Back</string>
@@ -67,11 +61,6 @@
        <width>140</width>
        <height>70</height>
       </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-      </font>
      </property>
      <property name="text">
       <string>Edit</string>
@@ -103,11 +92,6 @@
           <height>20</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>Name:</string>
         </property>
@@ -115,11 +99,6 @@
       </item>
       <item row="0" column="1">
        <widget class="QLabel" name="lbl__nameVal">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>Name</string>
         </property>
@@ -133,11 +112,6 @@
           <height>20</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>Email:</string>
         </property>
@@ -145,11 +119,6 @@
       </item>
       <item row="1" column="1">
        <widget class="QLabel" name="lbl_emailVal">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>Email</string>
         </property>
@@ -163,11 +132,6 @@
           <height>19</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>Gender:</string>
         </property>
@@ -175,11 +139,6 @@
       </item>
       <item row="2" column="1">
        <widget class="QLabel" name="lbl_genderVal">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>Gender</string>
         </property>
@@ -193,11 +152,6 @@
           <height>20</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>Birth Year:</string>
         </property>
@@ -205,11 +159,6 @@
       </item>
       <item row="3" column="1">
        <widget class="QLabel" name="lbl_birthYearVal">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>Birth Year</string>
         </property>
@@ -223,11 +172,6 @@
           <height>19</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>Height:</string>
         </property>
@@ -235,11 +179,6 @@
       </item>
       <item row="4" column="1">
        <widget class="QLabel" name="lbl_heightVal">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>Height</string>
         </property>
@@ -247,13 +186,8 @@
       </item>
       <item row="5" column="1">
        <widget class="QLabel" name="lbl_heightUnits">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
-         <string>cm/ in</string>
+         <string>m/ in</string>
         </property>
        </widget>
       </item>
@@ -265,11 +199,6 @@
           <height>20</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>Weight:</string>
         </property>
@@ -277,11 +206,6 @@
       </item>
       <item row="6" column="1">
        <widget class="QLabel" name="lbl_weightVal">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>Weight</string>
         </property>
@@ -289,11 +213,6 @@
       </item>
       <item row="7" column="1">
        <widget class="QLabel" name="lbl_weightUnits">
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>kg/ lb</string>
         </property>
@@ -306,11 +225,6 @@
           <width>35</width>
           <height>20</height>
          </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
         </property>
         <property name="text">
          <string>BMI:</string>
@@ -325,71 +239,12 @@
           <height>20</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>BMI</string>
         </property>
        </widget>
       </item>
-      <item row="9" column="0">
-       <widget class="QLabel" name="lbl_idealWeight">
-        <property name="minimumSize">
-         <size>
-          <width>103</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
-        <property name="text">
-         <string>Ideal Weight: </string>
-        </property>
-       </widget>
-      </item>
       <item row="9" column="1">
-       <widget class="QLabel" name="lbl_idealWeightVal">
-        <property name="minimumSize">
-         <size>
-          <width>513</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
-        <property name="text">
-         <string>Ideal Weight</string>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="0">
-       <widget class="QLabel" name="lbl_exercise">
-        <property name="minimumSize">
-         <size>
-          <width>190</width>
-          <height>19</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
-        <property name="text">
-         <string>Recommended Exercise:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="1">
        <widget class="QLabel" name="lbl_exerciseVal">
         <property name="minimumSize">
          <size>
@@ -397,13 +252,47 @@
           <height>19</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-         </font>
-        </property>
         <property name="text">
          <string>kcal</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QLabel" name="lbl_idealWeight">
+        <property name="minimumSize">
+         <size>
+          <width>103</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Ideal Weight: </string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="QLabel" name="lbl_idealWeightVal">
+        <property name="minimumSize">
+         <size>
+          <width>513</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Ideal Weight</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="lbl_exercise">
+        <property name="minimumSize">
+         <size>
+          <width>190</width>
+          <height>19</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Recommended Exercise:</string>
         </property>
        </widget>
       </item>

@@ -30,14 +30,13 @@
      </property>
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
        <pointsize>24</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="text">
-      <string>Account Setting</string>
+      <string>Account Settings</string>
      </property>
     </widget>
    </item>
@@ -59,8 +58,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
+         <pointsize>15</pointsize>
         </font>
        </property>
        <property name="text">
@@ -84,8 +82,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
+         <pointsize>15</pointsize>
         </font>
        </property>
        <property name="text">
@@ -109,8 +106,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
+         <pointsize>15</pointsize>
         </font>
        </property>
        <property name="text">
@@ -128,8 +124,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Helvetica Neue</family>
-         <pointsize>16</pointsize>
+         <pointsize>15</pointsize>
         </font>
        </property>
        <property name="text">

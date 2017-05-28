@@ -20,8 +20,7 @@
       <widget class="QLabel" name="lbl_title">
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>24</pointsize>
+         <pointsize>26</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -64,6 +63,11 @@
          <height>80</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>System Update</string>
        </property>
@@ -89,8 +93,13 @@
          <height>100</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Close</string>
+        <string>Exit</string>
        </property>
       </widget>
      </item>
