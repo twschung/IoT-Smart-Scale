@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'usermenu.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.7.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -20,7 +20,7 @@ class Ui_userMenu(object):
         self.btn_scanFood.setMinimumSize(QtCore.QSize(341, 191))
         font = QtGui.QFont()
         font.setFamily("Helvetica Neue")
-        font.setPointSize(16)
+        font.setPointSize(15)
         self.btn_scanFood.setFont(font)
         self.btn_scanFood.setObjectName("btn_scanFood")
         self.gridLayout.addWidget(self.btn_scanFood, 2, 1, 1, 1)
@@ -28,7 +28,7 @@ class Ui_userMenu(object):
         self.btn_logout.setMinimumSize(QtCore.QSize(341, 191))
         font = QtGui.QFont()
         font.setFamily("Helvetica Neue")
-        font.setPointSize(16)
+        font.setPointSize(15)
         self.btn_logout.setFont(font)
         self.btn_logout.setObjectName("btn_logout")
         self.gridLayout.addWidget(self.btn_logout, 3, 1, 1, 1)
@@ -36,7 +36,7 @@ class Ui_userMenu(object):
         self.btn_myTracking.setMinimumSize(QtCore.QSize(341, 191))
         font = QtGui.QFont()
         font.setFamily("Helvetica Neue")
-        font.setPointSize(16)
+        font.setPointSize(15)
         self.btn_myTracking.setFont(font)
         self.btn_myTracking.setObjectName("btn_myTracking")
         self.gridLayout.addWidget(self.btn_myTracking, 2, 0, 1, 1)
@@ -44,14 +44,13 @@ class Ui_userMenu(object):
         self.btn_accountSetting.setMinimumSize(QtCore.QSize(341, 191))
         font = QtGui.QFont()
         font.setFamily("Helvetica Neue")
-        font.setPointSize(16)
+        font.setPointSize(15)
         self.btn_accountSetting.setFont(font)
         self.btn_accountSetting.setObjectName("btn_accountSetting")
         self.gridLayout.addWidget(self.btn_accountSetting, 3, 0, 1, 1)
         self.lbl_title = QtWidgets.QLabel(userMenu)
         self.lbl_title.setMinimumSize(QtCore.QSize(341, 20))
         font = QtGui.QFont()
-        font.setFamily("Helvetica Neue")
         font.setPointSize(24)
         font.setBold(True)
         font.setWeight(75)

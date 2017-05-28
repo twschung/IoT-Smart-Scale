@@ -12,7 +12,6 @@
   </property>
   <property name="font">
    <font>
-    <family>Arial</family>
     <pointsize>11</pointsize>
    </font>
   </property>
@@ -27,11 +26,6 @@
        <width>141</width>
        <height>70</height>
       </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-      </font>
      </property>
      <property name="text">
       <string>Login</string>
@@ -48,7 +42,7 @@
      </property>
      <property name="font">
       <font>
-       <family>Arial</family>
+       <pointsize>13</pointsize>
       </font>
      </property>
      <property name="text">
@@ -101,11 +95,6 @@
         <height>20</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-       </font>
-      </property>
       <property name="text">
        <string/>
       </property>
@@ -140,9 +129,6 @@
         <height>281</height>
        </rect>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
@@ -151,16 +137,17 @@
         <layout class="QHBoxLayout" name="row1">
          <item>
           <widget class="QPushButton" name="Q">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>Q</string>
@@ -169,16 +156,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="W">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>W</string>
@@ -187,16 +175,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="E">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>E</string>
@@ -205,16 +194,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="R">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>R</string>
@@ -223,16 +213,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="T">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>T</string>
@@ -241,16 +232,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="Y">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>Y</string>
@@ -259,16 +251,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="U">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>U</string>
@@ -277,16 +270,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="I">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>I</string>
@@ -295,16 +289,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="O">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>O</string>
@@ -313,16 +308,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="P">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>P</string>
@@ -351,16 +347,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="A">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>A</string>
@@ -369,16 +366,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="S">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>S</string>
@@ -387,16 +385,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="D">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>D</string>
@@ -405,16 +404,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="F">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>F</string>
@@ -423,16 +423,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="G">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>G</string>
@@ -441,16 +442,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="H">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>H</string>
@@ -459,16 +461,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="J">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>J</string>
@@ -477,16 +480,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="K">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>K</string>
@@ -495,16 +499,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="L">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>L</string>
@@ -533,16 +538,17 @@
         <layout class="QHBoxLayout" name="row3">
          <item>
           <widget class="QPushButton" name="btnShift">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>50</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>Shift</string>
@@ -567,16 +573,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="Z">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>Z</string>
@@ -585,16 +592,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="X">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>X</string>
@@ -603,16 +611,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="C">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>C</string>
@@ -621,16 +630,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="V">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>V</string>
@@ -645,11 +655,6 @@
              <height>55</height>
             </size>
            </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
-           </property>
            <property name="text">
             <string>B</string>
            </property>
@@ -657,16 +662,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="N">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>N</string>
@@ -675,16 +681,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="M">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>M</string>
@@ -709,16 +716,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="btnDel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="minimumSize">
             <size>
              <width>70</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>Del</string>
@@ -737,11 +745,6 @@
              <height>55</height>
             </size>
            </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
-           </property>
            <property name="text">
             <string>123</string>
            </property>
@@ -754,11 +757,6 @@
              <width>450</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>Space</string>
@@ -773,11 +771,6 @@
              <height>55</height>
             </size>
            </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
-           </property>
            <property name="text">
             <string>@</string>
            </property>
@@ -790,11 +783,6 @@
              <width>46</width>
              <height>55</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-            </font>
            </property>
            <property name="text">
             <string>.</string>
@@ -811,8 +799,7 @@
     <widget class="QLabel" name="lbl_title">
      <property name="font">
       <font>
-       <family>Arial</family>
-       <pointsize>20</pointsize>
+       <pointsize>24</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>

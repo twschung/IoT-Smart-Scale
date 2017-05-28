@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'accountsetting.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.7.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -20,7 +20,6 @@ class Ui_accountSetting(object):
         self.label.setMinimumSize(QtCore.QSize(261, 71))
         self.label.setMaximumSize(QtCore.QSize(261, 71))
         font = QtGui.QFont()
-        font.setFamily("Helvetica Neue")
         font.setPointSize(24)
         font.setBold(True)
         font.setWeight(75)
@@ -39,8 +38,7 @@ class Ui_accountSetting(object):
         self.btn_profile.setSizePolicy(sizePolicy)
         self.btn_profile.setMinimumSize(QtCore.QSize(281, 91))
         font = QtGui.QFont()
-        font.setFamily("Helvetica Neue")
-        font.setPointSize(16)
+        font.setPointSize(15)
         self.btn_profile.setFont(font)
         self.btn_profile.setObjectName("btn_profile")
         self.gridLayout_2.addWidget(self.btn_profile, 0, 0, 1, 1)
@@ -52,8 +50,7 @@ class Ui_accountSetting(object):
         self.btn_goal.setSizePolicy(sizePolicy)
         self.btn_goal.setMinimumSize(QtCore.QSize(281, 91))
         font = QtGui.QFont()
-        font.setFamily("Helvetica Neue")
-        font.setPointSize(16)
+        font.setPointSize(15)
         self.btn_goal.setFont(font)
         self.btn_goal.setObjectName("btn_goal")
         self.gridLayout_2.addWidget(self.btn_goal, 0, 1, 1, 1)
@@ -65,8 +62,7 @@ class Ui_accountSetting(object):
         self.btn_back.setSizePolicy(sizePolicy)
         self.btn_back.setMinimumSize(QtCore.QSize(141, 71))
         font = QtGui.QFont()
-        font.setFamily("Helvetica Neue")
-        font.setPointSize(16)
+        font.setPointSize(15)
         self.btn_back.setFont(font)
         self.btn_back.setObjectName("btn_back")
         self.gridLayout_2.addWidget(self.btn_back, 1, 1, 1, 1)
@@ -77,8 +73,7 @@ class Ui_accountSetting(object):
         sizePolicy.setHeightForWidth(self.btn_passcode.sizePolicy().hasHeightForWidth())
         self.btn_passcode.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
-        font.setFamily("Helvetica Neue")
-        font.setPointSize(16)
+        font.setPointSize(15)
         self.btn_passcode.setFont(font)
         self.btn_passcode.setObjectName("btn_passcode")
         self.gridLayout_2.addWidget(self.btn_passcode, 1, 0, 1, 1)
@@ -90,7 +85,7 @@ class Ui_accountSetting(object):
     def retranslateUi(self, accountSetting):
         _translate = QtCore.QCoreApplication.translate
         accountSetting.setWindowTitle(_translate("accountSetting", "accountSetting"))
-        self.label.setText(_translate("accountSetting", "Account Setting"))
+        self.label.setText(_translate("accountSetting", "Account Settings"))
         self.btn_profile.setText(_translate("accountSetting", "Profile"))
         self.btn_goal.setText(_translate("accountSetting", "Goal"))
         self.btn_back.setText(_translate("accountSetting", "Back"))
