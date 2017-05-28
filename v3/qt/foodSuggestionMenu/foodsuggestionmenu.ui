@@ -18,7 +18,6 @@
     <widget class="QLabel" name="lbl_title">
      <property name="font">
       <font>
-       <family>Helvetica Neue</family>
        <pointsize>24</pointsize>
        <weight>75</weight>
        <bold>true</bold>
@@ -68,12 +67,18 @@
          <property name="text">
           <string>-</string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="3" column="2">
         <widget class="QLabel" name="lbl_sug4">
          <property name="text">
           <string>-</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -108,12 +113,18 @@
          <property name="text">
           <string>-</string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="3" column="3">
         <widget class="QLabel" name="lbl_sug5">
          <property name="text">
           <string>-</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -128,6 +139,9 @@
         <widget class="QLabel" name="lbl_sug2">
          <property name="text">
           <string>-</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>

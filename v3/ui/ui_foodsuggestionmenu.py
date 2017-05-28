@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'foodsuggestionmenu.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.7.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -18,7 +18,6 @@ class Ui_foodSuggestionMenu(object):
         self.gridLayout.setObjectName("gridLayout")
         self.lbl_title = QtWidgets.QLabel(foodSuggestionMenu)
         font = QtGui.QFont()
-        font.setFamily("Helvetica Neue")
         font.setPointSize(24)
         font.setBold(True)
         font.setWeight(75)
@@ -41,9 +40,11 @@ class Ui_foodSuggestionMenu(object):
         self.btn_sug1.setObjectName("btn_sug1")
         self.gridLayout_3.addWidget(self.btn_sug1, 2, 2, 1, 1)
         self.lbl_sug1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.lbl_sug1.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_sug1.setObjectName("lbl_sug1")
         self.gridLayout_3.addWidget(self.lbl_sug1, 1, 2, 1, 1)
         self.lbl_sug4 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.lbl_sug4.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_sug4.setObjectName("lbl_sug4")
         self.gridLayout_3.addWidget(self.lbl_sug4, 3, 2, 1, 1)
         self.btn_sug2 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
@@ -55,15 +56,18 @@ class Ui_foodSuggestionMenu(object):
         self.gridLayout_3.addWidget(self.btn_Back, 3, 4, 1, 1)
         self.lbl_sug3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         self.lbl_sug3.setMinimumSize(QtCore.QSize(0, 200))
+        self.lbl_sug3.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_sug3.setObjectName("lbl_sug3")
         self.gridLayout_3.addWidget(self.lbl_sug3, 1, 4, 1, 1)
         self.lbl_sug5 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.lbl_sug5.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_sug5.setObjectName("lbl_sug5")
         self.gridLayout_3.addWidget(self.lbl_sug5, 3, 3, 1, 1)
         self.btn_sug3 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         self.btn_sug3.setObjectName("btn_sug3")
         self.gridLayout_3.addWidget(self.btn_sug3, 2, 4, 1, 1)
         self.lbl_sug2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.lbl_sug2.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_sug2.setObjectName("lbl_sug2")
         self.gridLayout_3.addWidget(self.lbl_sug2, 1, 3, 1, 1)
         self.btn_sug4 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
