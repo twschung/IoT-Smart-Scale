@@ -169,8 +169,8 @@ def trainModel():
     clf.append(svm.SVC(C=1.0, kernel='sigmoid', probability=True))
     clfName.append("svm.SVC(C=1.0, kernel='sigmoid')")
 
-    clf.append(svm.SVC(C=1.0, kernel='poly', degree=3, probability=True))
-    clfName.append("svm.SVC(C=1.0, kernel='poly', degree=3)")
+    # clf.append(svm.SVC(C=1.0, kernel='poly', degree=3, probability=True))
+    # clfName.append("svm.SVC(C=1.0, kernel='poly', degree=3)")
 
     for x in range (0,len(clf)):
         clf[x].fit(trainingSS,trainingRS)
