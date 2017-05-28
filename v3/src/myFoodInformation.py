@@ -220,7 +220,7 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		fat_perc = int(self.coeff/weight*100)
 		return fat_perc
 
-	def updateFoodInfo(self,self_e,foodID,currentUserInfo):
+	def updateFoodInfo(self,self_e,foodID,currentUserInfo, mainWindow):
 		self=self_e
 		if(currentUserInfo==None):
 			userId=0
