@@ -95,8 +95,8 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	def automated_scan(self, mainWindow, currentUserInfo):
 		global run_scan, automated_scan_latch
 		if run_scan == True:
-			self.handleBtn_scan(mainWindow, currentUserInfo)
 			automated_scan_latch = True
+			self.handleBtn_scan(mainWindow, currentUserInfo)
 		else:
 			pass
 
