@@ -22,11 +22,11 @@ class myUserProfile(QWidget, ui_profile.Ui_profile):
 		else:
 			self.lbl_genderVal.setText("Female")
 		self.lbl_birthYearVal.setText(currentUserInfo.dob)
-		self.lbl_heightVal.setText(currentUserInfo.height+"/"+str(round(float(currentUserInfo.height)*3.28084,2)))
-		self.lbl_weightVal.setText(currentUserInfo.weight+"/"+str(round(float(currentUserInfo.weight)*2.20462,2)))
+		self.lbl_heightVal.setText(currentUserInfo.height+"m / "+str(round(float(currentUserInfo.height)*3.28084,2))+"ft")
+		self.lbl_weightVal.setText(currentUserInfo.weight+"kg / "+str(round(float(currentUserInfo.weight)*2.20462,2))+"lb")
 		self.bmi = str(round(float(currentUserInfo.weight)/((float(currentUserInfo.height))**2),2))
 		#bmi = str(round((int(currentUserInfo.weight)/(int(currentUserInfo.height)/100))/(int(currentUserInfo.height)/100),2))
 		self.lbl_bmiVal.setText(self.bmi)
-		#self.lbl_idealWeightVal = 
-		#self.lbl_exerciseVal = 
-		
+		self.lbl_idealWeightVal.setText(currentUserInfo.targetWeight + ' kg')
+		self.daily_burn = round(((round(float(currentUserInfo.weight),2) - (round(float(currentUserInfo.targetWeight),2))) *2.20 *3500/30),2)
+		self.lbl_exerciseVal.setText(str(self.daily_burn) + " kcals/day (30 days)")

@@ -26,8 +26,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>13</pointsize>
+         <pointsize>15</pointsize>
         </font>
        </property>
        <property name="text">
@@ -45,12 +44,11 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>13</pointsize>
+         <pointsize>15</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Finger Print</string>
+        <string>Fingerprint</string>
        </property>
       </widget>
      </item>
@@ -64,8 +62,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>13</pointsize>
+         <pointsize>15</pointsize>
         </font>
        </property>
        <property name="text">
@@ -83,8 +80,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>13</pointsize>
+         <pointsize>15</pointsize>
         </font>
        </property>
        <property name="text">
@@ -99,14 +95,13 @@ from Login Menu</string>
     <widget class="QLabel" name="label">
      <property name="font">
       <font>
-       <family>Arial</family>
-       <pointsize>20</pointsize>
+       <pointsize>24</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="text">
-      <string>Passcode &amp; Fingerprint Menu</string>
+      <string>Passcode and Fingerprint Menu</string>
      </property>
     </widget>
    </item>

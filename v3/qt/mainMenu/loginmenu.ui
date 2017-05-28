@@ -30,8 +30,7 @@
    </property>
    <property name="font">
     <font>
-     <family>Helvetica Neue</family>
-     <pointsize>14</pointsize>
+     <pointsize>24</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>

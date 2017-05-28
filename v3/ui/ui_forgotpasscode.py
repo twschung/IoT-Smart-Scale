@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'forgotpasscode.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.7.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -20,7 +20,6 @@ class Ui_forgotPasscode(object):
         self.lbl_title.setMinimumSize(QtCore.QSize(776, 71))
         self.lbl_title.setMaximumSize(QtCore.QSize(781, 71))
         font = QtGui.QFont()
-        font.setFamily("Helvetica Neue")
         font.setPointSize(24)
         font.setBold(True)
         font.setWeight(75)
@@ -30,8 +29,7 @@ class Ui_forgotPasscode(object):
         self.btn_send = QtWidgets.QPushButton(forgotPasscode)
         self.btn_send.setMinimumSize(QtCore.QSize(281, 121))
         font = QtGui.QFont()
-        font.setFamily("Helvetica Neue")
-        font.setPointSize(16)
+        font.setPointSize(15)
         self.btn_send.setFont(font)
         self.btn_send.setObjectName("btn_send")
         self.gridLayout.addWidget(self.btn_send, 1, 1, 1, 1)
@@ -40,8 +38,7 @@ class Ui_forgotPasscode(object):
         self.btn_guest = QtWidgets.QPushButton(forgotPasscode)
         self.btn_guest.setMinimumSize(QtCore.QSize(281, 121))
         font = QtGui.QFont()
-        font.setFamily("Helvetica Neue")
-        font.setPointSize(16)
+        font.setPointSize(15)
         self.btn_guest.setFont(font)
         self.btn_guest.setObjectName("btn_guest")
         self.gridLayout.addWidget(self.btn_guest, 2, 1, 1, 1)
@@ -50,8 +47,7 @@ class Ui_forgotPasscode(object):
         self.btn_back = QtWidgets.QPushButton(forgotPasscode)
         self.btn_back.setMinimumSize(QtCore.QSize(281, 121))
         font = QtGui.QFont()
-        font.setFamily("Helvetica Neue")
-        font.setPointSize(16)
+        font.setPointSize(15)
         self.btn_back.setFont(font)
         self.btn_back.setObjectName("btn_back")
         self.gridLayout.addWidget(self.btn_back, 3, 1, 1, 1)

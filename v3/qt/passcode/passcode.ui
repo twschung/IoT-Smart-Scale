@@ -14,90 +14,13 @@
    <string>passCode</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0" colspan="2">
-    <layout class="QVBoxLayout" name="verticalLayout_3">
-     <property name="leftMargin">
-      <number>0</number>
-     </property>
-     <item>
-      <widget class="QPushButton" name="btn_remUser">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>100</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Remember
-User</string>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btn_remFingerPrint">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>100</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Remember
-Finger
-Print</string>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
    <item row="0" column="0" colspan="7">
     <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
+     <item alignment="Qt::AlignTop">
       <widget class="QLabel" name="lbl_title">
-       <property name="minimumSize">
-        <size>
-         <width>201</width>
-         <height>51</height>
-        </size>
-       </property>
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>20</pointsize>
+         <pointsize>24</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -111,7 +34,6 @@ Print</string>
       <widget class="QLabel" name="lbl_info">
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>15</pointsize>
         </font>
        </property>
@@ -163,7 +85,6 @@ Print</string>
          </property>
          <property name="font">
           <font>
-           <family>Arial</family>
            <pointsize>20</pointsize>
            <weight>75</weight>
            <bold>true</bold>
@@ -215,7 +136,6 @@ Print</string>
          </property>
          <property name="font">
           <font>
-           <family>Arial</family>
            <pointsize>20</pointsize>
            <weight>75</weight>
            <bold>true</bold>
@@ -267,7 +187,6 @@ Print</string>
          </property>
          <property name="font">
           <font>
-           <family>Arial</family>
            <pointsize>20</pointsize>
            <weight>75</weight>
            <bold>true</bold>
@@ -319,7 +238,6 @@ Print</string>
          </property>
          <property name="font">
           <font>
-           <family>Arial</family>
            <pointsize>20</pointsize>
            <weight>75</weight>
            <bold>true</bold>
@@ -688,6 +606,74 @@ Print</string>
         </widget>
        </item>
       </layout>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="btn_remUser">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Remember
+User</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_remFingerPrint">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Remember
+Finger
+Print</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>

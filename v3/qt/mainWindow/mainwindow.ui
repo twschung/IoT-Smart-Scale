@@ -25,7 +25,7 @@
       </property>
       <property name="font">
        <font>
-        <family>Helvetica Neue</family>
+        <family>Arial</family>
         <pointsize>24</pointsize>
         <weight>75</weight>
         <bold>true</bold>
@@ -46,7 +46,7 @@
       </property>
       <property name="font">
        <font>
-        <family>Helvetica Neue</family>
+        <family>Arial</family>
         <pointsize>16</pointsize>
        </font>
       </property>
@@ -65,7 +65,7 @@
       </property>
       <property name="font">
        <font>
-        <family>Helvetica Neue</family>
+        <family>Arial</family>
         <pointsize>16</pointsize>
        </font>
       </property>
@@ -84,7 +84,7 @@
       </property>
       <property name="font">
        <font>
-        <family>Helvetica Neue</family>
+        <family>Arial</family>
         <pointsize>16</pointsize>
        </font>
       </property>
@@ -103,7 +103,7 @@
       </property>
       <property name="font">
        <font>
-        <family>Helvetica Neue</family>
+        <family>Arial</family>
         <pointsize>16</pointsize>
        </font>
       </property>
