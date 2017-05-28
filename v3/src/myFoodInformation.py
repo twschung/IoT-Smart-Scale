@@ -27,13 +27,15 @@ camera.resolution = (1024, 768)
 i = 0
 previous_weight = 0
 current_weight = 0
+automated_scan_latch = False
 run_scan = False
 
 class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 	NUM_THREADS = 1
 	sig_abort_workers = pyqtSignal()
 	def __init__(self, mainWindow, currentUserInfo, name=None, layoutSetting=None):
-		global previous_weight
+		global previous_weight, automated_scan_latch
+		automated_scan_latch = False
 		previous_weight = 0
 		run_scan = False
 		super(myFoodInformation, self).__init__()
@@ -91,9 +93,10 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 			thread.start()  # this will emit 'started' and start thread's event loop
 
 	def automated_scan(self, mainWindow, currentUserInfo):
-		global run_scan
+		global run_scan, automated_scan_latch
 		if run_scan == True:
 			self.handleBtn_scan(mainWindow, currentUserInfo)
+			automated_scan_latch = True
 		else:
 			pass
 
@@ -101,14 +104,18 @@ class myFoodInformation(QWidget, ui_foodinformation.Ui_foodInformation):
 		global current_weight, previous_weight
 		print("current_weight = %i" %(current_weight))
 		print("previous_weight = %i" %(previous_weight))
+
 	def compare(self):
-		global current_weight, previous_weight, run_scan
-		if current_weight == previous_weight and current_weight > 0:
-			run_scan = True
-			self.abort_workers()
-		elif current_weight != previous_weight:
-			#self.print_weight_values()
-			previous_weight = current_weight
+		global current_weight, previous_weight, run_scan, automated_scan_latch
+		if current_weight > 0 and current_weight < 1:
+			automated_scan_latch = False
+		if automated_scan_latch = False:
+			if current_weight == previous_weight and current_weight > 0:
+				run_scan = True
+				self.abort_workers()
+			elif current_weight != previous_weight:
+				#self.print_weight_values()
+				previous_weight = current_weight
 
 	@pyqtSlot(int, str)
 	def on_worker_step(self, worker_id: int, data: str):
