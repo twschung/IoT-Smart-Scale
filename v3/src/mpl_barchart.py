@@ -4,19 +4,19 @@ import numpy as np
 import db_access
 import datetime, os
 fig_size = plt.rcParams['figure.figsize']
-fig_size[0] = 6.5
+fig_size[0] = 6.3
 fig_size[1] = 2.7
 plt.rcParams['figure.figsize'] = fig_size
 plt.rcParams['ytick.labelsize'] = 8
-    
+
 def plot_and_save_weekly_graph(this_week_list, last_week_list, weekday):
 	y_prev_week = last_week_list
 	y_curr_week = this_week_list
-	days=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+	days=['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
 	days[weekday] = 'Today'
 	plt.style.use(['ggplot'])
 
-	N = 7 
+	N = 7
 	ind = np.arange(N)
 	width = 0.35
 
@@ -35,13 +35,13 @@ def plot_and_save_weekly_graph(this_week_list, last_week_list, weekday):
 	plt.savefig('plot.png', bbox_inches='tight') #, dpi=95)
 	#plt.show()
 	ax1.clear()
-    
+
 def bar_value(series):
 	# Labels the value above the chart
 	for x in series:
 		height = x.get_height()
 		plt.text(x.get_x() + x.get_width()/2., 1.03*height, '%d' %int(height),ha='center', va='bottom', fontsize=8)
-	
+
 def plot_weekly_label(self, date, currentUserInfo):#,  currentUserInfo):
 	# print("barchart.py:date %s" %(str(date.strftime("%Y-%m-%d"))))
 	userId = currentUserInfo.id
