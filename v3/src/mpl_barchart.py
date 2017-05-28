@@ -15,6 +15,8 @@ def plot_and_save_weekly_graph(this_week_list, last_week_list, weekday):
 	days=['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
 	days[weekday] = 'Today'
 	plt.style.use(['ggplot'])
+	#plt.style.use(['fivethirtyeight'])
+	#plt.style.use(['classic'])
 
 	N = 7
 	ind = np.arange(N)
